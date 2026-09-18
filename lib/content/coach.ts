@@ -15,17 +15,17 @@ export const coachExperience = [
   {
     role: "Freiberuflicher Dozent – Bewerbungsmanagement & Jobcoaching",
     org: "Zentrum für Weiterbildung gGmbH (ZfW)",
-    period: "seit 01/2026",
+    period: "2026",
   },
   {
     role: "Teilhabe- und Schulassistenz (Inklusionshilfe)",
     org: "—",
-    period: "seit 2024",
+    period: "Praxiserfahrung",
   },
   {
     role: "Immobilienberater",
     org: "Engel & Völkers",
-    period: "2022–2025",
+    period: "2022",
   },
   {
     role: "Ausbildung Rechtsanwalts- und Notarfachangestellter",

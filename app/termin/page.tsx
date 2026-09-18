@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Termin & Erstgespräch",
-  description: "Sichere dir dein kostenloses, unverbindliches Erstgespräch bei KlarVoran – online, per Formular oder telefonisch.",
+  description: "Frage dein kostenloses, unverbindliches Erstgespräch bei KlarVoran online, per Formular oder telefonisch an.",
   alternates: { canonical: "/termin" },
 };
 
@@ -17,11 +17,11 @@ export default function TerminPage() {
       <Breadcrumbs items={[{ href: "/termin", label: "Termin" }]} />
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">Kostenloses Erstgespräch</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Sichere dir deinen Termin</h1>
+        <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Kostenloses Erstgespräch anfragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
           Im kostenlosen, unverbindlichen Erstgespräch klären wir deine Situation, deinen AVGS-Status und die
-          nächsten Schritte. Da wir mit begrenzten wöchentlichen Zeitfenstern arbeiten, melden wir uns nach deiner
-          Anfrage persönlich zur Terminfindung zurück.
+          nächsten Schritte. Nach deiner Anfrage melden wir uns persönlich bei dir, um einen passenden Termin zu
+          finden.
         </p>
 
         {siteConfig.booking.url && (
@@ -45,11 +45,11 @@ export default function TerminPage() {
         </div>
 
         <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-white/80">
-          Lieber direkt sprechen?{" "}
+          Du möchtest lieber direkt sprechen? Ruf uns an unter{" "}
           <a href={siteConfig.contact.phoneHref} className="font-semibold text-white underline underline-offset-2">
             {siteConfig.contact.phoneDisplay}
           </a>{" "}
-          oder{" "}
+          oder schreib uns per{" "}
           <a href={siteConfig.contact.whatsappHref()} className="font-semibold text-white underline underline-offset-2">
             WhatsApp
           </a>

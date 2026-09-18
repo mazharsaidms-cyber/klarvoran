@@ -5,9 +5,9 @@ export type FaqItem = {
 
 export const generalFaq: FaqItem[] = [
   {
-    question: "Kostet das Coaching bei KlarVoran etwas?",
+    question: "Was kostet das Coaching bei KlarVoran?",
     answer:
-      "Nein. Wenn dein Jobcenter oder deine Agentur für Arbeit dir einen AVGS (Aktivierungs- und Vermittlungsgutschein) bewilligt, ist das Coaching für dich kostenfrei. Die Kosten übernimmt direkt der Kostenträger.",
+      "Mit einem passenden und bewilligten AVGS ist das AVGS-Coaching für dich kostenfrei. Die Kosten übernimmt der zuständige Kostenträger. Für privates Job- und Bewerbungscoaching erhältst du nach dem kostenlosen Kennenlerngespräch vor der Buchung ein transparentes Angebot mit Umfang und Gesamtpreis.",
   },
   {
     question: "Wie bekomme ich einen AVGS?",
@@ -17,12 +17,12 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Wie lange dauert das Coaching?",
     answer:
-      "Die Maßnahme umfasst 32 Unterrichtseinheiten à 45 Minuten und läuft über bis zu 8 Wochen, meist mit ein bis zwei Terminen pro Woche.",
+      "Die Maßnahme umfasst 32 Unterrichtseinheiten à 45 Minuten und läuft über 8 Wochen. In der Regel finden zwei Termine pro Woche mit jeweils 2 Unterrichtseinheiten statt.",
   },
   {
     question: "Findet das Coaching online oder in Präsenz statt?",
     answer:
-      "Beides ist möglich – Präsenztermine finden ausschließlich in den Kriftel Workspaces statt, alternativ online oder hybrid. Hausbesuche bieten wir nicht an.",
+      "Beides ist möglich – Präsenztermine finden nach Terminbestätigung in der Taunusstraße 52, 65830 Kriftel statt, alternativ online oder hybrid. Hausbesuche bieten wir nicht an.",
   },
   {
     question: "Wie starte ich?",
@@ -35,19 +35,14 @@ export const generalFaq: FaqItem[] = [
       "Ja, unbedingt. Wir erklären dir, wie die Beantragung funktioniert, und du kannst mit uns sprechen, bevor du zu deiner Vermittlungsfachkraft gehst.",
   },
   {
-    question: "Ist KlarVoran ein zugelassener Träger?",
+    question: "Wer ist der zugelassene Träger hinter KlarVoran?",
     answer:
-      "Ja. KlarVoran ist die Marke von MS Coaching – Mazhar Said, seit dem 24.07.2026 nach § 178 SGB III als Träger zugelassen und zertifiziert durch CERTQUA (Zertifikat-Nr. 26-20859-T, gültig bis 23.07.2031). Auch die konkrete Maßnahme ist zugelassen.",
+      "KlarVoran – Mazhar Said ist die aktuelle Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde auf Mazhar Said – MS Coaching ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Anpassung der Zulassungsunterlagen befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
   },
   {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",
     answer:
       "Sag uns frühzeitig Bescheid, damit wir gemeinsam einen neuen Termin finden. Fehlzeiten dokumentieren wir wie vorgeschrieben gegenüber dem Kostenträger.",
-  },
-  {
-    question: "Spricht Mazhar auch andere Sprachen als Deutsch?",
-    answer:
-      "Das Coaching findet auf Deutsch statt. Zu weiteren Sprachmöglichkeiten sprich uns gerne im Erstgespräch an.",
   },
 ];
 
@@ -70,7 +65,7 @@ export const avgsFaq: FaqItem[] = [
   {
     question: "Wie läuft die Beantragung ab?",
     answer:
-      "Du sprichst das Thema aktiv bei deinem Beratungstermin an und begründest deinen Bedarf. Ist deine Fachkraft einverstanden, erhältst du einen Gutschein mit Gültigkeitsdauer, Förderziel und Kostenträger. Diesen Gutschein bringst du zu uns – wir übernehmen den Rest der Prüfung.",
+      "Du sprichst das Thema aktiv bei deinem Beratungstermin an und begründest deinen Bedarf. Ist deine Fachkraft einverstanden, erhältst du einen Gutschein mit Gültigkeitsdauer, Förderziel und Kostenträger. Diesen Gutschein bringst du zu uns – wir prüfen Gutschein und Passung zur Maßnahme und klären die nächsten Schritte mit dir.",
   },
   {
     question: "Warum ist das Coaching für mich kostenfrei?",

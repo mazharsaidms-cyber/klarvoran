@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
 
 const fieldClasses =
   "w-full rounded-[var(--radius-sm)] border border-navy-100 bg-white px-4 py-2.5 text-navy placeholder:text-navy-600/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
@@ -72,6 +72,43 @@ export function TextareaField({
   );
 }
 
+export function SelectField({
+  id,
+  label,
+  error,
+  required,
+  children,
+  ...rest
+}: {
+  id: string;
+  label: string;
+  error?: string;
+} & SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-navy">
+        {label} {required && <span aria-hidden="true" className="text-red">*</span>}
+      </label>
+      <select
+        id={id}
+        name={id}
+        required={required}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className={fieldClasses}
+        {...rest}
+      >
+        {children}
+      </select>
+      {error && (
+        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-700">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function RadioGroupField({
   legend,
   name,
@@ -90,7 +127,7 @@ export function RadioGroupField({
   required?: boolean;
 }) {
   return (
-    <fieldset>
+    <fieldset aria-describedby={error ? `${name}-error` : undefined}>
       <legend className="mb-1.5 text-sm font-semibold text-navy">
         {legend} {required && <span aria-hidden="true" className="text-red">*</span>}
       </legend>
@@ -113,12 +150,12 @@ export function RadioGroupField({
           </label>
         ))}
       </div>
-      {error && <p className="mt-1.5 text-sm text-red-700">{error}</p>}
+      {error && <p id={`${name}-error`} className="mt-1.5 text-sm text-red-700">{error}</p>}
     </fieldset>
   );
 }
 
-export function ConsentField({ id = "consent", error }: { id?: string; error?: string }) {
+export function PrivacyNoticeField({ id = "consent", error }: { id?: string; error?: string }) {
   return (
     <div>
       <label htmlFor={id} className="flex cursor-pointer items-start gap-2.5 text-sm text-navy-600">
@@ -136,7 +173,7 @@ export function ConsentField({ id = "consent", error }: { id?: string; error?: s
           <a href="/datenschutz" className="text-navy underline underline-offset-2">
             Datenschutzerklärung
           </a>{" "}
-          gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.{" "}
+          zur Verarbeitung meiner Angaben für die Bearbeitung dieser Anfrage zur Kenntnis genommen.{" "}
           <span aria-hidden="true" className="text-red">*</span>
         </span>
       </label>

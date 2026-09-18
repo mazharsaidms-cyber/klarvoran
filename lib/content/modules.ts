@@ -5,6 +5,7 @@ export type CoachingModule = {
   summary: string;
   focus: string[];
   outcome: string;
+  institutionOutcome: string;
 };
 
 export const coachingModules: CoachingModule[] = [
@@ -21,6 +22,7 @@ export const coachingModules: CoachingModule[] = [
       "Realistische berufliche Perspektiven entwickeln",
     ],
     outcome: "Dokumentierte berufliche Zielsetzung und dein individueller Coaching-Plan.",
+    institutionOutcome: "Dokumentierte berufliche Zielsetzung und individueller Coaching-Plan.",
   },
   {
     id: 2,
@@ -35,6 +37,7 @@ export const coachingModules: CoachingModule[] = [
       "Vorbereitung deiner Selbstvorstellung",
     ],
     outcome: "Finaler, bewerbungsfähiger Lebenslauf und eine individuelle Anschreiben-Vorlage.",
+    institutionOutcome: "Finaler, bewerbungsfähiger Lebenslauf und individuelle Anschreiben-Vorlage.",
   },
   {
     id: 3,
@@ -49,6 +52,7 @@ export const coachingModules: CoachingModule[] = [
       "Dokumentation der Bewerbungsaktivitäten",
     ],
     outcome: "Deine individuelle Bewerbungsstrategie und eine Übersicht deiner Aktivitäten.",
+    institutionOutcome: "Individuelle Bewerbungsstrategie und Übersicht der Bewerbungsaktivitäten.",
   },
   {
     id: 4,
@@ -63,6 +67,7 @@ export const coachingModules: CoachingModule[] = [
       "Nachbereitung nach dem Gespräch",
     ],
     outcome: "Ein individueller Gesprächsleitfaden und mehr Sicherheit im Auftreten.",
+    institutionOutcome: "Individueller Gesprächsleitfaden und mehr Sicherheit im Auftreten.",
   },
 ];
 

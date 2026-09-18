@@ -13,6 +13,8 @@ test("hat_avgs führt direkt zur Terminbuchung", () => {
   const result = evaluateAvgsCheck({ ...base, status: "hat_avgs" });
   assert.equal(result.primaryCtaHref, "/termin");
   assert.match(result.headline, /bereits einen AVGS/);
+  assert.match(result.message, /Gutschein gültig ist und zu unserer Maßnahme passt/);
+  assert.doesNotMatch(result.message, /nichts im Wege/);
 });
 
 test("moechte_beantragen verweist auf den Leitfaden", () => {
@@ -36,5 +38,10 @@ test("Ergebnis enthält immer einen vorsichtigen Disclaimer (keine Anspruchszusa
 
 test("Präsenzform wird im Ergebnistext berücksichtigt", () => {
   const result = evaluateAvgsCheck({ ...base, status: "hat_avgs", form: "praesenz_kriftel" });
-  assert.match(result.message, /Kriftel Workspaces/);
+  assert.match(result.message, /Taunusstraße 52/);
+});
+
+test("ausgewähltes Anliegen wird im Ergebnis sichtbar berücksichtigt", () => {
+  const result = evaluateAvgsCheck({ ...base, anliegen: "bewerbungsunterlagen" });
+  assert.match(result.message, /Bewerbungsunterlagen/);
 });

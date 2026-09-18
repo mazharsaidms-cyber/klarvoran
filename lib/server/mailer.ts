@@ -35,31 +35,38 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
     .filter(Boolean)
     .join("\n");
 
-  if (process.env.RESEND_API_KEY) {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: process.env.LEAD_SENDER_EMAIL || `KlarVoran Website <onboarding@resend.dev>`,
-        to: [LEAD_RECIPIENT],
-        reply_to: payload.email,
-        subject,
-        text,
-      }),
-    });
-    return { delivered: res.ok, dev: false };
-  }
+  try {
+    if (process.env.RESEND_API_KEY) {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: process.env.LEAD_SENDER_EMAIL || `KlarVoran Website <onboarding@resend.dev>`,
+          to: [LEAD_RECIPIENT],
+          reply_to: payload.email,
+          subject,
+          text,
+        }),
+        signal: AbortSignal.timeout(10_000),
+      });
+      return { delivered: res.ok, dev: false };
+    }
 
-  if (process.env.FORM_WEBHOOK_URL) {
-    const res = await fetch(process.env.FORM_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ subject, ...payload }),
-    });
-    return { delivered: res.ok, dev: false };
+    if (process.env.FORM_WEBHOOK_URL) {
+      const res = await fetch(process.env.FORM_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, ...payload }),
+        signal: AbortSignal.timeout(10_000),
+      });
+      return { delivered: res.ok, dev: false };
+    }
+  } catch (error) {
+    console.error("Lead-Versand fehlgeschlagen:", error instanceof Error ? error.message : "Unbekannter Fehler");
+    return { delivered: false, dev: false };
   }
 
   if (process.env.NODE_ENV !== "production") {

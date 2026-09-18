@@ -1,10 +1,10 @@
 import { siteConfig } from "@/lib/site-config";
 
 const items = [
-  { label: "AZAV-Träger nach § 178 SGB III", value: null },
+  { label: "Zugelassene Maßnahme nach § 45 SGB III", value: null },
   { label: `CERTQUA-Zertifikat ${siteConfig.certificate.number}`, value: null },
   { label: "0 € für dich mit bewilligtem AVGS", value: null },
-  { label: "Eigenständiger Träger, kein Coachpool", value: null },
+  { label: "Persönlich begleitet, klar strukturiert", value: null },
 ];
 
 export function TrustBar({ tone = "light" }: { tone?: "light" | "dark" }) {

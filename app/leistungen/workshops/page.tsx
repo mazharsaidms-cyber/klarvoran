@@ -6,9 +6,9 @@ import { CtaSection } from "@/components/CtaSection";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
-  title: "Workshops & Team-Coachings für Gruppen",
+  title: "Workshops für Bewerbung und berufliche Orientierung",
   description:
-    "Workshops und Team-Coachings von KlarVoran (MS Coaching – Mazhar Said) zu Bewerbung, beruflicher Orientierung und digitaler Kompetenz – für Einrichtungen, Schulen und Unternehmen im Rhein-Main-Gebiet.",
+    "Praxisnahe Workshops und Gruppenformate von KlarVoran zu Bewerbung, beruflicher Orientierung und digitaler Kompetenz – für Einrichtungen, Bildungsträger und Unternehmen.",
   alternates: { canonical: "/leistungen/workshops" },
 };
 
@@ -41,7 +41,7 @@ const formats = [
     text: "Vertiefte Bearbeitung mit praktischen Übungen und individuellem Feedback in der Gruppe.",
   },
   {
-    title: "Modulreihe / Team-Coaching",
+    title: "Modulreihe / Gruppenformat",
     text: "Mehrere Termine über einen längeren Zeitraum, z. B. begleitend zu einer Maßnahme oder einem Projekt.",
   },
 ];
@@ -49,23 +49,23 @@ const formats = [
 export default function WorkshopsPage() {
   return (
     <>
-      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/workshops", label: "Workshops & Team-Coachings" }]} />
+      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/workshops", label: "Workshops & Gruppenformate" }]} />
       <Section tone="navy" className="pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <Eyebrow tone="white">Workshops & Team-Coachings</Eyebrow>
+            <Eyebrow tone="white">Workshops &amp; Gruppenformate</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
-              Coaching-Wissen für die ganze Gruppe
+              Praxisnahe Workshops für Bewerbung und berufliche Orientierung
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Für Einrichtungen, Schulen, Bildungsträger und Unternehmen: kompakte Workshop- und Team-Coaching-Formate
-              rund um Bewerbung, berufliche Orientierung und digitale Kompetenz – zugeschnitten auf die jeweilige
-              Gruppe statt als Standardvortrag.
+              Für Einrichtungen, Bildungsträger und Unternehmen: kompakte Formate rund um Bewerbung, berufliche
+              Orientierung und digitale Kompetenz – auf Ihre Zielgruppe, Ihre Ziele und den verfügbaren Zeitrahmen
+              abgestimmt.
             </p>
           </div>
           <ContextGraphic
             variant="workshop"
-            title="Praxisnaher Workshop mit klaren Themen und Übungen"
+            title="Strukturierter Workshop mit Übungen und sichtbaren Arbeitsergebnissen"
           />
         </div>
       </Section>
@@ -102,15 +102,15 @@ export default function WorkshopsPage() {
           <Card>
             <h3 className="font-semibold text-navy">Gruppengröße & Ort</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Für kleine bis mittlere Gruppen, vor Ort bei der Einrichtung, in den Kriftel Workspaces oder online –
-              je nach Bedarf.
+              Vor Ort bei der Einrichtung, am Coachingstandort in Kriftel oder online. Die Gruppengröße wird so
+              vereinbart, dass praktische Übungen und Rückmeldungen im gebuchten Format realistisch möglich sind.
             </p>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Kosten</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Format, Dauer und Preis richten sich nach Gruppengröße und Umfang.{" "}
-              <strong className="font-semibold text-navy">Individuell, auf Anfrage.</strong>
+              Nach Klärung von Zielgruppe, Thema, Dauer und Gruppengröße erhalten Sie ein schriftliches Angebot mit
+              Leistungsumfang und Gesamtpreis. Die Anfrage ist unverbindlich.
             </p>
           </Card>
         </div>
@@ -118,7 +118,7 @@ export default function WorkshopsPage() {
 
       <CtaSection
         eyebrow="Für Einrichtungen & Unternehmen"
-        title="Workshop für eure Gruppe anfragen"
+        title="Workshop für Ihre Gruppe anfragen"
         description="Schreiben Sie uns Zielgruppe, Thema und gewünschten Zeitraum – wir melden uns mit einem passenden Vorschlag zurück."
         primaryLabel="Workshop anfragen"
         primaryHref="/kontakt"

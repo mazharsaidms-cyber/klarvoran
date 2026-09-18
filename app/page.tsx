@@ -7,8 +7,10 @@ import { LeistungCard } from "@/components/LeistungCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { CtaSection } from "@/components/CtaSection";
 import { CertificateSeal } from "@/components/CertificateSeal";
+import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
 import { ServiceStructuredData } from "@/components/StructuredData";
+import { ContextGraphic } from "@/components/ContextGraphic";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -16,7 +18,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "KlarVoran – Bewerbungscoaching, Workshops & Kooperationen",
   description:
-    "KlarVoran: AVGS-Bewerbungscoaching, 1:1-Coaching, Workshops & Team-Coachings sowie Kooperationen für Institutionen – von MS Coaching – Mazhar Said, AZAV-zugelassener Bildungsträger in Frankfurt am Main.",
+    "KlarVoran: AVGS-Bewerbungscoaching, privates Jobcoaching, praxisnahe Workshops und Kooperationen für Institutionen in Frankfurt und im Rhein-Main-Gebiet.",
   alternates: { canonical: "/" },
 };
 
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
 // Gespräch, Wegweiser, Laptop, nächster Schritt.
 const methodSteps = [
   {
-    title: "Verstehen",
+    title: "Verstanden werden",
     text: "Wir starten mit einem echten Gespräch und klären deine Ausgangslage, deine Ziele und deine Hürden.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -34,8 +36,8 @@ const methodSteps = [
     ),
   },
   {
-    title: "Gemeinsam umsetzen",
-    text: "Wir ordnen Anforderungen und arbeiten deine nächsten Schritte gemeinsam und praktisch durch.",
+    title: "System verstehen",
+    text: "Wir übersetzen Anforderungen und ordnen sie in klare, nachvollziehbare Schritte.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M6 21V3" />
@@ -45,7 +47,7 @@ const methodSteps = [
     ),
   },
   {
-    title: "Selbst übernehmen",
+    title: "Selbst handeln",
     text: "Du passt Unterlagen an, recherchierst Stellen und bereitest Gespräche zunehmend selbst vor.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -55,8 +57,8 @@ const methodSteps = [
     ),
   },
   {
-    title: "Selbstständig weiterkommen",
-    text: "Du gehst mit einer klaren Struktur und Werkzeugen weiter, die du auch ohne uns anwenden kannst.",
+    title: "Dranbleiben",
+    text: "Du machst Fortschritte sichtbar, wertest Rückschläge aus und passt deinen nächsten Schritt an.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 20h5v-4h5v-4h5V8h3" />
@@ -70,8 +72,8 @@ const institutionTargets: InstitutionTarget[] = [
   {
     href: "/fuer-jobcenter",
     title: "Jobcenter & Agentur für Arbeit",
-    text: "AZAV-zugelassene Maßnahme nach § 45 SGB III mit allen Stammdaten für Ihre Zuweisung.",
-    cta: "Zuweisung vorbereiten",
+    text: "AZAV-zugelassene Maßnahme nach § 45 SGB III mit vollständigen Daten für Gutscheinprüfung und Teilnahmeabstimmung.",
+    cta: "Maßnahmedaten prüfen",
   },
   {
     href: "/fuer-soziale-einrichtungen",
@@ -82,7 +84,7 @@ const institutionTargets: InstitutionTarget[] = [
   {
     href: "/fuer-bildungstraeger",
     title: "Bildungsträger",
-    text: "Eigene AZAV-Struktur, BvB-Erfahrung und kurzfristiger Einsatz als Unterauftragnehmer.",
+    text: "Zulassungsstruktur, BvB-Erfahrung und abgestimmte Einsätze als Unterauftragnehmer.",
     cta: "Kooperation ansehen",
   },
   {
@@ -102,21 +104,21 @@ export default function HomePage() {
       <Section tone="navy" className="pt-14 sm:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <Eyebrow tone="white">AZAV-zugelassener Bildungsträger · Frankfurt &amp; Rhein-Main</Eyebrow>
+            <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
             <h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl">
               Klar sehen. Selbstständig handeln. Beruflich vorankommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              KlarVoran begleitet Menschen mit individuellem Coaching in Arbeit – als AVGS-Maßnahme, als
-              Selbstzahler-Coaching oder als Workshop für Gruppen. Für Institutionen sind wir zugleich AZAV-
-              zugelassener Kooperationspartner.
+              KlarVoran macht berufliche Anforderungen verständlich und nächste Schritte praktisch umsetzbar. Im
+              individuellen Coaching und in Workshops entstehen Lösungen, die du zunehmend selbst anwenden und
+              weiterführen kannst.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/termin" size="lg" onDark>
-                Kostenloses Erstgespräch sichern
+                Ich suche Unterstützung
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" size="lg" onDark>
-                Ich bin Institution / Fachkraft
+                Ich vertrete eine Institution
               </Button>
             </div>
             <div className="mt-10">
@@ -124,42 +126,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mx-auto w-64 sm:w-80 lg:w-full">
-            <Image
-              src={siteConfig.images.badge}
-              alt="Mazhar Said, Gründer von KlarVoran"
-              width={480}
-              height={480}
-              priority
-              className="w-full rounded-[var(--radius-lg)]"
-            />
-          </div>
-        </div>
-      </Section>
-
-      {/* Kompakter weißer Vertrauensbereich: Trägerzeichen + GEO-Definition.
-          Bewusst KEIN Maßnahmezeichen an dieser Stelle. */}
-      <Section tone="white" className="py-12 sm:py-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
-          <CertificateSeal
-            seal="traeger"
-            caption="MS Coaching – Mazhar Said (Zugelassener Träger nach § 178 SGB III)"
+          <ContextGraphic
+            variant="conversation"
+            title="Gespräch, Orientierung und klarer nächster Schritt im KlarVoran-Coaching"
           />
-          <div>
-            <h2 className="text-xl font-bold text-navy sm:text-2xl">
-              MS Coaching – Mazhar Said, die Organisation hinter KlarVoran
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
-              <strong className="font-semibold text-navy">KlarVoran</strong> ist das AZAV-zertifizierte
-              Coaching-Programm von <em>MS Coaching – Mazhar Said</em> in Frankfurt am Main. Die Kosten für das
-              individuelle 1:1-Bewerbungscoaching werden bei Vorliegen eines Aktivierungs- und
-              Vermittlungsgutscheins (AVGS nach § 45 Abs. 1 SGB III) zu 100&nbsp;% von den Jobcentern und der
-              Agentur für Arbeit übernommen.
-            </p>
-            <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
-              Zertifikat Trägerzulassung (PDF) →
-            </Button>
-          </div>
         </div>
       </Section>
 
@@ -169,8 +139,8 @@ export default function HomePage() {
           <Eyebrow tone="white">Leistungen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Vier Wege. Ein gemeinsamer Anspruch.</h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Eine Methode, vier Formate – je nachdem, ob du selbst einen Job suchst, ein Team weiterbilden willst
-            oder als Institution kooperieren möchtest.
+            Individuelle Unterstützung, Gruppenformate und institutionelle Zusammenarbeit führen über
+            unterschiedliche Zugänge zum selben Ziel: berufliche Handlungsfähigkeit.
           </p>
         </div>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -183,8 +153,10 @@ export default function HomePage() {
       {/* Die Methode in 4 Schritten: ruhige Lesefläche, echte Icons + HTML-Text. */}
       <Section tone="tint">
         <div className="mb-10">
-          <Eyebrow tone="navy">Die Methode</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">In vier Schritten voran</h2>
+          <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+            Verstanden werden. System verstehen. Selbst handeln. Dranbleiben.
+          </h2>
           <p className="mt-3 max-w-2xl text-navy-600">
             Nicht nur gemeinsam erledigen. Lernen, es selbst zu können.
           </p>
@@ -208,6 +180,29 @@ export default function HomePage() {
         </ol>
       </Section>
 
+      {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
+          ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
+      <Section tone="white" className="py-12 sm:py-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
+          <CertificateSeal
+            seal="traeger"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+          />
+          <div>
+            <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
+              Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
+              passenden und bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige
+              Kostenträger die Kosten vollständig.
+            </p>
+            <BrandTransitionNote className="mt-3 max-w-2xl" />
+            <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
+              Zertifikat Trägerzulassung (PDF) →
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       {/* Gründerabschnitt: ruhige weiße Lesefläche. */}
       <Section tone="white">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,220px)_1fr]">
@@ -221,13 +216,13 @@ export default function HomePage() {
             />
           </div>
           <div>
-            <Eyebrow>Über den Coach</Eyebrow>
+            <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
             <blockquote className="mt-4 text-xl font-semibold leading-snug text-navy sm:text-2xl">
-              „Ich bringe eine juristisch-strukturierte Denkweise mit pädagogischer Erfahrung zusammen – damit dein
-              Weg zurück in den Job planbar wird, statt diffus zu bleiben.“
+              „Ich bringe strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung zusammen – damit dein
+              nächster beruflicher Schritt planbar wird, statt diffus zu bleiben.“
             </blockquote>
             <p className="mt-4 text-sm text-navy-600">Mazhar Said, Gründer von KlarVoran</p>
-            <Button href="/ueber-den-coach" variant="text" className="mt-5">
+            <Button href="/ueber-uns#gruender" variant="text" className="mt-5">
               Mehr über Mazhar erfahren →
             </Button>
           </div>

@@ -3,13 +3,13 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
-import { ContextGraphic } from "@/components/ContextGraphic";
 import { siteConfig } from "@/lib/site-config";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
-  title: "1:1-Coaching für Selbstzahler",
+  title: "Privates Job- und Bewerbungscoaching",
   description:
-    "Individuelles Bewerbungs- und Orientierungscoaching bei KlarVoran (MS Coaching – Mazhar Said) auch ohne AVGS – flexibler Umfang, online, hybrid oder in Präsenz in Frankfurt am Main.",
+    "Privates Job- und Bewerbungscoaching bei KlarVoran – individuell vereinbarter Umfang, online, hybrid oder in Präsenz in Kriftel im Rhein-Main-Gebiet.",
   alternates: { canonical: "/leistungen/einzelcoaching" },
 };
 
@@ -27,8 +27,8 @@ const steps = [
     text: "Unterlagen, Stellensuche, Gesprächstraining oder Orientierung – wir arbeiten die vereinbarten Schritte konkret durch.",
   },
   {
-    title: "Fortschritt sichtbar machen",
-    text: "Nach jeder Einheit ist klar, was erreicht wurde und was als Nächstes ansteht.",
+    title: "Selbstständig weitergehen",
+    text: "Du gehst mit einer klaren Struktur, eigenen Unterlagen und Werkzeugen weiter, die du selbst anwenden kannst.",
   },
 ];
 
@@ -41,17 +41,17 @@ export default function EinzelcoachingPage() {
           <div>
             <Eyebrow tone="white">1:1-Coaching · Selbstzahler</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
-              Individuelles Coaching – auch ohne AVGS
+              Privates Job- und Bewerbungscoaching – auch ohne AVGS
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Nicht jeder hat Anspruch auf einen Aktivierungs- und Vermittlungsgutschein. Unser 1:1-Coaching folgt
-              derselben Methode wie das AVGS-Programm – als Selbstzahler-Angebot, in Umfang und Format frei
-              zugeschnitten auf deine Situation.
+              Du möchtest deine Bewerbung verbessern, dich beruflich neu orientieren oder ein Gespräch gezielt
+              vorbereiten? Im privaten Einzelcoaching legen wir Themen, Umfang und Format passend zu deiner
+              Situation fest – unabhängig von Jobcenter, Agentur für Arbeit oder einem Gutschein.
             </p>
           </div>
           <ContextGraphic
             variant="conversation"
-            title="Verständliches Gespräch mit klaren nächsten Schritten"
+            title="Individuelles Coaching-Gespräch mit verständlichen nächsten Schritten"
           />
         </div>
       </Section>
@@ -68,8 +68,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Format</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Online, hybrid oder in Präsenz in den {siteConfig.presenceLocation.name} ({siteConfig.presenceLocation.region}).
-              Anzahl und Länge der Einheiten legen wir gemeinsam fest.
+              Online, hybrid oder in Präsenz in der {siteConfig.presenceLocation.street} in{" "}
+              {siteConfig.presenceLocation.city}. Anzahl und Länge der Einheiten werden vor der Buchung festgelegt.
             </p>
           </Card>
           <Card>
@@ -82,8 +82,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Kosten</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Da Umfang und Format individuell sind, nennen wir dir den Preis nach einem kurzen, kostenlosen
-              Kennenlerngespräch. <strong className="font-semibold text-navy">Preise auf Anfrage.</strong>
+              Nach dem kostenlosen Kennenlerngespräch erhältst du vor einer Buchung ein transparentes Angebot mit
+              vereinbartem Umfang, Format und Gesamtpreis. Die Anfrage selbst ist unverbindlich.
             </p>
           </Card>
         </div>

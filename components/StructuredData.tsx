@@ -1,8 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 
 export function OrganizationStructuredData() {
-  // @graph trennt die Träger-Entität (MS Coaching – Mazhar Said) und die Marke
-  // (KlarVoran) exakt – für Suchmaschinen und KI-Agenten (GEO).
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -25,7 +23,7 @@ export function OrganizationStructuredData() {
         founder: {
           "@type": "Person",
           name: siteConfig.founder,
-          jobTitle: "Zertifizierter Coach & Dozent",
+          jobTitle: "Gründer und fachliche Leitung",
         },
         hasCredential: {
           "@type": "EducationalOccupationalCredential",
@@ -41,7 +39,7 @@ export function OrganizationStructuredData() {
     ],
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />;
 }
 
 export function FaqStructuredData({ items }: { items: { question: string; answer: string }[] }) {
@@ -58,34 +56,61 @@ export function FaqStructuredData({ items }: { items: { question: string; answer
     })),
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />;
 }
 
 export function ServiceStructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Individuelles Bewerbungscoaching und Aktivierung",
-    provider: {
-      "@type": "EducationalOrganization",
-      name: siteConfig.name,
-      legalName: siteConfig.legalName,
-    },
-    areaServed: {
-      "@type": "City",
-      name: "Frankfurt am Main",
-    },
-    audience: {
-      "@type": "Audience",
-      audienceType: "Arbeitsuchende mit AVGS",
-    },
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "EUR",
-      description: "Kostenfrei bei bewilligtem Aktivierungs- und Vermittlungsgutschein (AVGS).",
-    },
+    "@type": "ItemList",
+    name: "Leistungen von KlarVoran",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "Service",
+          name: siteConfig.measure.title,
+          url: `${siteConfig.url}/avgs`,
+          provider: { "@id": `${siteConfig.url}/#organization` },
+          areaServed: "Rhein-Main-Gebiet und online",
+          audience: { "@type": "Audience", audienceType: "Arbeitsuchende mit passendem AVGS" },
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "EUR",
+            description: "Für Teilnehmende kostenfrei bei passendem und bewilligtem AVGS.",
+          },
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@type": "Service",
+          name: "Privates Job- und Bewerbungscoaching",
+          url: `${siteConfig.url}/leistungen/einzelcoaching`,
+          provider: { "@id": `${siteConfig.url}/#organization` },
+          areaServed: "Rhein-Main-Gebiet und online",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "Service",
+          name: "Workshops und arbeitsmarktbezogene Gruppenformate",
+          url: `${siteConfig.url}/leistungen/workshops`,
+          provider: { "@id": `${siteConfig.url}/#organization` },
+          areaServed: "Rhein-Main-Gebiet und online",
+        },
+      },
+    ],
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />;
+}
+
+function serializeJsonLd(value: object) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
 }

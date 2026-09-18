@@ -22,7 +22,7 @@ export function CoachProfile() {
           <p className="mt-3 text-lg leading-relaxed text-navy-600">
             Ich habe KlarVoran gegründet, weil ich aus eigener beruflicher Erfahrung weiß, wie viel Unterschied
             eine klare Struktur und jemand macht, der sich wirklich Zeit nimmt. Mein Weg führte über eine
-            juristische Ausbildung, den Vertrieb und die pädagogische Arbeit mit Menschen in herausfordernden
+            Ausbildung im Rechts- und Notariatsbereich, den Vertrieb und die pädagogische Arbeit mit Menschen in herausfordernden
             Situationen zum Bewerbungscoaching – genau diese Mischung bringe ich in jedes Gespräch mit dir ein.
           </p>
         </div>
@@ -52,15 +52,6 @@ export function CoachProfile() {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5">
-          <p className="text-sm leading-relaxed text-navy">
-            <strong className="font-semibold">Als Dozent beim BWHW</strong> erreichten im Juni 2026 drei
-            Teilnehmende aus meiner BvB-Gruppe einen Ausbildungsplatz. Das war eine Vermittlung im Rahmen meiner
-            Tätigkeit beim Bildungswerk der Hessischen Wirtschaft – kein eigenes Ergebnis von KlarVoran, aber ein
-            gutes Beispiel dafür, wie ich arbeite.
-          </p>
         </div>
       </div>
     </div>

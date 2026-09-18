@@ -27,7 +27,7 @@ export const processSteps: ProcessStep[] = [
     id: 4,
     title: "Die 4 Coaching-Module",
     description:
-      "32 Unterrichtseinheiten in bis zu 8 Wochen, 1:1 mit Mazhar – von der Standortbestimmung bis zur Vorbereitung auf dein Vorstellungsgespräch.",
+      "32 Unterrichtseinheiten im Einzelcoaching in bis zu 8 Wochen – von der Standortbestimmung bis zur Vorbereitung auf dein Vorstellungsgespräch.",
   },
   {
     id: 5,

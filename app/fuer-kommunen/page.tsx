@@ -39,11 +39,11 @@ export default function FuerKommunenPage() {
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">Für Kommunen &amp; öffentliche Auftraggeber</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Klare Bildungs- und Coachingaufträge. Persönlich und professionell umgesetzt.
+          Klar abgegrenzte Coaching- und Bildungsleistungen für regionale Vorhaben
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt überschaubare, klar abgegrenzte Coaching-, Bildungs- und Workshopaufträge im
-          Rhein-Main-Gebiet. Ziele, Umfang, Durchführung und Dokumentation werden vor dem Start verbindlich
+          KlarVoran übernimmt klar abgegrenzte Coaching-, Bildungs- und Workshopleistungen im Rhein-Main-Gebiet.
+          Ziele, Umfang, Zielgruppe, Durchführung, Zuständigkeiten und Nachweise werden vor dem Start verbindlich
           abgestimmt.
         </p>
       </Section>
@@ -73,10 +73,24 @@ export default function FuerKommunenPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Realistisch zugeschnitten</h3>
+            <h3 className="font-semibold text-navy">Verlässlich umsetzbar</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              KlarVoran bietet klar begrenzte Leistungsbausteine an und stellt sich nicht als Anbieter jeder großen
-              komplexen Gesamtmaßnahme dar.
+              Leistungsumfang, Zeitplan, Personal, Räume, Technik und erforderliche Abstimmungen werden vor
+              Beauftragung geprüft und transparent im Angebot festgehalten.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Dokumentation und Rückmeldung</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Vereinbarte Leistungen, Anwesenheiten, Ergebnisse und relevante Abweichungen werden nachvollziehbar
+              dokumentiert. Form und Rhythmus der Rückmeldung richten sich nach dem Auftrag.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Klare Leistungsgrenzen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Arbeitsmarktbezogene Leistungen werden von Therapie, Rechtsberatung und umfassender Sozialberatung
+              abgegrenzt. Erforderliche Schnittstellen werden vorab benannt.
             </p>
           </Card>
         </div>
@@ -88,11 +102,11 @@ export default function FuerKommunenPage() {
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Vorhaben oder Leistungsbaustein anfragen</h2>
           <p className="mt-4 text-white/70">
             Beschreiben Sie kurz Zielgruppe, gewünschte Leistung, Zeitraum und Rahmen. Wir prüfen die Passung und
-            melden uns zeitnah zurück.
+            melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm />
+          <ContactForm formal />
         </div>
       </Section>
     </>

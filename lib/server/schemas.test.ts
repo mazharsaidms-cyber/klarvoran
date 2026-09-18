@@ -14,7 +14,7 @@ test("contactSchema: gültige Eingabe (happy path) wird akzeptiert", () => {
   assert.equal(result.success, true);
 });
 
-test("contactSchema: fehlende Einwilligung wird abgelehnt", () => {
+test("contactSchema: fehlende Datenschutz-Kenntnisnahme wird abgelehnt", () => {
   const result = contactSchema.safeParse({
     name: "Max Mustermann",
     email: "max@example.com",
@@ -22,6 +22,34 @@ test("contactSchema: fehlende Einwilligung wird abgelehnt", () => {
     website: "",
   });
   assert.equal(result.success, false);
+});
+
+test("contactSchema: institutionelle Anfrage benötigt Organisation und Anfrageart", () => {
+  const result = contactSchema.safeParse({
+    name: "Max Mustermann",
+    email: "max@example.com",
+    message: "Wir möchten eine mögliche Zusammenarbeit mit KlarVoran besprechen.",
+    formality: "formal",
+    consent: "on",
+    website: "",
+  });
+  assert.equal(result.success, false);
+});
+
+test("contactSchema: vollständige institutionelle Anfrage wird akzeptiert", () => {
+  const result = contactSchema.safeParse({
+    name: "Max Mustermann",
+    email: "max@example.com",
+    message: "Wir möchten einen abgegrenzten Bewerbungsworkshop anfragen.",
+    formality: "formal",
+    organization: "Beispiel Bildung gGmbH",
+    role: "Projektleitung",
+    requestType: "workshop",
+    timeframe: "ab November 2026",
+    consent: "on",
+    website: "",
+  });
+  assert.equal(result.success, true);
 });
 
 test("contactSchema: ausgefülltes Honeypot-Feld wird abgelehnt", () => {

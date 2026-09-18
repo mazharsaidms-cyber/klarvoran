@@ -14,8 +14,8 @@ export function Footer() {
             <Logo tone="dark" className="h-6 w-auto" />
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
-            Die Marke von {siteConfig.legalName}, AZAV-zugelassener Bildungsträger für individuelles
-            Bewerbungscoaching in Frankfurt am Main und im Rhein-Main-Gebiet.
+            Individuelles Bewerbungscoaching, berufliche Orientierung und praxisnahe Workshops in Frankfurt am
+            Main und im Rhein-Main-Gebiet.
           </p>
           <p className="mt-4 font-mono text-xs text-white/50">
             CERTQUA-Zertifikat {siteConfig.certificate.number}
@@ -76,9 +76,13 @@ export function Footer() {
               </a>
             </li>
             <li className="pt-2 text-white/60">
+              Geschäfts- und Postanschrift:
+              <br />
               {siteConfig.address.street}
               <br />
               {siteConfig.address.zip} {siteConfig.address.city}
+              <br />
+              <span className="text-white/50">Keine Coachingtermine vor Ort</span>
             </li>
           </ul>
         </div>
@@ -111,9 +115,9 @@ export function Footer() {
       <div className="border-t border-white/10 py-5">
         <Container className="flex flex-col gap-2 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {siteConfig.legalName}
+            © {new Date().getFullYear()} {siteConfig.name}
           </p>
-          <p>Träger nach § 178 SGB III · CERTQUA-Zertifikat {siteConfig.certificate.number}</p>
+          <p>Zulassungsnachweis nach § 178 SGB III · CERTQUA-Zertifikat {siteConfig.certificate.number}</p>
         </Container>
       </div>
     </footer>

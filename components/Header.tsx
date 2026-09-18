@@ -76,7 +76,7 @@ export function Header() {
 
         <div className="hidden lg:block">
           <Button href="/termin" size="md" onDark>
-            Termin sichern
+            Erstgespräch anfragen
           </Button>
         </div>
 
@@ -121,7 +121,7 @@ export function Header() {
             ))}
             <li className="mt-2">
               <Button href="/termin" className="w-full" onDark onClick={closeMenu}>
-                Termin sichern
+                Erstgespräch anfragen
               </Button>
             </li>
           </ul>

@@ -20,7 +20,7 @@ const traegerLabels: Record<string, string> = {
 };
 
 const formatLabels: Record<string, string> = {
-  praesenz_kriftel: "Präsenz (Kriftel Workspaces)",
+  praesenz_kriftel: "Präsenz (Taunusstraße 52, Kriftel)",
   online: "Online",
   hybrid: "Hybrid",
   unsicher: "Noch unsicher",
@@ -49,7 +49,7 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
   }
 
   if (parsed.data.website) {
-    return { status: "success", message: "Danke! Wir melden uns zeitnah bei dir." };
+    return { status: "success", message: "Danke! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir." };
   }
 
   const result = await sendLead({
@@ -82,5 +82,5 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
     };
   }
 
-  return { status: "success", message: "Danke! Wir melden uns zeitnah bei dir." };
+  return { status: "success", message: "Danke! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir." };
 }

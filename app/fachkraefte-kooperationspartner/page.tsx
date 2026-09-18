@@ -4,21 +4,21 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CertificateFacts } from "@/components/CertificateFacts";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
-import { ContextGraphic } from "@/components/ContextGraphic";
 import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
-import { siteConfig } from "@/lib/site-config";
+import { BrandTransitionNote } from "@/components/BrandTransitionNote";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Für Institutionen & Kooperationspartner",
   description:
-    "KlarVoran (MS Coaching – Mazhar Said) für Jobcenter, Agentur für Arbeit, soziale Einrichtungen, Bildungsträger, Kommunen und öffentliche Auftraggeber.",
+    "KlarVoran für Jobcenter, Agentur für Arbeit, soziale Einrichtungen, Bildungsträger, Kommunen und öffentliche Auftraggeber: Gutscheinabstimmung, Kooperation oder Auftrag.",
   alternates: { canonical: "/fachkraefte-kooperationspartner" },
 };
 
 const audiences: InstitutionTarget[] = [
   {
     title: "Jobcenter & Agentur für Arbeit",
-    text: "AVGS, § 45 SGB III, Maßnahmezulassung, Zielgruppe, Ablauf und Ansprechpartner für Ihre Zuweisung.",
+    text: "AVGS, § 45 SGB III, Maßnahmezulassung, Zielgruppe, Ablauf und Ansprechpartner für Gutscheinprüfung und Teilnahmeabstimmung.",
     href: "/fuer-jobcenter",
     cta: "Zur Jobcenter-Seite",
   },
@@ -30,7 +30,7 @@ const audiences: InstitutionTarget[] = [
   },
   {
     title: "Bildungsträger & Kooperationspartner",
-    text: "Unterauftragnehmer, Honorardozent oder Vertretung – eigene AZAV-Struktur und Maßnahmeerfahrung.",
+    text: "Unteraufträge, Dozenteneinsätze oder abgestimmte Vertretung – mit Zulassungsstruktur und Maßnahmeerfahrung.",
     href: "/fuer-bildungstraeger",
     cta: "Zur Seite für Bildungsträger",
   },
@@ -51,17 +51,17 @@ export default function FachkraeftePage() {
           <div>
             <Eyebrow tone="white">Für Institutionen & Kooperationspartner</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-              Ein Träger, vier passende Wege
+              Gutscheinabstimmung, Kooperation oder Auftrag – der passende Weg für Ihre Institution
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              KlarVoran ist die Marke, unter der {siteConfig.legalName} auftritt: eigenständig nach § 178 SGB III als
-              Träger zugelassen. Wählen Sie den Bereich, der zu Ihrer Institution passt – für alle anderen Fragen
-              erreichen Sie uns unten direkt.
+              Wählen Sie den Bereich, der zu Ihrem Anliegen passt. Sie finden dort Informationen zur
+              Gutschein- und Teilnahmeabstimmung, zu externen Coaching- und Gruppenformaten, zu Unteraufträgen sowie zu klar
+              abgegrenzten Leistungen für öffentliche Vorhaben.
             </p>
           </div>
           <ContextGraphic
             variant="cooperation"
-            title="Vier institutionelle Wege führen zu KlarVoran"
+            title="Klare Zuständigkeiten und abgestimmte Zusammenarbeit mit Institutionen"
             className="hidden lg:block"
           />
         </div>
@@ -70,7 +70,7 @@ export default function FachkraeftePage() {
       <Section tone="tint">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {audiences.map((a) => (
-            <InstitutionCard key={a.href} target={a} />
+            <InstitutionCard key={a.href} target={a} headingLevel={2} />
           ))}
         </ul>
       </Section>
@@ -82,23 +82,26 @@ export default function FachkraeftePage() {
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
-            caption="MS Coaching – Mazhar Said (Zugelassener Träger nach § 178 SGB III)"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
-          <CertificateFacts />
+          <div>
+            <CertificateFacts />
+            <BrandTransitionNote className="mt-4" />
+          </div>
         </div>
       </Section>
 
       <Section tone="navy">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Kooperationsanfrage</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Teilnehmer zuweisen oder Kooperation anfragen</h2>
+          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Teilnahme abstimmen oder Kooperation anfragen</h2>
           <p className="mt-4 text-white/70">
-            Ob Zuweisung, Rückfrage zur Maßnahme oder Anfrage als Kooperationspartner – schreiben Sie uns direkt.
-            Wir melden uns zeitnah zurück.
+            Ob Gutscheinprüfung, Rückfrage zur Maßnahme oder Anfrage als Kooperationspartner – schreiben Sie uns
+            direkt. Wir melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm />
+          <ContactForm formal />
         </div>
       </Section>
     </>

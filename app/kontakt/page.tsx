@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Kontakt",
-  description: "Kontaktiere KlarVoran per Telefon, E-Mail, WhatsApp oder Formular – wir melden uns zeitnah zurück.",
+  description: "Kontaktiere KlarVoran per Telefon, E-Mail, WhatsApp oder Formular – Rückmeldung in der Regel innerhalb von 1–2 Werktagen.",
   alternates: { canonical: "/kontakt" },
 };
 
@@ -47,14 +47,32 @@ export default function KontaktPage() {
               </Button>
             </div>
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Anschrift</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Geschäfts- und Postanschrift</h2>
               <p className="mt-2 text-sm text-navy-600">
                 {siteConfig.address.street}
                 <br />
                 {siteConfig.address.zip} {siteConfig.address.city}
               </p>
+              <p className="mt-2 text-xs font-medium text-navy-600">{siteConfig.address.note}</p>
               <Button
                 href={`https://www.google.com/maps/search/?api=1&query=${siteConfig.address.mapsQuery}`}
+                external
+                variant="text"
+                className="mt-3"
+              >
+                Auf Google Maps ansehen →
+              </Button>
+            </div>
+            <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Coachingstandort Kriftel</h2>
+              <p className="mt-2 text-sm text-navy-600">
+                {siteConfig.presenceLocation.street}
+                <br />
+                {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city}
+              </p>
+              <p className="mt-2 text-xs font-medium text-navy-600">{siteConfig.presenceLocation.note}</p>
+              <Button
+                href={`https://www.google.com/maps/search/?api=1&query=${siteConfig.presenceLocation.mapsQuery}`}
                 external
                 variant="text"
                 className="mt-3"

@@ -3,13 +3,13 @@
 import { useActionState, useState } from "react";
 import { submitAppointmentRequest } from "@/app/termin/actions";
 import { initialActionState } from "@/lib/server/action-state";
-import { TextField, TextareaField, RadioGroupField, ConsentField, HoneypotField } from "./form-fields";
+import { TextField, TextareaField, RadioGroupField, PrivacyNoticeField, HoneypotField, SelectField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 
 export function AppointmentForm() {
   const [state, formAction, pending] = useActionState(submitAppointmentRequest, initialActionState);
-  const [format, setFormat] = useState("praesenz_kriftel");
+  const [format, setFormat] = useState("unsicher");
   const [hasAvgs, setHasAvgs] = useState("unsicher");
 
   return (
@@ -55,7 +55,20 @@ export function AppointmentForm() {
         label="Wunschtermin oder Anmerkungen (optional)"
         error={state.fieldErrors?.message}
       />
-      <ConsentField error={state.fieldErrors?.consent} />
+      <p className="-mt-2 text-xs leading-relaxed text-navy-600">
+        Bitte hier keine Gesundheitsdaten, Diagnosen, vollständigen Bescheide oder Ausweisdokumente eintragen.
+      </p>
+      <SelectField id="source" label="Wie hast du von KlarVoran erfahren? (optional)" defaultValue="">
+        <option value="">Keine Angabe</option>
+        <option value="google">Google / Suchmaschine</option>
+        <option value="ba_portal">Portal der Bundesagentur für Arbeit</option>
+        <option value="jobcenter_arbeitsagentur">Jobcenter / Agentur für Arbeit</option>
+        <option value="einrichtung_traeger">Einrichtung / Bildungsträger</option>
+        <option value="empfehlung">Persönliche Empfehlung</option>
+        <option value="social_media">Social Media</option>
+        <option value="sonstiges">Sonstiges</option>
+      </SelectField>
+      <PrivacyNoticeField error={state.fieldErrors?.consent} />
       <StatusMessage state={state} />
       <Button type="submit" size="lg" disabled={pending} className="w-full sm:w-auto">
         {pending ? "Wird gesendet…" : "Terminanfrage senden"}

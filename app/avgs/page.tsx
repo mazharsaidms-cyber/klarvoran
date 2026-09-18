@@ -11,9 +11,11 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { ProcessStepper } from "@/components/ProcessStepper";
 import { avgsFaq } from "@/lib/content/faq";
 import { processSteps } from "@/lib/content/process";
+import { siteConfig } from "@/lib/site-config";
+import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 
 export const metadata: Metadata = {
-  title: "AVGS verstehen & beantragen",
+  title: "Job- und Bewerbungscoaching mit AVGS",
   description:
     "Was ist ein AVGS, was ist AZAV, wer bekommt einen Gutschein und wie läuft die Beantragung ab? Plus AVGS-Schnellcheck für eine erste Einschätzung.",
   alternates: { canonical: "/avgs" },
@@ -47,12 +49,13 @@ export default function AvgsPage() {
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">AVGS &amp; AZAV</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Was ist ein AVGS – und wie bekommst du ihn?
+          Job- und Bewerbungscoaching mit AVGS
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Der Aktivierungs- und Vermittlungsgutschein (AVGS) nach § 45 SGB III ist ein Gutschein von Jobcenter oder
-          Agentur für Arbeit, mit dem Coaching wie unseres finanziert wird. Für dich ist die Maßnahme dadurch
-          kostenfrei.
+          Mit einem bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) von Jobcenter oder Agentur für Arbeit
+          kannst du am individuellen Coaching teilnehmen, ohne die Kosten selbst zu tragen. Du lernst, berufliche
+          Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
+          weiterzuführen.
         </p>
       </Section>
 
@@ -66,7 +69,7 @@ export default function AvgsPage() {
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
           <CertificateSeal
             seal="traeger"
-            caption="MS Coaching – Mazhar Said (Zugelassener Träger nach § 178 SGB III)"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <CertificateSeal
             seal="massnahme"
@@ -74,11 +77,10 @@ export default function AvgsPage() {
           />
         </div>
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
-          <strong className="font-semibold text-navy">KlarVoran</strong> ist das AZAV-zertifizierte
-          Coaching-Programm von <em>MS Coaching – Mazhar Said</em> in Frankfurt am Main. Die Kosten für das
-          individuelle 1:1-Bewerbungscoaching werden bei Vorliegen eines AVGS nach § 45 Abs. 1 SGB III zu
-          100&nbsp;% übernommen.
+          Die Maßnahme „Individuelles Bewerbungscoaching“ ist nach § 45 SGB III zugelassen. Bei Vorliegen eines
+          passenden und bewilligten AVGS werden die Kosten vom zuständigen Kostenträger vollständig übernommen.
         </p>
+        <BrandTransitionNote className="mt-3 max-w-2xl" />
       </Section>
 
       <Section tone="tint">
@@ -87,8 +89,9 @@ export default function AvgsPage() {
             <h2 className="text-lg font-bold text-navy">Was ist die AZAV?</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Die AZAV (Akkreditierungs- und Zulassungsverordnung Arbeitsförderung) legt fest, welche Anforderungen
-              ein Bildungsträger erfüllen muss, um Maßnahmen der Arbeitsförderung durchführen zu dürfen. KlarVoran
-              (MS Coaching – Mazhar Said) ist als Träger zugelassen und durch CERTQUA zertifiziert.
+              ein Bildungsträger erfüllen muss, um Maßnahmen der Arbeitsförderung durchführen zu dürfen. Das
+              vorliegende Trägerzertifikat wurde von {siteConfig.certificate.issuer} unter der bisherigen
+              Bezeichnung ausgestellt; die Umstellung auf KlarVoran befindet sich in Bearbeitung.
             </p>
           </Card>
           <Card>

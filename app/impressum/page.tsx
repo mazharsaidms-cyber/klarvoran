@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description: "Impressum von KlarVoran (MS Coaching – Mazhar Said) gemäß § 5 TMG.",
+  description: "Impressum von KlarVoran (MS Coaching – Mazhar Said) gemäß § 5 DDG.",
   alternates: { canonical: "/impressum" },
   robots: { index: true, follow: true },
 };
@@ -27,7 +27,7 @@ export default function ImpressumPage() {
 
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">
-              Angaben gemäß § 5 TMG
+              Angaben gemäß § 5 DDG
             </h2>
             <p className="mt-2 text-navy">
               {siteConfig.legalName}
@@ -69,14 +69,6 @@ export default function ImpressumPage() {
               {siteConfig.legalName} ist als Träger nach § 178 SGB III zugelassen, zertifiziert durch{" "}
               {siteConfig.certificate.issuerFull}. Zertifikat-Nr. {siteConfig.certificate.number}, gültig{" "}
               {siteConfig.certificate.validFrom} bis {siteConfig.certificate.validTo}.
-            </p>
-          </div>
-
-          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5 text-sm">
-            <p>
-              <strong className="font-semibold text-navy">Hinweis:</strong> Diese Website erhebt für dieses
-              Impressum keinen Anspruch auf vollständige juristische Beratung. Bitte lasse Name, Anschrift und
-              Kontaktangaben vor Veröffentlichung final durch dich bzw. eine rechtliche Beratung bestätigen.
             </p>
           </div>
         </div>

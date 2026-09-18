@@ -42,7 +42,7 @@ export default function LeistungenPage() {
       <Section tone="tint">
         <ul className="grid gap-6 sm:grid-cols-2">
           {leistungen.map((l) => (
-            <LeistungCard key={l.id} leistung={l} />
+            <LeistungCard key={l.id} leistung={l} headingLevel={2} />
           ))}
         </ul>
       </Section>
@@ -60,7 +60,7 @@ export default function LeistungenPage() {
       <CtaSection
         eyebrow="Unsicher, welche Leistung passt?"
         title="Lass uns kurz miteinander sprechen"
-        description="Im kostenlosen Erstgespräch klären wir, welches Format zu deiner Situation oder zum Bedarf deiner Einrichtung passt."
+        description="Im kostenlosen Erstgespräch klären wir, welches Coachingformat zu deiner Situation passt."
       />
     </>
   );

@@ -50,7 +50,7 @@ export default function FuerSozialeEinrichtungenPage() {
           />
           <div className="max-w-md">
             <p className="text-sm leading-relaxed text-navy-600">
-              Das vorhandene Trägerzertifikat nach § 178 SGB III wurde durch {siteConfig.certificate.issuer}
+              Das vorhandene Trägerzertifikat nach § 178 SGB III wurde durch {siteConfig.certificate.issuer}{" "}
               ausgestellt (Zertifikat {siteConfig.certificate.number}).
             </p>
             <BrandTransitionNote className="mt-3" />

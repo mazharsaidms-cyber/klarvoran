@@ -53,15 +53,6 @@ export function CoachProfile() {
             ))}
           </ul>
         </div>
-
-        <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5">
-          <p className="text-sm leading-relaxed text-navy">
-            <strong className="font-semibold">Als Dozent beim BWHW</strong> erreichten im Juni 2026 drei
-            Teilnehmende aus meiner BvB-Gruppe einen Ausbildungsplatz. Das war eine Vermittlung im Rahmen meiner
-            Tätigkeit beim Bildungswerk der Hessischen Wirtschaft – kein eigenes Ergebnis von KlarVoran, aber ein
-            gutes Beispiel dafür, wie ich arbeite.
-          </p>
-        </div>
       </div>
     </div>
   );

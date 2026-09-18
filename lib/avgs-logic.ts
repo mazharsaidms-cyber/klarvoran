@@ -45,7 +45,7 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
   if (answers.status === "hat_avgs") {
     return {
       headline: "Du hast bereits einen AVGS – sehr gut.",
-      message: `Dann steht einem Start bei uns nichts im Wege. Wir prüfen deinen Gutschein unverbindlich im kostenlosen Erstgespräch und klären die nächsten Schritte. ${formNote}`,
+      message: `Damit ist eine wichtige Voraussetzung erfüllt. Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. Anschließend klären wir die nächsten Schritte. ${formNote}`,
       primaryCtaLabel: "Kostenloses Erstgespräch sichern",
       primaryCtaHref: "/termin",
       secondaryCtaLabel: "Direkt per WhatsApp schreiben",

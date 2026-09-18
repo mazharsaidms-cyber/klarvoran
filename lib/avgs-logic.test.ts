@@ -13,6 +13,8 @@ test("hat_avgs führt direkt zur Terminbuchung", () => {
   const result = evaluateAvgsCheck({ ...base, status: "hat_avgs" });
   assert.equal(result.primaryCtaHref, "/termin");
   assert.match(result.headline, /bereits einen AVGS/);
+  assert.match(result.message, /Gutschein gültig ist und zu unserer Maßnahme passt/);
+  assert.doesNotMatch(result.message, /nichts im Wege/);
 });
 
 test("moechte_beantragen verweist auf den Leitfaden", () => {

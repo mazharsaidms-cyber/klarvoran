@@ -18,14 +18,6 @@ export default function DatenschutzPage() {
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Datenschutzerklärung</h1>
 
         <div className="mt-10 max-w-2xl space-y-10 text-navy-600">
-          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5 text-sm">
-            <p>
-              <strong className="font-semibold text-navy">Hinweis:</strong> Dieser Text bietet eine strukturierte
-              Grundlage und ersetzt keine individuelle Rechtsberatung. Bitte lass ihn – insbesondere Angaben zu
-              Hosting und eingesetzten Dienstleistern – vor Veröffentlichung final prüfen.
-            </p>
-          </div>
-
           <section>
             <h2 className="text-xl font-bold text-navy">1. Verantwortlicher</h2>
             <p className="mt-3">
@@ -38,12 +30,27 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">2. Server-Logfiles</h2>
+            <h2 className="text-xl font-bold text-navy">2. Hosting und Server-Logfiles</h2>
             <p className="mt-3">
-              Beim Aufruf dieser Website erhebt der Hosting-Anbieter automatisch technische Zugriffsdaten (z. B.
-              IP-Adresse, Datum/Uhrzeit, aufgerufene Seite, Browsertyp), um die Website sicher und stabil
-              auszuliefern (Art. 6 Abs. 1 lit. f DSGVO). Diese Daten werden nicht mit anderen Datenquellen
-              zusammengeführt.
+              Diese Website wird bei Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, USA, gehostet.
+              Beim Aufruf verarbeitet Vercel technische Zugriffsdaten wie IP-Adresse, Datum und Uhrzeit,
+              aufgerufene Seite, Browsertyp und weitere Protokolldaten. Die Verarbeitung ist erforderlich, um die
+              Website sicher, stabil und schnell auszuliefern. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO;
+              unser berechtigtes Interesse liegt im sicheren und zuverlässigen Betrieb der Website.
+            </p>
+            <p className="mt-3">
+              Eine Verarbeitung in den USA kann nicht ausgeschlossen werden. Vercel stellt für entsprechende
+              Übermittlungen vertragliche Schutzmaßnahmen bereit, darunter die Standardvertragsklauseln der
+              Europäischen Kommission. Weitere Informationen findest du in der{" "}
+              <a
+                href="https://vercel.com/legal/privacy-notice"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-red-700"
+              >
+                Datenschutzerklärung von Vercel
+              </a>
+              .
             </p>
           </section>
 
@@ -53,8 +60,25 @@ export default function DatenschutzPage() {
               Wenn du unser Kontaktformular, das Terminanfrage-Formular oder den AVGS-Schnellcheck nutzt,
               verarbeiten wir die von dir angegebenen Daten (z. B. Name, E-Mail-Adresse, optional Telefonnummer,
               deine Angaben zu AVGS-Status und Anliegen) ausschließlich zur Bearbeitung deiner Anfrage (Art. 6 Abs.
-              1 lit. b DSGVO – vorvertragliche Maßnahme, bzw. lit. a bei erteilter Einwilligung). Die Angaben werden
-              nicht für Werbezwecke genutzt und nicht an Dritte außerhalb der Anfragebearbeitung weitergegeben.
+              1 lit. b DSGVO – vorvertragliche Maßnahme, bzw. lit. a bei erteilter Einwilligung). Die Formulardaten
+              werden dabei über die Server-Infrastruktur von Vercel verarbeitet. Sie werden nicht für Werbezwecke
+              genutzt und nur an Dienstleister weitergegeben, soweit dies für die technische Bearbeitung und
+              Übermittlung deiner Anfrage erforderlich ist.
+            </p>
+            <p className="mt-3">
+              Soweit der E-Mail-Versand über Resend aktiviert ist, werden die Angaben zum Versand der Anfrage an
+              Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA 94114, USA, übermittelt.
+              Resend stellt für Übermittlungen in die USA vertragliche Schutzmaßnahmen einschließlich der
+              Standardvertragsklauseln der Europäischen Kommission bereit. Weitere Informationen findest du in der{" "}
+              <a
+                href="https://resend.com/legal/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-red-700"
+              >
+                Datenschutzerklärung von Resend
+              </a>
+              .
             </p>
             <p className="mt-3">
               Wir verzichten bewusst auf die Abfrage sensibler Gesundheits- oder Sozialdaten in diesen Formularen.
@@ -98,6 +122,8 @@ export default function DatenschutzPage() {
               {siteConfig.contact.email}.
             </p>
           </section>
+
+          <p className="text-sm text-navy-600">Stand: September 2026</p>
         </div>
       </Section>
     </>

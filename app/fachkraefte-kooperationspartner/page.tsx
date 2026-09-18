@@ -30,7 +30,7 @@ const audiences: InstitutionTarget[] = [
   },
   {
     title: "Bildungsträger & Kooperationspartner",
-    text: "Unteraufträge, Honorardozententätigkeit oder abgestimmte Vertretung – mit Zulassungsstruktur und Maßnahmeerfahrung.",
+    text: "Unteraufträge, Dozenteneinsätze oder abgestimmte Vertretung – mit Zulassungsstruktur und Maßnahmeerfahrung.",
     href: "/fuer-bildungstraeger",
     cta: "Zur Seite für Bildungsträger",
   },
@@ -72,7 +72,7 @@ export default function FachkraeftePage() {
       <Section tone="tint">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {audiences.map((a) => (
-            <InstitutionCard key={a.href} target={a} />
+            <InstitutionCard key={a.href} target={a} headingLevel={2} />
           ))}
         </ul>
       </Section>

@@ -26,9 +26,9 @@ export default function FuerBildungstraegerPage() {
           Verlässliche Coaching-Leistungen für Unteraufträge und Kooperationen
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module als Unterauftragnehmer oder
-          Honorardozent. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit werden vor dem Einsatz
-          verbindlich abgestimmt.
+          KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
+          Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
+          werden vor dem Einsatz verbindlich abgestimmt.
         </p>
       </Section>
 
@@ -53,7 +53,7 @@ export default function FuerBildungstraegerPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Honorardozent / Jobcoach</h3>
+            <h3 className="font-semibold text-navy">Dozenteneinsätze &amp; Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Einzelcoaching, Bewerbungsmanagement oder Gruppeneinheiten innerhalb Ihrer Programme – auf
               Honorarbasis.

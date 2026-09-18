@@ -5,9 +5,9 @@ export type FaqItem = {
 
 export const generalFaq: FaqItem[] = [
   {
-    question: "Kostet das Coaching bei KlarVoran etwas?",
+    question: "Was kostet das Coaching bei KlarVoran?",
     answer:
-      "Nein. Wenn dein Jobcenter oder deine Agentur für Arbeit dir einen AVGS (Aktivierungs- und Vermittlungsgutschein) bewilligt, ist das Coaching für dich kostenfrei. Die Kosten übernimmt direkt der Kostenträger.",
+      "Mit einem passenden und bewilligten AVGS ist das AVGS-Coaching für dich kostenfrei. Die Kosten übernimmt der zuständige Kostenträger. Privates Job- und Bewerbungscoaching ohne AVGS wird individuell vereinbart; den Preis nennen wir dir nach einem kurzen, kostenlosen Kennenlerngespräch.",
   },
   {
     question: "Wie bekomme ich einen AVGS?",

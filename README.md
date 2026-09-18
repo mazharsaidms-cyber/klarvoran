@@ -19,7 +19,7 @@ Siehe [`./.env.example`](./.env.example) für alle Variablen mit Erklärung. Kur
 | Variable | Zweck | Ohne Konfiguration |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | Kanonische Domain (SEO, Sitemap, OG) | Fällt auf `https://www.klarvoran.de` zurück (bestätigte Produktions-Domain) |
-| `NEXT_PUBLIC_PHONE_DISPLAY`, `NEXT_PUBLIC_EMAIL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Kontaktangaben (Header, Footer, Kontaktseite) | Fällt auf die Angaben von Mazhars Visitenkarte zurück |
+| `NEXT_PUBLIC_PHONE_DISPLAY`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Kontaktangaben (Header, Footer, Kontaktseite) | Fällt auf die bestätigten KlarVoran-Kontaktdaten zurück |
 | `NEXT_PUBLIC_BOOKING_URL` | Externe Kalender-Buchungsseite auf `/termin` | Es wird ausschließlich das Terminanfrage-Formular angezeigt |
 | `RESEND_API_KEY` **oder** `FORM_WEBHOOK_URL` | Tatsächlicher Versand der drei Formulare (Kontakt, Termin, AVGS-Schnellcheck) | In Development: Anfragen werden in die Server-Konsole geloggt (klar als Development gekennzeichnet). In Production: Formulare melden ehrlich "aktuell nicht übermittelbar" und verweisen auf Telefon/E-Mail/WhatsApp — es wird nie ein Erfolg vorgetäuscht. |
 

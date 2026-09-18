@@ -13,7 +13,7 @@ export type SendResult = {
   dev: boolean;
 };
 
-const LEAD_RECIPIENT = process.env.LEAD_RECIPIENT_EMAIL || siteConfig.contact.email;
+const LEAD_RECIPIENT = process.env.LEAD_INBOX_EMAIL || siteConfig.contact.email;
 
 /**
  * Adapter für den Lead-Versand. Nutzt, sofern konfiguriert, die Resend-HTTP-API

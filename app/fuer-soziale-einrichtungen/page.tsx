@@ -46,7 +46,7 @@ export default function FuerSozialeEinrichtungenPage() {
         <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div className="max-w-md">
             <p className="text-sm leading-relaxed text-navy-600">

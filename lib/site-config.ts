@@ -6,14 +6,11 @@ const phoneDisplay = process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+49 177 9548140";
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? digitsOnly(phoneDisplay);
 
 export const siteConfig = {
-  // KlarVoran ist die öffentliche und künftige Trägerbezeichnung. Bis die
-  // formale Umstellung abgeschlossen ist, bleibt die bisherige Bezeichnung
-  // ausschließlich für rechtliche Angaben und vorhandene Zulassungsnachweise
-  // maßgeblich.
+  // KlarVoran ist die öffentliche Trägerbezeichnung.
   name: "KlarVoran",
-  legalName: "MS Coaching – Mazhar Said",
+  legalName: "KlarVoran – Mazhar Said",
   transitionNote:
-    "KlarVoran ist die neue Trägerbezeichnung. Die vorhandenen Zulassungsunterlagen wurden noch unter der bisherigen Bezeichnung „MS Coaching – Mazhar Said“ ausgestellt. Die formale Umstellung auf KlarVoran befindet sich in Bearbeitung.",
+    "KlarVoran ist die aktuelle Trägerbezeichnung. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.",
   founder: "Mazhar Said",
   claim: "Der schnellste Weg zur Arbeit",
   tagline: "Coaching, Workshops und berufliche Orientierung",
@@ -33,7 +30,7 @@ export const siteConfig = {
 
   // Ladungsfähige Anschrift des Trägers (aus CERTQUA-Trägerzertifikat / Visitenkarte).
   address: {
-    company: "MS Coaching – Mazhar Said",
+    company: "KlarVoran – Mazhar Said",
     street: "Kolberger Weg 23",
     zip: "65931",
     city: "Frankfurt am Main",
@@ -66,10 +63,6 @@ export const siteConfig = {
   // ausschließlich das Terminanfrage-Formular verwendet.
   booking: {
     url: process.env.NEXT_PUBLIC_BOOKING_URL || null,
-  },
-
-  kursnet: {
-    id: "MSCoaching",
   },
 
   images: {

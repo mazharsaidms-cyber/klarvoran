@@ -37,7 +37,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Wer ist der zugelassene Träger hinter KlarVoran?",
     answer:
-      "KlarVoran ist die neue Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde noch unter der bisherigen Bezeichnung „MS Coaching – Mazhar Said“ ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Umstellung auf KlarVoran befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
+      "KlarVoran ist die aktuelle Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde noch unter der bisherigen Trägerbezeichnung ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Anpassung der Zulassungsunterlagen befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
   },
   {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",

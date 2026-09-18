@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description: "Impressum von KlarVoran (MS Coaching – Mazhar Said) gemäß § 5 DDG.",
+  description: "Impressum von KlarVoran – Mazhar Said gemäß § 5 DDG.",
   alternates: { canonical: "/impressum" },
   robots: { index: true, follow: true },
 };
@@ -20,9 +20,8 @@ export default function ImpressumPage() {
 
         <div className="mt-10 max-w-2xl space-y-8 text-navy-600">
           <p className="text-sm">
-            <strong className="font-semibold text-navy">{siteConfig.name}</strong> ist die neue Trägerbezeichnung.
-            Die formale Umstellung befindet sich in Bearbeitung. Bis zu ihrem Abschluss ist im Sinne dieses
-            Impressums weiterhin {siteConfig.legalName} rechtlich verantwortlich.
+            <strong className="font-semibold text-navy">{siteConfig.name}</strong> ist die Trägerbezeichnung von Mazhar
+            Said. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.
           </p>
 
           <div>

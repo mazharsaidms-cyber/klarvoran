@@ -69,7 +69,7 @@ export default function AvgsPage() {
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <CertificateSeal
             seal="massnahme"

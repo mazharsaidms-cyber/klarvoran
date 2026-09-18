@@ -1,8 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 
 export function OrganizationStructuredData() {
-  // Während der formalen Umstellung bleibt die bisherige rechtliche
-  // Bezeichnung als legalName hinterlegt; die öffentliche Bezeichnung ist KlarVoran.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [

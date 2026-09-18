@@ -84,7 +84,7 @@ export default function FachkraeftePage() {
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div>
             <CertificateFacts />

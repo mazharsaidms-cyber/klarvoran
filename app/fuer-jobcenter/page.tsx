@@ -59,7 +59,7 @@ export default function FuerJobcenterPage() {
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div>
             <CertificateFacts />
@@ -131,8 +131,7 @@ export default function FuerJobcenterPage() {
           <Card>
             <h3 className="font-semibold text-navy">Meldekanal</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              {siteConfig.legalName} ist unter der Kennung „{siteConfig.kursnet.id}&rdquo; auf KURSNET / arbeitsagentur.de
-              gelistet.
+              {siteConfig.name} ist auf KURSNET / arbeitsagentur.de als zugelassener Träger gelistet.
             </p>
           </Card>
           <Card>

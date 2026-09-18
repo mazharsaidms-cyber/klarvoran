@@ -1,6 +1,6 @@
 # KlarVoran — Website
 
-Produktionsreife Website für **KlarVoran**, die Marke von MS Coaching – Mazhar Said (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
+Produktionsreife Website für **KlarVoran – Mazhar Said** (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
 
 ## Setup
 
@@ -49,9 +49,9 @@ Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Rot (`--color-red` `#ec1
 
 ## Deployment
 
-- **Repository:** [github.com/edgegraphics17/ms-coaching-website](https://github.com/edgegraphics17/ms-coaching-website) (privat) — Push auf `main` deployt automatisch über Vercel.
-- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel-Projekt `ms-coaching-website`, Team `work-3716s-projects`).
-- **Vorschau-URLs:** `ms-coaching-website.vercel.app` und projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
+- **Repository:** [github.com/edgegraphics17/klarvoran](https://github.com/edgegraphics17/klarvoran) — Änderungen auf `main` werden automatisch über Vercel bereitgestellt.
+- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `work-3716s-projects`).
+- **Vorschau-URLs:** Projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
 
 ## Launch-Audit (durchgeführt)
 

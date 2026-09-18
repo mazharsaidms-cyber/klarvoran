@@ -2,7 +2,7 @@ import { siteConfig } from "@/lib/site-config";
 import { Button } from "./Button";
 
 const facts: { label: string; value: string }[] = [
-  { label: "Zertifikatsinhaber (bisherige Bezeichnung)", value: siteConfig.legalName },
+  { label: "Träger", value: siteConfig.legalName },
   { label: "Rechtsgrundlage", value: siteConfig.certificate.legalBasis },
   { label: "Zertifizierer", value: siteConfig.certificate.issuer },
   { label: "Zertifikat-Nr.", value: siteConfig.certificate.number },

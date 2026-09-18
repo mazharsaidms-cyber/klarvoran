@@ -144,7 +144,7 @@ export default function HomePage() {
         <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div>
             <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>

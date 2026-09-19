@@ -3,11 +3,25 @@
 import { useActionState } from "react";
 import { submitContactForm } from "@/app/kontakt/actions";
 import { initialActionState } from "@/lib/server/action-state";
-import { TextField, TextareaField, PrivacyNoticeField, HoneypotField, SelectField } from "./form-fields";
+import { TextField, TextareaField, PrivacyNotice, HoneypotField, SelectField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 
-export function ContactForm({ formal = false }: { formal?: boolean }) {
+type RequestType =
+  | "avgs_rueckfrage"
+  | "kooperation"
+  | "unterauftrag"
+  | "workshop"
+  | "oeffentlicher_auftrag"
+  | "sonstiges";
+
+export function ContactForm({
+  formal = false,
+  defaultRequestType,
+}: {
+  formal?: boolean;
+  defaultRequestType?: RequestType;
+}) {
   const [state, formAction, pending] = useActionState(submitContactForm, initialActionState);
 
   return (
@@ -35,7 +49,7 @@ export function ContactForm({ formal = false }: { formal?: boolean }) {
             id="requestType"
             label="Art der Anfrage"
             required
-            defaultValue=""
+            defaultValue={defaultRequestType ?? ""}
             error={state.fieldErrors?.requestType}
           >
             <option value="" disabled>Bitte auswählen</option>
@@ -68,19 +82,7 @@ export function ContactForm({ formal = false }: { formal?: boolean }) {
       <p className="-mt-2 text-xs leading-relaxed text-navy-600">
         Bitte keine Gesundheitsdaten, Diagnosen, vollständigen Bescheide oder Ausweisdokumente über dieses Formular senden.
       </p>
-      {!formal && (
-        <SelectField id="source" label="Wie hast du von KlarVoran erfahren? (optional)" defaultValue="">
-          <option value="">Keine Angabe</option>
-          <option value="google">Google / Suchmaschine</option>
-          <option value="ba_portal">Portal der Bundesagentur für Arbeit</option>
-          <option value="jobcenter_arbeitsagentur">Jobcenter / Agentur für Arbeit</option>
-          <option value="einrichtung_traeger">Einrichtung / Bildungsträger</option>
-          <option value="empfehlung">Persönliche Empfehlung</option>
-          <option value="social_media">Social Media</option>
-          <option value="sonstiges">Sonstiges</option>
-        </SelectField>
-      )}
-      <PrivacyNoticeField error={state.fieldErrors?.consent} />
+      <PrivacyNotice formal={formal} />
       <StatusMessage state={state} />
       <Button type="submit" size="lg" disabled={pending} className="w-full sm:w-auto">
         {pending ? "Wird gesendet…" : "Nachricht senden"}

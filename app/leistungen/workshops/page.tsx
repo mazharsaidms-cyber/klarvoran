@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
-import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Workshops für Bewerbung und berufliche Orientierung",
@@ -78,9 +78,13 @@ export default function WorkshopsPage() {
               abgestimmt.
             </p>
           </div>
-          <ContextGraphic
-            variant="workshop"
-            title="Strukturierter Workshop mit Übungen und sichtbaren Arbeitsergebnissen"
+          <Image
+            src="/images/team/whiteboard-erklaerung.jpg"
+            alt="Mazhar Said erklärt einer kleinen Gruppe einen Ablauf am Whiteboard"
+            width={1400}
+            height={781}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="w-full rounded-[var(--radius-lg)] border border-white/15"
           />
         </div>
       </Section>
@@ -99,6 +103,11 @@ export default function WorkshopsPage() {
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
           Die konkrete Themenauswahl stimmen wir vorab mit der Einrichtung ab – auf die Zielgruppe, den
           Förderbedarf und die verfügbare Zeit zugeschnitten.
+        </p>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
+          Je nach Thema nehmen die Teilnehmenden ein konkretes Arbeitsergebnis mit – zum Beispiel einen
+          überarbeiteten Lebenslauf, eine persönliche Suchstrategie, vorbereitete Antworten für
+          Vorstellungsgespräche oder einen klaren nächsten beruflichen Schritt.
         </p>
       </Section>
 

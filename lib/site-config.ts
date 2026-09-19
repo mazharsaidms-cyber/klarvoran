@@ -2,8 +2,23 @@ function digitsOnly(value: string) {
   return value.replace(/[^\d]/g, "");
 }
 
-const phoneDisplay = process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+49 177 9548140";
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? digitsOnly(phoneDisplay);
+function internationalPhoneNumber(value: string) {
+  const trimmed = value.trim();
+  const digits = digitsOnly(trimmed);
+  if (trimmed.startsWith("+")) return `+${digits}`;
+  if (digits.startsWith("00")) return `+${digits.slice(2)}`;
+  if (digits.startsWith("0")) return `+49${digits.slice(1)}`;
+  return `+${digits}`;
+}
+
+const phoneDisplay = process.env.NEXT_PUBLIC_PHONE_DISPLAY?.trim() || "+49 177 9548140";
+const phoneNumber = internationalPhoneNumber(phoneDisplay);
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || digitsOnly(phoneNumber);
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+const siteUrl =
+  configuredSiteUrl === "https://klarvoran.de" || configuredSiteUrl === "http://klarvoran.de"
+    ? "https://www.klarvoran.de"
+    : configuredSiteUrl || "https://www.klarvoran.de";
 
 export const siteConfig = {
   // KlarVoran ist die öffentliche Trägerbezeichnung.
@@ -16,13 +31,13 @@ export const siteConfig = {
   tagline: "Coaching, Workshops und berufliche Orientierung",
   description:
     "KlarVoran bietet in Frankfurt und im Rhein-Main-Gebiet individuelles AVGS-Bewerbungscoaching nach § 45 SGB III, privates Jobcoaching, Workshops und Kooperationen mit Institutionen.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.klarvoran.de",
+  url: siteUrl,
   locale: "de_DE",
 
   contact: {
     phoneDisplay,
-    phoneHref: `tel:${digitsOnly(phoneDisplay).replace(/^0/, "+49")}`,
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@klarvoran.de",
+    phoneHref: `tel:${phoneNumber}`,
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@klarvoran.de",
     whatsappNumber,
     whatsappHref: (message?: string) =>
       `https://wa.me/${whatsappNumber}${message ? `?text=${encodeURIComponent(message)}` : ""}`,
@@ -64,7 +79,7 @@ export const siteConfig = {
   },
 
   measure: {
-    title: "Persönliches 1:1-Coaching für Ihren Weg in Arbeit oder Ausbildung",
+    title: "Persönliches 1:1-Coaching für Arbeitsuchende auf dem Weg in Arbeit oder Ausbildung",
     certificateNumber: "2026M101485-10001",
     approvalFrom: "24.07.2026",
     approvalTo: "23.07.2029",

@@ -37,7 +37,8 @@ export default function TerminPage() {
         <div className="mx-auto mt-10 max-w-2xl rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
           <h2 className="text-lg font-bold text-navy">Terminanfrage senden</h2>
           <p className="mt-2 text-sm text-navy-600">
-            Wir melden uns in der Regel innerhalb von 1–2 Werktagen, um einen konkreten Termin zu vereinbaren.
+            Nach deiner Anfrage melden wir uns persönlich, um einen passenden Termin abzustimmen. Der Termin ist
+            erst verbindlich, wenn du eine Bestätigung von uns erhalten hast.
           </p>
           <div className="mt-6">
             <AppointmentForm />

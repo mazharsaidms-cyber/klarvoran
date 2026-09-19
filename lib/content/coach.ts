@@ -1,5 +1,5 @@
 export const coachQualifications = [
-  "Ausbildung Rechtsanwalts- und Notarfachangestellter",
+  "Ausbildung zum Rechtsanwalts- und Notarfachangestellten",
   "Studium Soziale Arbeit (B.A.), Frankfurt UAS, laufend",
   "Berufspraxis in Bewerbungsmanagement und Jobcoaching",
   "Praxiserfahrung mit Einzel- und Gruppenformaten",
@@ -19,8 +19,8 @@ export const coachExperience = [
   },
   {
     role: "Teilhabe- und Schulassistenz (Inklusionshilfe)",
-    org: "—",
-    period: "Praxiserfahrung",
+    org: "ProHilfe GbR",
+    period: "2025",
   },
   {
     role: "Immobilienberater",
@@ -28,8 +28,8 @@ export const coachExperience = [
     period: "2022",
   },
   {
-    role: "Ausbildung Rechtsanwalts- und Notarfachangestellter",
-    org: "—",
+    role: "Ausbildung zum Rechtsanwalts- und Notarfachangestellten",
+    org: "Notariat Dr. Alexander Haines & Dr. Olaf Gerber",
     period: "2018–2022",
   },
 ];

@@ -7,11 +7,11 @@ import { initialActionState } from "@/lib/server/action-state";
 import { evaluateAvgsCheck, type AvgsAnswers } from "@/lib/avgs-logic";
 import { siteConfig } from "@/lib/site-config";
 import { StepProgress } from "./StepProgress";
-import { RadioGroupField, TextField, PrivacyNoticeField, HoneypotField } from "./form-fields";
+import { RadioGroupField, TextField, PrivacyNotice, HoneypotField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 
-const STEP_LABELS = ["AVGS-Status", "Kostenträger", "Anliegen", "Form", "Ergebnis & Kontakt"];
+const STEP_LABELS = ["AVGS-Status", "Situation", "Ergebnis & Kontakt"];
 
 type DraftAnswers = Partial<AvgsAnswers>;
 
@@ -21,7 +21,7 @@ function hasAllAnswers(answers: DraftAnswers): answers is AvgsAnswers {
 
 export function AvgsSchnellcheck() {
   const [step, setStep] = useState(1);
-  const [answers, setAnswers] = useState<DraftAnswers>({});
+  const [answers, setAnswers] = useState<DraftAnswers>({ form: "unsicher" });
   const headingRef = useRef<HTMLHeadingElement>(null);
   const searchParams = useSearchParams();
   const [state, formAction, pending] = useActionState(submitAvgsCheck, initialActionState);
@@ -35,13 +35,11 @@ export function AvgsSchnellcheck() {
 
   const canContinue =
     (step === 1 && Boolean(answers.status)) ||
-    (step === 2 && Boolean(answers.traeger)) ||
-    (step === 3 && Boolean(answers.anliegen)) ||
-    (step === 4 && Boolean(answers.form));
+    (step === 2 && Boolean(answers.traeger) && Boolean(answers.anliegen));
 
   function next() {
     if (!canContinue) return;
-    setStep((s) => Math.min(s + 1, 5));
+    setStep((s) => Math.min(s + 1, 3));
   }
 
   function back() {
@@ -74,7 +72,7 @@ export function AvgsSchnellcheck() {
 
   return (
     <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
-      <StepProgress current={step} total={5} labels={STEP_LABELS} />
+      <StepProgress current={step} total={3} labels={STEP_LABELS} />
 
       {step === 1 && (
         <div>
@@ -104,7 +102,7 @@ export function AvgsSchnellcheck() {
       {step === 2 && (
         <div>
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
-            Wer ist dein Kostenträger?
+            Wer ist zuständig und wobei brauchst du Unterstützung?
           </h2>
           <div className="mt-5">
             <RadioGroupField
@@ -120,15 +118,7 @@ export function AvgsSchnellcheck() {
               ]}
             />
           </div>
-        </div>
-      )}
-
-      {step === 3 && (
-        <div>
-          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
-            Wobei möchtest du Unterstützung?
-          </h2>
-          <div className="mt-5">
+          <div className="mt-7 border-t border-navy-100 pt-6">
             <RadioGroupField
               legend="Dein Anliegen"
               name="anliegen"
@@ -147,33 +137,7 @@ export function AvgsSchnellcheck() {
         </div>
       )}
 
-      {step === 4 && (
-        <div>
-          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
-            Wie möchtest du am liebsten coachen?
-          </h2>
-          <p className="mt-2 text-sm text-navy-600">
-            Präsenztermine finden nach Bestätigung in der Taunusstraße 52 in Kriftel statt.
-          </p>
-          <div className="mt-5">
-            <RadioGroupField
-              legend="Bevorzugte Form"
-              name="form"
-              required
-              value={answers.form}
-              onChange={(v) => setAnswers((a) => ({ ...a, form: v as AvgsAnswers["form"] }))}
-              options={[
-                { value: "praesenz_kriftel", label: "Präsenz (Kriftel)" },
-                { value: "online", label: "Online" },
-                { value: "hybrid", label: "Hybrid" },
-                { value: "unsicher", label: "Noch unsicher" },
-              ]}
-            />
-          </div>
-        </div>
-      )}
-
-      {step === 5 && result && (
+      {step === 3 && result && (
         <form action={formAction} className="space-y-5">
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             {result.headline}
@@ -214,7 +178,7 @@ export function AvgsSchnellcheck() {
             />
           </div>
 
-          <PrivacyNoticeField error={state.fieldErrors?.consent} />
+          <PrivacyNotice />
           <StatusMessage state={state} />
 
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
@@ -228,7 +192,7 @@ export function AvgsSchnellcheck() {
         </form>
       )}
 
-      {step < 5 && (
+      {step < 3 && (
         <div className="mt-8 flex justify-between border-t border-navy-100 pt-6">
           <Button type="button" variant="ghost" onClick={back} disabled={step === 1}>
             Zurück

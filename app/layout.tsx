@@ -34,13 +34,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} – AVGS Coaching Frankfurt`,
     description: siteConfig.description,
-    images: [{ url: siteConfig.images.badge, width: 1254, height: 1254, alt: siteConfig.name }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${siteConfig.name} – AVGS Coaching Frankfurt`,
     description: siteConfig.description,
-    images: [siteConfig.images.badge],
   },
   alternates: {
     canonical: "/",

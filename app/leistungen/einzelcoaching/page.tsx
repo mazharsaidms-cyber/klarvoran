@@ -41,12 +41,13 @@ export default function EinzelcoachingPage() {
           <div>
             <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
-              Privates Job- und Bewerbungscoaching – auch ohne AVGS
+              Privates Job- und Bewerbungscoaching für deinen konkreten nächsten Schritt
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Du möchtest deine Bewerbung verbessern, dich beruflich neu orientieren oder ein Gespräch gezielt
-              vorbereiten? Im privaten Einzelcoaching legen wir Themen, Umfang und Format passend zu deiner
-              Situation fest – unabhängig von Jobcenter, Agentur für Arbeit oder einem Gutschein.
+              Du brauchst gezielte Unterstützung bei deiner Bewerbung, beruflichen Orientierung oder der
+              Vorbereitung auf ein Vorstellungsgespräch? Im privaten Einzelcoaching vereinbaren wir genau die
+              Themen, die du jetzt brauchst. Vor der Buchung erhältst du ein schriftliches Angebot mit Umfang und
+              Gesamtpreis.
             </p>
           </div>
           <ContextGraphic
@@ -61,8 +62,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Für wen?</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Für alle, die gezielte Unterstützung bei Bewerbung, beruflicher Orientierung oder Vorstellungsgesprächen
-              suchen – unabhängig von Jobcenter oder Agentur für Arbeit.
+              Für Menschen, die ein konkretes Bewerbungsthema, eine berufliche Entscheidung oder ein bevorstehendes
+              Vorstellungsgespräch gezielt bearbeiten möchten – unabhängig von Jobcenter oder Agentur für Arbeit.
             </p>
           </Card>
           <Card>
@@ -82,8 +83,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Kosten</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Nach dem kostenlosen Erstgespräch erhältst du vor einer Buchung ein transparentes Angebot mit
-              vereinbartem Umfang, Format und Gesamtpreis. Die Anfrage selbst ist unverbindlich.
+              Nach dem kostenlosen Erstgespräch erhältst du ein schriftliches Angebot mit dem vereinbarten Umfang
+              und dem vollständigen Gesamtpreis. Kosten entstehen erst, wenn du das Angebot annimmst.
             </p>
           </Card>
         </div>

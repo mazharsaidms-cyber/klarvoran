@@ -10,7 +10,6 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
-import { ContextGraphic } from "@/components/ContextGraphic";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -82,16 +81,16 @@ export default function HomePage() {
               Klar sehen. Selbstständig handeln. Beruflich vorankommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              KlarVoran macht berufliche Anforderungen verständlich und nächste Schritte praktisch umsetzbar. Im
-              individuellen Coaching und in Workshops entstehen Lösungen, die du zunehmend selbst anwenden und
-              weiterführen kannst.
+              KlarVoran hilft dir, berufliche Ziele zu klären, Bewerbungen überzeugend umzusetzen und Anforderungen
+              von Arbeitgebern und Kostenträgern zu verstehen. Im persönlichen Coaching arbeitest du an konkreten
+              nächsten Schritten – so, dass du sie anschließend selbst weiterführen kannst.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/termin" size="lg" onDark>
-                Ich suche Unterstützung
+                Kostenloses Erstgespräch anfragen
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" size="lg" onDark>
-                Ich vertrete eine Institution
+                Angebote für Institutionen
               </Button>
             </div>
             <div className="mt-10">
@@ -99,9 +98,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <ContextGraphic
-            variant="conversation"
-            title="Gespräch, Orientierung und klarer nächster Schritt im KlarVoran-Coaching"
+          <Image
+            src="/images/team/cv-durchsicht.jpg"
+            alt="Mazhar Said bespricht im Einzelcoaching Bewerbungsunterlagen mit einem Teilnehmer"
+            width={1400}
+            height={781}
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="w-full rounded-[var(--radius-lg)] border border-white/15"
+            priority
           />
         </div>
       </Section>

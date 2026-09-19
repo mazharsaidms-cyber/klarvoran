@@ -69,9 +69,7 @@ export default function DatenschutzPage() {
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf einen Vertrag oder eine
               vorvertragliche Maßnahme gerichtet ist. Bei allgemeinen oder institutionellen Anfragen ist
               Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse besteht in der sachgerechten
-              Bearbeitung geschäftlicher Anfragen. Das Pflichtkästchen im Formular dokumentiert lediglich, dass die
-              Datenschutzhinweise zur Kenntnis genommen wurden; es ist keine zusätzliche datenschutzrechtliche
-              Einwilligung.
+              Bearbeitung geschäftlicher Anfragen.
             </p>
             <p className="mt-3">
               Name, E-Mail-Adresse, Nachricht und die jeweils als Pflichtfeld gekennzeichneten Angaben werden für
@@ -80,9 +78,9 @@ export default function DatenschutzPage() {
               alternativ sind Telefon oder E-Mail möglich.
             </p>
             <p className="mt-3">
-              Für den Versand kann Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA
-              94114, USA, als technischer E-Mail-Dienst eingesetzt werden. Dabei werden die Formulardaten zum Zweck
-              der Übermittlung verarbeitet. Resend beschreibt seine Datenschutz- und Übermittlungsmaßnahmen in der{" "}
+              Für den technischen Versand der Formulardaten nutzen wir Plus Five Five, Inc. (Resend), 2261 Market
+              Street #5039, San Francisco, CA 94114, USA. Dabei werden die Formulardaten zum Zweck der Übermittlung
+              verarbeitet. Resend beschreibt seine Datenschutz- und Übermittlungsmaßnahmen in der{" "}
               <a
                 href="https://resend.com/legal/privacy-policy"
                 target="_blank"
@@ -103,6 +101,19 @@ export default function DatenschutzPage() {
               Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse besteht in der
               Beantwortung allgemeiner und geschäftlicher Anfragen. Zusätzlich können Telekommunikations- und
               E-Mail-Anbieter technisch erforderliche Verbindungs- und Zustelldaten verarbeiten.
+            </p>
+            <p className="mt-3">
+              Das E-Mail-Postfach wird über IONOS SE bereitgestellt. Dabei können Absender-, Empfänger-,
+              Verbindungs- und Nachrichteninhalte verarbeitet werden. Weitere Informationen enthält die{" "}
+              <a
+                href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClasses}
+              >
+                Datenschutzerklärung von IONOS
+              </a>
+              .
             </p>
           </section>
 
@@ -210,7 +221,7 @@ export default function DatenschutzPage() {
             </p>
           </section>
 
-          <p className="text-sm text-navy-600">Stand: 18. September 2026</p>
+          <p className="text-sm text-navy-600">Stand: 19. September 2026</p>
         </div>
       </Section>
     </>

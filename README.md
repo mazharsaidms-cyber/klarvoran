@@ -63,7 +63,7 @@ Vor der Kundenübergabe wurde die Seite gegen neun Prüf-Linsen (Content, UX, SE
 | Eyebrow-Label auf der dunklen CTA-Sektion nutzte Rot auf Navy (~2.1:1, deutlicher Fail) | `CtaSection` | Nutzt jetzt die geteilte `Eyebrow`-Komponente im weißen Ton |
 | Mobiles Menü: Fokus ging beim Öffnen/Schließen verloren | `Header` | Fokus springt beim Öffnen auf den ersten Link, bei Escape/Schließen zurück auf den Menü-Button |
 | Fehlende Security-Header (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) | `next.config.ts` | Baseline-Header ergänzt, `X-Powered-By` deaktiviert |
-| Domain in Metadaten/Sitemap zeigte auf einen Platzhalter | `lib/site-config.ts` | Auf die bestätigte Produktions-Domain `klarvoran.de` umgestellt |
+| Domain in Metadaten/Sitemap zeigte auf einen Platzhalter | `lib/site-config.ts` | Auf die bestätigte Produktions-Domain `www.klarvoran.de` umgestellt |
 
 Nicht gefunden (positiv geprüft): erfundene Fakten/Testimonials/Zahlen, defekte interne Links, fehlende/doppelte Überschriftenebenen, offene `npm audit`-Schwachstellen, zu kleine Touch-Targets bei primären CTAs (56px), fehlende Alt-Texte bei bedeutungstragenden Bildern.
 

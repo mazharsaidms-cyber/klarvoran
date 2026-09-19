@@ -39,12 +39,12 @@ export default function FuerKommunenPage() {
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">Für Kommunen &amp; öffentliche Auftraggeber</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Klar abgegrenzte Coaching- und Bildungsleistungen für regionale Vorhaben
+          Arbeitsmarktbezogene Workshops und Coachingbausteine für regionale Vorhaben
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt klar abgegrenzte Coaching-, Bildungs- und Workshopleistungen im Rhein-Main-Gebiet.
-          Ziele, Umfang, Zielgruppe, Durchführung, Zuständigkeiten und Nachweise werden vor dem Start verbindlich
-          abgestimmt.
+          KlarVoran übernimmt Bewerbungs-, Orientierungs- und Coachingbausteine für klar definierte Zielgruppen im
+          Rhein-Main-Gebiet. Ziele, Zeitraum, Zuständigkeiten, Durchführung und erforderliche Nachweise werden vor
+          der Beauftragung schriftlich vereinbart.
         </p>
       </Section>
 
@@ -75,8 +75,9 @@ export default function FuerKommunenPage() {
           <Card>
             <h3 className="font-semibold text-navy">Verlässlich umsetzbar</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Leistungsumfang, Zeitplan, Personal, Räume, Technik und erforderliche Abstimmungen werden vor
-              Beauftragung geprüft und transparent im Angebot festgehalten.
+              Leistungsumfang, Zeitplan, eingesetzte Fachkraft und gegebenenfalls vereinbarte Vertretung, Räume,
+              Technik und erforderliche Abstimmungen werden vor Beauftragung geprüft und transparent im Angebot
+              festgehalten.
             </p>
           </Card>
           <Card>
@@ -106,7 +107,7 @@ export default function FuerKommunenPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm formal />
+          <ContactForm formal defaultRequestType="oeffentlicher_auftrag" />
         </div>
       </Section>
     </>

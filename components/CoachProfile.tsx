@@ -20,15 +20,16 @@ export function CoachProfile() {
         <div>
           <h2 className="text-2xl font-bold text-navy sm:text-3xl">Mazhar Said</h2>
           <p className="mt-3 text-lg leading-relaxed text-navy-600">
-            Ich habe KlarVoran gegründet, weil ich aus eigener beruflicher Erfahrung weiß, wie viel Unterschied
-            eine klare Struktur und jemand macht, der sich wirklich Zeit nimmt. Mein Weg führte über eine
+            Ich habe KlarVoran gegründet, weil ich aus eigener beruflicher Erfahrung weiß, welchen Unterschied
+            eine klare Struktur und ein Gegenüber machen, das sich wirklich Zeit nimmt. Mein Weg führte über eine
             Ausbildung im Rechts- und Notariatsbereich, den Vertrieb und die pädagogische Arbeit mit Menschen in herausfordernden
-            Situationen zum Bewerbungscoaching – genau diese Mischung bringe ich in jedes Gespräch mit dir ein.
+            Situationen zum Bewerbungscoaching. Diese Verbindung aus strukturiertem Arbeiten, verständlicher
+            Ansprache und praktischer Umsetzung prägt die Arbeit von KlarVoran.
           </p>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Qualifikationen</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Fachlicher Hintergrund</h3>
           <ul className="mt-3 flex flex-wrap gap-2">
             {coachQualifications.map((q) => (
               <li

@@ -46,6 +46,21 @@ const formats = [
   },
 ];
 
+const approach = [
+  {
+    title: "Verständlich einsteigen",
+    text: "Wir knüpfen an der Ausgangslage der Gruppe an und erklären Anforderungen in klarer, direkter Sprache.",
+  },
+  {
+    title: "Praktisch üben",
+    text: "Die Teilnehmenden arbeiten an konkreten Beispielen, probieren Schritte selbst aus und erhalten nachvollziehbares Feedback.",
+  },
+  {
+    title: "Transfer sichern",
+    text: "Am Ende steht ein sichtbares Arbeitsergebnis und ein nächster Schritt, den die Teilnehmenden selbst weiterführen können.",
+  },
+];
+
 export default function WorkshopsPage() {
   return (
     <>
@@ -88,6 +103,19 @@ export default function WorkshopsPage() {
       </Section>
 
       <Section tone="white">
+        <Eyebrow>Arbeitsweise</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {approach.map((item) => (
+            <Card key={item.title}>
+              <h3 className="font-semibold text-navy">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">{item.text}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section tone="tint">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">

@@ -7,12 +7,12 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Was kostet das Coaching bei KlarVoran?",
     answer:
-      "Mit einem passenden und bewilligten AVGS ist das AVGS-Coaching für dich kostenfrei. Die Kosten übernimmt der zuständige Kostenträger. Für privates Job- und Bewerbungscoaching erhältst du nach dem kostenlosen Kennenlerngespräch vor der Buchung ein transparentes Angebot mit Umfang und Gesamtpreis.",
+      "Mit einem passenden und bewilligten AVGS ist das AVGS-Coaching für dich kostenfrei. Die Kosten übernimmt der zuständige Kostenträger. Für privates Job- und Bewerbungscoaching erhältst du nach dem kostenlosen Erstgespräch vor der Buchung ein transparentes Angebot mit Umfang und Gesamtpreis.",
   },
   {
-    question: "Wie bekomme ich einen AVGS?",
+    question: "Wie starte ich?",
     answer:
-      "Du sprichst deine Vermittlungsfachkraft bei Jobcenter oder Agentur für Arbeit aktiv darauf an und begründest, warum individuelles Bewerbungscoaching für dich sinnvoll ist. Ein Rechtsanspruch besteht nicht – es ist eine Ermessensentscheidung. Auf unserer AVGS-Seite erklären wir den Ablauf im Detail.",
+      "Du kannst ein kostenloses Erstgespräch anfragen oder den AVGS-Schnellcheck nutzen. Das ist auch möglich, wenn du noch keinen Gutschein hast. Wir klären deine Situation, erklären dir bei Bedarf die Beantragung und besprechen den passenden nächsten Schritt.",
   },
   {
     question: "Wie lange dauert das Coaching?",
@@ -25,21 +25,6 @@ export const generalFaq: FaqItem[] = [
       "Beides ist möglich – Präsenztermine finden nach Terminbestätigung in der Taunusstraße 52, 65830 Kriftel statt, alternativ online oder hybrid. Hausbesuche bieten wir nicht an.",
   },
   {
-    question: "Wie starte ich?",
-    answer:
-      "Am einfachsten mit unserem AVGS-Schnellcheck oder direkt über WhatsApp, Telefon oder das Kontaktformular. Im kostenlosen, unverbindlichen Erstgespräch klären wir alles Weitere.",
-  },
-  {
-    question: "Ich habe noch keinen AVGS – kann ich trotzdem Kontakt aufnehmen?",
-    answer:
-      "Ja, unbedingt. Wir erklären dir, wie die Beantragung funktioniert, und du kannst mit uns sprechen, bevor du zu deiner Vermittlungsfachkraft gehst.",
-  },
-  {
-    question: "Wer ist der zugelassene Träger hinter KlarVoran?",
-    answer:
-      "KlarVoran – Mazhar Said ist die aktuelle Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde auf Mazhar Said – MS Coaching ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Anpassung der Zulassungsunterlagen befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
-  },
-  {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",
     answer:
       "Sag uns frühzeitig Bescheid, damit wir gemeinsam einen neuen Termin finden. Fehlzeiten dokumentieren wir wie vorgeschrieben gegenüber dem Kostenträger.",
@@ -47,6 +32,11 @@ export const generalFaq: FaqItem[] = [
 ];
 
 export const avgsFaq: FaqItem[] = [
+  {
+    question: "Wer ist der zugelassene Träger hinter KlarVoran?",
+    answer:
+      "KlarVoran – Mazhar Said ist die aktuelle Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde auf Mazhar Said – MS Coaching ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Anpassung der Zulassungsunterlagen befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
+  },
   {
     question: "Was ist die AZAV?",
     answer:
@@ -66,11 +56,6 @@ export const avgsFaq: FaqItem[] = [
     question: "Wie läuft die Beantragung ab?",
     answer:
       "Du sprichst das Thema aktiv bei deinem Beratungstermin an und begründest deinen Bedarf. Ist deine Fachkraft einverstanden, erhältst du einen Gutschein mit Gültigkeitsdauer, Förderziel und Kostenträger. Diesen Gutschein bringst du zu uns – wir prüfen Gutschein und Passung zur Maßnahme und klären die nächsten Schritte mit dir.",
-  },
-  {
-    question: "Warum ist das Coaching für mich kostenfrei?",
-    answer:
-      "Weil der AVGS von deinem Kostenträger direkt an uns als zugelassenen Träger gezahlt wird. Du zahlst nichts – vorausgesetzt, dein Gutschein wurde bewilligt.",
   },
   {
     question: "Was, wenn ich unsicher bin, ob ich Anspruch habe?",

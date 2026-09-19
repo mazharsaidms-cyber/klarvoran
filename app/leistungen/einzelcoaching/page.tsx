@@ -27,19 +27,19 @@ const steps = [
     text: "Unterlagen, Stellensuche, Gesprächstraining oder Orientierung – wir arbeiten die vereinbarten Schritte konkret durch.",
   },
   {
-    title: "Selbstständig weitergehen",
-    text: "Du gehst mit einer klaren Struktur, eigenen Unterlagen und Werkzeugen weiter, die du selbst anwenden kannst.",
+    title: "Selbst handeln und dranbleiben",
+    text: "Du gehst mit einer klaren Struktur und Werkzeugen weiter, die du selbst anwenden und bei Rückschlägen anpassen kannst.",
   },
 ];
 
 export default function EinzelcoachingPage() {
   return (
     <>
-      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "1:1-Coaching" }]} />
+      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "Privates Coaching" }]} />
       <Section tone="navy" className="pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <Eyebrow tone="white">1:1-Coaching · Selbstzahler</Eyebrow>
+            <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
               Privates Job- und Bewerbungscoaching – auch ohne AVGS
             </h1>
@@ -82,7 +82,7 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Kosten</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Nach dem kostenlosen Kennenlerngespräch erhältst du vor einer Buchung ein transparentes Angebot mit
+              Nach dem kostenlosen Erstgespräch erhältst du vor einer Buchung ein transparentes Angebot mit
               vereinbartem Umfang, Format und Gesamtpreis. Die Anfrage selbst ist unverbindlich.
             </p>
           </Card>
@@ -105,7 +105,7 @@ export default function EinzelcoachingPage() {
 
       <CtaSection
         eyebrow="Nächster Schritt"
-        title="Unverbindliches Kennenlerngespräch vereinbaren"
+        title="Kostenloses Erstgespräch anfragen"
         description="Wir klären deine Situation, deinen Bedarf und den passenden Umfang – ganz ohne Verpflichtung."
         secondaryLabel="Alle Leistungen ansehen"
         secondaryHref="/leistungen"

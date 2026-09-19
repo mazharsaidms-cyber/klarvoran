@@ -85,7 +85,7 @@ export default function FuerSozialeEinrichtungenPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Niedrigschwellige Workshops</h3>
+            <h3 className="font-semibold text-navy">Verständliche, praxisnahe Workshops</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Kompakte Gruppenformate zu Bewerbung, Orientierung und digitaler Kompetenz – siehe{" "}
               <a href="/leistungen/workshops" className="underline underline-offset-4 hover:text-red-700">
@@ -97,8 +97,8 @@ export default function FuerSozialeEinrichtungenPage() {
           <Card>
             <h3 className="font-semibold text-navy">Berufliche Orientierung & Bewerbungstraining</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Von der Standortbestimmung bis zur bewerbungsfähigen Unterlagenmappe – strukturiert und individuell
-              statt nach Schema F.
+              Von der Standortbestimmung bis zu passenden Bewerbungsunterlagen und sicheren digitalen
+              Bewerbungswegen – strukturiert und auf den vereinbarten Bedarf abgestimmt.
             </p>
           </Card>
           <Card>

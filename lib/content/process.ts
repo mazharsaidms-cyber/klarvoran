@@ -13,15 +13,15 @@ export const processSteps: ProcessStep[] = [
   },
   {
     id: 2,
-    title: "Gutscheinprüfung",
+    title: "Kostenloses Erstgespräch",
     description:
-      "Hast du bereits einen AVGS? Wir prüfen gemeinsam Gültigkeit, Förderziel und Kostenträger. Noch keinen? Wir zeigen dir, wie du einen beantragst.",
+      "Wir klären deine Ziele, deinen Unterstützungsbedarf und – bei Online- oder Hybrid-Coaching – die technischen Voraussetzungen.",
   },
   {
     id: 3,
-    title: "Kostenloses Erstgespräch",
+    title: "Gutscheinprüfung & Start",
     description:
-      "Im persönlichen Gespräch klären wir deine Ziele, deinen Unterstützungsbedarf und – bei Online/Hybrid – die technischen Voraussetzungen.",
+      "Liegt ein AVGS vor, prüfen wir Gültigkeit, Förderziel und Kostenträger. Wenn noch keiner vorliegt, erklären wir dir die Beantragung. Das Coaching beginnt erst nach geklärter Förderung und Aufnahme.",
   },
   {
     id: 4,

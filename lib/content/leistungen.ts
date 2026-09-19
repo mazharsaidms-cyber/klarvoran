@@ -30,7 +30,7 @@ export const leistungen: Leistung[] = [
   {
     id: "einzelcoaching",
     eyebrow: "Für Menschen ohne AVGS",
-    title: "1:1-Coaching",
+    title: "Privates Job- und Bewerbungscoaching",
     audience: "Selbstzahler",
     summary:
       "Privates Job- und Bewerbungscoaching mit individuell vereinbarten Themen, Umfang und Format – unabhängig von einem Gutschein.",
@@ -41,7 +41,7 @@ export const leistungen: Leistung[] = [
     ],
     price: "Transparentes Angebot vor Buchung",
     href: "/leistungen/einzelcoaching",
-    ctaLabel: "1:1-Coaching entdecken",
+    ctaLabel: "Privates Coaching ansehen",
   },
   {
     id: "workshops",

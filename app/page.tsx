@@ -8,7 +8,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { CtaSection } from "@/components/CtaSection";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
-import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
+import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { leistungen } from "@/lib/content/leistungen";
@@ -68,33 +68,6 @@ const methodSteps = [
   },
 ];
 
-const institutionTargets: InstitutionTarget[] = [
-  {
-    href: "/fuer-jobcenter",
-    title: "Jobcenter & Agentur für Arbeit",
-    text: "AZAV-zugelassene Maßnahme nach § 45 SGB III mit vollständigen Daten für Gutscheinprüfung und Teilnahmeabstimmung.",
-    cta: "Maßnahmedaten prüfen",
-  },
-  {
-    href: "/fuer-soziale-einrichtungen",
-    title: "Soziale Einrichtungen",
-    text: "Individuelles Bewerbungscoaching als Ergänzung für Ihre Klientinnen und Klienten.",
-    cta: "Angebot für Einrichtungen",
-  },
-  {
-    href: "/fuer-bildungstraeger",
-    title: "Bildungsträger",
-    text: "Zulassungsstruktur, BvB-Erfahrung und abgestimmte Einsätze als Unterauftragnehmer.",
-    cta: "Kooperation ansehen",
-  },
-  {
-    href: "/fuer-kommunen",
-    title: "Kommunen & öffentliche Auftraggeber",
-    text: "Klar abgegrenzte Coaching-, Bildungs- und Workshopaufträge für regionale Vorhaben.",
-    cta: "Leistungen für Kommunen",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -130,6 +103,45 @@ export default function HomePage() {
             variant="conversation"
             title="Gespräch, Orientierung und klarer nächster Schritt im KlarVoran-Coaching"
           />
+        </div>
+      </Section>
+
+      {/* Die Zielgruppe erkennt zuerst ihre Situation, bevor Angebote und
+          formale Nachweise erklärt werden. */}
+      <Section tone="tint">
+        <div className="max-w-3xl">
+          <Eyebrow tone="navy">Wenn gerade der Überblick fehlt</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+            Du musst nicht schon wissen, wie alles weitergeht.
+          </h2>
+          <p className="mt-4 leading-relaxed text-navy-600">
+            Vielleicht fehlt eine klare berufliche Richtung, Bewerbungen führen bisher nicht weiter oder digitale
+            und formale Anforderungen wirken unübersichtlich. Wir schauen zuerst, was hinter der Situation steckt,
+            und entwickeln daraus einen realistischen nächsten Schritt.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          <Card>
+            <h3 className="font-semibold text-navy">Ausgangslage ordnen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Wir halten fest, was bereits gelingt, was dich gerade bremst und welches berufliche Ziel realistisch
+              ist.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Anforderungen verstehen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Erwartungen von Arbeitgebern, Jobcenter und digitalen Bewerbungswegen werden in klare Schritte
+              übersetzt.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Ins Handeln kommen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Wir besprechen nicht nur, was zu tun ist. Der erste passende Schritt wird praktisch umgesetzt und
+              anschließend zunehmend selbst übernommen.
+            </p>
+          </Card>
         </div>
       </Section>
 
@@ -227,24 +239,6 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-      </Section>
-
-      {/* Für Institutionen: dunkelblaue Fläche mit vier weißen Zielkarten. */}
-      <Section tone="navy">
-        <div className="mb-10">
-          <Eyebrow tone="white">Für Institutionen</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
-            Jobcenter, Einrichtungen, Bildungsträger &amp; Kommunen
-          </h2>
-          <p className="mt-4 max-w-2xl text-white/80">
-            Trägerstatus, Zulassung und Kooperationsmöglichkeiten – mit eigener Seite je nach Zielgruppe.
-          </p>
-        </div>
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {institutionTargets.map((t) => (
-            <InstitutionCard key={t.href} target={t} />
-          ))}
-        </ul>
       </Section>
 
       <Section tone="tint">

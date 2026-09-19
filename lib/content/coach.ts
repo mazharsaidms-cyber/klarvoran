@@ -1,9 +1,9 @@
 export const coachQualifications = [
   "Ausbildung Rechtsanwalts- und Notarfachangestellter",
   "Studium Soziale Arbeit (B.A.), Frankfurt UAS, laufend",
-  "Freiberuflicher Dozent für Bewerbungsmanagement & Jobcoaching",
-  "Erfahrung mit Einzel- und Gruppencoachings",
-  "Erfahrung in der Inklusionsarbeit / Teilhabeassistenz",
+  "Berufspraxis in Bewerbungsmanagement und Jobcoaching",
+  "Praxiserfahrung mit Einzel- und Gruppenformaten",
+  "Praxiserfahrung in Inklusion und Teilhabeassistenz",
 ];
 
 export const coachExperience = [

@@ -67,10 +67,10 @@ export default function FuerBildungstraegerPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Bewerbungsmanagement</h3>
+            <h3 className="font-semibold text-navy">Dokumentation &amp; Rückmeldung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Strukturierte Betreuung von Bewerbungsunterlagen, Stellenrecherche und Bewerbungsstrategie für Ihre
-              Teilnehmenden.
+              Anwesenheiten, vereinbarte Arbeitsschritte, Ergebnisse und relevante Abweichungen werden nach den
+              Vorgaben des Auftrags nachvollziehbar dokumentiert und abgestimmt zurückgemeldet.
             </p>
           </Card>
         </div>
@@ -83,8 +83,8 @@ export default function FuerBildungstraegerPage() {
           <Card>
             <h3 className="font-semibold text-navy">BvB- und Maßnahmeerfahrung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Erfahrung als Coach und Dozent in der Erwachsenenbildung und in berufsvorbereitenden Bildungsmaßnahmen
-              (BvB) – nicht nur in der eigenen Maßnahme.
+              Praktische Erfahrung als Coach und Dozent in der Erwachsenenbildung sowie in berufsvorbereitenden
+              Bildungsmaßnahmen (BvB).
             </p>
           </Card>
           <Card>

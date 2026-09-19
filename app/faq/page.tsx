@@ -26,7 +26,16 @@ export default function FaqPage() {
           einfach.
         </p>
         <div className="mt-10 max-w-3xl">
-          <FaqAccordion items={allFaq} />
+          <h2 className="text-xl font-bold text-navy sm:text-2xl">Coaching, Kosten und Ablauf</h2>
+          <div className="mt-5">
+            <FaqAccordion items={generalFaq} />
+          </div>
+        </div>
+        <div className="mt-12 max-w-3xl">
+          <h2 className="text-xl font-bold text-navy sm:text-2xl">AVGS und Zulassung</h2>
+          <div className="mt-5">
+            <FaqAccordion items={avgsFaq} />
+          </div>
         </div>
         <FaqStructuredData items={allFaq} />
       </Section>

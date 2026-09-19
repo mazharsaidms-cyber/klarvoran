@@ -14,11 +14,10 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { title: "Verlässlichkeit", text: "Klare Zielvereinbarungen und Termine, auf die du dich verlassen kannst." },
-  { title: "Respekt", text: "Du wirst ernst genommen – unabhängig von deiner Ausgangslage." },
-  { title: "Professionalität", text: "Strukturierte Durchführung nach definierten Modulen, vollständig dokumentiert." },
-  { title: "Integrationsorientierung", text: "Jeder Schritt zielt auf deine nachhaltige berufliche Perspektive." },
-  { title: "Eigenverantwortung", text: "Du entwickelst Lösungen, die du selbst anwenden und weiterführen kannst." },
+  { title: "Verständlichkeit", text: "Anforderungen werden so erklärt, dass du sie einordnen und praktisch umsetzen kannst." },
+  { title: "Respekt", text: "Deine Ausgangslage wird ernst genommen, ohne dich auf Schwierigkeiten zu reduzieren." },
+  { title: "Eigenverantwortung", text: "Du übernimmst vereinbarte Schritte zunehmend selbst und erkennst deinen Fortschritt." },
+  { title: "Dranbleiben", text: "Rückschläge werden ausgewertet, damit du deine Strategie anpassen und weitergehen kannst." },
 ];
 
 export default function UeberUnsPage() {
@@ -48,9 +47,9 @@ export default function UeberUnsPage() {
       <Section id="gruender" tone="white" className="scroll-mt-24">
         <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          KlarVoran arbeitet mit klaren Abläufen und verlässlichen Qualitätsstandards. Gegründet und fachlich
-          geleitet wird KlarVoran von Mazhar Said. Welche Leistungen, Zuständigkeiten und personellen Ressourcen
-          für einen konkreten Auftrag eingesetzt werden, wird vor Beginn verbindlich vereinbart.
+          KlarVoran verbindet lebensweltnahe Ansprache, arbeitsmarktbezogene Fachlichkeit und klare
+          Qualitätsstandards in einem eigenen Framework. Gegründet und fachlich geleitet von Mazhar Said – aus der
+          Praxis entwickelt und in einer verbindlichen Methodik systematisiert.
         </p>
         <div className="mt-10">
           <CoachProfile />
@@ -100,7 +99,7 @@ export default function UeberUnsPage() {
       </Section>
 
       <CtaSection
-        title="Lerne uns im kostenlosen Erstgespräch kennen"
+        title="KlarVoran im kostenlosen Erstgespräch kennenlernen"
         description="Ganz unverbindlich klären wir, ob und wie wir dich unterstützen können."
       />
     </>

@@ -11,7 +11,7 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { ProcessStepper } from "@/components/ProcessStepper";
 import { avgsFaq } from "@/lib/content/faq";
 import { processSteps } from "@/lib/content/process";
-import { siteConfig } from "@/lib/site-config";
+import { coachingModules, totalUe } from "@/lib/content/modules";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 
 export const metadata: Metadata = {
@@ -59,54 +59,57 @@ export default function AvgsPage() {
         </p>
       </Section>
 
-      {/* Zertifikatsbereich: beide Zeichen getrennt auf weißem Grund, mit exakter
-          Beschriftung. Trägerzeichen verlinkt auf den Trägernachweis; das
-          Maßnahmenzertifikat liegt nicht als separater Nachweis vor, daher wird das
-          Maßnahmezeichen bewusst NICHT verlinkt (keine Blindverlinkung). */}
-      <Section tone="white" className="py-12 sm:py-14">
-        <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Träger und Maßnahme – eindeutig zugeordnet</h2>
-        <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
-          <CertificateSeal
-            seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
-          />
-          <CertificateSeal
-            seal="massnahme"
-            caption="Individuelles Bewerbungscoaching nach § 45 SGB III (Zugelassene Maßnahme nach AZAV)"
-          />
+      <Section tone="tint">
+        <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <Card>
+            <h3 className="text-lg font-bold text-navy">Wenn dir Orientierung oder Struktur fehlt</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Das Coaching unterstützt dich bei beruflicher Orientierung, Bewerbungsunterlagen, Stellensuche und
+              Vorstellungsgesprächen. Gemeinsam klären wir, wo du stehst und welcher nächste Schritt realistisch ist.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-bold text-navy">Damit du später selbst weiterkommst</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Du sollst Anforderungen nicht nur erklärt bekommen. Du übst konkrete Schritte, erkennst deine
+              Fortschritte und lernst, Bewerbungsaufgaben zunehmend selbst zu übernehmen und bei Rückschlägen
+              weiterzumachen.
+            </p>
+          </Card>
         </div>
-        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
-          Die Maßnahme „Individuelles Bewerbungscoaching“ ist nach § 45 SGB III zugelassen. Bei Vorliegen eines
-          passenden und bewilligten AVGS werden die Kosten vom zuständigen Kostenträger vollständig übernommen.
-        </p>
-        <BrandTransitionNote className="mt-3 max-w-2xl" />
       </Section>
 
-      <Section tone="tint">
-        <div className="grid gap-6 sm:grid-cols-2">
-          <Card>
-            <h2 className="text-lg font-bold text-navy">Was ist die AZAV?</h2>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Die AZAV (Akkreditierungs- und Zulassungsverordnung Arbeitsförderung) legt fest, welche Anforderungen
-              ein Bildungsträger erfüllen muss, um Maßnahmen der Arbeitsförderung durchführen zu dürfen. Das
-              vorliegende Trägerzertifikat wurde von {siteConfig.certificate.issuer} unter der bisherigen
-              Bezeichnung ausgestellt; die Umstellung auf KlarVoran befindet sich in Bearbeitung.
-            </p>
-          </Card>
-          <Card>
-            <h2 className="text-lg font-bold text-navy">Wer bekommt einen AVGS?</h2>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Arbeitsuchende bzw. von Arbeitslosigkeit bedrohte Personen mit Unterstützungsbedarf – nach Ermessen
-              der Vermittlungsfachkraft. Es besteht kein automatischer Rechtsanspruch, daher lohnt sich eine gute
-              Begründung.
-            </p>
-          </Card>
-        </div>
+      <Section tone="white" id="inhalte">
+        <Eyebrow>Coachinginhalte</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+          Vier Module – insgesamt {totalUe} Unterrichtseinheiten
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
+          Die Inhalte bauen aufeinander auf und werden an deiner beruflichen Ausgangslage praktisch bearbeitet.
+        </p>
+        <ol className="mt-8 grid gap-5 sm:grid-cols-2">
+          {coachingModules.map((module) => (
+            <li key={module.id} className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card">
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-mono text-sm font-semibold text-red-700">Modul {module.id}</span>
+                <span className="rounded-[var(--radius-full)] bg-navy-50 px-3 py-1 font-mono text-xs font-semibold text-navy">
+                  {module.ue} UE
+                </span>
+              </div>
+              <h3 className="mt-3 font-semibold text-navy">{module.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">{module.summary}</p>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-navy">
+                Ergebnis: {module.outcome}
+              </p>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       {/* Integrierter Ablauf: 5-stufiger Prozess direkt hier, keine eigene Ablauf-Seite. */}
-      <Section tone="white" id="ablauf">
+      <Section tone="tint" id="ablauf">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
         <div className="mt-8">
@@ -114,8 +117,8 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="tint" id="leitfaden">
-        <Eyebrow tone="navy">Leitfaden</Eyebrow>
+      <Section tone="white" id="leitfaden">
+        <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <ol className="mt-8 grid gap-5 sm:grid-cols-2">
           {guideSteps.map((step) => (
@@ -144,8 +147,31 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="white">
-        <Eyebrow>FAQ</Eyebrow>
+      {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt
+          die Seite für Teilnehmende verständlich und zugleich transparent. */}
+      <Section tone="white" className="py-12 sm:py-14">
+        <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zugelassenes Coaching – transparent nachgewiesen</h2>
+        <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
+          <CertificateSeal
+            seal="traeger"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+          />
+          <CertificateSeal
+            seal="massnahme"
+            caption="Individuelles Bewerbungscoaching nach § 45 SGB III (Zugelassene Maßnahme nach AZAV)"
+          />
+        </div>
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
+          Die Maßnahme „Individuelles Bewerbungscoaching“ ist nach § 45 SGB III zugelassen. Bei Vorliegen eines
+          passenden und bewilligten AVGS werden die Kosten vom zuständigen Kostenträger vollständig übernommen.
+          Die AZAV legt fest, welche Anforderungen Träger und Maßnahmen der Arbeitsförderung erfüllen müssen.
+        </p>
+        <BrandTransitionNote className="mt-3 max-w-2xl" />
+      </Section>
+
+      <Section tone="tint">
+        <Eyebrow tone="navy">FAQ</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Fragen rund um AZAV &amp; AVGS</h2>
         <div className="mt-8">
           <FaqAccordion items={avgsFaq} />

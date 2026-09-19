@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LeistungCard } from "@/components/LeistungCard";
-import { CtaSection } from "@/components/CtaSection";
+import { Button } from "@/components/Button";
 import { leistungen } from "@/lib/content/leistungen";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
@@ -54,11 +54,32 @@ export default function LeistungenPage() {
         </p>
       </Section>
 
-      <CtaSection
-        eyebrow="Unsicher, welche Leistung passt?"
-        title="Lass uns kurz miteinander sprechen"
-        description="Im kostenlosen Erstgespräch klären wir, welches Coachingformat zu deiner Situation passt."
-      />
+      <Section tone="navy">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <Eyebrow tone="white">Der passende nächste Schritt</Eyebrow>
+            <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">So geht es passend weiter</h2>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            <div className="rounded-[var(--radius-md)] border border-white/15 bg-white p-6 text-navy">
+              <h3 className="text-lg font-bold">Du suchst Unterstützung?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                Im kostenlosen Erstgespräch klären wir deine Situation und welches Coachingformat dazu passt.
+              </p>
+              <Button href="/termin" className="mt-5">Erstgespräch anfragen</Button>
+            </div>
+            <div className="rounded-[var(--radius-md)] border border-white/15 bg-white p-6 text-navy">
+              <h3 className="text-lg font-bold">Sie vertreten eine Institution?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                Wählen Sie den passenden Bereich für Gutscheinabstimmung, Kooperation, Unterauftrag oder Auftrag.
+              </p>
+              <Button href="/fachkraefte-kooperationspartner" variant="secondary" className="mt-5">
+                Zum institutionellen Bereich
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

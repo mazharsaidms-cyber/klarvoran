@@ -23,7 +23,7 @@ export default function FuerBildungstraegerPage() {
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">Für Bildungsträger & Kooperationspartner</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Verlässliche Coaching-Leistungen für Unteraufträge und Kooperationen
+          Jobcoaching und Bewerbungsmanagement – verlässlich im Unterauftrag
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
           KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
@@ -35,7 +35,7 @@ export default function FuerBildungstraegerPage() {
       <Section tone="tint">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
           <FactStat value="AZAV" label="Trägerzulassung vorhanden" />
-          <FactStat value="BvB" label="Maßnahmeerfahrung" />
+          <FactStat value="Praxis" label="Jobcoaching & Bewerbungsmanagement" />
           <FactStat value="Rhein-Main" label="Einsatz nach Verfügbarkeit" />
           <FactStat value="1:1" label="Jobcoaching & Bewerbungsmanagement" />
         </div>
@@ -81,14 +81,15 @@ export default function FuerBildungstraegerPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Warum KlarVoran als Partner</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
-            <h3 className="font-semibold text-navy">BvB- und Maßnahmeerfahrung</h3>
+            <h3 className="font-semibold text-navy">Praxis in Bewerbungsmanagement und Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Praktische Erfahrung als Coach und Dozent in der Erwachsenenbildung sowie in berufsvorbereitenden
-              Bildungsmaßnahmen (BvB).
+              Praxiserfahrung besteht seit November 2025 als freiberuflicher Dozent im Bewerbungsmanagement und
+              Jobcoaching beim Bildungswerk der Hessischen Wirtschaft e. V. sowie 2026 beim Zentrum für
+              Weiterbildung gGmbH. Hinzu kommen Erfahrungen aus berufsvorbereitenden Bildungsmaßnahmen.
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Eigene AZAV-Struktur</h3>
+            <h3 className="font-semibold text-navy">Eigene AZAV-Träger- und Maßnahmezulassung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Als eigenständig zugelassener Träger kennen wir die formalen Anforderungen an Dokumentation,
               Qualitätssicherung und Nachweisführung aus erster Hand.
@@ -136,7 +137,7 @@ export default function FuerBildungstraegerPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm formal />
+          <ContactForm formal defaultRequestType="unterauftrag" />
         </div>
       </Section>
     </>

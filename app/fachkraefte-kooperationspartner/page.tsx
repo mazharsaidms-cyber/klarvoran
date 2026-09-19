@@ -51,12 +51,11 @@ export default function FachkraeftePage() {
           <div>
             <Eyebrow tone="white">Für Institutionen & Kooperationspartner</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-              Gutscheinabstimmung, Kooperation oder Auftrag – der passende Weg für Ihre Institution
+              Verlässliche Coaching- und Bildungsleistungen für Ihre Institution
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Wählen Sie den Bereich, der zu Ihrem Anliegen passt. Sie finden dort Informationen zur
-              Gutschein- und Teilnahmeabstimmung, zu externen Coaching- und Gruppenformaten, zu Unteraufträgen sowie zu klar
-              abgegrenzten Leistungen für öffentliche Vorhaben.
+              Wählen Sie den Bereich, der zu Ihrem Anliegen passt. Dort finden Sie die relevanten Angaben zu
+              Zulassung, Durchführung, Kooperation, Dokumentation und Kontakt.
             </p>
           </div>
           <ContextGraphic

@@ -155,34 +155,16 @@ export function RadioGroupField({
   );
 }
 
-export function PrivacyNoticeField({ id = "consent", error }: { id?: string; error?: string }) {
+export function PrivacyNotice({ formal = false }: { formal?: boolean }) {
   return (
-    <div>
-      <label htmlFor={id} className="flex cursor-pointer items-start gap-2.5 text-sm text-navy-600">
-        <input
-          type="checkbox"
-          id={id}
-          name={id}
-          required
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
-          className="mt-0.5 h-4 w-4 shrink-0 accent-red"
-        />
-        <span>
-          Ich habe die{" "}
-          <a href="/datenschutz" className="text-navy underline underline-offset-2">
-            Datenschutzerklärung
-          </a>{" "}
-          zur Verarbeitung meiner Angaben für die Bearbeitung dieser Anfrage zur Kenntnis genommen.{" "}
-          <span aria-hidden="true" className="text-red">*</span>
-        </span>
-      </label>
-      {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-700">
-          {error}
-        </p>
-      )}
-    </div>
+    <p className="text-sm leading-relaxed text-navy-600">
+      Mit dem Absenden werden {formal ? "Ihre" : "deine"} Angaben zur Bearbeitung {formal ? "Ihrer" : "deiner"}{" "}
+      Anfrage verarbeitet. {formal ? "Weitere Informationen finden Sie" : "Weitere Informationen findest du"} in der{" "}
+      <a href="/datenschutz" className="font-medium text-navy underline underline-offset-2">
+        Datenschutzerklärung
+      </a>
+      .
+    </p>
   );
 }
 

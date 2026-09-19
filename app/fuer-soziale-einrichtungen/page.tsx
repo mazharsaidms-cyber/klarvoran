@@ -147,6 +147,17 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
+      <Section tone="white">
+        <Eyebrow>Verantwortung &amp; Datenschutz</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Klare Rollen und vertraulicher Umgang</h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
+          Ziele, Zuständigkeiten und Rückmeldewege werden vor Beginn der Zusammenarbeit vereinbart.
+          Personenbezogene Rückmeldungen erfolgen nur auf einer passenden Rechtsgrundlage beziehungsweise mit der
+          erforderlichen Einwilligung. Das Coaching ersetzt keine Therapie, Rechtsberatung oder umfassende
+          Sozialberatung.
+        </p>
+      </Section>
+
       <Section tone="navy">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Kontakt aufnehmen</Eyebrow>
@@ -159,7 +170,7 @@ export default function FuerSozialeEinrichtungenPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm formal />
+          <ContactForm formal defaultRequestType="kooperation" />
         </div>
       </Section>
     </>

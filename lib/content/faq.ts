@@ -15,6 +15,16 @@ export const generalFaq: FaqItem[] = [
       "Du kannst ein kostenloses Erstgespräch anfragen oder den AVGS-Schnellcheck nutzen. Das ist auch möglich, wenn du noch keinen Gutschein hast. Wir klären deine Situation, erklären dir bei Bedarf die Beantragung und besprechen den passenden nächsten Schritt.",
   },
   {
+    question: "Ist das Erstgespräch wirklich unverbindlich?",
+    answer:
+      "Ja. Im Erstgespräch klären wir zunächst deine Situation und die mögliche Passung. Eine Teilnahme oder kostenpflichtige Buchung entsteht dadurch noch nicht.",
+  },
+  {
+    question: "Was muss ich zum Erstgespräch mitbringen?",
+    answer:
+      "Für den ersten Kontakt brauchst du noch keine umfangreichen Unterlagen. Wenn du bereits einen AVGS hast, schauen wir uns anschließend gemeinsam an, welche Angaben für die Prüfung benötigt werden. Bitte sende keine sensiblen Dokumente unaufgefordert über WhatsApp oder das Kontaktformular.",
+  },
+  {
     question: "Wie lange dauert das Coaching?",
     answer:
       "Die Maßnahme umfasst 32 Unterrichtseinheiten à 45 Minuten und läuft über 8 Wochen. In der Regel finden zwei Termine pro Woche mit jeweils 2 Unterrichtseinheiten statt.",
@@ -56,6 +66,11 @@ export const avgsFaq: FaqItem[] = [
     question: "Wie läuft die Beantragung ab?",
     answer:
       "Du sprichst das Thema aktiv bei deinem Beratungstermin an und begründest deinen Bedarf. Ist deine Fachkraft einverstanden, erhältst du einen Gutschein mit Gültigkeitsdauer, Förderziel und Kostenträger. Diesen Gutschein bringst du zu uns – wir prüfen Gutschein und Passung zur Maßnahme und klären die nächsten Schritte mit dir.",
+  },
+  {
+    question: "Kann ich den Bildungsträger selbst wählen?",
+    answer:
+      "Wenn dein AVGS zum Angebot und zur zugelassenen Maßnahme passt, kannst du KlarVoran bei deiner Vermittlungsfachkraft als gewünschten Träger ansprechen. Ob der Gutschein ausgestellt beziehungsweise eingelöst werden kann, wird im Einzelfall geprüft.",
   },
   {
     question: "Was, wenn ich unsicher bin, ob ich Anspruch habe?",

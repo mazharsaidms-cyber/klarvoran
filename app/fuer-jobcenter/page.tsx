@@ -179,7 +179,7 @@ export default function FuerJobcenterPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
-          <ContactForm formal />
+          <ContactForm formal defaultRequestType="avgs_rueckfrage" />
         </div>
       </Section>
     </>

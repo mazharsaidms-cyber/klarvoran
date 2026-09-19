@@ -8,11 +8,6 @@ const phone = z
   .max(40)
   .optional()
   .or(z.literal(""));
-const consent = z
-  .union([z.literal("on"), z.literal("true"), z.boolean()])
-  .refine((v) => v === "on" || v === "true" || v === true, {
-    message: "Bitte bestätige, dass du die Datenschutzhinweise zur Kenntnis genommen hast.",
-  });
 // Honeypot: must stay empty. Bots that fill every field trip this.
 const honeypot = z.string().max(0, "Ungültige Übermittlung.").optional().or(z.literal(""));
 const source = z
@@ -33,7 +28,6 @@ export const contactSchema = z.object({
     .optional(),
   timeframe: z.string().trim().max(200).optional().or(z.literal("")),
   source,
-  consent,
   website: honeypot,
 }).superRefine((data, ctx) => {
   if (data.formality === "formal" && !data.organization) {
@@ -52,7 +46,6 @@ export const appointmentSchema = z.object({
   hasAvgs: z.enum(["ja", "nein", "unsicher"]),
   message: z.string().trim().max(4000).optional().or(z.literal("")),
   source,
-  consent,
   website: honeypot,
 });
 
@@ -70,7 +63,6 @@ export const avgsCheckSchema = z.object({
   name,
   email,
   phone,
-  consent,
   source: z.string().trim().max(200).optional().or(z.literal("")),
   website: honeypot,
 });

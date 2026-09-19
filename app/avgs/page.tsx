@@ -59,6 +59,24 @@ export default function AvgsPage() {
         </p>
       </Section>
 
+      {/* Der kurze Schnellcheck steht direkt nach dem Einstieg, damit
+          Interessierte ohne Umweg eine erste Orientierung erhalten. */}
+      <Section tone="navy" id="schnellcheck">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="white">AVGS-Schnellcheck</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
+          <p className="mt-3 text-white/80">
+            Drei kurze Schritte für eine erste, unverbindliche Einschätzung – keine Anspruchszusage, sondern
+            Orientierung für dein Gespräch mit uns.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
+          <Suspense fallback={<div className="h-96 animate-pulse rounded-[var(--radius-lg)] bg-navy-50" />}>
+            <AvgsSchnellcheck />
+          </Suspense>
+        </div>
+      </Section>
+
       <Section tone="tint">
         <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
@@ -128,23 +146,6 @@ export default function AvgsPage() {
             </li>
           ))}
         </ol>
-      </Section>
-
-      {/* Schnellcheck: innen hell, umrahmt von der dunkelblauen Sektion. */}
-      <Section tone="navy" id="schnellcheck">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">AVGS-Schnellcheck</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
-          <p className="mt-3 text-white/80">
-            Fünf kurze Schritte für eine erste, unverbindliche Einschätzung – keine Anspruchszusage, sondern
-            Orientierung für dein Gespräch mit uns.
-          </p>
-        </div>
-        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <Suspense fallback={<div className="h-96 animate-pulse rounded-[var(--radius-lg)] bg-navy-50" />}>
-            <AvgsSchnellcheck />
-          </Suspense>
-        </div>
       </Section>
 
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt

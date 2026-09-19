@@ -7,7 +7,7 @@ import { getClientIp } from "@/lib/server/request-ip";
 import type { ActionState } from "@/lib/server/action-state";
 
 const formatLabels: Record<string, string> = {
-  praesenz_kriftel: "Präsenz (Kriftel Workspaces)",
+  praesenz_kriftel: "Präsenz (Taunusstraße 52, Kriftel)",
   online: "Online",
   hybrid: "Hybrid",
   unsicher: "Noch unsicher",
@@ -17,6 +17,16 @@ const avgsLabels: Record<string, string> = {
   ja: "Ja, ich habe bereits einen AVGS",
   nein: "Nein, noch nicht",
   unsicher: "Ich bin unsicher",
+};
+
+const sourceLabels: Record<string, string> = {
+  google: "Google / Suchmaschine",
+  ba_portal: "Portal der Bundesagentur für Arbeit",
+  jobcenter_arbeitsagentur: "Jobcenter / Agentur für Arbeit",
+  einrichtung_traeger: "Einrichtung / Bildungsträger",
+  empfehlung: "Persönliche Empfehlung",
+  social_media: "Social Media",
+  sonstiges: "Sonstiges",
 };
 
 export async function submitAppointmentRequest(_prev: ActionState, formData: FormData): Promise<ActionState> {
@@ -44,7 +54,7 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
   if (parsed.data.website) {
     return {
       status: "success",
-      message: "Danke für deine Terminanfrage! Wir melden uns zeitnah bei dir, um einen Termin zu finden.",
+      message: "Danke für deine Terminanfrage! Wir melden uns in der Regel innerhalb von 1–2 Werktagen, um einen Termin zu finden.",
     };
   }
 
@@ -56,6 +66,7 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
     summaryLines: [
       `Bevorzugte Form: ${formatLabels[parsed.data.format]}`,
       `AVGS-Status: ${avgsLabels[parsed.data.hasAvgs]}`,
+      parsed.data.source ? `Quelle: ${sourceLabels[parsed.data.source]}` : "",
       parsed.data.message ? `Nachricht: ${parsed.data.message}` : "",
     ],
   });
@@ -78,6 +89,6 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
 
   return {
     status: "success",
-    message: "Danke für deine Terminanfrage! Wir melden uns zeitnah bei dir, um einen Termin zu finden.",
+    message: "Danke für deine Terminanfrage! Wir melden uns in der Regel innerhalb von 1–2 Werktagen, um einen Termin zu finden.",
   };
 }

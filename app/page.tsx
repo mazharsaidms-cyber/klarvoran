@@ -8,8 +8,9 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { CtaSection } from "@/components/CtaSection";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
-import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
+import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
+import { ContextGraphic } from "@/components/ContextGraphic";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 // Gespräch, Wegweiser, Laptop, nächster Schritt.
 const methodSteps = [
   {
-    title: "Verstehen",
+    title: "Verstanden werden",
     text: "Wir starten mit einem echten Gespräch und klären deine Ausgangslage, deine Ziele und deine Hürden.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -35,8 +36,8 @@ const methodSteps = [
     ),
   },
   {
-    title: "Gemeinsam umsetzen",
-    text: "Wir ordnen Anforderungen und arbeiten deine nächsten Schritte gemeinsam und praktisch durch.",
+    title: "System verstehen",
+    text: "Wir übersetzen Anforderungen und ordnen sie in klare, nachvollziehbare Schritte.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M6 21V3" />
@@ -46,7 +47,7 @@ const methodSteps = [
     ),
   },
   {
-    title: "Selbst übernehmen",
+    title: "Selbst handeln",
     text: "Du passt Unterlagen an, recherchierst Stellen und bereitest Gespräche zunehmend selbst vor.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -56,41 +57,14 @@ const methodSteps = [
     ),
   },
   {
-    title: "Selbstständig weiterkommen",
-    text: "Du gehst mit einer klaren Struktur und Werkzeugen weiter, die du auch ohne uns anwenden kannst.",
+    title: "Dranbleiben",
+    text: "Du machst Fortschritte sichtbar, wertest Rückschläge aus und passt deinen nächsten Schritt an.",
     icon: (
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 20h5v-4h5v-4h5V8h3" />
         <path d="M18.5 5.5 21 8l-2.5 2.5" />
       </svg>
     ),
-  },
-];
-
-const institutionTargets: InstitutionTarget[] = [
-  {
-    href: "/fuer-jobcenter",
-    title: "Jobcenter & Agentur für Arbeit",
-    text: "AZAV-zugelassene Maßnahme nach § 45 SGB III mit allen Stammdaten für Ihre Zuweisung.",
-    cta: "Zuweisung vorbereiten",
-  },
-  {
-    href: "/fuer-soziale-einrichtungen",
-    title: "Soziale Einrichtungen",
-    text: "Individuelles Bewerbungscoaching als Ergänzung für Ihre Klientinnen und Klienten.",
-    cta: "Angebot für Einrichtungen",
-  },
-  {
-    href: "/fuer-bildungstraeger",
-    title: "Bildungsträger",
-    text: "Zulassungsstruktur, BvB-Erfahrung und abgestimmte Einsätze als Unterauftragnehmer.",
-    cta: "Kooperation ansehen",
-  },
-  {
-    href: "/fuer-kommunen",
-    title: "Kommunen & öffentliche Auftraggeber",
-    text: "Klar abgegrenzte Coaching-, Bildungs- und Workshopaufträge für regionale Vorhaben.",
-    cta: "Leistungen für Kommunen",
   },
 ];
 
@@ -125,39 +99,49 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mx-auto w-64 sm:w-80 lg:w-full">
-            <Image
-              src={siteConfig.images.badge}
-              alt="Mazhar Said, Gründer von KlarVoran"
-              width={480}
-              height={480}
-              priority
-              className="w-full rounded-[var(--radius-lg)]"
-            />
-          </div>
+          <ContextGraphic
+            variant="conversation"
+            title="Gespräch, Orientierung und klarer nächster Schritt im KlarVoran-Coaching"
+          />
         </div>
       </Section>
 
-      {/* Kompakter weißer Vertrauensbereich: Trägerzeichen + GEO-Definition.
-          Bewusst KEIN Maßnahmezeichen an dieser Stelle. */}
-      <Section tone="white" className="py-12 sm:py-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
-          <CertificateSeal
-            seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
-          />
-          <div>
-            <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
-              Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
-              bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige Kostenträger die
-              Kosten vollständig.
+      {/* Die Zielgruppe erkennt zuerst ihre Situation, bevor Angebote und
+          formale Nachweise erklärt werden. */}
+      <Section tone="tint">
+        <div className="max-w-3xl">
+          <Eyebrow tone="navy">Wenn gerade der Überblick fehlt</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+            Du musst nicht schon wissen, wie alles weitergeht.
+          </h2>
+          <p className="mt-4 leading-relaxed text-navy-600">
+            Vielleicht fehlt eine klare berufliche Richtung, Bewerbungen führen bisher nicht weiter oder digitale
+            und formale Anforderungen wirken unübersichtlich. Wir schauen zuerst, was hinter der Situation steckt,
+            und entwickeln daraus einen realistischen nächsten Schritt.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          <Card>
+            <h3 className="font-semibold text-navy">Ausgangslage ordnen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Wir halten fest, was bereits gelingt, was dich gerade bremst und welches berufliche Ziel realistisch
+              ist.
             </p>
-            <BrandTransitionNote className="mt-3 max-w-2xl" />
-            <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
-              Zertifikat Trägerzulassung (PDF) →
-            </Button>
-          </div>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Anforderungen verstehen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Erwartungen von Arbeitgebern, Jobcenter und digitalen Bewerbungswegen werden in klare Schritte
+              übersetzt.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Ins Handeln kommen</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Wir besprechen nicht nur, was zu tun ist. Der erste passende Schritt wird praktisch umgesetzt und
+              anschließend zunehmend selbst übernommen.
+            </p>
+          </Card>
         </div>
       </Section>
 
@@ -181,8 +165,10 @@ export default function HomePage() {
       {/* Die Methode in 4 Schritten: ruhige Lesefläche, echte Icons + HTML-Text. */}
       <Section tone="tint">
         <div className="mb-10">
-          <Eyebrow tone="navy">Die Methode</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">In vier Schritten voran</h2>
+          <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+            Verstanden werden. System verstehen. Selbst handeln. Dranbleiben.
+          </h2>
           <p className="mt-3 max-w-2xl text-navy-600">
             Nicht nur gemeinsam erledigen. Lernen, es selbst zu können.
           </p>
@@ -206,6 +192,29 @@ export default function HomePage() {
         </ol>
       </Section>
 
+      {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
+          ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
+      <Section tone="white" className="py-12 sm:py-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
+          <CertificateSeal
+            seal="traeger"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+          />
+          <div>
+            <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
+              Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
+              passenden und bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige
+              Kostenträger die Kosten vollständig.
+            </p>
+            <BrandTransitionNote className="mt-3 max-w-2xl" />
+            <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
+              Zertifikat Trägerzulassung (PDF) →
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       {/* Gründerabschnitt: ruhige weiße Lesefläche. */}
       <Section tone="white">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,220px)_1fr]">
@@ -221,7 +230,7 @@ export default function HomePage() {
           <div>
             <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
             <blockquote className="mt-4 text-xl font-semibold leading-snug text-navy sm:text-2xl">
-              „Ich bringe eine juristisch-strukturierte Denkweise mit pädagogischer Erfahrung zusammen – damit dein
+              „Ich bringe strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung zusammen – damit dein
               nächster beruflicher Schritt planbar wird, statt diffus zu bleiben.“
             </blockquote>
             <p className="mt-4 text-sm text-navy-600">Mazhar Said, Gründer von KlarVoran</p>
@@ -230,24 +239,6 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-      </Section>
-
-      {/* Für Institutionen: dunkelblaue Fläche mit vier weißen Zielkarten. */}
-      <Section tone="navy">
-        <div className="mb-10">
-          <Eyebrow tone="white">Für Institutionen</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
-            Jobcenter, Einrichtungen, Bildungsträger &amp; Kommunen
-          </h2>
-          <p className="mt-4 max-w-2xl text-white/80">
-            Trägerstatus, Zulassung und Kooperationsmöglichkeiten – mit eigener Seite je nach Zielgruppe.
-          </p>
-        </div>
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {institutionTargets.map((t) => (
-            <InstitutionCard key={t.href} target={t} />
-          ))}
-        </ul>
       </Section>
 
       <Section tone="tint">

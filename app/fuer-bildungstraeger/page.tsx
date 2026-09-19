@@ -26,9 +26,9 @@ export default function FuerBildungstraegerPage() {
           Verlässliche Coaching-Leistungen für Unteraufträge und Kooperationen
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module als Unterauftragnehmer oder
-          Honorardozent. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit werden vor dem Einsatz
-          verbindlich abgestimmt.
+          KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
+          Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
+          werden vor dem Einsatz verbindlich abgestimmt.
         </p>
       </Section>
 
@@ -53,10 +53,10 @@ export default function FuerBildungstraegerPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Honorardozent / Jobcoach</h3>
+            <h3 className="font-semibold text-navy">Dozenteneinsätze &amp; Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Einzelcoaching, Bewerbungsmanagement oder Gruppeneinheiten innerhalb Ihrer Programme – auf
-              Honorarbasis.
+              Einzelcoaching, Bewerbungsmanagement oder Gruppeneinheiten als klar vereinbarter projektbezogener
+              Leistungsbaustein innerhalb Ihrer Programme.
             </p>
           </Card>
           <Card>
@@ -67,10 +67,10 @@ export default function FuerBildungstraegerPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Bewerbungsmanagement</h3>
+            <h3 className="font-semibold text-navy">Dokumentation &amp; Rückmeldung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Strukturierte Betreuung von Bewerbungsunterlagen, Stellenrecherche und Bewerbungsstrategie für Ihre
-              Teilnehmenden.
+              Anwesenheiten, vereinbarte Arbeitsschritte, Ergebnisse und relevante Abweichungen werden nach den
+              Vorgaben des Auftrags nachvollziehbar dokumentiert und abgestimmt zurückgemeldet.
             </p>
           </Card>
         </div>
@@ -83,8 +83,8 @@ export default function FuerBildungstraegerPage() {
           <Card>
             <h3 className="font-semibold text-navy">BvB- und Maßnahmeerfahrung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Erfahrung als Coach und Dozent in der Erwachsenenbildung und in berufsvorbereitenden Bildungsmaßnahmen
-              (BvB) – nicht nur in der eigenen Maßnahme.
+              Praktische Erfahrung als Coach und Dozent in der Erwachsenenbildung sowie in berufsvorbereitenden
+              Bildungsmaßnahmen (BvB).
             </p>
           </Card>
           <Card>
@@ -97,8 +97,8 @@ export default function FuerBildungstraegerPage() {
           <Card>
             <h3 className="font-semibold text-navy">Abgestimmte regionale Einsetzbarkeit</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Präsenz in den {siteConfig.presenceLocation.name} ({siteConfig.presenceLocation.region}), online oder
-              hybrid – je nach Auftrag, Zeitraum und verfügbarer Kapazität.
+              Präsenz im Rhein-Main-Gebiet, online oder hybrid. Einsatzzeiten, Umfang, Übergaben und
+              Vertretungsanforderungen werden vor Beauftragung verbindlich abgestimmt.
             </p>
           </Card>
           <Card>
@@ -117,7 +117,7 @@ export default function FuerBildungstraegerPage() {
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div>
             <CertificateFacts />
@@ -131,8 +131,8 @@ export default function FuerBildungstraegerPage() {
           <Eyebrow tone="white">Kooperation anfragen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Unterauftrag oder Kooperation besprechen</h2>
           <p className="mt-4 text-white/70">
-            Schreiben Sie uns kurz Ihren Bedarf – Umfang, Zeitraum und Art des Einsatzes. Wir melden uns zeitnah
-            zurück.
+            Schreiben Sie uns kurz Ihren Bedarf – Umfang, Zeitraum und Art des Einsatzes. Wir melden uns in der
+            Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">

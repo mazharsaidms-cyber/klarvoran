@@ -1,9 +1,9 @@
 export const coachQualifications = [
   "Ausbildung Rechtsanwalts- und Notarfachangestellter",
   "Studium Soziale Arbeit (B.A.), Frankfurt UAS, laufend",
-  "Freiberuflicher Dozent für Bewerbungsmanagement & Jobcoaching",
-  "Erfahrung mit Einzel- und Gruppencoachings",
-  "Erfahrung in der Inklusionsarbeit / Teilhabeassistenz",
+  "Berufspraxis in Bewerbungsmanagement und Jobcoaching",
+  "Praxiserfahrung mit Einzel- und Gruppenformaten",
+  "Praxiserfahrung in Inklusion und Teilhabeassistenz",
 ];
 
 export const coachExperience = [
@@ -15,17 +15,17 @@ export const coachExperience = [
   {
     role: "Freiberuflicher Dozent – Bewerbungsmanagement & Jobcoaching",
     org: "Zentrum für Weiterbildung gGmbH (ZfW)",
-    period: "seit 01/2026",
+    period: "2026",
   },
   {
     role: "Teilhabe- und Schulassistenz (Inklusionshilfe)",
     org: "—",
-    period: "seit 2024",
+    period: "Praxiserfahrung",
   },
   {
     role: "Immobilienberater",
     org: "Engel & Völkers",
-    period: "2022–2025",
+    period: "2022",
   },
   {
     role: "Ausbildung Rechtsanwalts- und Notarfachangestellter",

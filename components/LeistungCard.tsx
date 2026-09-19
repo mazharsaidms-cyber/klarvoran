@@ -52,10 +52,14 @@ const icons: Record<string, ReactNode> = {
 export function LeistungCard({
   leistung,
   hasMassnahmeBadge = false,
+  headingLevel = 3,
 }: {
   leistung: Leistung;
   hasMassnahmeBadge?: boolean;
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
+
   return (
     <li className="list-none h-full">
       <Link
@@ -79,9 +83,9 @@ export function LeistungCard({
           </span>
         )}
 
-        <h3 className="text-xl font-bold text-navy transition-colors group-hover:text-white group-focus-visible:text-white">
+        <Heading className="text-xl font-bold text-navy transition-colors group-hover:text-white group-focus-visible:text-white">
           {leistung.title}
-        </h3>
+        </Heading>
 
         <p className="text-sm leading-relaxed text-navy-600 transition-colors group-hover:text-white/80 group-focus-visible:text-white/80">
           {leistung.summary}

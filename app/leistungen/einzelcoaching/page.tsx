@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
 import { siteConfig } from "@/lib/site-config";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Privates Job- und Bewerbungscoaching",
@@ -27,19 +27,19 @@ const steps = [
     text: "Unterlagen, Stellensuche, Gesprächstraining oder Orientierung – wir arbeiten die vereinbarten Schritte konkret durch.",
   },
   {
-    title: "Selbstständig weitergehen",
-    text: "Du gehst mit einer klaren Struktur, eigenen Unterlagen und Werkzeugen weiter, die du selbst anwenden kannst.",
+    title: "Selbst handeln und dranbleiben",
+    text: "Du gehst mit einer klaren Struktur und Werkzeugen weiter, die du selbst anwenden und bei Rückschlägen anpassen kannst.",
   },
 ];
 
 export default function EinzelcoachingPage() {
   return (
     <>
-      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "1:1-Coaching" }]} />
+      <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "Privates Coaching" }]} />
       <Section tone="navy" className="pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <Eyebrow tone="white">1:1-Coaching · Selbstzahler</Eyebrow>
+            <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
               Privates Job- und Bewerbungscoaching – auch ohne AVGS
             </h1>
@@ -49,12 +49,9 @@ export default function EinzelcoachingPage() {
               Situation fest – unabhängig von Jobcenter, Agentur für Arbeit oder einem Gutschein.
             </p>
           </div>
-          <Image
-            src={"/images/team/einzelgespraech.jpg"}
-            alt="Individuelles Coaching-Gespräch bei KlarVoran"
-            width={1600}
-            height={678}
-            className="w-full rounded-[var(--radius-lg)]"
+          <ContextGraphic
+            variant="conversation"
+            title="Individuelles Coaching-Gespräch mit verständlichen nächsten Schritten"
           />
         </div>
       </Section>
@@ -71,8 +68,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Format</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Online, hybrid oder in Präsenz in den {siteConfig.presenceLocation.name} ({siteConfig.presenceLocation.region}).
-              Anzahl und Länge der Einheiten legen wir gemeinsam fest.
+              Online, hybrid oder in Präsenz in der {siteConfig.presenceLocation.street} in{" "}
+              {siteConfig.presenceLocation.city}. Anzahl und Länge der Einheiten werden vor der Buchung festgelegt.
             </p>
           </Card>
           <Card>
@@ -85,8 +82,8 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="text-lg font-bold text-navy">Kosten</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Da Umfang und Format individuell sind, nennen wir dir den Preis nach einem kurzen, kostenlosen
-              Kennenlerngespräch. <strong className="font-semibold text-navy">Preise auf Anfrage.</strong>
+              Nach dem kostenlosen Erstgespräch erhältst du vor einer Buchung ein transparentes Angebot mit
+              vereinbartem Umfang, Format und Gesamtpreis. Die Anfrage selbst ist unverbindlich.
             </p>
           </Card>
         </div>
@@ -108,7 +105,7 @@ export default function EinzelcoachingPage() {
 
       <CtaSection
         eyebrow="Nächster Schritt"
-        title="Unverbindliches Kennenlerngespräch vereinbaren"
+        title="Kostenloses Erstgespräch anfragen"
         description="Wir klären deine Situation, deinen Bedarf und den passenden Umfang – ganz ohne Verpflichtung."
         secondaryLabel="Alle Leistungen ansehen"
         secondaryHref="/leistungen"

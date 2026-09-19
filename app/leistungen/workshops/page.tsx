@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Workshops für Bewerbung und berufliche Orientierung",
@@ -46,6 +46,21 @@ const formats = [
   },
 ];
 
+const approach = [
+  {
+    title: "Verständlich einsteigen",
+    text: "Wir knüpfen an der Ausgangslage der Gruppe an und erklären Anforderungen in klarer, direkter Sprache.",
+  },
+  {
+    title: "Praktisch üben",
+    text: "Die Teilnehmenden arbeiten an konkreten Beispielen, probieren Schritte selbst aus und erhalten nachvollziehbares Feedback.",
+  },
+  {
+    title: "Transfer sichern",
+    text: "Am Ende steht ein sichtbares Arbeitsergebnis und ein nächster Schritt, den die Teilnehmenden selbst weiterführen können.",
+  },
+];
+
 export default function WorkshopsPage() {
   return (
     <>
@@ -63,12 +78,9 @@ export default function WorkshopsPage() {
               abgestimmt.
             </p>
           </div>
-          <Image
-            src={"/images/team/whiteboard-erklaerung.jpg"}
-            alt="Erklärung eines Ablaufs am Whiteboard"
-            width={1400}
-            height={781}
-            className="w-full rounded-[var(--radius-lg)]"
+          <ContextGraphic
+            variant="workshop"
+            title="Strukturierter Workshop mit Übungen und sichtbaren Arbeitsergebnissen"
           />
         </div>
       </Section>
@@ -91,6 +103,19 @@ export default function WorkshopsPage() {
       </Section>
 
       <Section tone="white">
+        <Eyebrow>Arbeitsweise</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {approach.map((item) => (
+            <Card key={item.title}>
+              <h3 className="font-semibold text-navy">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">{item.text}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section tone="tint">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
@@ -105,15 +130,15 @@ export default function WorkshopsPage() {
           <Card>
             <h3 className="font-semibold text-navy">Gruppengröße & Ort</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Für kleine bis mittlere Gruppen, vor Ort bei der Einrichtung, in den Kriftel Workspaces oder online –
-              je nach Bedarf.
+              Vor Ort bei der Einrichtung, am Coachingstandort in Kriftel oder online. Die Gruppengröße wird so
+              vereinbart, dass praktische Übungen und Rückmeldungen im gebuchten Format realistisch möglich sind.
             </p>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Kosten</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Format, Dauer und Preis richten sich nach Gruppengröße und Umfang.{" "}
-              <strong className="font-semibold text-navy">Individuell, auf Anfrage.</strong>
+              Nach Klärung von Zielgruppe, Thema, Dauer und Gruppengröße erhalten Sie ein schriftliches Angebot mit
+              Leistungsumfang und Gesamtpreis. Die Anfrage ist unverbindlich.
             </p>
           </Card>
         </div>

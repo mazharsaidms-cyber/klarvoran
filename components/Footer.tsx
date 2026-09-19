@@ -76,9 +76,13 @@ export function Footer() {
               </a>
             </li>
             <li className="pt-2 text-white/60">
+              Geschäfts- und Postanschrift:
+              <br />
               {siteConfig.address.street}
               <br />
               {siteConfig.address.zip} {siteConfig.address.city}
+              <br />
+              <span className="text-white/50">Keine Coachingtermine vor Ort</span>
             </li>
           </ul>
         </div>

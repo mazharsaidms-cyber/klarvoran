@@ -33,9 +33,14 @@ const DISCLAIMER =
  * Anspruchszusage. Dient der Vorqualifizierung vor dem kostenlosen Erstgespräch.
  */
 export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
+  const concernNote =
+    answers.anliegen === "anderes"
+      ? "Dein konkretes Anliegen ordnen wir im Erstgespräch gemeinsam ein."
+      : `Dein ausgewähltes Thema „${avgsAnliegenLabels[answers.anliegen]}“ gehört zu den Punkten, die wir im Erstgespräch auf die Passung zur Maßnahme prüfen.`;
+
   const formNote =
     answers.form === "praesenz_kriftel"
-      ? "Präsenztermine finden bei uns in den Kriftel Workspaces statt."
+      ? "Präsenztermine finden nach Bestätigung in der Taunusstraße 52 in Kriftel statt."
       : answers.form === "online"
         ? "Ein Online-Coaching ist bei uns möglich."
         : answers.form === "hybrid"
@@ -45,8 +50,8 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
   if (answers.status === "hat_avgs") {
     return {
       headline: "Du hast bereits einen AVGS – sehr gut.",
-      message: `Dann steht einem Start bei uns nichts im Wege. Wir prüfen deinen Gutschein unverbindlich im kostenlosen Erstgespräch und klären die nächsten Schritte. ${formNote}`,
-      primaryCtaLabel: "Kostenloses Erstgespräch sichern",
+      message: `Damit ist eine wichtige Voraussetzung erfüllt. Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. ${concernNote} Anschließend klären wir die nächsten Schritte. ${formNote}`,
+      primaryCtaLabel: "Erstgespräch anfragen",
       primaryCtaHref: "/termin",
       secondaryCtaLabel: "Direkt per WhatsApp schreiben",
       secondaryCtaHref: "whatsapp",
@@ -64,10 +69,10 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
 
     return {
       headline: "Einen AVGS kannst du aktiv beantragen.",
-      message: `${traegerNote} Wir zeigen dir Schritt für Schritt, wie die Beantragung funktioniert, und begleiten dich schon vorher im kostenlosen Erstgespräch. ${formNote}`,
+      message: `${traegerNote} ${concernNote} Wir erklären dir im kostenlosen Erstgespräch die nächsten Schritte zur Beantragung. ${formNote}`,
       primaryCtaLabel: "AVGS-Leitfaden ansehen",
       primaryCtaHref: "/avgs#leitfaden",
-      secondaryCtaLabel: "Kostenloses Erstgespräch sichern",
+      secondaryCtaLabel: "Erstgespräch anfragen",
       secondaryCtaHref: "/termin",
       disclaimer: DISCLAIMER,
     };
@@ -75,8 +80,8 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
 
   return {
     headline: "Kein Problem – das klären wir gemeinsam.",
-    message: `Ob und wie du einen AVGS bekommst, muss nicht vorab feststehen. Im kostenlosen, unverbindlichen Erstgespräch schauen wir uns deine Situation an und sagen dir ehrlich, ob und wie wir dich unterstützen können. ${formNote}`,
-    primaryCtaLabel: "Kostenloses Erstgespräch sichern",
+    message: `Ob und wie du einen AVGS bekommst, muss nicht vorab feststehen. ${concernNote} Im kostenlosen, unverbindlichen Erstgespräch schauen wir uns deine Situation an und sagen dir ehrlich, ob und wie wir dich unterstützen können. ${formNote}`,
+    primaryCtaLabel: "Erstgespräch anfragen",
     primaryCtaHref: "/termin",
     secondaryCtaLabel: "Direkt per WhatsApp schreiben",
     secondaryCtaHref: "whatsapp",

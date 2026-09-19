@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LeistungCard } from "@/components/LeistungCard";
-import { CtaSection } from "@/components/CtaSection";
+import { Button } from "@/components/Button";
 import { leistungen } from "@/lib/content/leistungen";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Leistungen – Coaching, Workshops & Kooperationen",
@@ -29,39 +29,57 @@ export default function LeistungenPage() {
         </p>
       </Section>
 
-      <div className="relative h-48 w-full overflow-hidden sm:h-64 lg:h-80">
-        <Image
-          src={"/images/team/cv-durchsicht.jpg"}
-          alt="Bewerbungsunterlagen werden im Coaching gemeinsam geprüft"
-          fill
-          sizes="100vw"
-          className="object-cover"
+      <Section tone="white" className="py-10 sm:py-12">
+        <ContextGraphic
+          variant="application"
+          title="Bewerbungsunterlagen prüfen, Anforderungen verstehen und nächste Schritte planen"
+          className="mx-auto max-w-3xl"
         />
-      </div>
+      </Section>
 
       <Section tone="tint">
         <ul className="grid gap-6 sm:grid-cols-2">
           {leistungen.map((l) => (
-            <LeistungCard key={l.id} leistung={l} />
+            <LeistungCard key={l.id} leistung={l} headingLevel={2} />
           ))}
         </ul>
       </Section>
 
       <Section tone="white">
-        <Eyebrow tone="navy">Gemeinsamer Ansatz</Eyebrow>
+        <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Eine Methode, unterschiedliche Zugänge</h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-          Wir hören zuerst zu, klären die reale Ausgangslage und machen Anforderungen verständlich. Anschließend
-          werden die nächsten Schritte gemeinsam umgesetzt, bis Teilnehmende sie zunehmend selbst übernehmen und
-          mit einer klaren Struktur weitergehen können.
+          Verstanden werden. System verstehen. Selbst handeln. Dranbleiben. Das Framework verbindet aufmerksames
+          Zuhören mit verständlicher Systemübersetzung, praktischer Umsetzung und schrittweisem Kompetenztransfer.
         </p>
       </Section>
 
-      <CtaSection
-        eyebrow="Unsicher, welche Leistung passt?"
-        title="Lass uns kurz miteinander sprechen"
-        description="Im kostenlosen Erstgespräch klären wir, welches Format zu deiner Situation oder zum Bedarf deiner Einrichtung passt."
-      />
+      <Section tone="navy">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <Eyebrow tone="white">Der passende nächste Schritt</Eyebrow>
+            <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">So geht es passend weiter</h2>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            <div className="rounded-[var(--radius-md)] border border-white/15 bg-white p-6 text-navy">
+              <h3 className="text-lg font-bold">Du suchst Unterstützung?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                Im kostenlosen Erstgespräch klären wir deine Situation und welches Coachingformat dazu passt.
+              </p>
+              <Button href="/termin" className="mt-5">Erstgespräch anfragen</Button>
+            </div>
+            <div className="rounded-[var(--radius-md)] border border-white/15 bg-white p-6 text-navy">
+              <h3 className="text-lg font-bold">Sie vertreten eine Institution?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                Wählen Sie den passenden Bereich für Gutscheinabstimmung, Kooperation, Unterauftrag oder Auftrag.
+              </p>
+              <Button href="/fachkraefte-kooperationspartner" variant="secondary" className="mt-5">
+                Zum institutionellen Bereich
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

@@ -30,7 +30,7 @@ export const leistungen: Leistung[] = [
   {
     id: "einzelcoaching",
     eyebrow: "Für Menschen ohne AVGS",
-    title: "1:1-Coaching",
+    title: "Privates Job- und Bewerbungscoaching",
     audience: "Selbstzahler",
     summary:
       "Privates Job- und Bewerbungscoaching mit individuell vereinbarten Themen, Umfang und Format – unabhängig von einem Gutschein.",
@@ -39,9 +39,9 @@ export const leistungen: Leistung[] = [
       "Online, hybrid oder in Präsenz",
       "Bewerbung, Orientierung oder beides",
     ],
-    price: "Preise auf Anfrage",
+    price: "Transparentes Angebot vor Buchung",
     href: "/leistungen/einzelcoaching",
-    ctaLabel: "1:1-Coaching entdecken",
+    ctaLabel: "Privates Coaching ansehen",
   },
   {
     id: "workshops",
@@ -55,7 +55,7 @@ export const leistungen: Leistung[] = [
       "Themen individuell nach Bedarf",
       "Für Gruppen, vor Ort oder online",
     ],
-    price: "Individuell, auf Anfrage",
+    price: "Schriftliches Angebot vor Beauftragung",
     href: "/leistungen/workshops",
     ctaLabel: "Workshops entdecken",
   },
@@ -63,9 +63,9 @@ export const leistungen: Leistung[] = [
     id: "kooperationen",
     eyebrow: "Jobcenter, Träger & Einrichtungen",
     title: "Für Institutionen",
-    audience: "Kooperation & Zuweisung",
+    audience: "Kooperation & Auftrag",
     summary:
-      "Zuweisung, Kooperation oder Unterauftrag: passende Informationen für Vermittlungsfachkräfte, soziale Einrichtungen und Bildungsträger.",
+      "Gutscheinabstimmung, Kooperation oder Unterauftrag: passende Informationen für Vermittlungsfachkräfte, soziale Einrichtungen und Bildungsträger.",
     bullets: [
       "Zulassungsdaten und Nachweise auf einen Blick",
       "Eigene Seite je Zielgruppe",

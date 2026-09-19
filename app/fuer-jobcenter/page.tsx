@@ -5,6 +5,7 @@ import { Card, FactStat } from "@/components/Card";
 import { CertificateFacts } from "@/components/CertificateFacts";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
+import { Button } from "@/components/Button";
 import { coachingModules, totalUe } from "@/lib/content/modules";
 import { siteConfig } from "@/lib/site-config";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
@@ -24,19 +25,19 @@ export default function FuerJobcenterPage() {
       <Section tone="navy" className="pt-12">
         <Eyebrow tone="white">Für Jobcenter & Agentur für Arbeit</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          AZAV-zugelassene Maßnahme für Ihre AVGS-Zuweisung
+          AZAV-zugelassene Maßnahme für die Gutschein- und Teilnahmeabstimmung
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
           Hier finden Vermittlungsfachkräfte die wesentlichen Angaben zur zugelassenen Maßnahme, zur Zielgruppe,
-          zur Durchführung und zu den vorhandenen Zulassungsnachweisen – kompakt für die Prüfung einer
-          AVGS-Zuweisung.
+          zur Durchführung und zu den vorhandenen Zulassungsnachweisen – kompakt für die Prüfung eines Gutscheins
+          und der individuellen Passung.
         </p>
       </Section>
 
       <Section tone="tint">
         <Eyebrow tone="navy">Maßnahme auf einen Blick</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-          Individuelles Bewerbungscoaching nach § 45 SGB III
+          {siteConfig.measure.title}
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
           <FactStat value={`${totalUe} UE`} label="à 45 Minuten" />
@@ -44,6 +45,24 @@ export default function FuerJobcenterPage() {
           <FactStat value="1:1" label="Einzelcoaching" />
           <FactStat value="§ 45 SGB III" label="Rechtsgrundlage" />
         </div>
+        <dl className="mt-8 grid gap-4 rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 text-sm sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            ["Maßnahmezulassung", `${siteConfig.measure.approvalFrom} – ${siteConfig.measure.approvalTo}`],
+            ["Maßnahmezertifikat", siteConfig.measure.certificateNumber],
+            ["Veranstaltungs-ID", siteConfig.measure.eventId],
+            ["Anbieter-ID", siteConfig.measure.providerId],
+            ["Terminrhythmus", siteConfig.measure.schedule],
+            ["Durchführungszeiten", siteConfig.measure.serviceHours],
+          ].map(([label, value]) => (
+            <div key={label}>
+              <dt className="font-semibold text-navy">{label}</dt>
+              <dd className="mt-1 text-navy-600">{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <Button href={siteConfig.measure.baHref} external variant="text" className="mt-5">
+          Offiziellen Eintrag bei der Bundesagentur für Arbeit ansehen →
+        </Button>
         {/* Maßnahmezeichen direkt bei der eigenen AVGS-Maßnahme (CERTQUA-Vorgabe). */}
         <div className="mt-8">
           <CertificateSeal
@@ -59,7 +78,7 @@ export default function FuerJobcenterPage() {
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Bezeichnung MS Coaching – Mazhar Said"
+            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
           />
           <div>
             <CertificateFacts />
@@ -76,8 +95,9 @@ export default function FuerJobcenterPage() {
             <h3 className="font-semibold text-navy">Zielgruppe</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Arbeitsuchende bzw. von Arbeitslosigkeit bedrohte Personen mit Unterstützungsbedarf bei beruflicher
-              Orientierung, im Bewerbungsprozess oder bei der Integration – ausdrücklich auch bei eingeschränkten
-              Deutschkenntnissen oder fehlender Digitalkompetenz.
+              Orientierung, im Bewerbungsprozess oder bei der Integration. Verständliche Sprache und praktische
+              Unterstützung bei digitalen Bewerbungswegen gehören zum Ansatz. Ob die vorhandenen Deutschkenntnisse
+              für das deutschsprachige Coaching ausreichen, wird im Erstgespräch individuell geklärt.
             </p>
           </Card>
           <Card>
@@ -112,13 +132,14 @@ export default function FuerJobcenterPage() {
 
       <Section tone="white">
         <Eyebrow>Ablauf & Durchführung</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von der Zuweisung bis zum Abschluss</h2>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von der Gutscheinprüfung bis zum Abschluss</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Durchführungsform</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Präsenz ausschließlich in den {siteConfig.presenceLocation.name} ({siteConfig.presenceLocation.region}),
-              alternativ online oder hybrid. Keine Hausbesuche.
+              Präsenz in der {siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip}{" "}
+              {siteConfig.presenceLocation.city}, alternativ online oder hybrid. Der Standort ist ebenerdig;
+              öffentliche Parkmöglichkeiten befinden sich in der Nähe. Keine Hausbesuche.
             </p>
           </Card>
           <Card>
@@ -129,16 +150,19 @@ export default function FuerJobcenterPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Meldekanal</h3>
+            <h3 className="font-semibold text-navy">Offizieller BA-Eintrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              {siteConfig.legalName} ist unter der Kennung „{siteConfig.kursnet.id}&rdquo; auf KURSNET / arbeitsagentur.de
-              gelistet.
+              Die Maßnahme ist im Portal „Coaching und Aktivierung“ der Bundesagentur für Arbeit veröffentlicht.
+              Veranstaltungs-ID: {siteConfig.measure.eventId}.
             </p>
+            <Button href={siteConfig.measure.baHref} external variant="text" className="mt-3">
+              BA-Eintrag öffnen →
+            </Button>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Ansprechpartner für Zuweisung</h3>
+            <h3 className="font-semibold text-navy">Ansprechpartner für die Abstimmung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              {siteConfig.founder}, Gründer und Ansprechpartner für Gutschein-Zuweisungen und Rückfragen zur
+              {siteConfig.founder}, Gründer und Ansprechpartner für Gutscheinprüfungen, Teilnahmeabstimmungen und Rückfragen zur
               Maßnahme – erreichbar über Kontaktformular, Telefon oder E-Mail.
             </p>
           </Card>
@@ -147,11 +171,11 @@ export default function FuerJobcenterPage() {
 
       <Section tone="navy">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">Zuweisung oder Rückfrage</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Teilnehmende zuweisen oder Rückfrage stellen</h2>
+          <Eyebrow tone="white">Gutscheinabstimmung oder Rückfrage</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Passung klären oder Rückfrage stellen</h2>
           <p className="mt-4 text-white/70">
-            Ob Zuweisung, Rückfrage zur Maßnahme oder Prüfung der Passung – schreiben Sie uns direkt. Wir melden
-            uns zeitnah zurück.
+            Ob Gutscheinprüfung, Rückfrage zur Maßnahme oder Klärung der individuellen Passung – schreiben Sie uns
+            direkt. Wir melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">

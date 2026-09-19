@@ -7,22 +7,21 @@ import { initialActionState } from "@/lib/server/action-state";
 import { evaluateAvgsCheck, type AvgsAnswers } from "@/lib/avgs-logic";
 import { siteConfig } from "@/lib/site-config";
 import { StepProgress } from "./StepProgress";
-import { RadioGroupField, TextField, ConsentField, HoneypotField } from "./form-fields";
+import { RadioGroupField, TextField, PrivacyNoticeField, HoneypotField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 
 const STEP_LABELS = ["AVGS-Status", "Kostenträger", "Anliegen", "Form", "Ergebnis & Kontakt"];
 
-const defaultAnswers: AvgsAnswers = {
-  status: "unsicher",
-  traeger: "andere_unsicher",
-  anliegen: "anderes",
-  form: "unsicher",
-};
+type DraftAnswers = Partial<AvgsAnswers>;
+
+function hasAllAnswers(answers: DraftAnswers): answers is AvgsAnswers {
+  return Boolean(answers.status && answers.traeger && answers.anliegen && answers.form);
+}
 
 export function AvgsSchnellcheck() {
   const [step, setStep] = useState(1);
-  const [answers, setAnswers] = useState<AvgsAnswers>(defaultAnswers);
+  const [answers, setAnswers] = useState<DraftAnswers>({});
   const headingRef = useRef<HTMLHeadingElement>(null);
   const searchParams = useSearchParams();
   const [state, formAction, pending] = useActionState(submitAvgsCheck, initialActionState);
@@ -32,9 +31,16 @@ export function AvgsSchnellcheck() {
   }, [step]);
 
   const source = searchParams.get("ref") || searchParams.get("utm_source") || "";
-  const result = evaluateAvgsCheck(answers);
+  const result = hasAllAnswers(answers) ? evaluateAvgsCheck(answers) : null;
+
+  const canContinue =
+    (step === 1 && Boolean(answers.status)) ||
+    (step === 2 && Boolean(answers.traeger)) ||
+    (step === 3 && Boolean(answers.anliegen)) ||
+    (step === 4 && Boolean(answers.form));
 
   function next() {
+    if (!canContinue) return;
     setStep((s) => Math.min(s + 1, 5));
   }
 
@@ -82,6 +88,7 @@ export function AvgsSchnellcheck() {
             <RadioGroupField
               legend="Dein AVGS-Status"
               name="status"
+              required
               value={answers.status}
               onChange={(v) => setAnswers((a) => ({ ...a, status: v as AvgsAnswers["status"] }))}
               options={[
@@ -103,6 +110,7 @@ export function AvgsSchnellcheck() {
             <RadioGroupField
               legend="Zuständige Stelle"
               name="traeger"
+              required
               value={answers.traeger}
               onChange={(v) => setAnswers((a) => ({ ...a, traeger: v as AvgsAnswers["traeger"] }))}
               options={[
@@ -124,6 +132,7 @@ export function AvgsSchnellcheck() {
             <RadioGroupField
               legend="Dein Anliegen"
               name="anliegen"
+              required
               value={answers.anliegen}
               onChange={(v) => setAnswers((a) => ({ ...a, anliegen: v as AvgsAnswers["anliegen"] }))}
               options={[
@@ -143,11 +152,14 @@ export function AvgsSchnellcheck() {
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             Wie möchtest du am liebsten coachen?
           </h2>
-          <p className="mt-2 text-sm text-navy-600">Präsenztermine finden ausschließlich in den Kriftel Workspaces statt.</p>
+          <p className="mt-2 text-sm text-navy-600">
+            Präsenztermine finden nach Bestätigung in der Taunusstraße 52 in Kriftel statt.
+          </p>
           <div className="mt-5">
             <RadioGroupField
               legend="Bevorzugte Form"
               name="form"
+              required
               value={answers.form}
               onChange={(v) => setAnswers((a) => ({ ...a, form: v as AvgsAnswers["form"] }))}
               options={[
@@ -161,7 +173,7 @@ export function AvgsSchnellcheck() {
         </div>
       )}
 
-      {step === 5 && (
+      {step === 5 && result && (
         <form action={formAction} className="space-y-5">
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             {result.headline}
@@ -202,7 +214,7 @@ export function AvgsSchnellcheck() {
             />
           </div>
 
-          <ConsentField error={state.fieldErrors?.consent} />
+          <PrivacyNoticeField error={state.fieldErrors?.consent} />
           <StatusMessage state={state} />
 
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
@@ -221,7 +233,7 @@ export function AvgsSchnellcheck() {
           <Button type="button" variant="ghost" onClick={back} disabled={step === 1}>
             Zurück
           </Button>
-          <Button type="button" onClick={next}>
+          <Button type="button" onClick={next} disabled={!canContinue}>
             Weiter
           </Button>
         </div>

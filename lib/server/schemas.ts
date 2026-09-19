@@ -11,10 +11,14 @@ const phone = z
 const consent = z
   .union([z.literal("on"), z.literal("true"), z.boolean()])
   .refine((v) => v === "on" || v === "true" || v === true, {
-    message: "Bitte stimme der Datenschutzerklärung zu.",
+    message: "Bitte bestätige, dass du die Datenschutzhinweise zur Kenntnis genommen hast.",
   });
 // Honeypot: must stay empty. Bots that fill every field trip this.
 const honeypot = z.string().max(0, "Ungültige Übermittlung.").optional().or(z.literal(""));
+const source = z
+  .enum(["google", "ba_portal", "jobcenter_arbeitsagentur", "einrichtung_traeger", "empfehlung", "social_media", "sonstiges"])
+  .optional()
+  .or(z.literal(""));
 
 export const contactSchema = z.object({
   name,
@@ -22,8 +26,22 @@ export const contactSchema = z.object({
   phone,
   message: z.string().trim().min(10, "Bitte das Anliegen etwas ausführlicher beschreiben.").max(4000),
   formality: z.enum(["informal", "formal"]).default("informal"),
+  organization: z.string().trim().max(200).optional().or(z.literal("")),
+  role: z.string().trim().max(160).optional().or(z.literal("")),
+  requestType: z
+    .enum(["avgs_rueckfrage", "kooperation", "unterauftrag", "workshop", "oeffentlicher_auftrag", "sonstiges"])
+    .optional(),
+  timeframe: z.string().trim().max(200).optional().or(z.literal("")),
+  source,
   consent,
   website: honeypot,
+}).superRefine((data, ctx) => {
+  if (data.formality === "formal" && !data.organization) {
+    ctx.addIssue({ code: "custom", path: ["organization"], message: "Bitte Organisation angeben." });
+  }
+  if (data.formality === "formal" && !data.requestType) {
+    ctx.addIssue({ code: "custom", path: ["requestType"], message: "Bitte Art der Anfrage auswählen." });
+  }
 });
 
 export const appointmentSchema = z.object({
@@ -33,6 +51,7 @@ export const appointmentSchema = z.object({
   format: z.enum(["praesenz_kriftel", "online", "hybrid", "unsicher"]),
   hasAvgs: z.enum(["ja", "nein", "unsicher"]),
   message: z.string().trim().max(4000).optional().or(z.literal("")),
+  source,
   consent,
   website: honeypot,
 });

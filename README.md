@@ -1,6 +1,6 @@
 # KlarVoran — Website
 
-Produktionsreife Website für **KlarVoran**, die Marke von MS Coaching – Mazhar Said (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
+Produktionsreife Website für **KlarVoran – Mazhar Said** (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
 
 ## Setup
 
@@ -19,7 +19,7 @@ Siehe [`./.env.example`](./.env.example) für alle Variablen mit Erklärung. Kur
 | Variable | Zweck | Ohne Konfiguration |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | Kanonische Domain (SEO, Sitemap, OG) | Fällt auf `https://www.klarvoran.de` zurück (bestätigte Produktions-Domain) |
-| `NEXT_PUBLIC_PHONE_DISPLAY`, `NEXT_PUBLIC_EMAIL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Kontaktangaben (Header, Footer, Kontaktseite) | Fällt auf die Angaben von Mazhars Visitenkarte zurück |
+| `NEXT_PUBLIC_PHONE_DISPLAY`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Kontaktangaben (Header, Footer, Kontaktseite) | Fällt auf die bestätigten KlarVoran-Kontaktdaten zurück |
 | `NEXT_PUBLIC_BOOKING_URL` | Externe Kalender-Buchungsseite auf `/termin` | Es wird ausschließlich das Terminanfrage-Formular angezeigt |
 | `RESEND_API_KEY` **oder** `FORM_WEBHOOK_URL` | Tatsächlicher Versand der drei Formulare (Kontakt, Termin, AVGS-Schnellcheck) | In Development: Anfragen werden in die Server-Konsole geloggt (klar als Development gekennzeichnet). In Production: Formulare melden ehrlich "aktuell nicht übermittelbar" und verweisen auf Telefon/E-Mail/WhatsApp — es wird nie ein Erfolg vorgetäuscht. |
 
@@ -49,9 +49,9 @@ Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Rot (`--color-red` `#ec1
 
 ## Deployment
 
-- **Repository:** [github.com/edgegraphics17/ms-coaching-website](https://github.com/edgegraphics17/ms-coaching-website) (privat) — Push auf `main` deployt automatisch über Vercel.
-- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel-Projekt `ms-coaching-website`, Team `work-3716s-projects`).
-- **Vorschau-URLs:** `ms-coaching-website.vercel.app` und projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
+- **Repository:** [github.com/edgegraphics17/klarvoran](https://github.com/edgegraphics17/klarvoran) — Änderungen auf `main` werden automatisch über Vercel bereitgestellt.
+- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `work-3716s-projects`).
+- **Vorschau-URLs:** Projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
 
 ## Launch-Audit (durchgeführt)
 
@@ -75,4 +75,4 @@ Nicht gefunden (positiv geprüft): erfundene Fakten/Testimonials/Zahlen, defekte
 - Kontaktdaten (Telefon, E-Mail) von Mazhar final bestätigen lassen (siehe `.env.example`) — Defaults stammen von der Visitenkarte.
 - Optional: externe Kalenderbuchung (`NEXT_PUBLIC_BOOKING_URL`) einrichten, falls gewünscht.
 - Impressum/Datenschutz vor Veröffentlichung durch eine rechtliche Prüfung gegenlesen lassen.
-- Exakte Anschrift der Kriftel Workspaces nachtragen, sobald bekannt (`lib/site-config.ts` → `presenceLocation`).
+- Offiziellen BA-Maßnahmeeintrag und Kontaktdaten bei Änderungen mit `lib/site-config.ts` abgleichen.

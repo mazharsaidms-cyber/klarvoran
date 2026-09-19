@@ -5,7 +5,7 @@ export function CtaSection({
   eyebrow,
   title,
   description,
-  primaryLabel = "Kostenloses Erstgespräch sichern",
+  primaryLabel = "Erstgespräch anfragen",
   primaryHref = "/termin",
   secondaryLabel = "AVGS-Schnellcheck starten",
   secondaryHref = "/avgs#schnellcheck",

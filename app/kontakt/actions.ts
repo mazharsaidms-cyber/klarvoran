@@ -6,6 +6,25 @@ import { checkRateLimit } from "@/lib/server/rate-limit";
 import { getClientIp } from "@/lib/server/request-ip";
 import type { ActionState } from "@/lib/server/action-state";
 
+const requestTypeLabels: Record<string, string> = {
+  avgs_rueckfrage: "AVGS / Rückfrage zur Maßnahme",
+  kooperation: "Kooperation",
+  unterauftrag: "Unterauftrag / Leistungsbaustein",
+  workshop: "Workshop / Gruppenformat",
+  oeffentlicher_auftrag: "Öffentlicher Auftrag",
+  sonstiges: "Sonstiges",
+};
+
+const sourceLabels: Record<string, string> = {
+  google: "Google / Suchmaschine",
+  ba_portal: "Portal der Bundesagentur für Arbeit",
+  jobcenter_arbeitsagentur: "Jobcenter / Agentur für Arbeit",
+  einrichtung_traeger: "Einrichtung / Bildungsträger",
+  empfehlung: "Persönliche Empfehlung",
+  social_media: "Social Media",
+  sonstiges: "Sonstiges",
+};
+
 export async function submitContactForm(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const formal = formData.get("formality") === "formal";
   const ip = await getClientIp();
@@ -40,8 +59,8 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
     return {
       status: "success",
       message: formal
-        ? "Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen."
-        : "Danke für deine Nachricht! Wir melden uns zeitnah bei dir.",
+        ? "Vielen Dank für Ihre Nachricht. Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei Ihnen."
+        : "Danke für deine Nachricht! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir.",
     };
   }
 
@@ -50,7 +69,15 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
     name: parsed.data.name,
     email: parsed.data.email,
     phone: parsed.data.phone || undefined,
-    summaryLines: ["Nachricht:", parsed.data.message],
+    summaryLines: [
+      parsed.data.organization ? `Organisation: ${parsed.data.organization}` : "",
+      parsed.data.role ? `Funktion: ${parsed.data.role}` : "",
+      parsed.data.requestType ? `Art der Anfrage: ${requestTypeLabels[parsed.data.requestType]}` : "",
+      parsed.data.timeframe ? `Gewünschter Zeitraum: ${parsed.data.timeframe}` : "",
+      parsed.data.source ? `Quelle: ${sourceLabels[parsed.data.source]}` : "",
+      "Nachricht:",
+      parsed.data.message,
+    ],
   });
 
   if (result.dev) {
@@ -76,7 +103,7 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
   return {
     status: "success",
     message: formal
-      ? "Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen."
-      : "Danke für deine Nachricht! Wir melden uns zeitnah bei dir.",
+      ? "Vielen Dank für Ihre Nachricht. Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei Ihnen."
+      : "Danke für deine Nachricht! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir.",
   };
 }

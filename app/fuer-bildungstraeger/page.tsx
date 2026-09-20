@@ -7,6 +7,7 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
+import { InstitutionDownload } from "@/components/InstitutionDownload";
 
 export const metadata: Metadata = {
   title: "Für Bildungsträger & Kooperationspartner",
@@ -44,6 +45,9 @@ export default function FuerBildungstraegerPage() {
       <Section tone="white">
         <Eyebrow>Einsatzmöglichkeiten</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie Sie mit uns zusammenarbeiten können</h2>
+        <div className="mt-6 max-w-2xl">
+          <InstitutionDownload kind="cooperation" />
+        </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Unterauftrag</h3>

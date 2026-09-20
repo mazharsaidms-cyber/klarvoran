@@ -49,6 +49,26 @@ Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Rot (`--color-red` `#ec1
 
 ## Deployment
 
+### Institutionelle Downloads pflegen
+
+Die einseitigen PDFs unter `public/dokumente/KlarVoran-*.pdf` sind versionierte Website-Assets.
+`npm run docs:build` erzeugt sie aus den bestätigten Daten in `lib/site-config.ts`,
+den Modulen in `lib/content/modules.ts` und dem Downloadverzeichnis `lib/content/downloads.ts`.
+Der Generator lädt dieselben lokalen Umgebungsdateien wie Next.js; Kontaktangaben vor Veröffentlichung
+mit der produktiven Konfiguration abgleichen. Bei Datenänderungen auch `updatedAt` im Downloadverzeichnis
+aktualisieren, PDFs neu erzeugen und beide Seiten visuell prüfen.
+
+Für die lokale PDF-Erzeugung: Python mit `reportlab` und `pypdf`, dazu DejaVu Sans und DejaVu Sans Bold.
+Optional `PDF_PYTHON` und `PDF_FONT_DIR` setzen. Die fertigen PDFs sind statisch; Vercel benötigt kein Python.
+Die Downloads ergänzen HTML-Inhalte; die PDFs sind nicht als PDF/UA-zertifiziert ausgezeichnet.
+
+Nach `npm run build` prüft `npm run test:seo-downloads:local` die sechs geänderten Seiten
+einschließlich kanonischer URLs, lokaler Metadaten und Downloadlinks. Beide PDF-Antworten
+werden bytegenau mit den visuell geprüften Dateien verglichen. Für einen Live-Check:
+`SITE_QA_URL=https://www.klarvoran.de npm run test:seo-downloads`.
+
+### Vercel
+
 - **Repository:** [github.com/mazharsaidms-cyber/klarvoran](https://github.com/mazharsaidms-cyber/klarvoran) — Änderungen auf `main` werden automatisch über Vercel bereitgestellt.
 - **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `klar-voran`).
 - **Vorschau-URLs:** Projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.

@@ -12,11 +12,25 @@ import { avgsFaq } from "@/lib/content/faq";
 import { processSteps } from "@/lib/content/process";
 import { coachingModules, totalUe } from "@/lib/content/modules";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Job- und Bewerbungscoaching mit AVGS",
+  title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
   description:
-    "Was ist ein AVGS, was ist AZAV, wer bekommt einen Gutschein und wie läuft die Beantragung ab? Plus AVGS-Schnellcheck für eine erste Einschätzung.",
+    "AVGS-Einzelcoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis: 32 UE in bis zu 8 Wochen, online oder hybrid. Kostenfrei mit passendem, bewilligtem AVGS.",
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    siteName: siteConfig.name,
+    title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
+    description: "32 UE Einzelcoaching in bis zu 8 Wochen. Präsenz in Kriftel, online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+    url: "/avgs",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
+    description: "32 UE Einzelcoaching in bis zu 8 Wochen. Präsenz in Kriftel, online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+  },
   alternates: { canonical: "/avgs" },
 };
 
@@ -55,6 +69,11 @@ export default function AvgsPage() {
           kannst du am individuellen Coaching teilnehmen, ohne die Kosten selbst zu tragen. Du lernst, berufliche
           Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
           weiterzuführen.
+        </p>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
+          Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
+          {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Frankfurt, Hofheim und den
+          Main-Taunus-Kreis. Alternativ online oder hybrid. Termine nach vorheriger Bestätigung.
         </p>
       </Section>
 

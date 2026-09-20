@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { ContextGraphic } from "@/components/ContextGraphic";
+import { InstitutionDownload } from "@/components/InstitutionDownload";
 
 export const metadata: Metadata = {
   title: "Für soziale Einrichtungen & Beratungsstellen",
@@ -37,6 +38,10 @@ export default function FuerSozialeEinrichtungenPage() {
           <FactStat value="Workshops" label="Für Gruppen" />
           <FactStat value="AZAV" label="Zugelassener Träger" />
           <FactStat value="Rhein-Main" label="Präsenz, online, hybrid" />
+        </div>
+        <div className="mt-6 max-w-2xl">
+          <h2 className="sr-only">Informationen zur Kooperation herunterladen</h2>
+          <InstitutionDownload kind="cooperation" />
         </div>
       </Section>
 

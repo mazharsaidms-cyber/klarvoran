@@ -1,7 +1,6 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { submitAvgsCheck } from "@/app/avgs/actions";
 import { initialActionState } from "@/lib/server/action-state";
 import { evaluateAvgsCheck, type AvgsAnswers } from "@/lib/avgs-logic";
@@ -23,14 +22,12 @@ export function AvgsSchnellcheck() {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<DraftAnswers>({ form: "unsicher" });
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const searchParams = useSearchParams();
   const [state, formAction, pending] = useActionState(submitAvgsCheck, initialActionState);
 
   useEffect(() => {
     headingRef.current?.focus();
   }, [step]);
 
-  const source = searchParams.get("ref") || searchParams.get("utm_source") || "";
   const result = hasAllAnswers(answers) ? evaluateAvgsCheck(answers) : null;
 
   const canContinue =
@@ -138,7 +135,7 @@ export function AvgsSchnellcheck() {
       )}
 
       {step === 3 && result && (
-        <form action={formAction} className="space-y-5">
+        <form action={formAction} className="space-y-5" aria-busy={pending}>
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             {result.headline}
           </h2>
@@ -149,7 +146,6 @@ export function AvgsSchnellcheck() {
           <input type="hidden" name="traeger" value={answers.traeger} />
           <input type="hidden" name="anliegen" value={answers.anliegen} />
           <input type="hidden" name="format" value={answers.form} />
-          <input type="hidden" name="source" value={source} />
           <HoneypotField />
 
           <div className="grid gap-4 border-t border-navy-100 pt-5 sm:grid-cols-2">

@@ -7,14 +7,37 @@
 type Bucket = { count: number; resetAt: number };
 
 const buckets = new Map<string, Bucket>();
+const MAX_BUCKETS = 5_000;
+const CLEANUP_INTERVAL_MS = 60_000;
+let nextCleanupAt = 0;
 
 export type RateLimitResult = {
   allowed: boolean;
   retryAfterSeconds: number;
 };
 
+function pruneBuckets(now: number) {
+  if (now < nextCleanupAt && buckets.size < MAX_BUCKETS) return;
+
+  for (const [key, bucket] of buckets) {
+    if (bucket.resetAt <= now) buckets.delete(key);
+  }
+
+  // Auch bei vielen wechselnden IP-Adressen bleibt der Speicherverbrauch
+  // begrenzt. Map bewahrt die Einfügereihenfolge, daher fallen zuerst die
+  // ältesten noch vorhandenen Buckets heraus.
+  while (buckets.size >= MAX_BUCKETS) {
+    const oldestKey = buckets.keys().next().value as string | undefined;
+    if (!oldestKey) break;
+    buckets.delete(oldestKey);
+  }
+
+  nextCleanupAt = now + CLEANUP_INTERVAL_MS;
+}
+
 export function checkRateLimit(key: string, limit = 5, windowMs = 60_000): RateLimitResult {
   const now = Date.now();
+  pruneBuckets(now);
   const bucket = buckets.get(key);
 
   if (!bucket || bucket.resetAt <= now) {

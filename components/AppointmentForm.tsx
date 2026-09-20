@@ -13,7 +13,7 @@ export function AppointmentForm() {
   const [hasAvgs, setHasAvgs] = useState("unsicher");
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} className="space-y-5" aria-busy={pending}>
       <HoneypotField />
       <div className="grid gap-4 sm:grid-cols-2">
         <TextField id="name" label="Name" required autoComplete="name" error={state.fieldErrors?.name} />

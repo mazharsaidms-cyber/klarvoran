@@ -25,7 +25,7 @@ export function ContactForm({
   const [state, formAction, pending] = useActionState(submitContactForm, initialActionState);
 
   return (
-    <form action={formAction} className="space-y-5" noValidate={false}>
+    <form action={formAction} className="space-y-5" noValidate={false} aria-busy={pending}>
       <HoneypotField />
       <input type="hidden" name="formality" value={formal ? "formal" : "informal"} />
       {formal && (

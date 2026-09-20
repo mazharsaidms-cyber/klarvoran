@@ -39,14 +39,15 @@ test("contactSchema: vollständige institutionelle Anfrage wird akzeptiert", () 
   assert.equal(result.success, true);
 });
 
-test("contactSchema: ausgefülltes Honeypot-Feld wird abgelehnt", () => {
+test("contactSchema: ausgefülltes Honeypot-Feld bleibt für stilles Abfangen erhalten", () => {
   const result = contactSchema.safeParse({
     name: "Bot",
     email: "bot@example.com",
     message: "Automatisierte Nachricht die eigentlich lang genug wäre.",
     website: "http://spam.example",
   });
-  assert.equal(result.success, false);
+  assert.equal(result.success, true);
+  if (result.success) assert.equal(result.data.website, "http://spam.example");
 });
 
 test("contactSchema: ungültige E-Mail wird abgelehnt", () => {
@@ -92,7 +93,6 @@ test("avgsCheckSchema: gültige Eingabe (happy path) wird akzeptiert", () => {
     name: "Test Person",
     email: "test@example.com",
     phone: "",
-    source: "google",
     website: "",
   });
   assert.equal(result.success, true);

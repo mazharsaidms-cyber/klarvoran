@@ -10,10 +10,11 @@ const toneClasses: Record<ActionState["status"], string> = {
 
 export function StatusMessage({ state }: { state: ActionState }) {
   if (state.status === "idle") return null;
+  const isError = state.status === "error" || state.status === "rate-limited";
   return (
     <div
-      role="status"
-      aria-live="polite"
+      role={isError ? "alert" : "status"}
+      aria-live={isError ? "assertive" : "polite"}
       className={`rounded-[var(--radius-md)] border px-4 py-3 text-sm leading-relaxed ${toneClasses[state.status]}`}
     >
       {state.message}

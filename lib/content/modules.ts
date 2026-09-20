@@ -29,15 +29,15 @@ export const coachingModules: CoachingModule[] = [
     title: "Bewerbungsunterlagen & Selbstpräsentation",
     ue: 10,
     summary:
-      "Lebenslauf und Anschreiben werden fit für den Arbeitsmarkt gemacht – inklusive Online-Bewerbungen und einem sicheren Umgang mit Lücken im Lebenslauf.",
+      "Du überarbeitest Lebenslauf und Anschreiben für konkrete Stellen – einschließlich Online-Bewerbungen und einer klaren Darstellung deines bisherigen Werdegangs.",
     focus: [
       "Erstellung und Optimierung von Lebenslauf und Anschreiben",
       "Digitale Tools zur Erstellung der Unterlagen",
       "Anpassung an konkrete Stellenanforderungen",
       "Vorbereitung deiner Selbstvorstellung",
     ],
-    outcome: "Finaler, bewerbungsfähiger Lebenslauf und eine individuelle Anschreiben-Vorlage.",
-    institutionOutcome: "Finaler, bewerbungsfähiger Lebenslauf und individuelle Anschreiben-Vorlage.",
+    outcome: "Ein aktueller, bewerbungsfähiger Lebenslauf und eine Anschreiben-Vorlage, die du selbst anpassen kannst.",
+    institutionOutcome: "Aktueller, bewerbungsfähiger Lebenslauf und eine selbst anpassbare Anschreiben-Vorlage.",
   },
   {
     id: 3,

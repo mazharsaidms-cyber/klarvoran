@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
@@ -71,9 +70,7 @@ export default function AvgsPage() {
           </p>
         </div>
         <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <Suspense fallback={<div className="h-96 animate-pulse rounded-[var(--radius-lg)] bg-navy-50" />}>
-            <AvgsSchnellcheck />
-          </Suspense>
+          <AvgsSchnellcheck />
         </div>
       </Section>
 

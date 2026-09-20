@@ -10,7 +10,7 @@ export function OrganizationStructuredData() {
         name: siteConfig.name,
         legalName: siteConfig.legalName,
         url: siteConfig.url,
-        logo: `${siteConfig.url}${siteConfig.images.badge}`,
+        logo: `${siteConfig.url}${siteConfig.images.logo}`,
         email: siteConfig.contact.email,
         telephone: siteConfig.contact.phoneDisplay,
         address: {

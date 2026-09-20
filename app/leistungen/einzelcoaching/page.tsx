@@ -19,8 +19,8 @@ const steps = [
     text: "Wir hören zunächst zu: Erfahrungen, Ziele, bisherige Bewerbungen und die reale Situation dahinter.",
   },
   {
-    title: "Plan statt Standardprogramm",
-    text: "Daraus entsteht ein individueller Plan – nur die Themen, die für deinen nächsten Schritt wirklich relevant sind.",
+    title: "Schwerpunkte festlegen",
+    text: "Daraus entsteht ein klarer Plan mit den Themen, die für deinen nächsten beruflichen Schritt wirklich relevant sind.",
   },
   {
     title: "Gemeinsam umsetzen",

@@ -13,7 +13,19 @@ export type SendResult = {
   dev: boolean;
 };
 
-const LEAD_RECIPIENT = process.env.LEAD_INBOX_EMAIL || siteConfig.contact.email;
+const LEAD_RECIPIENT = process.env.LEAD_INBOX_EMAIL?.trim() || siteConfig.contact.email;
+
+function getHttpsWebhookUrl() {
+  const candidate = process.env.FORM_WEBHOOK_URL?.trim();
+  if (!candidate) return null;
+
+  try {
+    const url = new URL(candidate);
+    return url.protocol === "https:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Adapter für den Lead-Versand. Nutzt, sofern konfiguriert, die Resend-HTTP-API
@@ -36,15 +48,16 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
     .join("\n");
 
   try {
-    if (process.env.RESEND_API_KEY) {
+    const resendApiKey = process.env.RESEND_API_KEY?.trim();
+    if (resendApiKey) {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          Authorization: `Bearer ${resendApiKey}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: process.env.LEAD_SENDER_EMAIL || `KlarVoran Website <onboarding@resend.dev>`,
+          from: process.env.LEAD_SENDER_EMAIL?.trim() || `KlarVoran Website <onboarding@resend.dev>`,
           to: [LEAD_RECIPIENT],
           reply_to: payload.email,
           subject,
@@ -55,14 +68,20 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
       return { delivered: res.ok, dev: false };
     }
 
-    if (process.env.FORM_WEBHOOK_URL) {
-      const res = await fetch(process.env.FORM_WEBHOOK_URL, {
+    const webhookUrl = getHttpsWebhookUrl();
+    if (webhookUrl) {
+      const res = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ subject, ...payload }),
         signal: AbortSignal.timeout(10_000),
       });
       return { delivered: res.ok, dev: false };
+    }
+
+    if (process.env.FORM_WEBHOOK_URL?.trim()) {
+      console.error("Lead-Versand fehlgeschlagen: FORM_WEBHOOK_URL muss eine gültige HTTPS-Adresse sein.");
+      return { delivered: false, dev: false };
     }
   } catch (error) {
     console.error("Lead-Versand fehlgeschlagen:", error instanceof Error ? error.message : "Unbekannter Fehler");

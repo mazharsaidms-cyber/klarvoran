@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts"
+    "docs:build": "node --import tsx scripts/build-downloads.ts",
+    "test:seo-downloads": "node scripts/check-local-seo.mjs",
+    "test:seo-downloads:local": "node scripts/check-local-build.mjs",
+    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts lib/content/downloads.test.ts"
   },
   "dependencies": {
     "next": "16.3.3",

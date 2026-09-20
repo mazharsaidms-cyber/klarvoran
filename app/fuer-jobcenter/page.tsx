@@ -9,6 +9,7 @@ import { Button } from "@/components/Button";
 import { coachingModules, totalUe } from "@/lib/content/modules";
 import { siteConfig } from "@/lib/site-config";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
+import { InstitutionDownload } from "@/components/InstitutionDownload";
 
 export const metadata: Metadata = {
   title: "Für Jobcenter & Agentur für Arbeit",
@@ -39,6 +40,9 @@ export default function FuerJobcenterPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
           {siteConfig.measure.title}
         </h2>
+        <div className="mt-6 max-w-2xl">
+          <InstitutionDownload kind="jobcenter" />
+        </div>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
           <FactStat value={`${totalUe} UE`} label="à 45 Minuten" />
           <FactStat value="8 Wochen" label="Maximale Laufzeit" />

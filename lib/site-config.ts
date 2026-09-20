@@ -41,7 +41,7 @@ export const siteConfig = {
     "KlarVoran ist die aktuelle Trägerbezeichnung. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.",
   founder: "Mazhar Said",
   description:
-    "KlarVoran bietet in Frankfurt und im Rhein-Main-Gebiet individuelles AVGS-Bewerbungscoaching nach § 45 SGB III, privates Jobcoaching, Workshops und Kooperationen mit Institutionen.",
+    "Job- und Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis, online oder hybrid. KlarVoran bietet AVGS-Coaching, Workshops und institutionelle Kooperationen.",
   url: siteUrl,
   locale: "de_DE",
 

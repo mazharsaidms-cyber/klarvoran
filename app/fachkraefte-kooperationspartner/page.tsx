@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { ContextGraphic } from "@/components/ContextGraphic";
+import { InstitutionDownload } from "@/components/InstitutionDownload";
 
 export const metadata: Metadata = {
   title: "Für Institutionen & Kooperationspartner",
@@ -72,6 +73,19 @@ export default function FachkraeftePage() {
             <InstitutionCard key={a.href} target={a} headingLevel={2} />
           ))}
         </ul>
+      </Section>
+
+      <Section tone="white">
+        <Eyebrow>Downloads</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Die wichtigsten Angaben zum Mitnehmen</h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
+          Zwei kompakte Faktenblätter für Ihre interne Abstimmung. Die eigene AVGS-Maßnahme und individuell
+          vereinbarte Kooperationen sind bewusst getrennt dargestellt.
+        </p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          <InstitutionDownload kind="jobcenter" />
+          <InstitutionDownload kind="cooperation" />
+        </div>
       </Section>
 
       <Section tone="white">

@@ -15,9 +15,22 @@ import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "KlarVoran – Bewerbungscoaching, Workshops & Kooperationen",
+  title: { absolute: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran" },
   description:
-    "KlarVoran: AVGS-Bewerbungscoaching, privates Jobcoaching, praxisnahe Workshops und Kooperationen für Institutionen in Frankfurt und im Rhein-Main-Gebiet.",
+    "Job- und Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis. Mit AVGS oder privat, online oder hybrid. Workshops und Kooperationen.",
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    siteName: siteConfig.name,
+    title: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran",
+    description: "Persönliches Coaching in Kriftel für Frankfurt, Hofheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran",
+    description: "Persönliches Coaching in Kriftel für Frankfurt, Hofheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+  },
   alternates: { canonical: "/" },
 };
 
@@ -84,6 +97,10 @@ export default function HomePage() {
               KlarVoran hilft dir, berufliche Ziele zu klären, Bewerbungen überzeugend umzusetzen und Anforderungen
               von Arbeitgebern und Kostenträgern zu verstehen. Im persönlichen Coaching arbeitest du an konkreten
               nächsten Schritten – so, dass du sie anschließend selbst weiterführen kannst.
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
+              Persönlich in Kriftel – für Frankfurt, Hofheim und den Main-Taunus-Kreis.
+              Alternativ online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/termin" size="lg" onDark>

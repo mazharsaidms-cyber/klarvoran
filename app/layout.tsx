@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} – AVGS Coaching Frankfurt`,
+    default: `Job- & Bewerbungscoaching Rhein-Main | ${siteConfig.name}`,
     template: `%s – ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} – AVGS Coaching Frankfurt`,
+    title: `Job- & Bewerbungscoaching Rhein-Main | ${siteConfig.name}`,
     description: siteConfig.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} – AVGS Coaching Frankfurt`,
+    title: `Job- & Bewerbungscoaching Rhein-Main | ${siteConfig.name}`,
     description: siteConfig.description,
   },
   alternates: {

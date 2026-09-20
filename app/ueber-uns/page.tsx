@@ -84,7 +84,7 @@ export default function UeberUnsPage() {
       <Section tone="white">
         <Eyebrow>Werte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wofür wir stehen</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <Card key={v.title}>
               <h3 className="font-semibold text-navy">{v.title}</h3>

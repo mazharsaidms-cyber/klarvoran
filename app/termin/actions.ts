@@ -19,16 +19,6 @@ const avgsLabels: Record<string, string> = {
   unsicher: "Ich bin unsicher",
 };
 
-const sourceLabels: Record<string, string> = {
-  google: "Google / Suchmaschine",
-  ba_portal: "Portal der Bundesagentur für Arbeit",
-  jobcenter_arbeitsagentur: "Jobcenter / Agentur für Arbeit",
-  einrichtung_traeger: "Einrichtung / Bildungsträger",
-  empfehlung: "Persönliche Empfehlung",
-  social_media: "Social Media",
-  sonstiges: "Sonstiges",
-};
-
 export async function submitAppointmentRequest(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const ip = await getClientIp();
   const rate = checkRateLimit(`termin:${ip}`, 5, 60_000);
@@ -66,7 +56,6 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
     summaryLines: [
       `Bevorzugte Form: ${formatLabels[parsed.data.format]}`,
       `AVGS-Status: ${avgsLabels[parsed.data.hasAvgs]}`,
-      parsed.data.source ? `Quelle: ${sourceLabels[parsed.data.source]}` : "",
       parsed.data.message ? `Nachricht: ${parsed.data.message}` : "",
     ],
   });

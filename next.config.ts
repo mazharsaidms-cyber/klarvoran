@@ -11,25 +11,41 @@ const securityHeaders = [
       "frame-ancestors 'none'",
       "object-src 'none'",
       "script-src 'self' 'unsafe-inline'",
+      "script-src-attr 'none'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self'",
       "connect-src 'self'",
+      "frame-src 'none'",
+      "media-src 'self'",
+      "manifest-src 'self'",
+      "worker-src 'self' blob:",
       "upgrade-insecure-requests",
     ].join("; "),
   },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    value:
+      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=(), browsing-topics=()",
   },
 ];
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    // Die Website verarbeitet nur kurze Textformulare und keine Uploads.
+    // Ein deutlich kleineres Limit reduziert unnötige Parser- und DoS-Fläche.
+    serverActions: {
+      bodySizeLimit: "64kb",
+    },
+  },
   turbopack: {
     root: path.join(__dirname),
   },

@@ -30,7 +30,7 @@ const audiences: InstitutionTarget[] = [
   },
   {
     title: "Bildungsträger & Kooperationspartner",
-    text: "Unteraufträge, Dozenteneinsätze oder abgestimmte Vertretung – mit Zulassungsstruktur und Maßnahmeerfahrung.",
+    text: "Unteraufträge, Dozenteneinsätze oder abgestimmte Vertretung – mit klaren Zuständigkeiten und Praxis in Jobcoaching und Bewerbungsmanagement.",
     href: "/fuer-bildungstraeger",
     cta: "Zur Seite für Bildungsträger",
   },

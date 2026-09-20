@@ -221,7 +221,7 @@ export default function DatenschutzPage() {
             </p>
           </section>
 
-          <p className="text-sm text-navy-600">Stand: 19. September 2026</p>
+          <p className="text-sm text-navy-600">Stand: 20. September 2026</p>
         </div>
       </Section>
     </>

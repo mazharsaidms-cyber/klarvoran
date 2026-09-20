@@ -62,7 +62,6 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
       `Kostenträger: ${traegerLabels[parsed.data.traeger]}`,
       `Anliegen: ${avgsAnliegenLabels[parsed.data.anliegen]}`,
       `Bevorzugte Form: ${formatLabels[parsed.data.format]}`,
-      parsed.data.source ? `Quelle: ${parsed.data.source}` : "",
     ],
   });
 

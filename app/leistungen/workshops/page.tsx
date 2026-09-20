@@ -81,8 +81,8 @@ export default function WorkshopsPage() {
           <Image
             src="/images/team/whiteboard-erklaerung.jpg"
             alt="Mazhar Said erklärt einer kleinen Gruppe einen Ablauf am Whiteboard"
-            width={1400}
-            height={781}
+            width={2000}
+            height={848}
             sizes="(min-width: 1024px) 46vw, 100vw"
             className="w-full rounded-[var(--radius-lg)] border border-white/15"
           />

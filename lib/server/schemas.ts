@@ -8,12 +8,10 @@ const phone = z
   .max(40)
   .optional()
   .or(z.literal(""));
-// Honeypot: must stay empty. Bots that fill every field trip this.
-const honeypot = z.string().max(0, "Ungültige Übermittlung.").optional().or(z.literal(""));
-const source = z
-  .enum(["google", "ba_portal", "jobcenter_arbeitsagentur", "einrichtung_traeger", "empfehlung", "social_media", "sonstiges"])
-  .optional()
-  .or(z.literal(""));
+// Honeypot: bleibt für Menschen unsichtbar. Ein ausgefüllter Wert wird erst
+// nach der Validierung still abgefangen, damit Bots keinen Erkennungshinweis
+// erhalten.
+const honeypot = z.string().max(500).optional().or(z.literal(""));
 
 export const contactSchema = z.object({
   name,
@@ -27,7 +25,6 @@ export const contactSchema = z.object({
     .enum(["avgs_rueckfrage", "kooperation", "unterauftrag", "workshop", "oeffentlicher_auftrag", "sonstiges"])
     .optional(),
   timeframe: z.string().trim().max(200).optional().or(z.literal("")),
-  source,
   website: honeypot,
 }).superRefine((data, ctx) => {
   if (data.formality === "formal" && !data.organization) {
@@ -45,7 +42,6 @@ export const appointmentSchema = z.object({
   format: z.enum(["praesenz_kriftel", "online", "hybrid", "unsicher"]),
   hasAvgs: z.enum(["ja", "nein", "unsicher"]),
   message: z.string().trim().max(4000).optional().or(z.literal("")),
-  source,
   website: honeypot,
 });
 
@@ -63,7 +59,6 @@ export const avgsCheckSchema = z.object({
   name,
   email,
   phone,
-  source: z.string().trim().max(200).optional().or(z.literal("")),
   website: honeypot,
 });
 

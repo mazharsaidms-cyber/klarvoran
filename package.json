@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/schemas.test.ts"
+    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts"
   },
   "dependencies": {
     "next": "16.3.3",

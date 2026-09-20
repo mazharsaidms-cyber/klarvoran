@@ -37,7 +37,7 @@ export default function FuerBildungstraegerPage() {
           <FactStat value="AZAV" label="Trägerzulassung vorhanden" />
           <FactStat value="Praxis" label="Jobcoaching & Bewerbungsmanagement" />
           <FactStat value="Rhein-Main" label="Einsatz nach Verfügbarkeit" />
-          <FactStat value="1:1" label="Jobcoaching & Bewerbungsmanagement" />
+          <FactStat value="Module" label="Klar abgegrenzte Leistungsbausteine" />
         </div>
       </Section>
 
@@ -46,7 +46,7 @@ export default function FuerBildungstraegerPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie Sie mit uns zusammenarbeiten können</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
-            <h3 className="font-semibold text-navy">Unterauftragnehmer</h3>
+            <h3 className="font-semibold text-navy">Unterauftrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Durchführung von Coaching- oder Bewerbungsmodulen innerhalb Ihrer zugelassenen Maßnahme, auf Basis
               eines klar definierten Unterauftrags.
@@ -105,7 +105,7 @@ export default function FuerBildungstraegerPage() {
           <Card>
             <h3 className="font-semibold text-navy">Zertifizierung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              CERTQUA-zertifiziert ({siteConfig.certificate.number}), Fachbereich FB1 nach § 45 Abs. 1 SGB III.
+              Trägerzulassung durch CERTQUA ({siteConfig.certificate.number}), Fachbereich FB1 nach § 45 Abs. 1 SGB III.
             </p>
           </Card>
         </div>

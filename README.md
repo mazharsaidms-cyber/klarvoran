@@ -28,7 +28,7 @@ Siehe [`./.env.example`](./.env.example) für alle Variablen mit Erklärung. Kur
 ```bash
 npm run lint        # ESLint (Next Core Web Vitals + TypeScript)
 npx tsc --noEmit     # TypeScript-Typecheck
-npm test             # Unit-Tests (AVGS-Entscheidungslogik + Formular-Validierung)
+npm test             # Unit-Tests (AVGS-Logik, Formular-Validierung und Rate-Limit)
 npm run build        # Produktions-Build, alle Seiten statisch vorgerendert
 ```
 
@@ -49,8 +49,8 @@ Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Rot (`--color-red` `#ec1
 
 ## Deployment
 
-- **Repository:** [github.com/edgegraphics17/klarvoran](https://github.com/edgegraphics17/klarvoran) — Änderungen auf `main` werden automatisch über Vercel bereitgestellt.
-- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `work-3716s-projects`).
+- **Repository:** [github.com/mazharsaidms-cyber/klarvoran](https://github.com/mazharsaidms-cyber/klarvoran) — Änderungen auf `main` werden automatisch über Vercel bereitgestellt.
+- **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `klar-voran`).
 - **Vorschau-URLs:** Projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
 
 ## Launch-Audit (durchgeführt)
@@ -69,10 +69,10 @@ Nicht gefunden (positiv geprüft): erfundene Fakten/Testimonials/Zahlen, defekte
 
 **Nicht automatisiert geprüft** (kein CI/Lighthouse/axe-core-Setup in diesem Projekt): Feld-Performance-Daten (CrUX), automatisierter Screenreader-Durchlauf, Cross-Browser-Test außerhalb von Chromium. Manuell stichprobenartig verifiziert stattdessen: Kontrastwerte, Tastaturfokus, Konsolenausgabe, Response-Header — alle unauffällig.
 
-## Bekannte externe Restschritte
+## Extern zu überwachen
 
-- E-Mail-/CRM-Dienst für den Lead-Versand konfigurieren (`RESEND_API_KEY` oder `FORM_WEBHOOK_URL`) — ohne diesen laufen Kontakt-, Termin- und AVGS-Schnellcheck-Anfragen aktuell ins Leere (ehrlich kommuniziert, aber nicht zustellbar).
-- Kontaktdaten (Telefon, E-Mail) von Mazhar final bestätigen lassen (siehe `.env.example`) — Defaults stammen von der Visitenkarte.
-- Optional: externe Kalenderbuchung (`NEXT_PUBLIC_BOOKING_URL`) einrichten, falls gewünscht.
-- Impressum/Datenschutz vor Veröffentlichung durch eine rechtliche Prüfung gegenlesen lassen.
-- Offiziellen BA-Maßnahmeeintrag und Kontaktdaten bei Änderungen mit `lib/site-config.ts` abgleichen.
+- Resend- beziehungsweise Webhook-Konfiguration und tatsächliche Formularzustellung bei Änderungen am Vercel-Projekt kontrollieren. Ohne Versanddienst zeigt die Website keinen falschen Erfolg, sondern verweist auf Telefon, E-Mail und WhatsApp.
+- Für ein instanzübergreifendes Rate-Limit in einer größeren Serverless-Skalierung ist ein externer, datenschutzrechtlich geprüfter Store erforderlich. Der aktuelle Schutz arbeitet pro Instanz, ist speicherbegrenzt und mit Honeypot sowie strenger Validierung kombiniert.
+- Impressum und Datenschutz bei Änderungen von Dienstleistern, Rechtsform oder Verarbeitung durch eine qualifizierte rechtliche Stelle gegenlesen lassen.
+- Offiziellen BA-Maßnahmeeintrag, Zulassungsunterlagen und Kontaktdaten bei Änderungen mit `lib/site-config.ts` abgleichen.
+- Vollständige manuelle Cross-Browser-Prüfungen außerhalb von Chromium bei größeren Layout- oder Framework-Änderungen wiederholen.

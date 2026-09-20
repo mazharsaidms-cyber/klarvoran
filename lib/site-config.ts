@@ -13,12 +13,25 @@ function internationalPhoneNumber(value: string) {
 
 const phoneDisplay = process.env.NEXT_PUBLIC_PHONE_DISPLAY?.trim() || "+49 177 9548140";
 const phoneNumber = internationalPhoneNumber(phoneDisplay);
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || digitsOnly(phoneNumber);
+const configuredWhatsappNumber = digitsOnly(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "");
+const whatsappNumber = configuredWhatsappNumber || digitsOnly(phoneNumber);
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
 const siteUrl =
   configuredSiteUrl === "https://klarvoran.de" || configuredSiteUrl === "http://klarvoran.de"
     ? "https://www.klarvoran.de"
     : configuredSiteUrl || "https://www.klarvoran.de";
+
+function optionalHttpsUrl(value: string | undefined) {
+  const candidate = value?.trim();
+  if (!candidate) return null;
+
+  try {
+    const url = new URL(candidate);
+    return url.protocol === "https:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
 
 export const siteConfig = {
   // KlarVoran ist die öffentliche Trägerbezeichnung.
@@ -27,8 +40,6 @@ export const siteConfig = {
   transitionNote:
     "KlarVoran ist die aktuelle Trägerbezeichnung. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.",
   founder: "Mazhar Said",
-  claim: "Der schnellste Weg zur Arbeit",
-  tagline: "Coaching, Workshops und berufliche Orientierung",
   description:
     "KlarVoran bietet in Frankfurt und im Rhein-Main-Gebiet individuelles AVGS-Bewerbungscoaching nach § 45 SGB III, privates Jobcoaching, Workshops und Kooperationen mit Institutionen.",
   url: siteUrl,
@@ -95,11 +106,12 @@ export const siteConfig = {
   // Externe Kalender-Integration (z. B. Cal.com/Calendly). Wenn nicht gesetzt, wird
   // ausschließlich das Terminanfrage-Formular verwendet.
   booking: {
-    url: process.env.NEXT_PUBLIC_BOOKING_URL || null,
+    url: optionalHttpsUrl(process.env.NEXT_PUBLIC_BOOKING_URL),
   },
 
   images: {
     badge: "/images/mazhar-badge.png",
+    logo: "/images/klarvoran-logo.png",
   },
 
   nav: [

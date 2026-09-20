@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+
+export const metadata: Metadata = {
+  title: "Seite nicht gefunden",
+  description: "Die angeforderte Seite wurde nicht gefunden. Hier geht es zurück zu KlarVoran.",
+  alternates: { canonical: null },
+};
 
 export default function NotFound() {
   return (

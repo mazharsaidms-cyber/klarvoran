@@ -15,16 +15,6 @@ const requestTypeLabels: Record<string, string> = {
   sonstiges: "Sonstiges",
 };
 
-const sourceLabels: Record<string, string> = {
-  google: "Google / Suchmaschine",
-  ba_portal: "Portal der Bundesagentur für Arbeit",
-  jobcenter_arbeitsagentur: "Jobcenter / Agentur für Arbeit",
-  einrichtung_traeger: "Einrichtung / Bildungsträger",
-  empfehlung: "Persönliche Empfehlung",
-  social_media: "Social Media",
-  sonstiges: "Sonstiges",
-};
-
 export async function submitContactForm(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const formal = formData.get("formality") === "formal";
   const ip = await getClientIp();
@@ -74,7 +64,6 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
       parsed.data.role ? `Funktion: ${parsed.data.role}` : "",
       parsed.data.requestType ? `Art der Anfrage: ${requestTypeLabels[parsed.data.requestType]}` : "",
       parsed.data.timeframe ? `Gewünschter Zeitraum: ${parsed.data.timeframe}` : "",
-      parsed.data.source ? `Quelle: ${sourceLabels[parsed.data.source]}` : "",
       "Nachricht:",
       parsed.data.message,
     ],

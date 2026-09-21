@@ -12,7 +12,7 @@ export const institutionalDownloads = {
     description: "Leistungsbausteine, Arbeitsweise und Rahmenbedingungen für Unteraufträge, Workshops und abgestimmte Kooperationen.",
     href: "/dokumente/KlarVoran-Kooperationsblatt.pdf",
     detailHref: "/fuer-bildungstraeger",
-    updatedAt: "20.09.2026",
+    updatedAt: "21.09.2026",
   },
 } as const;
 

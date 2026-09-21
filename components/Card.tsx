@@ -11,6 +11,7 @@ export function Card({
 }) {
   return (
     <Tag
+      data-reveal=""
       className={`content-card min-w-0 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card ${className}`}
     >
       {children}

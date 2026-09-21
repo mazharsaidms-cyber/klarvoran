@@ -12,6 +12,7 @@ export function VisualSteps({ steps }: { steps: readonly VisualStep[] }) {
     <ol className={`step-grid grid gap-x-7 gap-y-8 sm:grid-cols-2 ${steps.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
       {steps.map((step, index) => (
         <li
+          data-reveal=""
           key={step.title}
           className="group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none"
         >

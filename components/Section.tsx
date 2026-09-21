@@ -30,7 +30,7 @@ export function Section({
     hero: "pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24",
   };
   return (
-    <section id={id} className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}>
+    <section id={id} data-reveal-section={spacing !== "hero" ? "" : undefined} className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}>
       <Container className={containerClassName}>{children}</Container>
     </section>
   );

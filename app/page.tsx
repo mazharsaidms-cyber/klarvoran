@@ -74,7 +74,7 @@ export default function HomePage() {
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              KlarVoran ist ein Bildungsträger für Job- und Bewerbungscoaching. Wir begleiten dich auf dem Weg in Arbeit oder Ausbildung: mit beruflicher Orientierung,
+              KlarVoran ist ein nach AZAV zugelassener Bildungsträger mit Schwerpunkt auf individuellem Job- und Bewerbungscoaching. Wir begleiten dich auf dem Weg in Arbeit oder Ausbildung: mit beruflicher Orientierung,
               Bewerbungsunterlagen und Gesprächstraining. Du setzt konkrete Schritte um und lernst,
               anschließend selbst weiterzumachen.
             </p>

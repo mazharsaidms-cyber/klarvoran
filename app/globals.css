@@ -7,6 +7,7 @@
   --brand-navy-600: #454e5f;
   --brand-navy-700: #2d3543;
   --brand-red: #ec1c23;
+  --brand-logo-red: #d52025;
   --brand-red-600: #c9151b;
   --brand-red-700: #a51116;
 
@@ -36,6 +37,7 @@
   --color-navy-600: var(--brand-navy-600);
   --color-navy-700: var(--brand-navy-700);
   --color-red: var(--brand-red);
+  --color-logo-red: var(--brand-logo-red);
   --color-red-600: var(--brand-red-600);
   --color-red-700: var(--brand-red-700);
   --color-btn-red: var(--brand-btn-red);
@@ -47,6 +49,19 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Eine ruhige Reaktion für die erklärenden Grafiken auf mehreren Unterseiten. */
+.context-graphic-content {
+  transition: transform 240ms ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (hover: hover) {
+  .context-graphic:hover .context-graphic-content {
+    transform: translateY(-4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

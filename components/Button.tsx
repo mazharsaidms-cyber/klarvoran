@@ -43,7 +43,7 @@ const variants: Record<Variant, { light: string; dark: string }> = {
     dark: "bg-btn-red text-white border-2 border-btn-red hover:bg-white hover:text-navy hover:border-btn-red focus-visible:bg-white focus-visible:text-navy focus-visible:border-btn-red shadow-card",
   },
   secondary: {
-    light: "border-2 border-navy text-navy hover:bg-navy-50 focus-visible:bg-navy-50",
+    light: "border-2 border-navy bg-white text-navy hover:bg-navy hover:text-white focus-visible:bg-navy focus-visible:text-white",
     dark: "border-2 border-white text-white hover:bg-white hover:text-navy focus-visible:bg-white focus-visible:text-navy",
   },
   ghost: {

@@ -21,7 +21,7 @@ const audiences: InstitutionTarget[] = [
     title: "Jobcenter & Agentur für Arbeit",
     text: "AVGS, § 45 SGB III, Maßnahmezulassung, Zielgruppe, Ablauf und Ansprechpartner für Gutscheinprüfung und Teilnahmeabstimmung.",
     href: "/fuer-jobcenter",
-    cta: "Zur Jobcenter-Seite",
+    cta: "Zur Seite für Jobcenter / Agentur für Arbeit",
   },
   {
     title: "Soziale Einrichtungen & Beratungsstellen",

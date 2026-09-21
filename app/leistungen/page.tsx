@@ -6,6 +6,13 @@ import { Button } from "@/components/Button";
 import { leistungen } from "@/lib/content/leistungen";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
+const frameworkSteps = [
+  { number: "01", title: "Verstanden werden", text: "Ausgangslage und Ziel klären." },
+  { number: "02", title: "System verstehen", text: "Anforderungen nachvollziehen." },
+  { number: "03", title: "Selbst handeln", text: "Den nächsten Schritt selbst üben." },
+  { number: "04", title: "Dranbleiben", text: "Fortschritt erkennen und anpassen." },
+];
+
 export const metadata: Metadata = {
   title: "Leistungen – Coaching, Workshops & Kooperationen",
   description:
@@ -49,9 +56,18 @@ export default function LeistungenPage() {
         <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Eine Methode, unterschiedliche Zugänge</h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-          Verstanden werden. System verstehen. Selbst handeln. Dranbleiben. Das Framework verbindet aufmerksames
-          Zuhören mit verständlicher Systemübersetzung, praktischer Umsetzung und schrittweisem Kompetenztransfer.
+          Wir hören zuerst zu, erklären die Anforderungen verständlich und üben den nächsten Schritt praktisch.
+          So kannst du ihn zunehmend selbst übernehmen.
         </p>
+        <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {frameworkSteps.map((step) => (
+            <li key={step.number} className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5 transition-colors duration-200 hover:border-red/30 motion-reduce:transition-none">
+              <span className="font-mono text-sm font-bold text-red-700" aria-hidden="true">{step.number}</span>
+              <h3 className="mt-2 font-semibold text-navy">{step.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-navy-600">{step.text}</p>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       <Section tone="navy">

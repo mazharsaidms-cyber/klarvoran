@@ -87,9 +87,9 @@ export default function FuerBildungstraegerPage() {
           <Card>
             <h3 className="font-semibold text-navy">Praxis in Bewerbungsmanagement und Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Praxiserfahrung besteht seit November 2025 als freiberuflicher Dozent im Bewerbungsmanagement und
-              Jobcoaching beim Bildungswerk der Hessischen Wirtschaft e. V. sowie 2026 beim Zentrum für
-              Weiterbildung gGmbH. Hinzu kommen Erfahrungen aus berufsvorbereitenden Bildungsmaßnahmen.
+              Mazhar Said arbeitet seit 2026 als Dozent für Bewerbungsmanagement und Jobcoaching beim
+              Bildungswerk der Hessischen Wirtschaft e. V. (BWHW). 2025 war er als Jobcoach in einer
+              berufsvorbereitenden Bildungsmaßnahme beim Zentrum für Weiterbildung gGmbH (ZfW) tätig.
             </p>
           </Card>
           <Card>

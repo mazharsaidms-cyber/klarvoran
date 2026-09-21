@@ -223,8 +223,8 @@ def cooperation_sheet(data):
                 "Präsenz im Rhein-Main-Gebiet, online oder hybrid - nach Vereinbarung.")
     y = heading(c, "Fachliche Grundlage und Nachweise", y)
     y = para(c, f'<b>AZAV-Trägerzulassung Fachbereich 1</b> durch CERTQUA, Nr. {safe(cert["number"])}. '
-             'Praxiserfahrung von Mazhar Said: freiberuflicher Dozent für Bewerbungsmanagement und Jobcoaching '
-             'beim BWHW seit November 2025 und beim ZfW im Jahr 2026; Erfahrung in berufsvorbereitenden Bildungsmaßnahmen.',
+             'Praxiserfahrung von Mazhar Said: seit 2026 Dozent für Bewerbungsmanagement und Jobcoaching '
+             'beim BWHW; 2025 Jobcoach in einer berufsvorbereitenden Bildungsmaßnahme beim ZfW.',
              M, y) - 15
     y = heading(c, "Klare Grenzen und getrennte Auftragswege", y)
     y = para(c, "Kooperationen und Workshops werden individuell beauftragt. Sie sind nicht automatisch Bestandteil "

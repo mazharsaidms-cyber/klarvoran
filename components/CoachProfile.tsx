@@ -45,10 +45,12 @@ export function CoachProfile() {
           <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Berufserfahrung</h3>
           <ul className="mt-3 space-y-3">
             {coachExperience.map((e) => (
-              <li key={`${e.role}-${e.period}`} className="flex flex-col gap-0.5 border-l-2 border-red/40 pl-4">
-                <span className="font-mono text-xs text-navy-600">{e.period}</span>
-                <span className="font-semibold text-navy">{e.role}</span>
-                <span className="text-sm text-navy-600">{e.org}</span>
+              <li key={`${e.role}-${e.period}`} className="grid gap-1 rounded-r-[var(--radius-sm)] border-l-2 border-red/50 bg-navy-50/60 px-4 py-3 sm:grid-cols-[7.5rem_1fr] sm:gap-4">
+                <span className="font-mono text-xs font-semibold text-navy-600">{e.period}</span>
+                <span className="flex flex-col gap-0.5">
+                  <span className="font-semibold text-navy">{e.role}</span>
+                  <span className="text-sm text-navy-600">{e.org}</span>
+                </span>
               </li>
             ))}
           </ul>

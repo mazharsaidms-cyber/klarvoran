@@ -5,6 +5,7 @@ import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { CoachProfile } from "@/components/CoachProfile";
+import { VisualIcon } from "@/components/VisualIcon";
 
 export const metadata: Metadata = {
   title: "Über uns",
@@ -14,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { title: "Verständlichkeit", text: "Anforderungen werden so erklärt, dass du sie einordnen und praktisch umsetzen kannst." },
-  { title: "Respekt", text: "Deine Ausgangslage wird ernst genommen, ohne dich auf Schwierigkeiten zu reduzieren." },
-  { title: "Eigenverantwortung", text: "Du übernimmst vereinbarte Schritte zunehmend selbst und erkennst deinen Fortschritt." },
-  { title: "Dranbleiben", text: "Rückschläge werden ausgewertet, damit du deine Strategie anpassen und weitergehen kannst." },
+  { title: "Verständlichkeit", icon: "system" as const, text: "Anforderungen werden so erklärt, dass du sie einordnen und praktisch umsetzen kannst." },
+  { title: "Respekt", icon: "respect" as const, text: "Deine Ausgangslage wird ernst genommen, ohne dich auf Schwierigkeiten zu reduzieren." },
+  { title: "Eigenverantwortung", icon: "responsibility" as const, text: "Du übernimmst vereinbarte Schritte zunehmend selbst und erkennst deinen Fortschritt." },
+  { title: "Dranbleiben", icon: "progress" as const, text: "Rückschläge werden ausgewertet, damit du deine Strategie anpassen und weitergehen kannst." },
 ];
 
 export default function UeberUnsPage() {
@@ -67,9 +68,9 @@ export default function UeberUnsPage() {
             "Überprüfbare Zielschritte",
             "Regelmäßige Überprüfung und Weiterentwicklung unserer Prozesse",
           ].map((item) => (
-            <li key={item} className="flex gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-4 text-sm text-navy-600">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red" aria-hidden="true" />
-              {item}
+            <li key={item} className="flex items-start gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-4 text-sm text-navy-600">
+              <span className="shrink-0 text-red-700" aria-hidden="true"><VisualIcon name="quality" /></span>
+              <span>{item}</span>
             </li>
           ))}
         </ul>
@@ -87,6 +88,9 @@ export default function UeberUnsPage() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <Card key={v.title}>
+              <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
+                <VisualIcon name={v.icon} />
+              </span>
               <h3 className="font-semibold text-navy">{v.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-navy-600">{v.text}</p>
             </Card>

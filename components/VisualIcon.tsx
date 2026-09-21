@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type IconName =
+export type IconName =
   | "orientation"
   | "system"
   | "action"
@@ -11,7 +11,16 @@ type IconName =
   | "quality"
   | "respect"
   | "responsibility"
-  | "progress";
+  | "progress"
+  | "conversation"
+  | "signpost"
+  | "laptop"
+  | "calendar"
+  | "document"
+  | "send"
+  | "phone"
+  | "mail"
+  | "location";
 
 const paths: Record<IconName, ReactNode> = {
   orientation: <><circle cx="12" cy="12" r="8.5" /><path d="m15.5 8.5-2.3 4.7-4.7 2.3 2.3-4.7 4.7-2.3Z" /></>,
@@ -25,6 +34,15 @@ const paths: Record<IconName, ReactNode> = {
   respect: <><path d="M3 11V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H5a2 2 0 0 1-2-2v-4Z" /><path d="M8 9h8M8 12h5" /></>,
   responsibility: <><path d="M4 20h16M6 20v-7h5v7M14 20V9h5v11M9 7l3-3 3 3" /></>,
   progress: <><path d="M4 18h5v-4h5v-4h6V5" /><path d="m16 8 4-3 2 4" /></>,
+  conversation: <><path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1Z" /><path d="M8 9h8M8 12h5" /></>,
+  signpost: <><path d="M6 21V3M6 5h12l-3 3 3 3H6M6 14h9l-2.5 3L15 20H6" /></>,
+  laptop: <><rect x="4" y="4" width="16" height="12" rx="1" /><path d="M2 20h20M8 9h8M8 12h5" /></>,
+  calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4M17 3v4M3 10h18M8 15h3" /></>,
+  document: <><path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" /><path d="M15 3v5h4M8 12h8M8 16h6" /></>,
+  send: <><path d="m3 11 18-8-8 18-2.5-7.5L3 11ZM10.5 13.5 21 3" /></>,
+  phone: <><path d="M7 3H4a2 2 0 0 0-2 2c0 9.4 7.6 17 17 17a2 2 0 0 0 2-2v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z" /></>,
+  mail: <><rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="m3 7 9 7 9-7" /></>,
+  location: <><path d="M12 22s8-6.5 8-13a8 8 0 0 0-16 0c0 6.5 8 13 8 13Z" /><circle cx="12" cy="9" r="2.5" /></>,
 };
 
 export function VisualIcon({ name, className = "" }: { name: IconName; className?: string }) {

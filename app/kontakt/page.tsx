@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/Button";
 import { siteConfig } from "@/lib/site-config";
+import { VisualIcon } from "@/components/VisualIcon";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -15,7 +16,7 @@ export default function KontaktPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/kontakt", label: "Kontakt" }]} />
-      <Section tone="navy" className="pt-12">
+      <Section tone="navy" className="kv-hero pt-12">
         <Eyebrow tone="white">Kontakt</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Sprich uns an</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
@@ -25,13 +26,17 @@ export default function KontaktPage() {
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-6">
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Telefon</h2>
+              <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-600">
+                <span className="text-red-700" aria-hidden="true"><VisualIcon name="phone" /></span>Telefon
+              </h2>
               <a href={siteConfig.contact.phoneHref} className="mt-2 block text-lg font-semibold text-navy hover:text-red-700">
                 {siteConfig.contact.phoneDisplay}
               </a>
             </div>
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">E-Mail</h2>
+              <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-600">
+                <span className="text-red-700" aria-hidden="true"><VisualIcon name="mail" /></span>E-Mail
+              </h2>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
                 className="mt-2 block break-all text-lg font-semibold text-navy hover:text-red-700"
@@ -40,14 +45,18 @@ export default function KontaktPage() {
               </a>
             </div>
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">WhatsApp</h2>
+              <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-600">
+                <span className="text-red-700" aria-hidden="true"><VisualIcon name="conversation" /></span>WhatsApp
+              </h2>
               <p className="mt-2 text-sm text-navy-600">Schreib uns direkt – meist der schnellste Weg.</p>
               <Button href={siteConfig.contact.whatsappHref()} external variant="secondary" className="mt-4">
                 WhatsApp öffnen
               </Button>
             </div>
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Geschäfts- und Postanschrift</h2>
+              <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-600">
+                <span className="text-red-700" aria-hidden="true"><VisualIcon name="location" /></span>Geschäfts- und Postanschrift
+              </h2>
               <p className="mt-2 text-sm text-navy-600">
                 {siteConfig.address.street}
                 <br />
@@ -64,7 +73,9 @@ export default function KontaktPage() {
               </Button>
             </div>
             <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Coachingstandort Kriftel</h2>
+              <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-600">
+                <span className="text-red-700" aria-hidden="true"><VisualIcon name="location" /></span>Coachingstandort Kriftel
+              </h2>
               <p className="mt-2 text-sm text-navy-600">
                 {siteConfig.presenceLocation.street}
                 <br />

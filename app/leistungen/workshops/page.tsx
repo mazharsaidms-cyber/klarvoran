@@ -4,6 +4,8 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
+import { VisualIcon } from "@/components/VisualIcon";
+import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
 export const metadata: Metadata = {
   title: "Workshops für Bewerbung und berufliche Orientierung",
@@ -14,18 +16,22 @@ export const metadata: Metadata = {
 
 const themen = [
   {
+    icon: "document" as const,
     title: "Bewerbungstraining",
     text: "Lebenslauf, Anschreiben und Online-Bewerbung praxisnah für eine Gruppe aufbereitet.",
   },
   {
+    icon: "orientation" as const,
     title: "Berufliche Orientierung",
     text: "Eigene Stärken erkennen und realistische berufliche Perspektiven entwickeln.",
   },
   {
+    icon: "conversation" as const,
     title: "Vorstellungsgespräch & Auftreten",
     text: "Typische Situationen üben, Sicherheit im Auftreten und im Umgang mit Nervosität gewinnen.",
   },
   {
+    icon: "laptop" as const,
     title: "Digitale Kompetenz im Bewerbungsprozess",
     text: "Jobbörsen, Online-Formulare und digitale Tools sicher nutzen lernen.",
   },
@@ -46,16 +52,19 @@ const formats = [
   },
 ];
 
-const approach = [
+const approach: VisualStep[] = [
   {
+    icon: "conversation",
     title: "Verständlich einsteigen",
     text: "Wir knüpfen an der Ausgangslage der Gruppe an und erklären Anforderungen in klarer, direkter Sprache.",
   },
   {
+    icon: "laptop",
     title: "Praktisch üben",
     text: "Die Teilnehmenden arbeiten an konkreten Beispielen, probieren Schritte selbst aus und erhalten nachvollziehbares Feedback.",
   },
   {
+    icon: "progress",
     title: "Transfer sichern",
     text: "Am Ende steht ein sichtbares Arbeitsergebnis und ein nächster Schritt, den die Teilnehmenden selbst weiterführen können.",
   },
@@ -65,7 +74,7 @@ export default function WorkshopsPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/workshops", label: "Workshops & Gruppenformate" }]} />
-      <Section tone="navy" className="pt-12">
+      <Section tone="navy" className="kv-hero pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Workshops &amp; Gruppenformate</Eyebrow>
@@ -95,6 +104,9 @@ export default function WorkshopsPage() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {themen.map((t) => (
             <Card key={t.title}>
+              <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
+                <VisualIcon name={t.icon} />
+              </span>
               <h3 className="font-semibold text-navy">{t.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-navy-600">{t.text}</p>
             </Card>
@@ -114,14 +126,7 @@ export default function WorkshopsPage() {
       <Section tone="white">
         <Eyebrow>Arbeitsweise</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-3">
-          {approach.map((item) => (
-            <Card key={item.title}>
-              <h3 className="font-semibold text-navy">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-600">{item.text}</p>
-            </Card>
-          ))}
-        </div>
+        <div className="mt-8"><VisualSteps steps={approach} /></div>
       </Section>
 
       <Section tone="tint">

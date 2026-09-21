@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { ContactForm } from "@/components/ContactForm";
 import { Eyebrow, Section } from "@/components/Section";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Für Kommunen & öffentliche Auftraggeber",
@@ -36,16 +37,25 @@ export default function FuerKommunenPage() {
         ]}
       />
 
-      <Section tone="navy" className="pt-12">
-        <Eyebrow tone="white">Für Kommunen &amp; öffentliche Auftraggeber</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Arbeitsmarktbezogene Workshops und Coachingbausteine für regionale Vorhaben
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt Bewerbungs-, Orientierungs- und Coachingbausteine für klar definierte Zielgruppen im
-          Rhein-Main-Gebiet. Ziele, Zeitraum, Zuständigkeiten, Durchführung und erforderliche Nachweise werden vor
-          der Beauftragung schriftlich vereinbart.
-        </p>
+      <Section tone="navy" className="kv-hero pt-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <Eyebrow tone="white">Für Kommunen &amp; öffentliche Auftraggeber</Eyebrow>
+            <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
+              Arbeitsmarktbezogene Workshops und Coachingbausteine für regionale Vorhaben
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              KlarVoran übernimmt Bewerbungs-, Orientierungs- und Coachingbausteine für klar definierte Zielgruppen im
+              Rhein-Main-Gebiet. Ziele, Zeitraum, Zuständigkeiten, Durchführung und erforderliche Nachweise werden vor
+              der Beauftragung schriftlich vereinbart.
+            </p>
+          </div>
+          <ContextGraphic
+            variant="workshop"
+            title="Abgegrenzte Workshopbausteine mit vereinbarten Zielen und Ergebnissen"
+            className="hidden lg:block"
+          />
+        </div>
       </Section>
 
       <Section tone="tint">

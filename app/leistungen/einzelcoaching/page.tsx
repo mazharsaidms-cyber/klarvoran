@@ -5,6 +5,7 @@ import { Card } from "@/components/Card";
 import { CtaSection } from "@/components/CtaSection";
 import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
+import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
 export const metadata: Metadata = {
   title: "Privates Job- und Bewerbungscoaching",
@@ -13,20 +14,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/leistungen/einzelcoaching" },
 };
 
-const steps = [
+const steps: VisualStep[] = [
   {
+    icon: "conversation",
     title: "Ausgangslage klären",
     text: "Wir hören zunächst zu: Erfahrungen, Ziele, bisherige Bewerbungen und die reale Situation dahinter.",
   },
   {
+    icon: "signpost",
     title: "Schwerpunkte festlegen",
     text: "Daraus entsteht ein klarer Plan mit den Themen, die für deinen nächsten beruflichen Schritt wirklich relevant sind.",
   },
   {
+    icon: "laptop",
     title: "Gemeinsam umsetzen",
     text: "Unterlagen, Stellensuche, Gesprächstraining oder Orientierung – wir arbeiten die vereinbarten Schritte konkret durch.",
   },
   {
+    icon: "progress",
     title: "Selbst handeln und dranbleiben",
     text: "Du gehst mit einer klaren Struktur und Werkzeugen weiter, die du selbst anwenden und bei Rückschlägen anpassen kannst.",
   },
@@ -36,7 +41,7 @@ export default function EinzelcoachingPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "Privates Coaching" }]} />
-      <Section tone="navy" className="pt-12">
+      <Section tone="navy" className="kv-hero pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
@@ -93,15 +98,7 @@ export default function EinzelcoachingPage() {
       <Section tone="white">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
-        <ol className="mt-8 grid gap-5 sm:grid-cols-2">
-          {steps.map((step, i) => (
-            <li key={step.title} className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-5">
-              <span className="font-mono text-sm font-semibold text-red-700">{i + 1}</span>
-              <h3 className="mt-1 font-semibold text-navy">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-600">{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-8"><VisualSteps steps={steps} /></div>
       </Section>
 
       <CtaSection

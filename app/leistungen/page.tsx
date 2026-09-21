@@ -5,12 +5,13 @@ import { LeistungCard } from "@/components/LeistungCard";
 import { Button } from "@/components/Button";
 import { leistungen } from "@/lib/content/leistungen";
 import { ContextGraphic } from "@/components/ContextGraphic";
+import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
-const frameworkSteps = [
-  { number: "01", title: "Verstanden werden", text: "Ausgangslage und Ziel klären." },
-  { number: "02", title: "System verstehen", text: "Anforderungen nachvollziehen." },
-  { number: "03", title: "Selbst handeln", text: "Den nächsten Schritt selbst üben." },
-  { number: "04", title: "Dranbleiben", text: "Fortschritt erkennen und anpassen." },
+const frameworkSteps: VisualStep[] = [
+  { icon: "conversation", title: "Verstanden werden", text: "Ausgangslage und Ziel klären." },
+  { icon: "signpost", title: "System verstehen", text: "Anforderungen nachvollziehen." },
+  { icon: "laptop", title: "Selbst handeln", text: "Den nächsten Schritt selbst üben." },
+  { icon: "progress", title: "Dranbleiben", text: "Fortschritt erkennen und anpassen." },
 ];
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function LeistungenPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }]} />
-      <Section tone="navy" className="pt-12">
+      <Section tone="navy" className="kv-hero pt-12">
         <Eyebrow tone="white">Leistungen</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
           Vier Wege zu beruflicher Handlungsfähigkeit
@@ -59,15 +60,7 @@ export default function LeistungenPage() {
           Wir hören zuerst zu, erklären die Anforderungen verständlich und üben den nächsten Schritt praktisch.
           So kannst du ihn zunehmend selbst übernehmen.
         </p>
-        <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {frameworkSteps.map((step) => (
-            <li key={step.number} className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5 transition-colors duration-200 hover:border-red/30 motion-reduce:transition-none">
-              <span className="font-mono text-sm font-bold text-red-700" aria-hidden="true">{step.number}</span>
-              <h3 className="mt-2 font-semibold text-navy">{step.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-navy-600">{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-8"><VisualSteps steps={frameworkSteps} /></div>
       </Section>
 
       <Section tone="navy">

@@ -18,7 +18,7 @@ export default function FaqPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/faq", label: "FAQ" }]} />
-      <Section tone="white" className="pt-12">
+      <Section tone="white" className="kv-hero pt-12">
         <Eyebrow>FAQ</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-navy sm:text-4xl">Häufige Fragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-600">

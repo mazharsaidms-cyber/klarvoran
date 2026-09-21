@@ -13,6 +13,8 @@ import { processSteps } from "@/lib/content/process";
 import { coachingModules, totalUe } from "@/lib/content/modules";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { siteConfig } from "@/lib/site-config";
+import { ContextGraphic } from "@/components/ContextGraphic";
+import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
@@ -34,21 +36,25 @@ export const metadata: Metadata = {
   alternates: { canonical: "/avgs" },
 };
 
-const guideSteps = [
+const guideSteps: VisualStep[] = [
   {
-    title: "1. Beratungstermin wahrnehmen",
+    icon: "calendar",
+    title: "Beratungstermin wahrnehmen",
     text: "Gehe zu deinem regulären Beratungstermin bei Jobcenter oder Agentur für Arbeit.",
   },
   {
-    title: "2. Bedarf aktiv ansprechen",
+    icon: "conversation",
+    title: "Bedarf aktiv ansprechen",
     text: "Sag konkret, dass du Unterstützung bei Bewerbung, Orientierung oder Vorstellungsgespräch brauchst und begründe, warum individuelles Coaching sinnvoll ist.",
   },
   {
-    title: "3. Gutschein erhalten",
+    icon: "document",
+    title: "Gutschein erhalten",
     text: "Ist deine Vermittlungsfachkraft einverstanden, erhältst du einen AVGS mit Gültigkeitsdauer, Förderziel und Kostenträger.",
   },
   {
-    title: "4. Gutschein bei uns einreichen",
+    icon: "send",
+    title: "Gutschein bei uns einreichen",
     text: "Bring deinen Gutschein zu KlarVoran – wir prüfen ihn unverbindlich im kostenlosen Erstgespräch.",
   },
 ];
@@ -59,22 +65,31 @@ export default function AvgsPage() {
       <Breadcrumbs items={[{ href: "/avgs", label: "AVGS" }]} />
 
       {/* Dunkelblauer Einstieg. */}
-      <Section tone="navy" className="pt-12">
-        <Eyebrow tone="white">AVGS &amp; AZAV</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Job- und Bewerbungscoaching mit AVGS
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Mit einem bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) von Jobcenter oder Agentur für Arbeit
-          kannst du am individuellen Coaching teilnehmen, ohne die Kosten selbst zu tragen. Du lernst, berufliche
-          Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
-          weiterzuführen.
-        </p>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
-          Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
-          {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Frankfurt, Hofheim und den
-          Main-Taunus-Kreis. Alternativ online oder hybrid. Termine nach vorheriger Bestätigung.
-        </p>
+      <Section tone="navy" className="kv-hero pt-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <Eyebrow tone="white">AVGS &amp; AZAV</Eyebrow>
+            <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
+              Job- und Bewerbungscoaching mit AVGS
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              Mit einem bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) von Jobcenter oder Agentur für Arbeit
+              kannst du am individuellen Coaching teilnehmen, ohne die Kosten selbst zu tragen. Du lernst, berufliche
+              Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
+              weiterzuführen.
+            </p>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
+              Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
+              {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Frankfurt, Hofheim und den
+              Main-Taunus-Kreis. Alternativ online oder hybrid. Termine nach vorheriger Bestätigung.
+            </p>
+          </div>
+          <ContextGraphic
+            variant="application"
+            title="Bewerbungsunterlagen gemeinsam sichten und den nächsten Schritt planen"
+            className="hidden lg:block"
+          />
+        </div>
       </Section>
 
       {/* Der kurze Schnellcheck steht direkt nach dem Einstieg, damit
@@ -154,14 +169,7 @@ export default function AvgsPage() {
       <Section tone="white" id="leitfaden">
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
-        <ol className="mt-8 grid gap-5 sm:grid-cols-2">
-          {guideSteps.map((step) => (
-            <li key={step.title} className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-5">
-              <h3 className="font-semibold text-navy">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-600">{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-8"><VisualSteps steps={guideSteps} /></div>
       </Section>
 
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt

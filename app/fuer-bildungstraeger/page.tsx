@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
+import { ContextGraphic } from "@/components/ContextGraphic";
 
 export const metadata: Metadata = {
   title: "Für Bildungsträger & Kooperationspartner",
@@ -21,16 +22,25 @@ export default function FuerBildungstraegerPage() {
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-bildungstraeger", label: "Bildungsträger" }]} />
 
-      <Section tone="navy" className="pt-12">
-        <Eyebrow tone="white">Für Bildungsträger & Kooperationspartner</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
-          Jobcoaching und Bewerbungsmanagement – verlässlich im Unterauftrag
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
-          Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
-          werden vor dem Einsatz verbindlich abgestimmt.
-        </p>
+      <Section tone="navy" className="kv-hero pt-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <Eyebrow tone="white">Für Bildungsträger & Kooperationspartner</Eyebrow>
+            <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
+              Jobcoaching und Bewerbungsmanagement – verlässlich im Unterauftrag
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
+              Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
+              werden vor dem Einsatz verbindlich abgestimmt.
+            </p>
+          </div>
+          <ContextGraphic
+            variant="cooperation"
+            title="Abgestimmte Aufgaben, Dokumentation und Zusammenarbeit im Unterauftrag"
+            className="hidden lg:block"
+          />
+        </div>
       </Section>
 
       <Section tone="tint">

@@ -47,7 +47,7 @@ export default function FachkraeftePage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }]} />
-      <Section tone="navy" className="pt-12">
+      <Section tone="navy" className="kv-hero pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.7fr]">
           <div>
             <Eyebrow tone="white">Für Institutionen & Kooperationspartner</Eyebrow>
@@ -62,7 +62,7 @@ export default function FachkraeftePage() {
           <ContextGraphic
             variant="cooperation"
             title="Klare Zuständigkeiten und abgestimmte Zusammenarbeit mit Institutionen"
-            className="hidden lg:block"
+            className="mx-auto w-full max-w-xs lg:max-w-none"
           />
         </div>
       </Section>

@@ -11,6 +11,7 @@ import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
+import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -35,49 +36,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Die Methode in vier Schritten – Symbole laut Kundenvorgabe:
-// Gespräch, Wegweiser, Laptop, nächster Schritt.
-const methodSteps = [
+const methodSteps: VisualStep[] = [
   {
     title: "Verstanden werden",
     text: "Wir starten mit einem echten Gespräch und klären deine Ausgangslage, deine Ziele und deine Hürden.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M4 5.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4.2 3.4a.5.5 0 0 1-.8-.4V6.5a1 1 0 0 1 1-1Z" />
-        <path d="M8 9.5h8M8 12.5h5" />
-      </svg>
-    ),
+    icon: "conversation",
   },
   {
     title: "System verstehen",
     text: "Wir übersetzen Anforderungen und ordnen sie in klare, nachvollziehbare Schritte.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M6 21V3" />
-        <path d="M6 4.5h11l-2.5 3 2.5 3H6" />
-        <path d="M6 12.5h8l-2 2.5 2 2.5H6" />
-      </svg>
-    ),
+    icon: "signpost",
   },
   {
     title: "Selbst handeln",
     text: "Du passt Unterlagen an, recherchierst Stellen und bereitest Gespräche zunehmend selbst vor.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="4" y="5" width="16" height="10" rx="1" />
-        <path d="M2.5 18.5h19" />
-      </svg>
-    ),
+    icon: "laptop",
   },
   {
     title: "Dranbleiben",
     text: "Du machst Fortschritte sichtbar, wertest Rückschläge aus und passt deinen nächsten Schritt an.",
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M3 20h5v-4h5v-4h5V8h3" />
-        <path d="M18.5 5.5 21 8l-2.5 2.5" />
-      </svg>
-    ),
+    icon: "progress",
   },
 ];
 
@@ -87,7 +65,7 @@ export default function HomePage() {
       <ServiceStructuredData />
 
       {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
-      <Section tone="navy" className="pt-14 sm:pt-20">
+      <Section tone="navy" className="kv-hero pt-14 sm:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
@@ -194,7 +172,7 @@ export default function HomePage() {
         </ul>
       </Section>
 
-      {/* Die Methode in 4 Schritten: ruhige Lesefläche, echte Icons + HTML-Text. */}
+      {/* Die vier Schritte bilden eine durchgehende Lesezeile statt einer weiteren Kartenreihe. */}
       <Section tone="tint">
         <div className="mb-10">
           <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
@@ -205,23 +183,7 @@ export default function HomePage() {
             Nicht nur gemeinsam erledigen. Lernen, es selbst zu können.
           </p>
         </div>
-        <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {methodSteps.map((step, i) => (
-            <li
-              key={step.title}
-              className="flex flex-col gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card transition-[border-color,box-shadow] duration-200 hover:border-red/30 hover:shadow-card-hover motion-reduce:transition-none"
-            >
-              <span className="text-btn-red" aria-hidden="true">
-                {step.icon}
-              </span>
-              <span className="font-mono text-xs font-semibold uppercase tracking-wide text-navy-600">
-                Schritt {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-bold text-navy">{step.title}</h3>
-              <p className="text-sm leading-relaxed text-navy-600">{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <VisualSteps steps={methodSteps} />
       </Section>
 
       {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,

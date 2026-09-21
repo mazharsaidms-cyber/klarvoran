@@ -64,6 +64,18 @@ body {
   }
 }
 
+/* The first content block settles gently into place on page load. */
+@media (prefers-reduced-motion: no-preference) {
+  .kv-hero > div {
+    animation: kv-hero-enter 420ms ease-out both;
+  }
+}
+
+@keyframes kv-hero-enter {
+  from { opacity: 0.88; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

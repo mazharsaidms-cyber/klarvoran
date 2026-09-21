@@ -48,7 +48,7 @@ export const siteConfig = {
   contact: {
     phoneDisplay,
     phoneHref: `tel:${phoneNumber}`,
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@klarvoran.de",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || process.env.NEXT_PUBLIC_EMAIL?.trim() || "info@klarvoran.de",
     whatsappNumber,
     whatsappHref: (message?: string) =>
       `https://wa.me/${whatsappNumber}${message ? `?text=${encodeURIComponent(message)}` : ""}`,
@@ -116,6 +116,7 @@ export const siteConfig = {
 
   nav: [
     { href: "/", label: "Startseite" },
+    { href: "/avgs", label: "AVGS-Coaching" },
     { href: "/leistungen", label: "Leistungen" },
     { href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" },
     { href: "/ueber-uns", label: "Über uns" },

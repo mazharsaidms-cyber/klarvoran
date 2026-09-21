@@ -14,7 +14,10 @@ export type SendResult = {
   dev: boolean;
 };
 
-const LEAD_RECIPIENT = process.env.LEAD_INBOX_EMAIL?.trim() || siteConfig.contact.email;
+// Keep the existing Vercel configuration compatible with the documented name.
+const LEAD_RECIPIENT = process.env.LEAD_INBOX_EMAIL?.trim()
+  || process.env.LEAD_RECIPIENT_EMAIL?.trim()
+  || siteConfig.contact.email;
 
 function getHttpsWebhookUrl() {
   const candidate = process.env.FORM_WEBHOOK_URL?.trim();
@@ -66,6 +69,10 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
         }),
         signal: AbortSignal.timeout(10_000),
       });
+      if (!res.ok) {
+        // Status only: provider bodies can contain addresses or request content.
+        console.error(`Lead-Versand von Resend abgelehnt (HTTP ${res.status}).`);
+      }
       return { delivered: res.ok, dev: false };
     }
 
@@ -77,6 +84,7 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
         body: JSON.stringify({ subject, ...payload }),
         signal: AbortSignal.timeout(10_000),
       });
+      if (!res.ok) console.error(`Lead-Webhook abgelehnt (HTTP ${res.status}).`);
       return { delivered: res.ok, dev: false };
     }
 
@@ -97,5 +105,6 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
     return { delivered: true, dev: true };
   }
 
+  console.error("Lead-Versand nicht konfiguriert: RESEND_API_KEY oder FORM_WEBHOOK_URL fehlt.");
   return { delivered: false, dev: false };
 }

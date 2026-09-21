@@ -2,9 +2,9 @@
 
 ## Stand und Geltungsbereich
 
-Die Korrekturen liegen auf `codex/klarvoran-final-audit-2026-09-21` und im [Entwurf von PR #10](https://github.com/mazharsaidms-cyber/klarvoran/pull/10). Sie sind noch nicht in die öffentliche Website übernommen. Bereits vorhandene, unveröffentlichte Verbesserungen wurden erhalten und in diesen Prüfstand einbezogen.
+Die Korrekturen wurden auf `codex/klarvoran-final-audit-2026-09-21` vorbereitet und sind in [PR #10](https://github.com/mazharsaidms-cyber/klarvoran/pull/10) nachvollziehbar. Der PR-Verlauf dokumentiert die Übernahme in die öffentliche Website. Bereits vorhandene, unveröffentlichte Verbesserungen wurden erhalten und in diesen Prüfstand einbezogen.
 
-Geprüft wurden der Quellcode aller 16 Inhaltsseiten, gemeinsame Komponenten, Formulare, Metadaten, Weiterleitungen, Downloads und die lokale Produktionsausgabe. Die öffentliche Website wurde ergänzend im Browser und anhand ihrer HTTP-Antworten geprüft. Eine vollständige visuelle Abnahme der korrigierten Vorschau und der sieben geforderten Bildschirmbreiten ist noch offen. Dieser Bericht ist keine WCAG-Zertifizierung, kein umfassender Penetrationstest und keine rechtliche Begutachtung.
+Geprüft wurden der Quellcode aller 16 Inhaltsseiten, gemeinsame Komponenten, Formulare, Metadaten, Weiterleitungen, Downloads und die lokale Produktionsausgabe. Die öffentliche Website wurde ergänzend im Browser und anhand ihrer HTTP-Antworten geprüft. Nach erfolgreicher Anmeldung wurden auch alle 16 korrigierten Inhaltsseiten in der Vercel-Vorschau im Desktop-Browser durchgesehen. Die vollständige Darstellungsmatrix der sieben geforderten Bildschirmbreiten bleibt offen. Dieser Bericht ist keine WCAG-Zertifizierung, kein umfassender Penetrationstest und keine rechtliche Begutachtung.
 
 ## Wesentliche Befunde und Korrekturen
 
@@ -80,11 +80,22 @@ Stichproben rechnerischer Kontraste: Fließtext-Navy auf Weiß 8,37:1; Weiß auf
 - Es wurden keine Uploads, Benutzeranmeldung, Tracking-Skripte oder neuen externen Einbettungen hinzugefügt. Eine Conversion-Messung ist derzeit nicht implementiert; das Audit behauptet keine gemessene Verbesserung von Anfragen oder Abschlüssen.
 - Der Versandadapter meldet eine Annahme durch den konfigurierten Dienst. Das belegt noch keine Zustellung im Empfängerpostfach. Konfiguration, Absenderdomain, Zustellbarkeit und tatsächlicher Eingang bleiben getrennte Betriebsprüfungen.
 
-## Offene Endabnahme
+## Ergänzende Browserprüfung vor Veröffentlichung
+
+Die geschützte Vorschau wurde am 21.09.2026 nach erfolgreicher Anmeldung in Chromium bei einem Viewport von 1363 × 936 px geprüft:
+
+- Alle 16 Inhaltsseiten geöffnet und visuell durchgesehen; kein horizontales Überlaufen in dieser Desktop-Ansicht beobachtet.
+- Gemeinsame Navigation, Header, Footer, Handlungsaufforderungen und verwandte Karten auf Ausrichtung und Lesbarkeit geprüft. Gemessene Höhen benachbarter Leistungskarten stimmen je Reihe überein; die Höhe bleibt vom Inhalt abhängig.
+- Den AVGS-Schnellcheck bis zum Ergebnis durchlaufen: Auswahl, Schrittwechsel, Fokus auf die Ergebnisüberschrift und passende Kontaktlinks funktionieren. Das Ergebnis benötigt keine persönlichen Kontaktdaten.
+- Institutionelle Anfrage und Terminanfrage ohne Pflichtangaben geprüft: Absenden wird verhindert, der Fokus liegt auf dem ersten erforderlichen Feld. Dasselbe Verhalten auf der Kontaktseite bestätigt. Keine echte Anfrage versendet.
+- FAQ per Enter geöffnet und geschlossen; Antwort sichtbar und Tastaturfokus erkennbar.
+- Profilverlinkung von der Startseite nach `/ueber-uns#gruender` geprüft. Startseiten-, Workshop- und Profilbilder laden in der sichtbaren Ansicht.
+- Keine der Vorschau zuzuordnenden Warnungen oder Fehler in der erfassten Anwendungskonsole. Browser-Erweiterungs- und frühere Anmeldeprotokolle zählen nicht als Websitefehler.
+
+## Noch offene ergänzende Prüfungen
 
 | Priorität | Offen | Abnahmekriterium |
 |---|---|---|
-| Hoch | Visuelle Abnahme der korrigierten Vorschau | Jede Inhaltsseite im Browser ansehen; keine abgeschnittenen Inhalte, überlagerten Bedienelemente oder abweichenden Kartenlinien; Navigation und Fokus nachvollziehbar |
 | Hoch | Responsive-Matrix | 1440, 1280, 1024, 768, 430, 390 und 360 px tatsächlich rendern; Navigation, Formulare, Karten, Footer, Textumbrüche und horizontales Scrollen je Breite prüfen |
 | Hoch | Tatsächliche Formularzustellung | Je Formular eine ausdrücklich freigegebene Testanfrage über die produktive Versandkonfiguration und bestätigten Eingang prüfen |
 | Mittel | Core Web Vitals | LCP, INP und CLS anhand belastbarer Labormessungen und verfügbarer Felddaten beurteilen; aus Quellcode oder Build-Erfolg keine Werte ableiten |
@@ -92,8 +103,8 @@ Stichproben rechnerischer Kontraste: Fließtext-Navy auf Weiß 8,37:1; Weiß auf
 | Mittel | Cross-Browser | Relevante Seiten und Formulare zusätzlich in Firefox und Safari sowie auf echten Mobilgeräten testen |
 | Nach Lastentwicklung | Verteilter Missbrauchsschutz | Instanzübergreifendes Limit mit geeigneter Infrastruktur nachweisen, falls die reale Nutzung es erfordert |
 
-Die Vercel-Vorschau wurde erfolgreich gebaut, verlangt aber eine Anmeldung. Die Sichtprüfung hängt vom Zugang zu dieser Vorschau ab. Der bereitgestellte Browser bot bislang keine dokumentierte Einstellung für die sieben angeforderten Viewportbreiten. Eine Desktop-Stichprobe darf deshalb nicht als vollständige Responsive-Prüfung ausgewiesen werden.
+Die Vercel-Vorschau wurde erfolgreich gebaut und die Anmeldung für die Desktop-Prüfung abgeschlossen. Der bereitgestellte Browser bot keine dokumentierte Einstellung für die sieben angeforderten Viewportbreiten. Die durchgeführte Desktop-Prüfung wird deshalb nicht als vollständige Responsive-Prüfung ausgewiesen.
 
 ## Freigabe
 
-Technische Prüfungen und nachvollziehbare Korrekturen sind vorhanden. Der Status lautet **zur Prüfung vorbereitet**, nicht vollständig visuell abgenommen oder bereits veröffentlicht. Eine Übernahme auf `main` veröffentlicht über Vercel und erfolgt erst nach Freigabe des konkreten Entwurfs und Klärung der offenen Abnahmepunkte.
+Der Nutzer hat am 21.09.2026 ausdrücklich die Veröffentlichung der vollständigen Website beauftragt. Technische Prüfungen und die dokumentierte Desktop-Prüfung sind erfolgreich abgeschlossen. Die Veröffentlichung erfolgt durch die Übernahme von PR #10 auf `main` und den anschließenden Vercel-Build. Der veröffentlichte Stand wird zusätzlich über die öffentliche Domain geprüft. Die oben genannten offenen Prüfungen bleiben bestehen und werden durch eine Veröffentlichung nicht automatisch als bestanden gewertet.

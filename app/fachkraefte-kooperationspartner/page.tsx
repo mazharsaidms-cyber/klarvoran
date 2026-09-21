@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
+import { Button } from "@/components/Button";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CertificateFacts } from "@/components/CertificateFacts";
@@ -9,12 +11,11 @@ import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 
-export const metadata: Metadata = {
-  title: "Für Institutionen & Kooperationspartner",
-  description:
-    "KlarVoran für Jobcenter, Agentur für Arbeit, soziale Einrichtungen, Bildungsträger, Kommunen und öffentliche Auftraggeber: Gutscheinabstimmung, Kooperation oder Auftrag.",
-  alternates: { canonical: "/fachkraefte-kooperationspartner" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Für Institutionen & Kooperationspartner",
+  "KlarVoran für Jobcenter, Agentur für Arbeit, soziale Einrichtungen, Bildungsträger, Kommunen und öffentliche Auftraggeber: Gutscheinabstimmung, Kooperation oder Auftrag.",
+  "/fachkraefte-kooperationspartner",
+);
 
 const audiences: InstitutionTarget[] = [
   {
@@ -47,7 +48,7 @@ export default function FachkraeftePage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }]} />
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.7fr]">
           <div>
             <Eyebrow tone="white">Für Institutionen & Kooperationspartner</Eyebrow>
@@ -58,6 +59,7 @@ export default function FachkraeftePage() {
               Wählen Sie den Bereich, der zu Ihrem Anliegen passt. Dort finden Sie die relevanten Angaben zu
               Zulassung, Durchführung, Kooperation, Dokumentation und Kontakt.
             </p>
+            <Button href="#anfrage" onDark className="mt-6">Kooperation anfragen</Button>
           </div>
           <ContextGraphic
             variant="cooperation"
@@ -68,7 +70,7 @@ export default function FachkraeftePage() {
       </Section>
 
       <Section tone="tint">
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="institution-grid grid gap-6 sm:grid-cols-2">
           {audiences.map((a) => (
             <InstitutionCard key={a.href} target={a} headingLevel={2} />
           ))}
@@ -82,7 +84,7 @@ export default function FachkraeftePage() {
           Zwei kompakte Faktenblätter für Ihre interne Abstimmung. Die eigene AVGS-Maßnahme und individuell
           vereinbarte Kooperationen sind bewusst getrennt dargestellt.
         </p>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="download-grid mt-8 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="jobcenter" />
           <InstitutionDownload kind="cooperation" />
         </div>
@@ -104,7 +106,7 @@ export default function FachkraeftePage() {
         </div>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Kooperationsanfrage</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Teilnahme abstimmen oder Kooperation anfragen</h2>

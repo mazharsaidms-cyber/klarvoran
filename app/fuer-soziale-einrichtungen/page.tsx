@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
+import { Button } from "@/components/Button";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, FactStat } from "@/components/Card";
@@ -9,19 +11,18 @@ import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 
-export const metadata: Metadata = {
-  title: "Für soziale Einrichtungen & Beratungsstellen",
-  description:
-    "KlarVoran unterstützt soziale Einrichtungen, Wohlfahrtsverbände, Jugendprojekte und Beratungsstellen mit arbeitsmarktbezogenen Coachings und Workshops im Rhein-Main-Gebiet.",
-  alternates: { canonical: "/fuer-soziale-einrichtungen" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Für soziale Einrichtungen & Beratungsstellen",
+  "KlarVoran unterstützt soziale Einrichtungen, Wohlfahrtsverbände, Jugendprojekte und Beratungsstellen mit arbeitsmarktbezogenen Coachings und Workshops im Rhein-Main-Gebiet.",
+  "/fuer-soziale-einrichtungen",
+);
 
 export default function FuerSozialeEinrichtungenPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-soziale-einrichtungen", label: "Soziale Einrichtungen" }]} />
 
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <Eyebrow tone="white">Für soziale Einrichtungen &amp; Beratungsstellen</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
           Ein externer Coaching-Partner für Ihre Klientinnen und Klienten
@@ -30,10 +31,11 @@ export default function FuerSozialeEinrichtungenPage() {
           KlarVoran ergänzt Ihre Arbeit mit individuellem Bewerbungscoaching und praxisnahen Gruppenformaten. Ziele,
           Zuständigkeiten und Rahmenbedingungen stimmen wir vorab klar mit Ihnen ab.
         </p>
+            <Button href="#anfrage" onDark className="mt-6">Kooperation besprechen</Button>
       </Section>
 
       <Section tone="tint">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value="1:1" label="Einzelcoaching" />
           <FactStat value="Workshops" label="Für Gruppen" />
           <FactStat value="AZAV" label="Zugelassener Träger" />
@@ -46,8 +48,9 @@ export default function FuerSozialeEinrichtungenPage() {
       </Section>
 
       {/* Trägerdaten: ausschließlich das Trägerzeichen, kein Maßnahmesiegel. */}
-      <Section tone="white" className="py-12 sm:py-14">
-        <Eyebrow>Trägerdaten im Überblick</Eyebrow>
+      <Section tone="white" spacing="compact">
+        <Eyebrow>Trägerdaten</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
         <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <CertificateSeal
             seal="traeger"
@@ -75,16 +78,22 @@ export default function FuerSozialeEinrichtungenPage() {
             <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
               Passend zum Bedarf Ihrer Klientinnen und Klienten
             </h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
+              Das Angebot richtet sich an Menschen, die beim Übergang in Arbeit oder Ausbildung Orientierung
+              und praktische Unterstützung brauchen – darunter Jugendliche und junge Erwachsene sowie Menschen
+              mit unterschiedlichen Bildungswegen und Migrationserfahrungen. Wir klären im Gespräch, welche
+              beruflichen Schritte zum individuellen Bedarf passen.
+            </p>
           </div>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Einzelcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Individuelles Bewerbungs- und Orientierungscoaching mit passendem AVGS oder im Rahmen einer
-              vereinbarten Projekt- beziehungsweise Budgetkooperation – siehe{" "}
-              <a href="/leistungen/einzelcoaching" className="underline underline-offset-4 hover:text-red-700">
-                1:1-Coaching
+              vereinbarten Projekt- beziehungsweise Budgetkooperation. Informationen zur geförderten Teilnahme:{" "}
+              <a href="/avgs" className="underline underline-offset-4 hover:text-red-700">
+                AVGS-Einzelcoaching
               </a>
               .
             </p>
@@ -119,7 +128,7 @@ export default function FuerSozialeEinrichtungenPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Zusammenarbeit</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Vermittlung und Weiterempfehlung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -163,7 +172,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </p>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Kontakt aufnehmen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">

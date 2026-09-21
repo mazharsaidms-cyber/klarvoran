@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Datenschutz",
-  description: "Datenschutzerklärung für KlarVoran – Mazhar Said gemäß DSGVO.",
-  alternates: { canonical: "/datenschutz" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Datenschutz",
+  "Datenschutzerklärung für KlarVoran – Mazhar Said gemäß DSGVO.",
+  "/datenschutz",
+);
 
 const linkClasses = "underline underline-offset-4 hover:text-red-700";
 
@@ -15,7 +16,7 @@ export default function DatenschutzPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/datenschutz", label: "Datenschutz" }]} />
-      <Section tone="white" className="pt-12">
+      <Section tone="white" spacing="hero">
         <Eyebrow>Datenschutz</Eyebrow>
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Datenschutzerklärung</h1>
 

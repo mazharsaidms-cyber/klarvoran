@@ -18,7 +18,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     // Dunkle Breadcrumb-Leiste: schließt optisch an den dunkelblauen Header an,
     // damit jede Seite mit dunklem Einstieg beginnt (Kundenvorgabe).
-    <nav aria-label="Breadcrumb" className="border-b border-white/10 bg-navy">
+    <nav aria-label="Seitenpfad" className="border-b border-white/10 bg-navy">
       <div className="mx-auto max-w-6xl px-5 py-3 sm:px-6 lg:px-8">
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/70">
           <li>
@@ -42,7 +42,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
           ))}
         </ol>
       </div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </nav>
   );
 }

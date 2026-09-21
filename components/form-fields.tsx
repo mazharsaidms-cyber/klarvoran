@@ -1,21 +1,25 @@
 import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { formLimits } from "@/lib/form-limits";
 
 const fieldClasses =
-  "w-full rounded-[var(--radius-sm)] border border-navy-100 bg-white px-4 py-2.5 text-navy placeholder:text-navy-600/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
+  "min-w-0 w-full rounded-[var(--radius-sm)] border border-navy-600/65 bg-white px-4 py-2.5 text-base text-navy placeholder:text-navy-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
 
 export function TextField({
   id,
   label,
   error,
   required,
+  className = "",
+  wrapperClassName = "",
   ...rest
 }: {
   id: string;
   label: string;
   error?: string;
+  wrapperClassName?: string;
 } & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <div>
+    <div className={`min-w-0 ${wrapperClassName}`}>
       <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-navy">
         {label} {required && <span aria-hidden="true" className="text-red">*</span>}
       </label>
@@ -25,7 +29,9 @@ export function TextField({
         required={required}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={fieldClasses}
+        maxLength={formLimits[id as keyof typeof formLimits]}
+        minLength={id === "name" ? 2 : undefined}
+        className={`${fieldClasses} ${className}`}
         {...rest}
       />
       {error && (
@@ -42,6 +48,7 @@ export function TextareaField({
   label,
   error,
   required,
+  className = "",
   ...rest
 }: {
   id: string;
@@ -60,7 +67,9 @@ export function TextareaField({
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-error` : undefined}
         rows={5}
-        className={fieldClasses}
+        maxLength={formLimits.message}
+        minLength={required ? 10 : undefined}
+        className={`${fieldClasses} ${className}`}
         {...rest}
       />
       {error && (
@@ -78,6 +87,7 @@ export function SelectField({
   error,
   required,
   children,
+  className = "",
   ...rest
 }: {
   id: string;
@@ -95,7 +105,7 @@ export function SelectField({
         required={required}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={fieldClasses}
+        className={`${fieldClasses} ${className}`}
         {...rest}
       >
         {children}
@@ -135,7 +145,7 @@ export function RadioGroupField({
         {options.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-2.5 rounded-[var(--radius-sm)] border border-navy-100 px-3.5 py-2.5 text-sm text-navy has-[:checked]:border-navy has-[:checked]:bg-navy-50 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy"
+            className="flex min-h-11 cursor-pointer items-start gap-2.5 rounded-[var(--radius-sm)] border border-navy-600/65 px-3.5 py-2.5 text-sm text-navy has-[:checked]:border-navy has-[:checked]:bg-navy-50 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy"
           >
             <input
               type="radio"
@@ -144,9 +154,9 @@ export function RadioGroupField({
               required={required}
               checked={value === opt.value}
               onChange={() => onChange?.(opt.value)}
-              className="h-4 w-4 accent-red"
+              className="mt-0.5 h-4 w-4 shrink-0 accent-btn-red"
             />
-            {opt.label}
+            <span className="min-w-0">{opt.label}</span>
           </label>
         ))}
       </div>

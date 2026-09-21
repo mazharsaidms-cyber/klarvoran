@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { Button } from "@/components/Button";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Card } from "@/components/Card";
+import { Card, FactStat } from "@/components/Card";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { AvgsSchnellcheck } from "@/components/AvgsSchnellcheck";
 import { FaqStructuredData } from "@/components/StructuredData";
@@ -65,10 +66,10 @@ export default function AvgsPage() {
       <Breadcrumbs items={[{ href: "/avgs", label: "AVGS" }]} />
 
       {/* Dunkelblauer Einstieg. */}
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <Eyebrow tone="white">AVGS &amp; AZAV</Eyebrow>
+            <Eyebrow tone="white">Coaching mit Förderung</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
               Job- und Bewerbungscoaching mit AVGS
             </h1>
@@ -78,10 +79,15 @@ export default function AvgsPage() {
               Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
               weiterzuführen.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href="/termin" onDark>Erstgespräch anfragen</Button>
+              <Button href="#schnellcheck" onDark variant="secondary">AVGS-Schnellcheck</Button>
+            </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
               Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
               {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Frankfurt, Hofheim und den
-              Main-Taunus-Kreis. Alternativ online oder hybrid. Termine nach vorheriger Bestätigung.
+              Main-Taunus-Kreis. Alternativ online oder im Wechsel zwischen Online- und Präsenzterminen (hybrid).
+              Termine nach vorheriger Bestätigung.
             </p>
           </div>
           <ContextGraphic
@@ -92,26 +98,28 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      {/* Der kurze Schnellcheck steht direkt nach dem Einstieg, damit
-          Interessierte ohne Umweg eine erste Orientierung erhalten. */}
-      <Section tone="navy" id="schnellcheck">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">AVGS-Schnellcheck</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
-          <p className="mt-3 text-white/80">
-            Drei kurze Schritte für eine erste, unverbindliche Einschätzung – keine Anspruchszusage, sondern
-            Orientierung für dein Gespräch mit uns.
-          </p>
+      <Section tone="tint" spacing="compact">
+        <h2 className="sr-only">Das AVGS-Coaching auf einen Blick</h2>
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <FactStat value="1:1" label="Du und dein Coach" />
+          <FactStat value={`${totalUe} UE`} label="Eine Einheit dauert 45 Minuten" />
+          <FactStat value="8 Wochen" label="In der Regel zwei Termine pro Woche" />
+          <FactStat value="0 €" label="Mit passendem, bewilligtem AVGS" />
         </div>
-        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <AvgsSchnellcheck />
+        <p className="mt-5 max-w-2xl text-sm leading-relaxed text-navy-600">
+          Du brauchst noch keinen Gutschein, um uns anzusprechen. Vor dem Coaching klären wir mit dir,
+          ob dein Gutschein passt und die Teilnahme bewilligt ist.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+          <Button href="#inhalte" variant="text">Coachinginhalte ansehen →</Button>
+          <Button href="#ablauf" variant="text">Ablauf kennenlernen →</Button>
         </div>
       </Section>
 
       <Section tone="tint">
         <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-6 sm:grid-cols-2">
           <Card>
             <h3 className="text-lg font-bold text-navy">Wenn dir Orientierung oder Struktur fehlt</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -172,9 +180,23 @@ export default function AvgsPage() {
         <div className="mt-8"><VisualSteps steps={guideSteps} /></div>
       </Section>
 
+      <Section tone="navy" id="schnellcheck">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="white">AVGS-Schnellcheck</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
+          <p className="mt-3 text-white/80">
+            Drei kurze Schritte für eine erste, unverbindliche Einschätzung – keine Anspruchszusage, sondern
+            Orientierung für dein Gespräch mit uns.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
+          <AvgsSchnellcheck />
+        </div>
+      </Section>
+
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt
           die Seite für Teilnehmende verständlich und zugleich transparent. */}
-      <Section tone="white" className="py-12 sm:py-14">
+      <Section tone="white" spacing="compact">
         <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zugelassenes Coaching – transparent nachgewiesen</h2>
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">

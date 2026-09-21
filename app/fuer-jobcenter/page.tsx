@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, FactStat } from "@/components/Card";
@@ -12,19 +13,18 @@ import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
-export const metadata: Metadata = {
-  title: "Für Jobcenter & Agentur für Arbeit",
-  description:
-    "AVGS-Coaching nach § 45 SGB III bei KlarVoran: zugelassene Maßnahme, Zielgruppe, Ablauf, Zulassungsdaten und Ansprechpartner für Vermittlungsfachkräfte.",
-  alternates: { canonical: "/fuer-jobcenter" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Für Jobcenter & Agentur für Arbeit",
+  "AVGS-Coaching nach § 45 SGB III bei KlarVoran: zugelassene Maßnahme, Zielgruppe, Ablauf, Zulassungsdaten und Ansprechpartner für Vermittlungsfachkräfte.",
+  "/fuer-jobcenter",
+);
 
 export default function FuerJobcenterPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-jobcenter", label: "Jobcenter & Agentur für Arbeit" }]} />
 
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Für Jobcenter & Agentur für Arbeit</Eyebrow>
@@ -36,6 +36,7 @@ export default function FuerJobcenterPage() {
               zur Durchführung und zu den vorhandenen Zulassungsnachweisen – kompakt für die Prüfung eines Gutscheins
               und der individuellen Passung.
             </p>
+            <Button href="#anfrage" onDark className="mt-6">Teilnahme abstimmen</Button>
           </div>
           <ContextGraphic
             variant="application"
@@ -53,7 +54,7 @@ export default function FuerJobcenterPage() {
         <div className="mt-6 max-w-2xl">
           <InstitutionDownload kind="jobcenter" />
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value={`${totalUe} UE`} label="à 45 Minuten" />
           <FactStat value="8 Wochen" label="Maximale Laufzeit" />
           <FactStat value="1:1" label="Einzelcoaching" />
@@ -122,7 +123,16 @@ export default function FuerJobcenterPage() {
             </p>
           </Card>
         </div>
-        <div className="mt-8 overflow-x-auto rounded-[var(--radius-md)] border border-navy-100">
+        <ol className="mt-8 divide-y divide-navy-100 rounded-[var(--radius-md)] border border-navy-100 bg-white sm:hidden">
+          {coachingModules.map((module) => (
+            <li key={module.id} className="p-5">
+              <p className="font-mono text-xs font-semibold text-red-700">Modul {module.id} · {module.ue} UE</p>
+              <h3 className="mt-2 font-semibold text-navy">{module.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">{module.institutionOutcome}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-8 hidden sm:block rounded-[var(--radius-md)] border border-navy-100">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm">
             <thead>
               <tr className="bg-navy-50 text-navy">
@@ -183,7 +193,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Gutscheinabstimmung oder Rückfrage</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Passung klären oder Rückfrage stellen</h2>

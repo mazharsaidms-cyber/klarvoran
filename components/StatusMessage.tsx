@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import type { ActionState } from "@/lib/server/action-state";
 
 const toneClasses: Record<ActionState["status"], string> = {
@@ -9,13 +12,19 @@ const toneClasses: Record<ActionState["status"], string> = {
 };
 
 export function StatusMessage({ state }: { state: ActionState }) {
+  const messageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (state.status !== "idle" && !state.fieldErrors) messageRef.current?.focus();
+  }, [state]);
   if (state.status === "idle") return null;
   const isError = state.status === "error" || state.status === "rate-limited";
   return (
     <div
+      ref={messageRef}
+      tabIndex={-1}
       role={isError ? "alert" : "status"}
       aria-live={isError ? "assertive" : "polite"}
-      className={`rounded-[var(--radius-md)] border px-4 py-3 text-sm leading-relaxed ${toneClasses[state.status]}`}
+      className={`rounded-[var(--radius-md)] border px-4 py-3 text-sm leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy ${toneClasses[state.status]}`}
     >
       {state.message}
     </div>

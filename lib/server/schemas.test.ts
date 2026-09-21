@@ -97,3 +97,17 @@ test("avgsCheckSchema: gültige Eingabe (happy path) wird akzeptiert", () => {
   });
   assert.equal(result.success, true);
 });
+
+
+test("contactSchema: rejects header control characters but accepts human names", () => {
+  const base = { email: "test@example.com", message: "Bitte senden Sie mir Informationen zum Coaching." };
+  assert.equal(contactSchema.safeParse({ ...base, name: "Anna-Marie O’Connor" }).success, true);
+  assert.equal(contactSchema.safeParse({ ...base, name: "Name\r\nBcc: other@example.com" }).success, false);
+});
+
+test("contactSchema: bounded input and multiline messages", () => {
+  const base = { name: "Test Person", email: "test@example.com" };
+  assert.equal(contactSchema.safeParse({ ...base, message: "Guten Tag,\nbitte kontaktieren Sie mich zum Coaching." }).success, true);
+  assert.equal(contactSchema.safeParse({ ...base, message: "a".repeat(4001) }).success, false);
+  assert.equal(contactSchema.safeParse({ ...base, name: "a".repeat(121), message: "Frage zum Coaching" }).success, false);
+});

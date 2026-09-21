@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
-import { CtaSection } from "@/components/CtaSection";
+import { ContactForm } from "@/components/ContactForm";
+import { Button } from "@/components/Button";
 import { VisualIcon } from "@/components/VisualIcon";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
-export const metadata: Metadata = {
-  title: "Workshops für Bewerbung und berufliche Orientierung",
-  description:
-    "Praxisnahe Workshops und Gruppenformate von KlarVoran zu Bewerbung, beruflicher Orientierung und digitaler Kompetenz – für Einrichtungen, Bildungsträger und Unternehmen.",
-  alternates: { canonical: "/leistungen/workshops" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Workshops für Bewerbung und berufliche Orientierung",
+  "Praxisnahe Workshops und Gruppenformate von KlarVoran zu Bewerbung, beruflicher Orientierung und digitaler Kompetenz – für Einrichtungen, Bildungsträger und Unternehmen.",
+  "/leistungen/workshops",
+);
 
 const themen = [
   {
@@ -74,7 +75,7 @@ export default function WorkshopsPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/workshops", label: "Workshops & Gruppenformate" }]} />
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Workshops &amp; Gruppenformate</Eyebrow>
@@ -86,13 +87,14 @@ export default function WorkshopsPage() {
               Orientierung und digitale Kompetenz – auf Ihre Zielgruppe, Ihre Ziele und den verfügbaren Zeitrahmen
               abgestimmt.
             </p>
+            <Button href="#anfrage" onDark className="mt-6">Workshop anfragen</Button>
           </div>
           <Image
             src="/images/team/whiteboard-erklaerung.jpg"
             alt="Mazhar Said erklärt einer kleinen Gruppe einen Ablauf am Whiteboard"
             width={2000}
             height={848}
-            sizes="(min-width: 1024px) 46vw, 100vw"
+            sizes="(min-width: 1152px) 500px, (min-width: 1024px) 46vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
             className="w-full rounded-[var(--radius-lg)] border border-white/15"
           />
         </div>
@@ -101,7 +103,7 @@ export default function WorkshopsPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Themen</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Woran wir mit Gruppen arbeiten</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           {themen.map((t) => (
             <Card key={t.title}>
               <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
@@ -132,7 +134,7 @@ export default function WorkshopsPage() {
       <Section tone="tint">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-3">
           {formats.map((f) => (
             <Card key={f.title}>
               <h3 className="font-semibold text-navy">{f.title}</h3>
@@ -158,15 +160,19 @@ export default function WorkshopsPage() {
         </div>
       </Section>
 
-      <CtaSection
-        eyebrow="Für Einrichtungen & Unternehmen"
-        title="Workshop für Ihre Gruppe anfragen"
-        description="Schreiben Sie uns Zielgruppe, Thema und gewünschten Zeitraum – wir melden uns mit einem passenden Vorschlag zurück."
-        primaryLabel="Workshop anfragen"
-        primaryHref="/kontakt"
-        secondaryLabel="Für Institutionen"
-        secondaryHref="/fachkraefte-kooperationspartner"
-      />
+      <Section tone="navy" id="anfrage">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="white">Für Einrichtungen &amp; Unternehmen</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Workshop für Ihre Gruppe anfragen</h2>
+          <p className="mt-4 text-white/80">
+            Nennen Sie uns Zielgruppe, Thema und gewünschten Zeitraum. Wir melden uns in der Regel
+            innerhalb von 1–2 Werktagen, um die passenden Inhalte und den Umfang abzustimmen.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+          <ContactForm formal defaultRequestType="workshop" />
+        </div>
+      </Section>
     </>
   );
 }

@@ -1,6 +1,8 @@
 # KlarVoran — Website
 
-Produktionsreife Website für **KlarVoran – Mazhar Said** (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
+Website für **KlarVoran – Mazhar Said** (AZAV-zugelassener Bildungsträger, Frankfurt am Main). Next.js 16 (App Router) · TypeScript · Tailwind CSS v4.
+
+Prüfumfang, Korrekturen und offene Abnahmepunkte stehen im [Website-Audit vom 21.09.2026](docs/website-audit-2026-09-21.md).
 
 ## Setup
 
@@ -21,7 +23,7 @@ Siehe [`./.env.example`](./.env.example) für alle Variablen mit Erklärung. Kur
 | `NEXT_PUBLIC_SITE_URL` | Kanonische Domain (SEO, Sitemap, OG) | Fällt auf `https://www.klarvoran.de` zurück (bestätigte Produktions-Domain) |
 | `NEXT_PUBLIC_PHONE_DISPLAY`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Kontaktangaben (Header, Footer, Kontaktseite) | Fällt auf die bestätigten KlarVoran-Kontaktdaten zurück |
 | `NEXT_PUBLIC_BOOKING_URL` | Externe Kalender-Buchungsseite auf `/termin` | Es wird ausschließlich das Terminanfrage-Formular angezeigt |
-| `RESEND_API_KEY` **oder** `FORM_WEBHOOK_URL` | Tatsächlicher Versand der drei Formulare (Kontakt, Termin, AVGS-Schnellcheck) | In Development: Anfragen werden in die Server-Konsole geloggt (klar als Development gekennzeichnet). In Production: Formulare melden ehrlich "aktuell nicht übermittelbar" und verweisen auf Telefon/E-Mail/WhatsApp — es wird nie ein Erfolg vorgetäuscht. |
+| `RESEND_API_KEY` **oder** `FORM_WEBHOOK_URL` | Tatsächlicher Versand der drei Formulare (Kontakt, Termin, AVGS-Schnellcheck) | In Development: datensparsamer Hinweis ohne Anfrageinhalte; kein echter Versand. In Production: Formulare melden "aktuell nicht übermittelbar" und verweisen auf Telefon/E-Mail/WhatsApp. |
 
 ## Checks
 
@@ -30,9 +32,12 @@ npm run lint        # ESLint (Next Core Web Vitals + TypeScript)
 npx tsc --noEmit     # TypeScript-Typecheck
 npm test             # Unit-Tests (AVGS-Logik, Formular-Validierung und Rate-Limit)
 npm run build        # Produktions-Build, alle Seiten statisch vorgerendert
+npm run test:site-build          # Seitenstruktur, Metadaten, Links, Bilder und Formularlabels
+npm run test:seo-downloads:local # Lokale SEO-Angaben und PDF-Antworten des Builds
+npm run test:http-security      # HTTP-Header, Server Actions und Fehlerszenarien
 ```
 
-Alle vier Checks sind aktuell grün.
+Diese Checks wurden am 21.09.2026 erfolgreich ausgeführt. Sie ersetzen keine vollständige visuelle Prüfung, keine Feldmessung der Core Web Vitals und keinen Test der tatsächlichen E-Mail-Zustellung. Der HTTP-Sicherheitstest startet einen eigenen lokalen Produktionsserver und deaktiviert dessen Versanddienste ausdrücklich.
 
 ## Architektur
 
@@ -40,12 +45,12 @@ Alle vier Checks sind aktuell grün.
 - **`lib/content/*`** — Inhalte (Module, Ablaufschritte, FAQ, Coach-Profil) getrennt von der Darstellung.
 - **`lib/avgs-logic.ts`** — reine, testbare Entscheidungslogik für den AVGS-Schnellcheck (keine Anspruchszusage, nur Orientierung).
 - **`lib/server/*`** — Validierung (Zod), Rate-Limiting-Schnittstelle, Lead-Versand-Adapter (Resend/Webhook/Dev-Fallback).
-- **`app/*/actions.ts`** — Next.js Server Actions je Formular. Formulare funktionieren dadurch auch ohne JavaScript (Progressive Enhancement) und werden bei vorhandenem JavaScript um Lade-/Erfolgs-/Fehlerzustände ergänzt.
+- **`app/*/actions.ts`** — Next.js Server Actions je Formular. Die Formulare nutzen JavaScript und gemeinsame Lade-/Erfolgs-/Fehlerzustände über `useLeadForm`. Ohne JavaScript zeigen sie Telefon und E-Mail als Kontaktmöglichkeiten an.
 - **`components/*`** — wiederverwendbare UI-Bausteine (Header, Footer, Buttons, Karten, Stepper, Formularfelder, AVGS-Schnellcheck, FAQ-Accordion u. a.).
 
 ## Design-System
 
-Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Rot (`--color-red` `#ec1c23`) ausschließlich als Button-/Badge-Hintergrund und für Icons/große fette Akzente, **niemals als Fließtextfarbe** (Kontrast auf Weiß ~4.4:1, unter der WCAG-AA-Schwelle von 4.5:1). Für rote Textakzente (aktiver Nav-Link, Badge-Beschriftung, Hover-Zustände) gilt `--color-red-700` (`#a51116`, ~7.8:1 Kontrast). Radien in vier Stufen (`--radius-sm/md/lg/full`). Schrift: Manrope (Headlines/Fließtext), JetBrains Mono ausschließlich für Kennzahlen/Zertifikatsnummern.
+Tokens in `app/globals.css`: Navy `#1b222e` (dominant), Markenrot `#ec1c23` für dekorative Akzente. Buttons verwenden `--color-btn-red` (`#c5161d`, Weiß darauf ~5.99:1). Für rote Textakzente auf hellen Flächen gilt `--color-red-700` (`#a51116`). Karten-Schatten sind als Tailwind-Theme-Tokens registriert. Verwandte Karten teilen sich ab 640 px ihre Inhaltszeilen über CSS Subgrid; ihre Höhe bleibt inhaltsabhängig. Radien in vier Stufen (`--radius-sm/md/lg/full`). Schrift: Manrope (Headlines/Fließtext), JetBrains Mono ausschließlich für Kennzahlen/Zertifikatsnummern.
 
 ## Deployment
 
@@ -73,7 +78,7 @@ werden bytegenau mit den visuell geprüften Dateien verglichen. Für einen Live-
 - **Produktion:** [www.klarvoran.de](https://www.klarvoran.de) (Vercel, Team `klar-voran`).
 - **Vorschau-URLs:** Projektspezifische `*.vercel.app`-Aliase bleiben zusätzlich aktiv.
 
-## Launch-Audit (durchgeführt)
+## Frühere Korrekturen
 
 Vor der Kundenübergabe wurde die Seite gegen neun Prüf-Linsen (Content, UX, SEO, Performance, Barrierefreiheit, Responsive, Architektur, Recht, Gesamteindruck) auditiert. Gefundene und behobene Probleme:
 
@@ -85,9 +90,7 @@ Vor der Kundenübergabe wurde die Seite gegen neun Prüf-Linsen (Content, UX, SE
 | Fehlende Security-Header (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) | `next.config.ts` | Baseline-Header ergänzt, `X-Powered-By` deaktiviert |
 | Domain in Metadaten/Sitemap zeigte auf einen Platzhalter | `lib/site-config.ts` | Auf die bestätigte Produktions-Domain `www.klarvoran.de` umgestellt |
 
-Nicht gefunden (positiv geprüft): erfundene Fakten/Testimonials/Zahlen, defekte interne Links, fehlende/doppelte Überschriftenebenen, offene `npm audit`-Schwachstellen, zu kleine Touch-Targets bei primären CTAs (56px), fehlende Alt-Texte bei bedeutungstragenden Bildern.
-
-**Nicht automatisiert geprüft** (kein CI/Lighthouse/axe-core-Setup in diesem Projekt): Feld-Performance-Daten (CrUX), automatisierter Screenreader-Durchlauf, Cross-Browser-Test außerhalb von Chromium. Manuell stichprobenartig verifiziert stattdessen: Kontrastwerte, Tastaturfokus, Konsolenausgabe, Response-Header — alle unauffällig.
+Die aktuelle Testabdeckung und ihre Grenzen sind im oben verlinkten Audit dokumentiert. Frühere Stichproben gelten nicht als vollständige Abnahme neuer Änderungen.
 
 ## Extern zu überwachen
 

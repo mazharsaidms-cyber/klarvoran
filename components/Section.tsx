@@ -15,15 +15,22 @@ export function Section({
   tone = "white",
   id,
   containerClassName = "",
+  spacing = "default",
 }: {
   children: ReactNode;
   className?: string;
   tone?: Tone;
   id?: string;
   containerClassName?: string;
+  spacing?: "default" | "compact" | "hero";
 }) {
+  const spacingClasses = {
+    default: "py-16 sm:py-20 lg:py-24",
+    compact: "py-10 sm:py-12 lg:py-14",
+    hero: "pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24",
+  };
   return (
-    <section id={id} className={`${toneClasses[tone]} py-16 sm:py-20 lg:py-24 ${className}`}>
+    <section id={id} className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}>
       <Container className={containerClassName}>{children}</Container>
     </section>
   );

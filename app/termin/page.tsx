@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AppointmentForm } from "@/components/AppointmentForm";
 import { Button } from "@/components/Button";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Termin & Erstgespräch",
-  description: "Frage dein kostenloses, unverbindliches Erstgespräch bei KlarVoran online, per Formular oder telefonisch an.",
-  alternates: { canonical: "/termin" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Termin & Erstgespräch",
+  "Frage dein kostenloses, unverbindliches Erstgespräch bei KlarVoran online, per Formular oder telefonisch an.",
+  "/termin",
+);
 
 export default function TerminPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/termin", label: "Termin" }]} />
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <Eyebrow tone="white">Kostenloses Erstgespräch</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Kostenloses Erstgespräch anfragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">

@@ -68,7 +68,7 @@ export const leistungen: Leistung[] = [
       "Gutscheinabstimmung, Kooperation oder Unterauftrag: passende Informationen für Vermittlungsfachkräfte, soziale Einrichtungen und Bildungsträger.",
     bullets: [
       "Zulassungsdaten und Nachweise auf einen Blick",
-      "Eigene Seite je Zielgruppe",
+      "Klare Durchführung und Dokumentation",
       "Direkter Kontakt für Kooperationsanfragen",
     ],
     price: "",

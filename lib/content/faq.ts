@@ -32,7 +32,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Findet das Coaching online oder in Präsenz statt?",
     answer:
-      "Beides ist möglich – Präsenztermine finden nach Terminbestätigung in der Taunusstraße 52, 65830 Kriftel statt, alternativ online oder hybrid. Hausbesuche bieten wir nicht an.",
+      "Beides ist möglich – Präsenztermine finden nach Terminbestätigung in der Taunusstraße 52, 65830 Kriftel statt, alternativ vollständig online oder im Wechsel zwischen Online- und Präsenzterminen (hybrid). Hausbesuche bieten wir nicht an.",
   },
   {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",

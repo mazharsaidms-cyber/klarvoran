@@ -74,8 +74,8 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
       status: "dev-success",
       message:
         formal
-          ? "Development-Modus: Kein E-Mail-Dienst konfiguriert. Ihre Anfrage wurde in der Server-Konsole protokolliert, nicht wirklich versendet."
-          : "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Anfrage wurde in der Server-Konsole protokolliert, nicht wirklich versendet.",
+          ? "Development-Modus: Kein E-Mail-Dienst konfiguriert. Ihre Anfrage wurde nicht versendet."
+          : "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Anfrage wurde nicht versendet.",
     };
   }
 

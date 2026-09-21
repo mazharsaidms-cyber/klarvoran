@@ -12,7 +12,6 @@ export function CoachProfile() {
           height={781}
           sizes="(min-width: 1024px) 320px, 256px"
           className="aspect-[4/5] w-full rounded-[var(--radius-lg)] object-cover object-[42%_center]"
-          priority
         />
       </div>
 

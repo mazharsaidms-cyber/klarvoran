@@ -10,6 +10,7 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
+import { VisualIcon } from "@/components/VisualIcon";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -91,7 +92,8 @@ export default function HomePage() {
           <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
             <h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl">
-              Klar sehen. Selbstständig handeln. Beruflich vorankommen.
+              <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
+              <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
               KlarVoran hilft dir, berufliche Ziele zu klären, Bewerbungen überzeugend umzusetzen und Anforderungen
@@ -143,6 +145,9 @@ export default function HomePage() {
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
           <Card>
+            <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
+              <VisualIcon name="orientation" />
+            </span>
             <h3 className="font-semibold text-navy">Ausgangslage ordnen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Wir halten fest, was bereits gelingt, was dich gerade bremst und welches berufliche Ziel realistisch
@@ -150,6 +155,9 @@ export default function HomePage() {
             </p>
           </Card>
           <Card>
+            <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
+              <VisualIcon name="system" />
+            </span>
             <h3 className="font-semibold text-navy">Anforderungen verstehen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Erwartungen von Arbeitgebern, Jobcenter und digitalen Bewerbungswegen werden in klare Schritte
@@ -157,6 +165,9 @@ export default function HomePage() {
             </p>
           </Card>
           <Card>
+            <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
+              <VisualIcon name="action" />
+            </span>
             <h3 className="font-semibold text-navy">Ins Handeln kommen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Wir besprechen nicht nur, was zu tun ist. Der erste passende Schritt wird praktisch umgesetzt und
@@ -198,7 +209,7 @@ export default function HomePage() {
           {methodSteps.map((step, i) => (
             <li
               key={step.title}
-              className="flex flex-col gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card"
+              className="flex flex-col gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card transition-[border-color,box-shadow] duration-200 hover:border-red/30 hover:shadow-card-hover motion-reduce:transition-none"
             >
               <span className="text-btn-red" aria-hidden="true">
                 {step.icon}

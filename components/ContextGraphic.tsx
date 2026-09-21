@@ -80,7 +80,7 @@ function CooperationGraphic() {
 export function ContextGraphic({ variant, title, className = "" }: ContextGraphicProps) {
   return (
     <div
-      className={`overflow-hidden rounded-[var(--radius-lg)] border border-white/15 bg-navy-700 ${className}`}
+      className={`context-graphic overflow-hidden rounded-[var(--radius-lg)] border border-white/15 bg-navy-700 ${className}`}
     >
       <svg
         viewBox="0 0 640 440"
@@ -91,10 +91,12 @@ export function ContextGraphic({ variant, title, className = "" }: ContextGraphi
       >
         <rect width="640" height="440" fill="#2d3543" />
         <path d="M0 402h640" stroke="#454e5f" strokeWidth="2" />
-        {variant === "application" && <ApplicationGraphic />}
-        {variant === "conversation" && <ConversationGraphic />}
-        {variant === "workshop" && <WorkshopGraphic />}
-        {variant === "cooperation" && <CooperationGraphic />}
+        <g className="context-graphic-content">
+          {variant === "application" && <ApplicationGraphic />}
+          {variant === "conversation" && <ConversationGraphic />}
+          {variant === "workshop" && <WorkshopGraphic />}
+          {variant === "cooperation" && <CooperationGraphic />}
+        </g>
       </svg>
     </div>
   );

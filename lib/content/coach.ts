@@ -8,24 +8,24 @@ export const coachQualifications = [
 
 export const coachExperience = [
   {
-    role: "Freiberuflicher Dozent – Bewerbungsmanagement & Jobcoaching",
+    role: "Dozent – Bewerbungsmanagement & Jobcoaching",
     org: "Bildungswerk der Hessischen Wirtschaft e. V. (BWHW)",
-    period: "seit 11/2025",
+    period: "seit 2026",
   },
   {
-    role: "Freiberuflicher Dozent – Bewerbungsmanagement & Jobcoaching",
+    role: "Jobcoach in einer berufsvorbereitenden Bildungsmaßnahme",
     org: "Zentrum für Weiterbildung gGmbH (ZfW)",
-    period: "2026",
+    period: "2025",
   },
   {
     role: "Teilhabe- und Schulassistenz (Inklusionshilfe)",
     org: "ProHilfe GbR",
-    period: "2025",
+    period: "2024",
   },
   {
     role: "Immobilienberater",
     org: "Engel & Völkers",
-    period: "2022",
+    period: "2023",
   },
   {
     role: "Ausbildung zum Rechtsanwalts- und Notarfachangestellten",

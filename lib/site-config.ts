@@ -48,7 +48,7 @@ export const siteConfig = {
   contact: {
     phoneDisplay,
     phoneHref: `tel:${phoneNumber}`,
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@klarvoran.de",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || process.env.NEXT_PUBLIC_EMAIL?.trim() || "info@klarvoran.de",
     whatsappNumber,
     whatsappHref: (message?: string) =>
       `https://wa.me/${whatsappNumber}${message ? `?text=${encodeURIComponent(message)}` : ""}`,

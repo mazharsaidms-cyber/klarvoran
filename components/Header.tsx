@@ -52,16 +52,17 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
+          className="flex min-h-11 items-center gap-2.5 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
         >
           <Image
             src={siteConfig.images.badge}
             alt=""
             width={40}
             height={40}
+            loading="eager"
             className="h-10 w-10 rounded-full bg-white p-0.5"
           />
-          <Logo tone="dark" className="h-6 w-auto sm:h-7" />
+          <Logo tone="dark" loading="eager" className="h-6 w-auto sm:h-7" />
         </Link>
 
         <div className="hidden lg:block">

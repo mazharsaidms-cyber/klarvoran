@@ -1,0 +1,1016 @@
+{
+  "scope": "16 pages, seven Chromium iframe CSS viewports; not physical devices",
+  "height": 900,
+  "qaCommit": "ba08b49f5dfa7b707a53a9d848bd6cc3c39890f2",
+  "ignored": "Source-confirmed aria-hidden, clipped honeypot fields at left:-9999px",
+  "results": [
+    {
+      "path": "/",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/avgs",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/einzelcoaching",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/leistungen/workshops",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fachkraefte-kooperationspartner",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-jobcenter",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-bildungstraeger",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-soziale-einrichtungen",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/fuer-kommunen",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/ueber-uns",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/faq",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/kontakt",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/termin",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/impressum",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 1440,
+      "contentWidth": 1425,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 1280,
+      "contentWidth": 1265,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 1024,
+      "contentWidth": 1009,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 768,
+      "contentWidth": 753,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 430,
+      "contentWidth": 415,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 390,
+      "contentWidth": 375,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    },
+    {
+      "path": "/datenschutz",
+      "viewport": 360,
+      "contentWidth": 345,
+      "visibleOverflow": [],
+      "headingOverflow": [],
+      "avgsVisible": true,
+      "headerTargetMinHeight": 44
+    }
+  ]
+}

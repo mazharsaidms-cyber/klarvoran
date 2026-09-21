@@ -9,11 +9,13 @@ import Image from "next/image";
 export function Logo({
   tone = "light",
   className = "h-7 w-auto",
+  loading = "lazy",
 }: {
   tone?: "light" | "dark";
   className?: string;
+  loading?: "eager" | "lazy";
 }) {
   const src =
     tone === "dark" ? "/images/klarvoran-logo-white.png" : "/images/klarvoran-logo.png";
-  return <Image src={src} alt="KlarVoran" width={148} height={32} className={className} />;
+  return <Image src={src} alt="KlarVoran" width={148} height={32} loading={loading} className={className} />;
 }

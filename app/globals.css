@@ -20,8 +20,8 @@
   --radius-lg: 20px;
   --radius-full: 999px;
 
-  --shadow-card: 0 1px 2px rgba(27, 34, 46, 0.04), 0 8px 24px -12px rgba(27, 34, 46, 0.16);
-  --shadow-card-hover: 0 4px 8px rgba(27, 34, 46, 0.06), 0 16px 32px -12px rgba(27, 34, 46, 0.22);
+  --elevation-card: 0 1px 2px rgba(27, 34, 46, 0.04), 0 8px 24px -12px rgba(27, 34, 46, 0.16);
+  --elevation-card-hover: 0 4px 8px rgba(27, 34, 46, 0.06), 0 16px 32px -12px rgba(27, 34, 46, 0.22);
 
   --background: #ffffff;
   --foreground: #1b222e;
@@ -44,6 +44,9 @@
 
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-mono-num);
+
+  --shadow-card: var(--elevation-card);
+  --shadow-card-hover: var(--elevation-card-hover);
 }
 
 body {

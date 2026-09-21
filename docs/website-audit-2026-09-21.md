@@ -142,3 +142,26 @@ Die sieben Breiten wurden über die oben dokumentierte isolierte Frame-Prüfansi
 ## Freigabe
 
 Der Nutzer hat am 21.09.2026 ausdrücklich die Veröffentlichung der vollständigen Website beauftragt. Technische Prüfungen und die dokumentierte Desktop-Prüfung sind erfolgreich abgeschlossen. PR #10 wurde auf `main` veröffentlicht. Der Nutzerauftrag umfasst ebenso die hier dokumentierten Folgeänderungen aus PR #11. Der veröffentlichte Stand wird zusätzlich über die öffentliche Domain geprüft. Die oben genannten offenen Prüfungen bleiben bestehen und werden durch eine Veröffentlichung nicht automatisch als bestanden gewertet.
+
+
+## Nachkontrolle der Veröffentlichung von PR #11
+
+PR #11 wurde am 21.09.2026 als Commit `1daa54cfce8f468c94c73111fc547a382c4f2a97` auf `main` übernommen. Vercel meldet den Produktions-Build als erfolgreich. Menüleiste, eigener AVGS-Menüpunkt und Scroll-Reveal-Elemente sind unter `https://www.klarvoran.de/` vorhanden. Der AVGS-Link öffnet die bestehende Seite und markiert ausschließlich AVGS als aktiv. Die isolierte QA-Adresse liefert öffentlich die Nicht-gefunden-Seite. In der erfassten öffentlichen Anwendungskonsole wurden keine Website-Warnungen oder -Fehler gefunden; Meldungen einer Browsererweiterung sind davon getrennt.
+
+Die [erneute Startseitenmessung nach Veröffentlichung](https://pagespeed.web.dev/analysis/https-www-klarvoran-de/5it7wwa693?form_factor=mobile) ergibt:
+
+| Laborprofil | Performance | Barrierefreiheit / Best Practices / SEO | LCP | CLS | TBT |
+|---|---:|---|---:|---:|---:|
+| Mobil | 100 | 100 / 100 / 100 | 1,7 s | 0,001 | 30 ms |
+| Desktop | 100 | 100 / 100 / 100 | 0,5 s | 0 | 0 ms (gerundet) |
+
+Auch in der Nachmessung fehlen CrUX-Felddaten. Dies sind einzelne Laborläufe, keine Garantie für jedes Gerät oder jeden Besuch.
+
+**Versandursache eingegrenzt:** Der erneute öffentliche Kontaktformular-Test `KV-20260921-K02` um 20:26 UTC schlug ebenfalls fehl. Das neue Vercel-Serverprotokoll meldet ausdrücklich: „Lead-Versand nicht konfiguriert: RESEND_API_KEY oder FORM_WEBHOOK_URL fehlt.“ Der Fehler tritt damit vor einem Resend-API-Aufruf auf. Die Produktionsfunktion erhält keinen nichtleeren Resend-Schlüssel und keinen nutzbaren Webhook. Vorhandene Variablennamen im Einstellungsbildschirm belegen keine wirksamen Werte zur Laufzeit.
+
+Für die Behebung muss die tatsächliche Versandkonfiguration über den noch ausstehenden Resend-Zugang eingerichtet und anschließend erneut ausgerollt werden. Schlüssel gehören ausschließlich in die geschützte Serverkonfiguration. Erst danach sind Annahme durch den Versanddienst und tatsächlicher Eingang für Kontakt-, Termin- und Schnellcheck-Anfragen prüfbar. Bis dahin bleiben direkte Telefon-, E-Mail- und WhatsApp-Kontakte verfügbar; die Formulare zeigen weiterhin einen ehrlichen Fehler.
+
+
+Die zusätzlich geprüfte AVGS-Seite zeigte im [ersten mobilen Lauf](https://pagespeed.web.dev/analysis/https-www-klarvoran-de-avgs/b8u2uwhqb3?form_factor=mobile) 78 Performance-Punkte bei 2,0 s LCP, CLS 0 und 950 ms TBT. Deshalb wurde dieser auffällige Wert einmal gezielt kontrolliert. Der [Kontrolllauf auf demselben unveränderten Produktionsstand](https://pagespeed.web.dev/analysis/https-www-klarvoran-de-avgs/dedqasm7ij?form_factor=mobile) ergibt 99 Punkte, LCP 2,3 s, CLS 0 und 50 ms TBT. Barrierefreiheit, Best Practices und SEO liegen in beiden Läufen bei 100. Der Desktop-Lauf des ersten Berichts erreicht 100 Performance-Punkte bei 0,5 s LCP, CLS 0 und gerundet 0 ms TBT.
+
+Die mobile Streuung wird nicht verschwiegen und der bessere Lauf nicht als dauerhafte Garantie ausgegeben. Eine reproduzierbare 950-ms-Blockierung wurde im Kontrolllauf nicht bestätigt; die genaue Ursache der Streuung ist damit nicht nachgewiesen. Es wurde dafür keine zusätzliche, spekulative Codeänderung vorgenommen. Auch für `/avgs` sind keine CrUX-Felddaten verfügbar.

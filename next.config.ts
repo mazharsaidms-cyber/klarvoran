@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
+// Same-origin frames are allowed only on this isolated preview QA branch.
+const responsiveQa = process.env.VERCEL_ENV == "preview" && process.env.VERCEL_GIT_COMMIT_REF == "codex/klarvoran-responsive-qa-2026-09-21";
+
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
@@ -8,7 +11,7 @@ const securityHeaders = [
       "default-src 'self'",
       "base-uri 'self'",
       "form-action 'self'",
-      "frame-ancestors 'none'",
+      responsiveQa ? "frame-ancestors 'self'" : "frame-ancestors 'none'",
       "object-src 'none'",
       "script-src 'self' 'unsafe-inline'",
       "script-src-attr 'none'",
@@ -16,7 +19,7 @@ const securityHeaders = [
       "img-src 'self' data: blob:",
       "font-src 'self'",
       "connect-src 'self'",
-      "frame-src 'none'",
+      responsiveQa ? "frame-src 'self'" : "frame-src 'none'",
       "media-src 'self'",
       "manifest-src 'self'",
       "worker-src 'self' blob:",
@@ -25,7 +28,7 @@ const securityHeaders = [
   },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Frame-Options", value: responsiveQa ? "SAMEORIGIN" : "DENY" },
   { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "Cross-Origin-Resource-Policy", value: "same-origin" },

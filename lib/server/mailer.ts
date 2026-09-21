@@ -1,3 +1,4 @@
+import "server-only";
 import { siteConfig } from "@/lib/site-config";
 
 export type LeadPayload = {
@@ -84,14 +85,15 @@ export async function sendLead(payload: LeadPayload): Promise<SendResult> {
       return { delivered: false, dev: false };
     }
   } catch (error) {
-    console.error("Lead-Versand fehlgeschlagen:", error instanceof Error ? error.message : "Unbekannter Fehler");
+    // Transport errors can include webhook URLs or credentials. Log only the
+    // error category; never a provider response or the submitted enquiry.
+    console.error("Lead-Versand fehlgeschlagen:", error instanceof Error ? error.name : "Unbekannter Fehler");
     return { delivered: false, dev: false };
   }
 
   if (process.env.NODE_ENV !== "production") {
     // Datensparsamer Development-Fallback – kein echter Versand.
-    console.log(`[DEV] Kein E-Mail-/CRM-Dienst konfiguriert. Anfrage würde gesendet an ${LEAD_RECIPIENT}:`);
-    console.log(text);
+    console.info(`[DEV] Formular ${payload.formType}: kein Versanddienst konfiguriert. Personenbezogene Inhalte werden nicht protokolliert.`);
     return { delivered: true, dev: true };
   }
 

@@ -24,7 +24,7 @@ export function Footer() {
           <div className="mt-4 w-52 rounded-[var(--radius-sm)] bg-white p-2">
             <Link
               href="/dokumente/CERTQUA.pdf"
-              className="block rounded-[var(--radius-sm)] p-1 transition-colors hover:bg-navy-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="block rounded-[var(--radius-sm)] p-1 transition-colors hover:bg-navy-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btn-red"
               aria-label="CERTQUA – zugelassener Träger nach AZAV – Zertifikat Trägerzulassung (PDF)"
             >
               <Image
@@ -41,10 +41,10 @@ export function Footer() {
 
         <nav aria-label="Seiten">
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/50">Seiten</h2>
-          <ul className="space-y-2.5">
+          <ul className="space-y-1">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
+                <Link href={item.href} className="inline-flex min-h-9 items-center text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
                   {item.label}
                 </Link>
               </li>
@@ -54,14 +54,14 @@ export function Footer() {
 
         <div>
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/50">Kontakt</h2>
-          <ul className="space-y-2.5 text-sm text-white/80">
+          <ul className="space-y-1 text-sm text-white/80">
             <li>
-              <a href={siteConfig.contact.phoneHref} className="hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
+              <a href={siteConfig.contact.phoneHref} className="inline-flex min-h-9 items-center hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
                 {siteConfig.contact.phoneDisplay}
               </a>
             </li>
             <li>
-              <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
+              <a href={`mailto:${siteConfig.contact.email}`} className="inline-flex min-h-9 items-center hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
                 {siteConfig.contact.email}
               </a>
             </li>
@@ -70,7 +70,7 @@ export function Footer() {
                 href={siteConfig.contact.whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
+                className="inline-flex min-h-9 items-center hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
               >
                 WhatsApp
               </a>
@@ -89,21 +89,21 @@ export function Footer() {
 
         <div>
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white/50">Rechtliches</h2>
-          <ul className="space-y-2.5">
+          <ul className="space-y-1">
             <li>
-              <Link href="/impressum" className="text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
+              <Link href="/impressum" className="inline-flex min-h-9 items-center text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
                 Impressum
               </Link>
             </li>
             <li>
-              <Link href="/datenschutz" className="text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
+              <Link href="/datenschutz" className="inline-flex min-h-9 items-center text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
                 Datenschutz
               </Link>
             </li>
             <li>
               <a
                 href={siteConfig.certificate.pdfHref}
-                className="text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
+                className="inline-flex min-h-9 items-center text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
               >
                 CERTQUA-Zertifikat (PDF)
               </a>
@@ -112,7 +112,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-white/10 py-5">
+      <div className="border-t border-white/10 pt-5 pb-24">
         <Container className="flex flex-col gap-2 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}

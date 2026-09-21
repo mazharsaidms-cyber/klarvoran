@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Button } from "@/components/Button";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
@@ -7,12 +9,11 @@ import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
-export const metadata: Metadata = {
-  title: "Privates Job- und Bewerbungscoaching",
-  description:
-    "Privates Job- und Bewerbungscoaching bei KlarVoran – individuell vereinbarter Umfang, online, hybrid oder in Präsenz in Kriftel im Rhein-Main-Gebiet.",
-  alternates: { canonical: "/leistungen/einzelcoaching" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Privates Job- und Bewerbungscoaching",
+  "Privates Job- und Bewerbungscoaching bei KlarVoran – individuell vereinbarter Umfang, online, hybrid oder in Präsenz in Kriftel im Rhein-Main-Gebiet.",
+  "/leistungen/einzelcoaching",
+);
 
 const steps: VisualStep[] = [
   {
@@ -41,7 +42,7 @@ export default function EinzelcoachingPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "Privates Coaching" }]} />
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
@@ -54,6 +55,7 @@ export default function EinzelcoachingPage() {
               Themen, die du jetzt brauchst. Vor der Buchung erhältst du ein schriftliches Angebot mit Umfang und
               Gesamtpreis.
             </p>
+            <Button href="/termin" onDark className="mt-6">Kostenloses Erstgespräch anfragen</Button>
           </div>
           <ContextGraphic
             variant="conversation"
@@ -63,7 +65,7 @@ export default function EinzelcoachingPage() {
       </Section>
 
       <Section tone="tint">
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="text-card-grid grid gap-6 sm:grid-cols-2">
           <Card>
             <h2 className="text-lg font-bold text-navy">Für wen?</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">

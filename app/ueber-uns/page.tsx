@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
@@ -7,12 +8,11 @@ import { ContextGraphic } from "@/components/ContextGraphic";
 import { CoachProfile } from "@/components/CoachProfile";
 import { VisualIcon } from "@/components/VisualIcon";
 
-export const metadata: Metadata = {
-  title: "Über uns",
-  description:
-    "KlarVoran verbindet persönliche Begleitung mit klaren Strukturen, damit Menschen berufliche Anforderungen verstehen und selbstständig handeln können.",
-  alternates: { canonical: "/ueber-uns" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Über uns",
+  "KlarVoran verbindet persönliche Begleitung mit klaren Strukturen, damit Menschen berufliche Anforderungen verstehen und selbstständig handeln können.",
+  "/ueber-uns",
+);
 
 const values = [
   { title: "Verständlichkeit", icon: "system" as const, text: "Anforderungen werden so erklärt, dass du sie einordnen und praktisch umsetzen kannst." },
@@ -25,7 +25,7 @@ export default function UeberUnsPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/ueber-uns", label: "Über uns" }]} />
-      <Section tone="white" className="kv-hero pt-12">
+      <Section tone="white" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow>Über uns</Eyebrow>
@@ -48,9 +48,9 @@ export default function UeberUnsPage() {
       <Section id="gruender" tone="white" className="scroll-mt-24">
         <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          KlarVoran verbindet lebensweltnahe Ansprache, arbeitsmarktbezogene Fachlichkeit und klare
-          Qualitätsstandards in einem eigenen Framework. Gegründet und fachlich geleitet von Mazhar Said – aus der
-          Praxis entwickelt und in einer verbindlichen Methodik systematisiert.
+          Mazhar Said hat KlarVoran gegründet und verantwortet die fachliche Arbeit. Seine Erfahrung im
+          Bewerbungsmanagement und Jobcoaching verbindet er mit strukturiertem Arbeiten aus dem Rechts- und
+          Notariatsbereich. Im Mittelpunkt stehen verständliche Erklärungen, praktische Übungen und klare berufliche Ziele.
         </p>
         <div className="mt-10">
           <CoachProfile />
@@ -85,7 +85,7 @@ export default function UeberUnsPage() {
       <Section tone="white">
         <Eyebrow>Werte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wofür wir stehen</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <Card key={v.title}>
               <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
@@ -99,6 +99,10 @@ export default function UeberUnsPage() {
         <p className="mt-8 max-w-2xl text-sm italic leading-relaxed text-navy-600">
           Gute Begleitung macht nicht abhängig: Sie schafft Verständnis, stärkt Handlungssicherheit und wird mit
           jedem selbstständig übernommenen Schritt weniger nötig.
+        </p>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
+          Wer berufliche Aufgaben selbst bewältigen kann, gewinnt Handlungsspielraum. Damit möchten wir zu
+          besseren Zugängen in Arbeit und Ausbildung und zu mehr gesellschaftlicher Teilhabe beitragen.
         </p>
       </Section>
 

@@ -69,7 +69,7 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
     return {
       status: "dev-success",
       message:
-        "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Angaben wurden in der Server-Konsole protokolliert, nicht wirklich versendet.",
+        "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Angaben wurden nicht versendet.",
     };
   }
 

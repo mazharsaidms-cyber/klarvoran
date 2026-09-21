@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "Impressum",
-  description: "Impressum von KlarVoran – Mazhar Said gemäß § 5 DDG.",
-  alternates: { canonical: "/impressum" },
-  robots: { index: true, follow: true },
-};
+export const metadata: Metadata = pageMetadata(
+  "Impressum",
+  "Impressum von KlarVoran – Mazhar Said gemäß § 5 DDG.",
+  "/impressum",
+);
 
 export default function ImpressumPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/impressum", label: "Impressum" }]} />
-      <Section tone="white" className="pt-12">
+      <Section tone="white" spacing="hero">
         <Eyebrow>Impressum</Eyebrow>
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Impressum</h1>
 

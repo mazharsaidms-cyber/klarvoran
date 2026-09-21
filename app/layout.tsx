@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Zum Hauptinhalt springen
         </a>
         <Header />
-        <main id="main-content" className="flex-1 pb-16">
+        <main id="main-content" tabIndex={-1} className="min-w-0 flex-1 outline-none">
           {children}
         </main>
         <Footer />

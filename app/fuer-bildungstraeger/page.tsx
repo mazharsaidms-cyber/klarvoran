@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
+import { Button } from "@/components/Button";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, FactStat } from "@/components/Card";
@@ -10,19 +12,18 @@ import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
-export const metadata: Metadata = {
-  title: "Für Bildungsträger & Kooperationspartner",
-  description:
-    "KlarVoran übernimmt klar vereinbarte Coaching-Leistungen, Unteraufträge und Dozenteneinsätze für Bildungsträger – nach Verfügbarkeit im Rhein-Main-Gebiet, online oder hybrid.",
-  alternates: { canonical: "/fuer-bildungstraeger" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Für Bildungsträger & Kooperationspartner",
+  "KlarVoran übernimmt klar vereinbarte Coaching-Leistungen, Unteraufträge und Dozenteneinsätze für Bildungsträger – nach Verfügbarkeit im Rhein-Main-Gebiet, online oder hybrid.",
+  "/fuer-bildungstraeger",
+);
 
 export default function FuerBildungstraegerPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-bildungstraeger", label: "Bildungsträger" }]} />
 
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Für Bildungsträger & Kooperationspartner</Eyebrow>
@@ -34,6 +35,7 @@ export default function FuerBildungstraegerPage() {
               Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
               werden vor dem Einsatz verbindlich abgestimmt.
             </p>
+            <Button href="#anfrage" onDark className="mt-6">Zusammenarbeit anfragen</Button>
           </div>
           <ContextGraphic
             variant="cooperation"
@@ -44,7 +46,7 @@ export default function FuerBildungstraegerPage() {
       </Section>
 
       <Section tone="tint">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value="AZAV" label="Trägerzulassung vorhanden" />
           <FactStat value="Praxis" label="Jobcoaching & Bewerbungsmanagement" />
           <FactStat value="Rhein-Main" label="Einsatz nach Verfügbarkeit" />
@@ -58,7 +60,7 @@ export default function FuerBildungstraegerPage() {
         <div className="mt-6 max-w-2xl">
           <InstitutionDownload kind="cooperation" />
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Unterauftrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -93,7 +95,7 @@ export default function FuerBildungstraegerPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Erfahrung & Reichweite</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Warum KlarVoran als Partner</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Praxis in Bewerbungsmanagement und Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -141,7 +143,7 @@ export default function FuerBildungstraegerPage() {
         </div>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Kooperation anfragen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Unterauftrag oder Kooperation besprechen</h2>

@@ -33,7 +33,7 @@ type ButtonAsButton = CommonProps &
 export type ButtonProps = ButtonAsLink | ButtonAsButton;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-full)] font-semibold transition-colors duration-200 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btn-red disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-[var(--radius-full)] text-center font-semibold transition-colors duration-200 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 // Border-2 ist auch bei Varianten ohne sichtbaren Rand fix gesetzt, damit
 // Abmessungen und Randstärke beim Hover-Wechsel nicht springen.
@@ -63,7 +63,7 @@ const sizes: Record<Size, string> = {
 
 export function Button(props: ButtonProps) {
   const { variant = "primary", size = "md", onDark = false, children } = props;
-  const classes = `${base} ${variants[variant][onDark ? "dark" : "light"]} ${
+  const classes = `${base} ${onDark ? "focus-visible:outline-white" : "focus-visible:outline-btn-red"} ${variants[variant][onDark ? "dark" : "light"]} ${
     variant === "text" ? "" : sizes[size]
   }`;
 

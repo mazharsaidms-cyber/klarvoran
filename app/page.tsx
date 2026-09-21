@@ -65,7 +65,7 @@ export default function HomePage() {
       <ServiceStructuredData />
 
       {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
-      <Section tone="navy" className="kv-hero pt-14 sm:pt-20">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
@@ -74,15 +74,15 @@ export default function HomePage() {
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              KlarVoran hilft dir, berufliche Ziele zu klären, Bewerbungen überzeugend umzusetzen und Anforderungen
-              von Arbeitgebern und Kostenträgern zu verstehen. Im persönlichen Coaching arbeitest du an konkreten
-              nächsten Schritten – so, dass du sie anschließend selbst weiterführen kannst.
+              KlarVoran ist ein Bildungsträger für Job- und Bewerbungscoaching. Wir begleiten dich auf dem Weg in Arbeit oder Ausbildung: mit beruflicher Orientierung,
+              Bewerbungsunterlagen und Gesprächstraining. Du setzt konkrete Schritte um und lernst,
+              anschließend selbst weiterzumachen.
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Frankfurt, Hofheim und den Main-Taunus-Kreis.
               Alternativ online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href="/termin" size="lg" onDark>
                 Kostenloses Erstgespräch anfragen
               </Button>
@@ -100,9 +100,9 @@ export default function HomePage() {
             alt="Mazhar Said bespricht im Einzelcoaching Bewerbungsunterlagen mit einem Teilnehmer"
             width={1400}
             height={781}
-            sizes="(min-width: 1024px) 42vw, 100vw"
+            sizes="(min-width: 1152px) 468px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
             className="w-full rounded-[var(--radius-lg)] border border-white/15"
-            priority
+            preload
           />
         </div>
       </Section>
@@ -121,7 +121,7 @@ export default function HomePage() {
             und entwickeln daraus einen realistischen nächsten Schritt.
           </p>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-3">
           <Card>
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
               <VisualIcon name="orientation" />
@@ -159,13 +159,13 @@ export default function HomePage() {
       <Section tone="navy">
         <div className="mb-10 text-center">
           <Eyebrow tone="white">Leistungen</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Vier Wege. Ein gemeinsamer Anspruch.</h2>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Das passende Angebot für deinen nächsten Schritt</h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Individuelle Unterstützung, Gruppenformate und institutionelle Zusammenarbeit führen über
-            unterschiedliche Zugänge zum selben Ziel: berufliche Handlungsfähigkeit.
+            Einzelcoaching für deine Bewerbung und berufliche Orientierung. Für Einrichtungen und Bildungsträger
+            bieten wir außerdem Workshops und klar vereinbarte Coachingaufträge an.
           </p>
         </div>
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {leistungen.map((l, i) => (
             <LeistungCard key={l.id} leistung={l} hasMassnahmeBadge={i === 0} />
           ))}
@@ -175,9 +175,9 @@ export default function HomePage() {
       {/* Die vier Schritte bilden eine durchgehende Lesezeile statt einer weiteren Kartenreihe. */}
       <Section tone="tint">
         <div className="mb-10">
-          <Eyebrow tone="navy">Das KlarVoran-Framework</Eyebrow>
+          <Eyebrow tone="navy">Unsere Arbeitsweise</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-            Verstanden werden. System verstehen. Selbst handeln. Dranbleiben.
+            Damit du deinen nächsten Schritt selbst gehen kannst.
           </h2>
           <p className="mt-3 max-w-2xl text-navy-600">
             Nicht nur gemeinsam erledigen. Lernen, es selbst zu können.
@@ -188,7 +188,7 @@ export default function HomePage() {
 
       {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
           ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
-      <Section tone="white" className="py-12 sm:py-14">
+      <Section tone="white" spacing="compact">
         <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
           <CertificateSeal
             seal="traeger"

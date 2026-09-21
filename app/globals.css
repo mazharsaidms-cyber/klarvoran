@@ -49,6 +49,87 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  overflow-wrap: anywhere;
+}
+
+/* Long German headings and anchor links remain readable below the sticky header. */
+h1, h2, h3 {
+  hyphens: auto;
+  text-wrap: balance;
+}
+
+/* Visible keyboard focus also covers ordinary text and contact links. */
+:where(a, button, summary):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Related cards share content tracks, not fixed heights. Long headings, zoom
+   and translated content can grow without shifting adjacent descriptions. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 40rem) {
+    .service-grid > li,
+    .service-grid > li > a {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+    }
+
+    .institution-grid > li,
+    .institution-grid > li > a {
+      display: grid;
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+    }
+
+    .text-card-grid > .content-card {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      row-gap: 0.5rem;
+    }
+
+    .icon-card-grid > .content-card {
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+      row-gap: 0.75rem;
+    }
+
+    .text-card-grid > .content-card > p,
+    .icon-card-grid > .content-card > p {
+      margin-top: 0;
+    }
+
+    .icon-card-grid > .content-card > span {
+      margin-bottom: 0;
+    }
+
+    .download-grid > .download-card {
+      display: grid;
+      grid-row: span 5;
+      grid-template-rows: subgrid;
+      row-gap: 0.75rem;
+    }
+
+    .download-grid > .download-card > * {
+      margin-top: 0;
+    }
+  }
+}
+
+:where([id], input, select, textarea, [tabindex]) {
+  scroll-margin-top: 6rem;
+}
+
+/* Align icons, headings and body text by content height, also when titles wrap. */
+@media (min-width: 40rem) {
+  .step-grid > li {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 0.75rem;
+  }
 }
 
 /* Eine ruhige Reaktion für die erklärenden Grafiken auf mehreren Unterseiten. */
@@ -84,6 +165,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .context-graphic-content {
+    transform: none !important;
   }
 }
 

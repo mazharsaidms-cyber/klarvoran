@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
+import { Button } from "@/components/Button";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card } from "@/components/Card";
 import { ContactForm } from "@/components/ContactForm";
 import { Eyebrow, Section } from "@/components/Section";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
-export const metadata: Metadata = {
-  title: "Für Kommunen & öffentliche Auftraggeber",
-  description:
-    "KlarVoran übernimmt klar abgegrenzte Bildungs-, Coaching- und Workshopaufträge für Kommunen und öffentliche Auftraggeber im Rhein-Main-Gebiet.",
-  alternates: { canonical: "/fuer-kommunen" },
-};
+export const metadata: Metadata = pageMetadata(
+  "Für Kommunen & öffentliche Auftraggeber",
+  "KlarVoran übernimmt klar abgegrenzte Bildungs-, Coaching- und Workshopaufträge für Kommunen und öffentliche Auftraggeber im Rhein-Main-Gebiet.",
+  "/fuer-kommunen",
+);
 
 const services = [
   {
@@ -37,7 +38,7 @@ export default function FuerKommunenPage() {
         ]}
       />
 
-      <Section tone="navy" className="kv-hero pt-12">
+      <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Für Kommunen &amp; öffentliche Auftraggeber</Eyebrow>
@@ -49,6 +50,7 @@ export default function FuerKommunenPage() {
               Rhein-Main-Gebiet. Ziele, Zeitraum, Zuständigkeiten, Durchführung und erforderliche Nachweise werden vor
               der Beauftragung schriftlich vereinbart.
             </p>
+            <Button href="#anfrage" onDark className="mt-6">Vorhaben anfragen</Button>
           </div>
           <ContextGraphic
             variant="workshop"
@@ -61,7 +63,7 @@ export default function FuerKommunenPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Leistungsbausteine</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Was KlarVoran übernehmen kann</h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="text-card-grid mt-8 grid gap-5 md:grid-cols-3">
           {services.map((service) => (
             <Card key={service.title}>
               <h3 className="font-semibold text-navy">{service.title}</h3>
@@ -74,7 +76,7 @@ export default function FuerKommunenPage() {
       <Section tone="white">
         <Eyebrow>Zusammenarbeit</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Ein klarer Auftrag statt unklarer Zuständigkeiten</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Vorab eindeutig vereinbart</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -107,7 +109,7 @@ export default function FuerKommunenPage() {
         </div>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Auftrag besprechen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold sm:text-3xl">Vorhaben oder Leistungsbaustein anfragen</h2>

@@ -1,14 +1,15 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { submitAvgsCheck } from "@/app/avgs/actions";
-import { initialActionState } from "@/lib/server/action-state";
+import { useLeadForm } from "./useLeadForm";
 import { evaluateAvgsCheck, type AvgsAnswers } from "@/lib/avgs-logic";
 import { siteConfig } from "@/lib/site-config";
 import { StepProgress } from "./StepProgress";
 import { RadioGroupField, TextField, PrivacyNotice, HoneypotField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
+import { NoScriptContact } from "./NoScriptContact";
 
 const STEP_LABELS = ["AVGS-Status", "Situation", "Ergebnis & Kontakt"];
 
@@ -22,10 +23,12 @@ export function AvgsSchnellcheck() {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<DraftAnswers>({ form: "unsicher" });
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const [state, formAction, pending] = useActionState(submitAvgsCheck, initialActionState);
+  const { state, formAction, pending, formRef, field } = useLeadForm(submitAvgsCheck);
+  const previousStep = useRef(step);
 
   useEffect(() => {
-    headingRef.current?.focus();
+    if (previousStep.current !== step) headingRef.current?.focus();
+    previousStep.current = step;
   }, [step]);
 
   const result = hasAllAnswers(answers) ? evaluateAvgsCheck(answers) : null;
@@ -47,7 +50,7 @@ export function AvgsSchnellcheck() {
     return (
       <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
         <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
-          Danke, deine Angaben sind bei uns angekommen.
+          {state.status === "dev-success" ? "Testanfrage verarbeitet." : "Danke, deine Angaben sind bei uns angekommen."}
         </h2>
         <div className="mt-4">
           <StatusMessage state={state} />
@@ -69,6 +72,7 @@ export function AvgsSchnellcheck() {
 
   return (
     <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
+      <NoScriptContact />
       <StepProgress current={step} total={3} labels={STEP_LABELS} />
 
       {step === 1 && (
@@ -135,12 +139,29 @@ export function AvgsSchnellcheck() {
       )}
 
       {step === 3 && result && (
-        <form action={formAction} className="space-y-5" aria-busy={pending}>
+        <form ref={formRef} action={formAction} className="space-y-5" aria-busy={pending}>
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             {result.headline}
           </h2>
           <p className="text-sm leading-relaxed text-navy-600">{result.message}</p>
           <p className="text-xs italic text-navy-600/80">{result.disclaimer}</p>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Button href={result.primaryCtaHref} variant="text">{result.primaryCtaLabel} →</Button>
+            {result.secondaryCtaHref && result.secondaryCtaLabel && (
+              <Button
+                href={result.secondaryCtaHref === "whatsapp" ? siteConfig.contact.whatsappHref() : result.secondaryCtaHref}
+                external={result.secondaryCtaHref === "whatsapp"}
+                variant="text"
+              >
+                {result.secondaryCtaLabel} →
+              </Button>
+            )}
+          </div>
+
+          <p className="text-sm leading-relaxed text-navy-600">
+            Du möchtest lieber einen Rückruf oder eine Antwort per E-Mail? Sende uns dafür deine Kontaktdaten.
+          </p>
 
           <input type="hidden" name="status" value={answers.status} />
           <input type="hidden" name="traeger" value={answers.traeger} />
@@ -150,14 +171,14 @@ export function AvgsSchnellcheck() {
 
           <div className="grid gap-4 border-t border-navy-100 pt-5 sm:grid-cols-2">
             <TextField
-              id="name"
+              id="name" {...field("name")}
               label="Name"
               required
               autoComplete="name"
               error={state.fieldErrors?.name}
             />
             <TextField
-              id="email"
+              id="email" {...field("email")}
               label="E-Mail"
               type="email"
               required
@@ -165,15 +186,16 @@ export function AvgsSchnellcheck() {
               error={state.fieldErrors?.email}
             />
             <TextField
-              id="phone"
+              id="phone" {...field("phone")}
               label="Telefon (optional)"
               type="tel"
               autoComplete="tel"
-              className="sm:col-span-2"
+              wrapperClassName="sm:col-span-2"
               error={state.fieldErrors?.phone}
             />
           </div>
 
+          <p className="text-xs text-navy-600">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
           <PrivacyNotice />
           <StatusMessage state={state} />
 

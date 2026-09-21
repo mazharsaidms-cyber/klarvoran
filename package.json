@@ -10,7 +10,9 @@
     "docs:build": "node --import tsx scripts/build-downloads.ts",
     "test:seo-downloads": "node scripts/check-local-seo.mjs",
     "test:seo-downloads:local": "node scripts/check-local-build.mjs",
-    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts lib/content/downloads.test.ts"
+    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts lib/content/downloads.test.ts lib/lead-form.test.mjs",
+    "test:site-build": "node scripts/check-site-build.mjs",
+    "test:http-security": "node scripts/check-http-security.mjs"
   },
   "dependencies": {
     "next": "16.3.3",
@@ -25,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
+    "jsdom": "^30.1.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
     "typescript": "^5"

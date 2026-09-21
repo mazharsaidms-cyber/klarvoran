@@ -64,7 +64,7 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
     return {
       status: "dev-success",
       message:
-        "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Terminanfrage wurde in der Server-Konsole protokolliert, nicht wirklich versendet.",
+        "Development-Modus: Kein E-Mail-Dienst konfiguriert. Deine Terminanfrage wurde nicht versendet.",
     };
   }
 

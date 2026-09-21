@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
 import { submitContactForm } from "@/app/kontakt/actions";
-import { initialActionState } from "@/lib/server/action-state";
+import { useLeadForm } from "./useLeadForm";
 import { TextField, TextareaField, PrivacyNotice, HoneypotField, SelectField } from "./form-fields";
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
+import { NoScriptContact } from "./NoScriptContact";
 
 type RequestType =
   | "avgs_rueckfrage"
@@ -22,24 +22,30 @@ export function ContactForm({
   formal?: boolean;
   defaultRequestType?: RequestType;
 }) {
-  const [state, formAction, pending] = useActionState(submitContactForm, initialActionState);
+  const { state, formAction, pending, formRef, field } = useLeadForm(submitContactForm, formal, {
+    requestType: defaultRequestType ?? "",
+  });
+
+  if (state.status === "success" || state.status === "dev-success") return <StatusMessage state={state} />;
 
   return (
-    <form action={formAction} className="space-y-5" noValidate={false} aria-busy={pending}>
+    <form ref={formRef} action={formAction} className="space-y-5" aria-busy={pending}>
+      <NoScriptContact formal={formal} />
       <HoneypotField />
+      <p className="text-xs text-navy-600">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
       <input type="hidden" name="formality" value={formal ? "formal" : "informal"} />
       {formal && (
         <>
           <div className="grid gap-4 sm:grid-cols-2">
             <TextField
-              id="organization"
+              id="organization" {...field("organization")}
               label="Organisation"
               required
               autoComplete="organization"
               error={state.fieldErrors?.organization}
             />
             <TextField
-              id="role"
+              id="role" {...field("role")}
               label="Ihre Funktion (optional)"
               autoComplete="organization-title"
               error={state.fieldErrors?.role}
@@ -49,7 +55,7 @@ export function ContactForm({
             id="requestType"
             label="Art der Anfrage"
             required
-            defaultValue={defaultRequestType ?? ""}
+            {...field("requestType")}
             error={state.fieldErrors?.requestType}
           >
             <option value="" disabled>Bitte auswählen</option>
@@ -61,7 +67,7 @@ export function ContactForm({
             <option value="sonstiges">Sonstiges</option>
           </SelectField>
           <TextField
-            id="timeframe"
+            id="timeframe" {...field("timeframe")}
             label="Gewünschter Zeitraum (optional)"
             placeholder="z. B. ab November 2026"
             error={state.fieldErrors?.timeframe}
@@ -69,12 +75,12 @@ export function ContactForm({
         </>
       )}
       <div className="grid gap-4 sm:grid-cols-2">
-        <TextField id="name" label="Name" required autoComplete="name" error={state.fieldErrors?.name} />
-        <TextField id="email" label="E-Mail" type="email" required autoComplete="email" error={state.fieldErrors?.email} />
+        <TextField id="name" {...field("name")} label="Name" required autoComplete="name" error={state.fieldErrors?.name} />
+        <TextField id="email" {...field("email")} label="E-Mail" type="email" required autoComplete="email" error={state.fieldErrors?.email} />
       </div>
-      <TextField id="phone" label="Telefon (optional)" type="tel" autoComplete="tel" error={state.fieldErrors?.phone} />
+      <TextField id="phone" {...field("phone")} label="Telefon (optional)" type="tel" autoComplete="tel" error={state.fieldErrors?.phone} />
       <TextareaField
-        id="message"
+        id="message" {...field("message")}
         label={formal ? "Ihre Nachricht" : "Deine Nachricht"}
         required
         error={state.fieldErrors?.message}

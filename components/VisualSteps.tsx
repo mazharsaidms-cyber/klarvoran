@@ -22,7 +22,7 @@ export function VisualSteps({ steps }: { steps: readonly VisualStep[] }) {
             >
               <VisualIcon name={step.icon} />
             </span>
-            <span className="font-mono text-xs font-semibold text-navy-600" aria-hidden="true">
+            <span className="font-mono text-xs font-semibold text-red-700" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>

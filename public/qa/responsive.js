@@ -19,4 +19,4 @@ document.querySelector("#report").addEventListener("click",()=>{
  document.querySelector("#result").textContent=JSON.stringify(results,null,2);
 });
 
-document.querySelector("#width").addEventListener("change",event=>{for(const frame of frames)frame.parentElement.style.order=frame.width===event.target.value?"-1":"0";window.scrollTo({top:0,behavior:"instant"});});
+document.querySelector("#width").addEventListener("change",event=>{for(const frame of frames){frame.parentElement.style.display=frame.width===event.target.value?"block":"none";}document.querySelector("#result").style.display="none";document.querySelector("p").style.display="none";window.scrollTo({top:0,behavior:"instant"});});

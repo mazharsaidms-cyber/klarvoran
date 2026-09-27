@@ -78,10 +78,10 @@ export default function FachkraeftePage() {
 
       <Section tone="white">
         <Eyebrow>Downloads</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Die wichtigsten Angaben zum Mitnehmen</h2>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Unterlagen für Ihre Arbeit</h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-          Die passenden Flyer für Ihre interne Abstimmung oder Weitergabe: zur AVGS-Maßnahme, für Bildungsträger
-          und für soziale Einrichtungen.
+          Drei einseitige PDFs für Ihre interne Abstimmung oder zur Weitergabe: zur AVGS-Maßnahme, zur
+          Zusammenarbeit mit Bildungsträgern und zu Angeboten für soziale Einrichtungen.
         </p>
         <div className="download-grid mt-8 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="jobcenterFlyer" />

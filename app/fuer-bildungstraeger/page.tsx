@@ -8,7 +8,6 @@ import { CertificateFacts } from "@/components/CertificateFacts";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
-import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
@@ -134,11 +133,10 @@ export default function FuerBildungstraegerPage() {
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
           />
           <div>
             <CertificateFacts />
-            <BrandTransitionNote className="mt-4" />
           </div>
         </div>
       </Section>

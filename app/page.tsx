@@ -7,7 +7,6 @@ import { LeistungCard } from "@/components/LeistungCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { CtaSection } from "@/components/CtaSection";
 import { CertificateSeal } from "@/components/CertificateSeal";
-import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
@@ -74,9 +73,14 @@ export default function HomePage() {
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              KlarVoran ist ein nach AZAV zugelassener Bildungsträger mit Schwerpunkt auf individuellem Job- und Bewerbungscoaching. Wir begleiten dich auf dem Weg in Arbeit oder Ausbildung: mit beruflicher Orientierung,
-              Bewerbungsunterlagen und Gesprächstraining. Du setzt konkrete Schritte um und lernst,
-              anschließend selbst weiterzumachen.
+              <strong className="font-semibold text-white">KlarVoran</strong> ist ein nach § 178 SGB III (AZAV)
+              zugelassener Bildungsträger. Unser Schwerpunkt liegt auf individuellem Job- und Bewerbungscoaching,
+              das genau auf deine Bedürfnisse abgestimmt ist.
+            </p>
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
+              Wir begleiten dich Schritt für Schritt auf deinem Weg in Arbeit oder Ausbildung. Bei uns lernst du
+              nicht nur in der Theorie, sondern setzt direkt konkrete Schritte um – so gewinnst du die Sicherheit,
+              um deine berufliche Zukunft anschließend selbstbewusst und eigenständig zu gestalten.
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Frankfurt, Hofheim und den Main-Taunus-Kreis.
@@ -192,7 +196,7 @@ export default function HomePage() {
         <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
           />
           <div>
             <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
@@ -201,7 +205,6 @@ export default function HomePage() {
               passenden und bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige
               Kostenträger die Kosten vollständig.
             </p>
-            <BrandTransitionNote className="mt-3 max-w-2xl" />
             <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
               Zertifikat Trägerzulassung (PDF) →
             </Button>

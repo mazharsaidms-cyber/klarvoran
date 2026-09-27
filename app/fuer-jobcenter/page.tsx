@@ -9,7 +9,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/Button";
 import { coachingModules, totalUe } from "@/lib/content/modules";
 import { siteConfig } from "@/lib/site-config";
-import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
@@ -93,11 +92,10 @@ export default function FuerJobcenterPage() {
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
           />
           <div>
             <CertificateFacts />
-            <BrandTransitionNote className="mt-4" />
           </div>
         </div>
       </Section>

@@ -7,7 +7,6 @@ import { Card, FactStat } from "@/components/Card";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site-config";
-import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 
@@ -54,14 +53,13 @@ export default function FuerSozialeEinrichtungenPage() {
         <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
           />
           <div className="max-w-md">
             <p className="text-sm leading-relaxed text-navy-600">
               Das vorhandene Trägerzertifikat nach § 178 SGB III wurde durch {siteConfig.certificate.issuer}{" "}
               ausgestellt (Zertifikat {siteConfig.certificate.number}).
             </p>
-            <BrandTransitionNote className="mt-3" />
           </div>
         </div>
       </Section>
@@ -146,9 +144,8 @@ export default function FuerSozialeEinrichtungenPage() {
           <Card>
             <h3 className="font-semibold text-navy">AZAV-Hintergrund</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Das vorhandene Trägerzertifikat nach § 178 SGB III und die zugelassene Maßnahme sind relevant, sobald
-              Klientinnen und Klienten einen passenden AVGS einbringen. Die formale Umstellung auf KlarVoran
-              befindet sich in Bearbeitung.
+              Die Trägerzulassung nach § 178 SGB III und die zugelassene Maßnahme sind relevant, sobald
+              Klientinnen und Klienten einen passenden AVGS einbringen.
             </p>
           </Card>
           <Card>

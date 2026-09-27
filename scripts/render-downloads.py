@@ -186,8 +186,7 @@ def measure_sheet(data):
              f'<b>BA:</b> Veranstaltungs-ID {safe(measure["eventId"])} · Anbieter-ID {safe(measure["providerId"])} · '
              f'<link href="{safe(measure["baHref"])}" color="#a51116"><u>Offiziellen Eintrag öffnen</u></link>',
              M, y, size=8.5, leading=12) - 7
-    y = para(c, f'Die Zulassungsunterlagen lauten noch auf {safe(cert["holderName"])}. '
-             'KlarVoran ist die aktuelle Trägerbezeichnung; die formale Anpassung ist in Bearbeitung. '
+    y = para(c, f'Trägerzertifikat ausgestellt auf {safe(cert["holderName"])}. '
              f'<link href="{safe(site["url"] + cert["pdfHref"])}" color="#a51116"><u>Trägerzertifikat</u></link>.',
              M, y, size=7.8, leading=11) - 5
     finish(c, output, y, site, document)
@@ -230,7 +229,7 @@ def cooperation_sheet(data):
     y = para(c, "Kooperationen und Workshops werden individuell beauftragt. Sie sind nicht automatisch Bestandteil "
              "der eigenen zugelassenen AVGS-Maßnahme. Ein Unterauftrag setzt die Erfüllung der jeweiligen "
              "Vertrags- und Maßnahmevorgaben voraus. Keine Therapie, Rechtsberatung oder umfassende Sozialberatung.", M, y) - 8
-    y = para(c, f'Zulassungsunterlagen: {safe(cert["holderName"])}; formale Anpassung auf KlarVoran in Bearbeitung. '
+    y = para(c, f'Trägerzertifikat: {safe(cert["holderName"])}. '
              f'<link href="{safe(site["url"] + cert["pdfHref"])}" color="#a51116"><u>Trägerzertifikat</u></link> · '
              f'<link href="{safe(site["url"] + "/fachkraefte-kooperationspartner")}" color="#a51116"><u>Kooperationswege und Details</u></link>',
              M, y, size=7.8, leading=11) - 6

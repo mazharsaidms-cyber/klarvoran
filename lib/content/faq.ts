@@ -45,7 +45,7 @@ export const avgsFaq: FaqItem[] = [
   {
     question: "Wer ist der zugelassene Träger hinter KlarVoran?",
     answer:
-      "KlarVoran – Mazhar Said ist die aktuelle Trägerbezeichnung. Das vorhandene CERTQUA-Trägerzertifikat wurde auf Mazhar Said – MS Coaching ausgestellt (Zertifikat-Nr. 26-20859-T, gültig vom 24.07.2026 bis 23.07.2031). Die formale Anpassung der Zulassungsunterlagen befindet sich in Bearbeitung. Auch die konkrete Maßnahme ist zugelassen.",
+      "Mazhar Said – KlarVoran ist als Träger nach § 178 SGB III zugelassen. Das aktualisierte CERTQUA-Trägerzertifikat trägt die Nr. 26-20859-T und gilt vom 24.07.2026 bis 23.07.2031. Auch die konkrete Coaching-Maßnahme ist zugelassen.",
   },
   {
     question: "Was ist die AZAV?",

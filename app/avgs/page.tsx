@@ -12,7 +12,6 @@ import { ProcessStepper } from "@/components/ProcessStepper";
 import { avgsFaq } from "@/lib/content/faq";
 import { processSteps } from "@/lib/content/process";
 import { coachingModules, totalUe } from "@/lib/content/modules";
-import { BrandTransitionNote } from "@/components/BrandTransitionNote";
 import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
@@ -202,7 +201,7 @@ export default function AvgsPage() {
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
           <CertificateSeal
             seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf die bisherige Trägerbezeichnung"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
           />
           <CertificateSeal
             seal="massnahme"
@@ -214,7 +213,6 @@ export default function AvgsPage() {
           passenden und bewilligten AVGS werden die Kosten vom zuständigen Kostenträger vollständig übernommen.
           Die AZAV legt fest, welche Anforderungen Träger und Maßnahmen der Arbeitsförderung erfüllen müssen.
         </p>
-        <BrandTransitionNote className="mt-3 max-w-2xl" />
       </Section>
 
       <Section tone="tint">

@@ -2,13 +2,13 @@ import { siteConfig } from "@/lib/site-config";
 import { Button } from "./Button";
 
 const facts: { label: string; value: string }[] = [
-  { label: "Aktuelle Trägerbezeichnung", value: siteConfig.legalName },
-  { label: "Bezeichnung im Zertifikat", value: siteConfig.certificate.holderName },
+  { label: "Zertifikatsinhaber", value: siteConfig.certificate.holderName },
   { label: "Rechtsgrundlage", value: siteConfig.certificate.legalBasis },
   { label: "Zertifizierer", value: siteConfig.certificate.issuer },
   { label: "Zertifikat-Nr.", value: siteConfig.certificate.number },
   { label: "Fachbereich", value: siteConfig.certificate.field },
   { label: "Gültigkeit", value: `${siteConfig.certificate.validFrom} – ${siteConfig.certificate.validTo}` },
+  { label: "Änderungsdatum", value: siteConfig.certificate.changedOn },
 ];
 
 export function CertificateFacts() {

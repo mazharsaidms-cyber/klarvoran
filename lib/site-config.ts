@@ -34,11 +34,9 @@ function optionalHttpsUrl(value: string | undefined) {
 }
 
 export const siteConfig = {
-  // KlarVoran ist die öffentliche Trägerbezeichnung.
+  // KlarVoran ist die im Trägerzertifikat bestätigte Bezeichnung.
   name: "KlarVoran",
-  legalName: "KlarVoran – Mazhar Said",
-  transitionNote:
-    "KlarVoran ist die aktuelle Trägerbezeichnung. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.",
+  legalName: "Mazhar Said – KlarVoran",
   founder: "Mazhar Said",
   description:
     "Job- und Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis, online oder hybrid. KlarVoran bietet AVGS-Coaching, Workshops und institutionelle Kooperationen.",
@@ -56,7 +54,7 @@ export const siteConfig = {
 
   // Ladungsfähige Geschäfts- und Postanschrift des Trägers. Keine Coachingräume.
   address: {
-    company: "KlarVoran – Mazhar Said",
+    company: "Mazhar Said – KlarVoran",
     street: "Kolberger Weg 23",
     zip: "65931",
     city: "Frankfurt am Main",
@@ -77,7 +75,7 @@ export const siteConfig = {
   },
 
   certificate: {
-    holderName: "Mazhar Said – MS Coaching",
+    holderName: "Mazhar Said – KlarVoran",
     number: "26-20859-T",
     issuer: "CERTQUA",
     issuerFull:
@@ -86,6 +84,7 @@ export const siteConfig = {
     field: "FB1 – Maßnahmen zur Aktivierung und beruflichen Eingliederung nach § 45 Abs. 1 Satz 1 Nr. 1–5 SGB III",
     validFrom: "24.07.2026",
     validTo: "23.07.2031",
+    changedOn: "23.09.2026",
     pdfHref: "/dokumente/CERTQUA.pdf",
   },
 

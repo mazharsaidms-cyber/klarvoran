@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = pageMetadata(
   "Impressum",
-  "Impressum von KlarVoran – Mazhar Said gemäß § 5 DDG.",
+  "Impressum von Mazhar Said – KlarVoran gemäß § 5 DDG.",
   "/impressum",
 );
 
@@ -19,11 +19,6 @@ export default function ImpressumPage() {
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Impressum</h1>
 
         <div className="mt-10 max-w-2xl space-y-8 text-navy-600">
-          <p className="text-sm">
-            <strong className="font-semibold text-navy">{siteConfig.name}</strong> ist die Trägerbezeichnung von Mazhar
-            Said. Die formale Anpassung der vorhandenen Zulassungsunterlagen befindet sich in Bearbeitung.
-          </p>
-
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">
               Angaben gemäß § 5 DDG
@@ -65,7 +60,7 @@ export default function ImpressumPage() {
               Zulassung nach § 178 SGB III
             </h2>
             <p className="mt-2">
-              {siteConfig.legalName} ist als Träger nach § 178 SGB III zugelassen, zertifiziert durch{" "}
+              {siteConfig.certificate.holderName} ist als Träger nach § 178 SGB III zugelassen, zertifiziert durch{" "}
               {siteConfig.certificate.issuerFull}. Zertifikat-Nr. {siteConfig.certificate.number}, gültig{" "}
               {siteConfig.certificate.validFrom} bis {siteConfig.certificate.validTo}.
             </p>

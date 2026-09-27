@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = pageMetadata(
   "Datenschutz",
-  "Datenschutzerklärung für KlarVoran – Mazhar Said gemäß DSGVO.",
+  "Datenschutzerklärung für Mazhar Said – KlarVoran gemäß DSGVO.",
   "/datenschutz",
 );
 

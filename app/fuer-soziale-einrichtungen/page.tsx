@@ -42,7 +42,6 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <h2 className="sr-only">Informationen zur Kooperation herunterladen</h2>
-          <InstitutionDownload kind="cooperation" />
           <InstitutionDownload kind="socialFlyer" />
         </div>
       </Section>

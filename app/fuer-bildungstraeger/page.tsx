@@ -57,7 +57,6 @@ export default function FuerBildungstraegerPage() {
         <Eyebrow>Einsatzmöglichkeiten</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie Sie mit uns zusammenarbeiten können</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <InstitutionDownload kind="cooperation" />
           <InstitutionDownload kind="educationFlyer" />
         </div>
         <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">

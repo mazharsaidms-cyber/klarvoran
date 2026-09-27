@@ -1,19 +1,5 @@
-// Website links and the PDF generator share this manifest.
+// Publicly listed flyer downloads. Older fact sheets remain at their original URLs for existing links.
 export const institutionalDownloads = {
-  jobcenter: {
-    title: "Maßnahmenblatt für Jobcenter & Agentur für Arbeit",
-    description: "Zielgruppe, Module, Umfang, Durchführungsort und Zulassungsdaten – kompakt für Gutscheinprüfung und Teilnahmeabstimmung.",
-    href: "/dokumente/KlarVoran-Massnahmenblatt-AVGS.pdf",
-    detailHref: "/fuer-jobcenter",
-    updatedAt: "27.09.2026",
-  },
-  cooperation: {
-    title: "Kooperationsblatt für Träger & Einrichtungen",
-    description: "Leistungsbausteine, Arbeitsweise und Rahmenbedingungen für Unteraufträge, Workshops und abgestimmte Kooperationen.",
-    href: "/dokumente/KlarVoran-Kooperationsblatt.pdf",
-    detailHref: "/fuer-bildungstraeger",
-    updatedAt: "27.09.2026",
-  },
   participantFlyer: {
     title: "Flyer für Teilnehmende",
     description: "Einfach erklärt: Was du im Coaching machst, wie der AVGS funktioniert und wie du Kontakt aufnimmst.",

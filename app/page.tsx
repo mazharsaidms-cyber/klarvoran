@@ -11,6 +11,7 @@ import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
+import { FounderExpertise } from "@/components/FounderExpertise";
 import { leistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -214,21 +215,14 @@ export default function HomePage() {
 
       {/* Gründerabschnitt: ruhige weiße Lesefläche. */}
       <Section tone="white">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,220px)_1fr]">
-          <div className="mx-auto w-40 sm:w-48 lg:mx-0 lg:w-full">
-            <Image
-              src={siteConfig.images.badge}
-              alt="Mazhar Said"
-              width={280}
-              height={280}
-              className="w-full rounded-[var(--radius-lg)]"
-            />
-          </div>
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,320px)_1fr]">
+          <FounderExpertise />
           <div>
             <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
             <blockquote className="mt-4 text-xl font-semibold leading-snug text-navy sm:text-2xl">
-              „Ich bringe strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung zusammen – damit dein
-              nächster beruflicher Schritt planbar wird, statt diffus zu bleiben.“
+              „Ich verbinde strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung
+              und einem praxisnahen Verständnis von Arbeitswelt, Unternehmen und Vertrieb. So entstehen aus
+              beruflicher Unsicherheit klare und umsetzbare nächste Schritte.“
             </blockquote>
             <p className="mt-4 text-sm text-navy-600">Mazhar Said, Gründer von KlarVoran</p>
             <Button href="/ueber-uns#gruender" variant="text" className="mt-5">

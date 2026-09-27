@@ -1,28 +1,18 @@
-import Image from "next/image";
 import { coachExperience, coachQualifications } from "@/lib/content/coach";
+import { FounderExpertise } from "@/components/FounderExpertise";
 
 export function CoachProfile() {
   return (
     <div className="grid gap-12 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
-      <div className="mx-auto w-56 sm:w-64 lg:mx-0 lg:w-full">
-        <Image
-          src="/images/team/einzelgespraech.jpg"
-          alt="Mazhar Said im persönlichen Coachinggespräch"
-          width={1400}
-          height={781}
-          sizes="(min-width: 1024px) 320px, 256px"
-          className="aspect-[4/5] w-full rounded-[var(--radius-lg)] object-cover object-[42%_center]"
-        />
-      </div>
+      <FounderExpertise />
 
       <div className="space-y-8">
         <div>
           <h2 className="text-2xl font-bold text-navy sm:text-3xl">Mazhar Said</h2>
           <p className="mt-3 text-lg leading-relaxed text-navy-600">
-            Ich verbinde die Genauigkeit aus dem Rechts- und Notariatsbereich mit praktischer Erfahrung in
-            Bewerbungsmanagement, Jobcoaching, Inklusionshilfe und beruflicher Orientierung. Dabei ist mir wichtig,
-            Menschen nicht nur kurzfristig zu unterstützen. Sie sollen Anforderungen verstehen, passende Schritte
-            selbst umsetzen und auch bei Rückschlägen handlungsfähig bleiben.
+            Ich verbinde strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung
+            und einem praxisnahen Verständnis von Arbeitswelt, Unternehmen und Vertrieb. So entstehen aus
+            beruflicher Unsicherheit klare und umsetzbare nächste Schritte.
           </p>
         </div>
 

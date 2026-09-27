@@ -8,6 +8,7 @@ import { AvgsSchnellcheck } from "@/components/AvgsSchnellcheck";
 import { FaqStructuredData } from "@/components/StructuredData";
 import { CtaSection } from "@/components/CtaSection";
 import { CertificateSeal } from "@/components/CertificateSeal";
+import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ProcessStepper } from "@/components/ProcessStepper";
 import { avgsFaq } from "@/lib/content/faq";
 import { processSteps } from "@/lib/content/process";
@@ -198,6 +199,9 @@ export default function AvgsPage() {
       <Section tone="white" spacing="compact">
         <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zugelassenes Coaching – transparent nachgewiesen</h2>
+        <div className="mt-6 max-w-xl">
+          <InstitutionDownload kind="participantFlyer" />
+        </div>
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
           <CertificateSeal
             seal="traeger"

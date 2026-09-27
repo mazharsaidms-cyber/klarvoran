@@ -50,8 +50,9 @@ export default function FuerJobcenterPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
           {siteConfig.measure.title}
         </h2>
-        <div className="mt-6 max-w-2xl">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="jobcenter" />
+          <InstitutionDownload kind="jobcenterFlyer" />
         </div>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value={`${totalUe} UE`} label="à 45 Minuten" />

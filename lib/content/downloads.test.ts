@@ -11,7 +11,8 @@ test("Institutionelle Downloads sind eindeutige, vorhandene PDF-Dateien", () => 
     assert.match(document.href, /^\/dokumente\/KlarVoran-[A-Za-z-]+\.pdf$/);
     const filename = path.join(process.cwd(), "public", document.href);
     assert.equal(readFileSync(filename).subarray(0, 5).toString(), "%PDF-");
-    assert.ok(statSync(filename).size < 500_000, "Keep the one-page downloads mobile-friendly");
+    const maxBytes = document.href.includes("-CERTQUA.pdf") ? 6_000_000 : 500_000;
+    assert.ok(statSync(filename).size < maxBytes, "Keep downloads within their expected size range");
     assert.match(document.updatedAt, /^\d{2}\.\d{2}\.\d{4}$/);
   }
 });

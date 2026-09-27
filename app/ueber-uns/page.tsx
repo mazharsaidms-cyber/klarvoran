@@ -50,7 +50,8 @@ export default function UeberUnsPage() {
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
           Mazhar Said hat KlarVoran gegründet und verantwortet die fachliche Arbeit. Seine Erfahrung im
           Bewerbungsmanagement und Jobcoaching verbindet er mit strukturiertem Arbeiten aus dem Rechts- und
-          Notariatsbereich. Im Mittelpunkt stehen verständliche Erklärungen, praktische Übungen und klare berufliche Ziele.
+          Notariatsbereich sowie Erfahrung in der Arbeitswelt und im Vertrieb. Im Mittelpunkt stehen verständliche
+          Erklärungen, praktische Übungen und klare berufliche Ziele.
         </p>
         <div className="mt-10">
           <CoachProfile />

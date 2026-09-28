@@ -52,6 +52,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
+          aria-label="KlarVoran – zur Startseite"
           className="flex min-h-11 items-center gap-2.5 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
         >
           <Image

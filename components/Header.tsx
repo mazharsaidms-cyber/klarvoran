@@ -20,7 +20,6 @@ export function Header() {
   function isActive(href: string) {
     if (href === "/fachkraefte-kooperationspartner") return institutionalPage;
     if (href === "/leistungen") return pathname.startsWith("/leistungen");
-    if (href === "/#ueber-uns") return pathname === "/";
     return pathname === href;
   }
   const menuButtonRef = useRef<HTMLButtonElement>(null);

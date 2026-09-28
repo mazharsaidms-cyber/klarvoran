@@ -39,7 +39,7 @@ try {
   const notFound = await fetch(`${base}/audit-nonexistent-page`);
   assert.equal(notFound.status, 404);
   assert.match(await notFound.text(), /noindex/);
-  for (const [from, to] of [['/coaching-angebot', '/avgs'], ['/ablauf', '/avgs'], ['/ueber-den-coach', '/#ueber-uns'], ['/ueber-uns', '/#ueber-uns']]) {
+  for (const [from, to] of [['/coaching-angebot', '/avgs'], ['/ablauf', '/avgs'], ['/ueber-den-coach', '/ueber-uns#gruender']]) {
     const response = await fetch(base + from, { redirect: 'manual' });
     assert.equal(response.status, 308);
     assert.equal(response.headers.get('location'), to);

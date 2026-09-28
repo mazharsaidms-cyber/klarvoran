@@ -6,7 +6,6 @@ const paths = [
   "/leistungen",
   "/leistungen/einzelcoaching",
   "/leistungen/workshops",
-  "/ueber-uns",
   "/avgs",
   "/fachkraefte-kooperationspartner",
   "/fuer-jobcenter",

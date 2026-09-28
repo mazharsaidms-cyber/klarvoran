@@ -71,7 +71,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/ueber-den-coach",
-        destination: "/ueber-uns#gruender",
+        destination: "/#ueber-uns",
         permanent: true,
       },
     ];

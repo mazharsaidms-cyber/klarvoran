@@ -117,7 +117,7 @@ export const siteConfig = {
     { href: "/avgs", label: "AVGS-Coaching" },
     { href: "/leistungen", label: "Leistungen" },
     { href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" },
-    { href: "/ueber-uns", label: "Über uns" },
+    { href: "/#ueber-uns", label: "Über uns" },
     { href: "/kontakt", label: "Kontakt" },
   ],
 } as const;

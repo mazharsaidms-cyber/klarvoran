@@ -49,11 +49,6 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/faq" className="inline-flex min-h-9 items-center text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
-                Häufige Fragen (FAQ)
-              </Link>
-            </li>
           </ul>
         </nav>
 

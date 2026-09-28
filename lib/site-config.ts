@@ -114,10 +114,12 @@ export const siteConfig = {
   },
 
   nav: [
+    { href: "/", label: "Startseite" },
     { href: "/avgs", label: "AVGS-Coaching" },
     { href: "/leistungen", label: "Leistungen" },
     { href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" },
     { href: "/ueber-uns", label: "Über uns" },
+    { href: "/faq", label: "FAQ" },
     { href: "/kontakt", label: "Kontakt" },
   ],
 } as const;

@@ -128,24 +128,27 @@ export default function FuerSozialeEinrichtungenPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
         <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
           <Card>
-            <h3 className="font-semibold text-navy">Vermittlung und Weiterempfehlung</h3>
+            <h3 className="font-semibold text-navy">Weg 1: AVGS-Weiterempfehlung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Sie informieren passende Klientinnen und Klienten über das Angebot. Bei vorhandenem oder geplantem
               AVGS klärt KlarVoran Gutschein, Maßnahmepassung und weitere Schritte direkt mit der Person.
+              Die Förderung muss vor Beginn bewilligt sein. Eine Weiterempfehlung ist keine Beauftragung
+              durch Ihre Einrichtung.
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Projekt- oder Budgetkooperation</h3>
+            <h3 className="font-semibold text-navy">Weg 2: Direkter Auftrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Workshops oder Coaching-Kontingente im Rahmen eigener Projektmittel oder Budgets Ihrer Einrichtung –
-              Umfang und Konditionen klären wir gemeinsam.
+              Umfang, Zuständigkeiten und Gesamtpreis werden vor Beauftragung schriftlich vereinbart.
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">AZAV-Hintergrund</h3>
+            <h3 className="font-semibold text-navy">Coaching in Ihrer Einrichtung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Die Trägerzulassung nach § 178 SGB III und die zugelassene Maßnahme sind relevant, sobald
-              Klientinnen und Klienten einen passenden AVGS einbringen.
+              AVGS-Einzelcoaching ist nach Bewilligung und bestätigtem Durchführungsort auch in Ihrer
+              Einrichtung möglich. Räume, Technik und Termine stimmen wir vorab ab. Für direkt beauftragte
+              Workshops oder Coachings wird der Ort im Angebot vereinbart.
             </p>
           </Card>
           <Card>

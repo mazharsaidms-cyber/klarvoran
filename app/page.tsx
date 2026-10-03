@@ -69,19 +69,14 @@ export default function HomePage() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">
               <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              <strong className="font-semibold text-white">KlarVoran</strong> ist ein nach § 178 SGB III (AZAV)
-              zugelassener Bildungsträger. Unser Schwerpunkt liegt auf individuellem Job- und Bewerbungscoaching,
-              das genau auf deine Bedürfnisse abgestimmt ist.
-            </p>
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
-              Wir begleiten dich Schritt für Schritt auf deinem Weg in Arbeit oder Ausbildung. Bei uns lernst du
-              nicht nur in der Theorie, sondern setzt direkt konkrete Schritte um – so gewinnst du die Sicherheit,
-              um deine berufliche Zukunft anschließend selbstbewusst und eigenständig zu gestalten.
+              Du suchst Arbeit oder eine Ausbildung? Wir klären gemeinsam deine Richtung, arbeiten an
+              deinen Bewerbungen und üben Vorstellungsgespräche. Im persönlichen Einzelcoaching lernst
+              du Schritt für Schritt, selbst weiterzugehen.
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Frankfurt, Hofheim und den Main-Taunus-Kreis.
@@ -89,7 +84,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href="/termin" size="lg" onDark>
-                Kostenloses Erstgespräch anfragen
+                Kostenloses Erstgespräch
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" size="lg" onDark>
                 Angebote für Institutionen
@@ -202,6 +197,7 @@ export default function HomePage() {
           <div>
             <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
+              KlarVoran ist ein nach § 178 SGB III (AZAV) zugelassener Bildungsträger.{" "}
               Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
               passenden und bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige
               Kostenträger die Kosten vollständig.

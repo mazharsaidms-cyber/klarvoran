@@ -27,7 +27,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Wie lange dauert das Coaching?",
     answer:
-      "Die Maßnahme umfasst 32 Unterrichtseinheiten à 45 Minuten und läuft über 8 Wochen. In der Regel finden zwei Termine pro Woche mit jeweils 2 Unterrichtseinheiten statt.",
+      "Das AVGS-Einzelcoaching umfasst 32 Unterrichtseinheiten à 45 Minuten in bis zu 8 Wochen. In der Regel finden zwei Termine pro Woche mit jeweils 2 Unterrichtseinheiten statt. Beim privaten Coaching werden Umfang und Dauer vor der Buchung individuell vereinbart.",
   },
   {
     question: "Findet das Coaching online oder in Präsenz statt?",
@@ -37,7 +37,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",
     answer:
-      "Sag uns frühzeitig Bescheid, damit wir gemeinsam einen neuen Termin finden. Fehlzeiten dokumentieren wir wie vorgeschrieben gegenüber dem Kostenträger.",
+      "Sag uns frühzeitig Bescheid, damit wir das weitere Vorgehen und einen möglichen Ersatztermin besprechen können. Beim AVGS-Coaching dokumentieren wir Fehlzeiten nach den Vorgaben des Kostenträgers. Beim privaten Coaching gelten die vor der Buchung vereinbarten Bedingungen.",
   },
 ];
 

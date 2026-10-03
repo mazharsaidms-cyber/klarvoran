@@ -6,14 +6,22 @@ import path from "node:path";
 // Read-only smoke check; never submits a form or transmits participant data.
 const base = process.env.SITE_QA_URL || "http://127.0.0.1:3091";
 const decode = (text) => text.replaceAll("&amp;", "&").replaceAll("&#x27;", "'").replaceAll("&quot;", '"');
-const documents = ["/dokumente/KlarVoran-Massnahmenblatt-AVGS.pdf", "/dokumente/KlarVoran-Kooperationsblatt.pdf"];
+const documents = [
+  "/dokumente/KlarVoran-Massnahmeflyer-Jobcenter-BA-CERTQUA.pdf",
+  "/dokumente/KlarVoran-Kooperationsflyer-Bildungstraeger-CERTQUA.pdf",
+  "/dokumente/KlarVoran-Kooperationsflyer-Soziale-Einrichtungen-CERTQUA.pdf",
+  "/dokumente/KlarVoran-Teilnehmerflyer-CERTQUA.pdf",
+];
+// Previously shared links must continue to resolve, without listing obsolete
+// fact sheets alongside the current, audience-specific flyers.
+const legacyDocuments = ["/dokumente/KlarVoran-Massnahmenblatt-AVGS.pdf", "/dokumente/KlarVoran-Kooperationsblatt.pdf"];
 const pages = [
   ["/", "Job- & Bewerbungscoaching Rhein-Main | KlarVoran"],
-  ["/avgs", "AVGS-Bewerbungscoaching in Kriftel | KlarVoran"],
-  ["/fachkraefte-kooperationspartner", null, ...documents],
+  ["/avgs", "AVGS-Bewerbungscoaching in Kriftel | KlarVoran", documents[3]],
+  ["/fachkraefte-kooperationspartner", null, ...documents.slice(0, 3)],
   ["/fuer-jobcenter", null, documents[0]],
   ["/fuer-bildungstraeger", null, documents[1]],
-  ["/fuer-soziale-einrichtungen", null, documents[1]],
+  ["/fuer-soziale-einrichtungen", null, documents[2]],
 ];
 
 for (const [route, title, ...downloads] of pages) {
@@ -33,7 +41,7 @@ for (const [route, title, ...downloads] of pages) {
   console.log(`OK ${route}: heading, metadata and expected downloads`);
 }
 
-for (const href of documents) {
+for (const href of [...documents, ...legacyDocuments, "/dokumente/CERTQUA.pdf"]) {
   const response = await fetch(new URL(href, base), { signal: AbortSignal.timeout(20000) });
   assert.equal(response.status, 200, href);
   assert.match(response.headers.get("content-type") || "", /application\/pdf/);

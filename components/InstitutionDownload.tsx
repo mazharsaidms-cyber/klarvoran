@@ -20,7 +20,9 @@ export function InstitutionDownload({ kind }: { kind: InstitutionalDownloadKind 
         PDF herunterladen
       </a>
       <p className="mt-2 text-xs leading-relaxed text-navy-600">
-        {kind === "participantFlyer" ? "Die Informationen findest du auch auf dieser Website." : "Die Informationen finden Sie auch auf dieser Website."}
+        <a href={document.detailHref} className="inline-flex min-h-6 items-center underline underline-offset-4 hover:text-btn-red">
+          {kind === "participantFlyer" ? "Informationen direkt auf der Website lesen" : "Informationen als Website-Text lesen"}
+        </a>
       </p>
     </div>
   );

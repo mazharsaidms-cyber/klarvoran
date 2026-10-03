@@ -25,7 +25,7 @@ export const coachExperience = [
   {
     role: "Immobilienberater",
     org: "Engel & Völkers",
-    period: "2023",
+    period: "2022",
   },
   {
     role: "Ausbildung zum Rechtsanwalts- und Notarfachangestellten",

@@ -20,19 +20,19 @@ import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
   description:
-    "AVGS-Einzelcoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis: 32 UE in bis zu 8 Wochen, online oder hybrid. Kostenfrei mit passendem, bewilligtem AVGS.",
+    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, 32 UE. Mit passendem, bewilligtem AVGS kostenfrei.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in bis zu 8 Wochen. Präsenz in Kriftel, online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
     url: "/avgs",
   },
   twitter: {
     card: "summary_large_image",
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in bis zu 8 Wochen. Präsenz in Kriftel, online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
   },
   alternates: { canonical: "/avgs" },
 };
@@ -85,9 +85,9 @@ export default function AvgsPage() {
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
               Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
-              {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Frankfurt, Hofheim und den
-              Main-Taunus-Kreis. Alternativ online oder im Wechsel zwischen Online- und Präsenzterminen (hybrid).
-              Termine nach vorheriger Bestätigung.
+              {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Hofheim und den
+              Main-Taunus-Kreis sowie Höchst, Zeilsheim und den Frankfurter Westen. Alternativ online oder
+              im Wechsel zwischen Online- und Präsenzterminen (hybrid). Termine nach vorheriger Bestätigung.
             </p>
           </div>
           <ContextGraphic
@@ -114,6 +114,23 @@ export default function AvgsPage() {
           <Button href="#inhalte" variant="text">Coachinginhalte ansehen →</Button>
           <Button href="#ablauf" variant="text">Ablauf kennenlernen →</Button>
         </div>
+      </Section>
+
+      <Section tone="white" spacing="compact">
+        <Eyebrow>In deiner Nähe</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+          Jobcoaching für Hofheim, Kriftel und Frankfurt-West
+        </h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
+          Du kommst aus Hofheim, Kriftel, Frankfurt-Höchst, Frankfurt-Zeilsheim oder der Umgebung?
+          Bei KlarVoran erhältst du persönliche Bewerbungshilfe im Main-Taunus-Kreis.
+          Das Einzelcoaching findet nach Terminbestätigung in den {siteConfig.presenceLocation.name} in Kriftel
+          statt. So musst du für einen Präsenztermin nicht in die Frankfurter Innenstadt fahren.
+        </p>
+        <p className="mt-3 max-w-3xl leading-relaxed text-navy-600">
+          Online oder hybrid ist ebenfalls möglich. Im kostenlosen Erstgespräch klären wir, welches Format
+          zu deiner Situation und den Vorgaben deines AVGS passt.
+        </p>
       </Section>
 
       <Section tone="tint">

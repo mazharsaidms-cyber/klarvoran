@@ -136,6 +136,20 @@ export default function AvgsPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
+        <div className="mt-4 max-w-3xl space-y-3 leading-relaxed text-navy-600">
+          <p>
+            Eine Zeit ohne Arbeit kann belastend sein, besonders wenn du dich dafür erklären sollst.
+            Bei uns musst du dich nicht rechtfertigen. Wir hören erst einmal zu.
+          </p>
+          <p>
+            Wenn auf Bewerbungen nur Absagen oder gar keine Antworten kommen, ist schwer zu erkennen,
+            woran es liegt. Wir schauen gemeinsam auf konkrete Unterlagen und mögliche nächste Schritte.
+          </p>
+          <p>
+            Auch der Weg zum AVGS kann unübersichtlich wirken. Wir erklären dir den Ablauf und helfen dir,
+            deinen Unterstützungsbedarf für das Gespräch mit deiner Vermittlungsfachkraft klar zu beschreiben.
+          </p>
+        </div>
         <div className="text-card-grid mt-8 grid gap-6 sm:grid-cols-2">
           <Card>
             <h3 className="text-lg font-bold text-navy">Wenn dir Orientierung oder Struktur fehlt</h3>
@@ -194,7 +208,17 @@ export default function AvgsPage() {
       <Section tone="white" id="leitfaden">
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
+          Du bist unsicher, wie du deinen Bedarf erklären sollst? Auf Wunsch formulieren wir mit dir eine kurze
+          schriftliche Gesprächsvorlage: Was ist dein berufliches Ziel, wobei brauchst du Unterstützung und warum
+          könnte Einzelcoaching helfen? Du kannst sie zum Beratungstermin mitnehmen. Die Entscheidung über den
+          Gutschein trifft deine Vermittlungsfachkraft.
+        </p>
         <div className="mt-8"><VisualSteps steps={guideSteps} /></div>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-navy-600">
+          Ein Gutschein allein ist noch kein Startsignal: Das Coaching beginnt erst, wenn der AVGS zu unserem
+          Angebot passt und deine Teilnahme vor Beginn schriftlich bewilligt wurde.
+        </p>
       </Section>
 
       <Section tone="navy" id="schnellcheck">

@@ -17,21 +17,21 @@ import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: { absolute: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran" },
+  title: { absolute: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran" },
   description:
-    "Job- und Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis. Mit AVGS oder privat, online oder hybrid. Workshops und Kooperationen.",
+    "Jobcoaching für Hofheim und Frankfurt-West: 1:1 in Kriftel, online oder hybrid. AVGS-Bewerbungshilfe und Angebote für Institutionen.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
-    title: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran",
-    description: "Persönliches Coaching in Kriftel für Frankfurt, Hofheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+    title: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran",
+    description: "Persönliches Coaching in Kriftel für Hofheim, Höchst, Zeilsheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Job- & Bewerbungscoaching Rhein-Main | KlarVoran",
-    description: "Persönliches Coaching in Kriftel für Frankfurt, Hofheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+    title: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran",
+    description: "Persönliches Coaching in Kriftel für Hofheim, Höchst, Zeilsheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
   },
   alternates: { canonical: "/" },
 };
@@ -68,7 +68,7 @@ export default function HomePage() {
       <Section tone="navy" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt &amp; Rhein-Main</Eyebrow>
+            <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt-West &amp; Main-Taunus-Kreis</Eyebrow>
             <h1 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">
               <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
               <span className="text-logo-red">voran</span>kommen.
@@ -79,8 +79,8 @@ export default function HomePage() {
               du Schritt für Schritt, selbst weiterzugehen.
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
-              Persönlich in Kriftel – für Frankfurt, Hofheim und den Main-Taunus-Kreis.
-              Alternativ online oder hybrid. Präsenztermine nach Vereinbarung.
+              Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
+              und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href="/termin" size="lg" onDark>

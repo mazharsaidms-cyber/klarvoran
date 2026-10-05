@@ -8,15 +8,13 @@ import { siteConfig } from "@/lib/site-config";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
 
+const headerNav = siteConfig.nav.filter((item) => item.href !== "/faq" && item.href !== "/kontakt");
+
 export function Header() {
   const [openPathname, setOpenPathname] = useState<string | null>(null);
   const pathname = usePathname();
   const open = openPathname === pathname;
   const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-");
-  const workshopPage = pathname === "/leistungen/workshops";
-  const ctaHref = institutionalPage || workshopPage ? `${pathname}#anfrage` : "/termin";
-  const ctaLabel = workshopPage ? "Workshop anfragen" : pathname === "/fuer-jobcenter" ? "Teilnahme abstimmen" : institutionalPage ? "Kooperation anfragen" : "Erstgespräch anfragen";
-
   function isActive(href: string) {
     if (href === "/fachkraefte-kooperationspartner") return institutionalPage;
     if (href === "/leistungen") return pathname.startsWith("/leistungen");
@@ -49,11 +47,11 @@ export function Header() {
     // Durchgehend dunkelblauer Header (Kundenvorgabe) – performant, SSR-stabil,
     // ohne Scroll-Listener. Bleibt auch auf hellen Leseseiten lesbar.
     <header className="sticky top-0 z-40 border-b border-white/10 bg-navy text-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:gap-3 lg:px-8 xl:gap-5">
         <Link
           href="/"
           aria-label="KlarVoran – zur Startseite"
-          className="flex min-h-11 items-center gap-2.5 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
+          className="flex min-h-11 shrink-0 items-center gap-2.5 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]"
         >
           <Image
             src={siteConfig.images.badge}
@@ -66,9 +64,25 @@ export function Header() {
           <Logo tone="dark" loading="eager" className="h-6 w-auto sm:h-7" />
         </Link>
 
-        <div className="hidden lg:block">
-          <Button href={ctaHref} size="md" onDark>
-            {ctaLabel}
+        <nav aria-label="Hauptnavigation" className="hidden lg:block">
+          <ul className="flex items-center gap-2 xl:gap-4">
+            {headerNav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive(item.href) ? (pathname === item.href ? "page" : "location") : undefined}
+                  className={`header-nav-link ${isActive(item.href) ? "header-nav-active" : ""} ${item.href === "/avgs" ? "font-bold" : "font-medium"}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="hidden shrink-0 lg:block">
+          <Button href="/termin" size="md" onDark>
+            Erstgespräch anfragen
           </Button>
         </div>
 
@@ -94,43 +108,10 @@ export function Header() {
         </button>
       </div>
 
-      <nav aria-label="Hauptnavigation" className="hidden border-t border-white/10 lg:block">
-        <ul className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-8">
-          {siteConfig.nav.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                aria-current={isActive(item.href) ? (pathname === item.href ? "page" : "location") : undefined}
-                className={`header-nav-link ${isActive(item.href) ? "header-nav-active" : ""} ${item.href === "/avgs" ? "font-bold" : "font-medium"}`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <nav aria-label="Schnellzugriff" className="border-t border-white/10 lg:hidden">
-        <ul className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-5 sm:px-6">
-          {siteConfig.nav.filter((item) => ["/avgs", "/leistungen", "/fachkraefte-kooperationspartner", "/kontakt"].includes(item.href)).map((item) => (
-            <li key={item.href} className={item.href === "/fachkraefte-kooperationspartner" ? "hidden sm:block" : undefined}>
-              <Link
-                href={item.href}
-                onClick={() => setOpenPathname(null)}
-                aria-current={isActive(item.href) ? (pathname === item.href ? "page" : "location") : undefined}
-                className={`header-nav-link ${isActive(item.href) ? "header-nav-active" : ""} ${item.href === "/avgs" ? "font-bold" : "font-medium"}`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
       <noscript>
         <nav aria-label="Navigation ohne JavaScript" className="border-t border-white/10 px-5 py-3 lg:hidden">
           <ul className="flex flex-wrap gap-x-5 gap-y-1">
-            {siteConfig.nav.map((item) => (
+            {headerNav.map((item) => (
               <li key={item.href}>
                 <a href={item.href} className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">
                   {item.label}
@@ -142,9 +123,9 @@ export function Header() {
       </noscript>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile Navigation" className="max-h-[calc(100dvh-7.5rem)] overflow-y-auto border-t border-white/10 bg-navy lg:hidden">
+        <nav id="mobile-nav" aria-label="Mobile Navigation" className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-white/10 bg-navy lg:hidden">
           <ul className="flex flex-col gap-1 px-5 py-4">
-            {siteConfig.nav.map((item, index) => (
+            {headerNav.map((item, index) => (
               <li key={item.href}>
                 <Link
                   ref={index === 0 ? firstMobileLinkRef : undefined}
@@ -160,8 +141,8 @@ export function Header() {
               </li>
             ))}
             <li className="mt-2">
-              <Button href={ctaHref} className="w-full" onDark onClick={closeMenu}>
-                {ctaLabel}
+              <Button href="/termin" className="w-full" onDark onClick={closeMenu}>
+                Erstgespräch anfragen
               </Button>
             </li>
           </ul>

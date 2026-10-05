@@ -11,9 +11,9 @@ export type AvgsRequestAnswers = {
 };
 
 const goalSentence: Record<AvgsRequestGoal, string> = {
-  arbeit: "Ich möchte eine passende Arbeit finden.",
-  ausbildung: "Ich möchte einen passenden Ausbildungsplatz finden.",
-  orientierung: "Ich möchte eine realistische berufliche Richtung für mich finden.",
+  arbeit: "ich möchte eine passende Arbeit finden.",
+  ausbildung: "ich möchte einen passenden Ausbildungsplatz finden.",
+  orientierung: "ich möchte eine realistische berufliche Richtung für mich finden.",
 };
 
 const needSentence: Record<AvgsAnliegen, string> = {

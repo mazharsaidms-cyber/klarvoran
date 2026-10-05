@@ -13,6 +13,7 @@ test("uses the selected training goal and concern without asserting approval", (
   assert.match(text, /Ausbildungsplatz finden/);
   assert.match(text, /Suche nach einem Ausbildungsplatz/);
   assert.match(text, /Bitte um Prüfung eines AVGS/);
+  assert.match(text, /Guten Tag,\n\nich möchte/);
   assert.match(text, /ob dafür ein Aktivierungs- und Vermittlungsgutschein.*infrage kommt/);
   assert.match(text, /Mina Beispiel$/);
   assert.doesNotMatch(text, /bewilligt|garantiert|Anspruch/);

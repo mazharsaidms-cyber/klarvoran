@@ -10,6 +10,7 @@ import { RadioGroupField, TextField, PrivacyNotice, HoneypotField } from "./form
 import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 import { NoScriptContact } from "./NoScriptContact";
+import { AvgsAnfrageAssistent } from "./AvgsAnfrageAssistent";
 
 const STEP_LABELS = ["AVGS-Status", "Situation", "Ergebnis & Kontakt"];
 
@@ -138,8 +139,8 @@ export function AvgsSchnellcheck() {
         </div>
       )}
 
-      {step === 3 && result && (
-        <form ref={formRef} action={formAction} className="space-y-5" aria-busy={pending}>
+      {step === 3 && result && hasAllAnswers(answers) && (
+        <div className="space-y-5">
           <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-navy outline-none">
             {result.headline}
           </h2>
@@ -159,55 +160,62 @@ export function AvgsSchnellcheck() {
             )}
           </div>
 
-          <p className="text-sm leading-relaxed text-navy-600">
-            Du möchtest lieber einen Rückruf oder eine Antwort per E-Mail? Sende uns dafür deine Kontaktdaten.
-          </p>
+          {answers.status !== "hat_avgs" && (
+            <AvgsAnfrageAssistent need={answers.anliegen} traeger={answers.traeger} />
+          )}
 
-          <input type="hidden" name="status" value={answers.status} />
-          <input type="hidden" name="traeger" value={answers.traeger} />
-          <input type="hidden" name="anliegen" value={answers.anliegen} />
-          <input type="hidden" name="format" value={answers.form} />
-          <HoneypotField />
+          <form ref={formRef} action={formAction} className="space-y-5 border-t border-navy-100 pt-6" aria-busy={pending}>
+            <h3 className="text-lg font-bold text-navy">KlarVoran kontaktieren</h3>
+            <p className="text-sm leading-relaxed text-navy-600">
+              Du möchtest einen Rückruf oder eine Antwort per E-Mail? Sende uns dafür deine Kontaktdaten.
+            </p>
 
-          <div className="grid gap-4 border-t border-navy-100 pt-5 sm:grid-cols-2">
-            <TextField
-              id="name" {...field("name")}
-              label="Name"
-              required
-              autoComplete="name"
-              error={state.fieldErrors?.name}
-            />
-            <TextField
-              id="email" {...field("email")}
-              label="E-Mail"
-              type="email"
-              required
-              autoComplete="email"
-              error={state.fieldErrors?.email}
-            />
-            <TextField
-              id="phone" {...field("phone")}
-              label="Telefon (optional)"
-              type="tel"
-              autoComplete="tel"
-              wrapperClassName="sm:col-span-2"
-              error={state.fieldErrors?.phone}
-            />
-          </div>
+            <input type="hidden" name="status" value={answers.status} />
+            <input type="hidden" name="traeger" value={answers.traeger} />
+            <input type="hidden" name="anliegen" value={answers.anliegen} />
+            <input type="hidden" name="format" value={answers.form} />
+            <HoneypotField />
 
-          <p className="text-xs text-navy-600">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
-          <PrivacyNotice />
-          <StatusMessage state={state} />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <TextField
+                id="name" {...field("name")}
+                label="Name"
+                required
+                autoComplete="name"
+                error={state.fieldErrors?.name}
+              />
+              <TextField
+                id="email" {...field("email")}
+                label="E-Mail"
+                type="email"
+                required
+                autoComplete="email"
+                error={state.fieldErrors?.email}
+              />
+              <TextField
+                id="phone" {...field("phone")}
+                label="Telefon (optional)"
+                type="tel"
+                autoComplete="tel"
+                wrapperClassName="sm:col-span-2"
+                error={state.fieldErrors?.phone}
+              />
+            </div>
 
-          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-            <Button type="button" variant="ghost" onClick={back} disabled={pending}>
-              Zurück
-            </Button>
-            <Button type="submit" disabled={pending}>
-              {pending ? "Wird gesendet…" : "Angaben senden"}
-            </Button>
-          </div>
-        </form>
+            <p className="text-xs text-navy-600">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
+            <PrivacyNotice />
+            <StatusMessage state={state} />
+
+            <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+              <Button type="button" variant="ghost" onClick={back} disabled={pending}>
+                Zurück
+              </Button>
+              <Button type="submit" disabled={pending}>
+                {pending ? "Wird gesendet…" : "Angaben senden"}
+              </Button>
+            </div>
+          </form>
+        </div>
       )}
 
       {step < 3 && (

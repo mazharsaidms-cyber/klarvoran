@@ -113,6 +113,7 @@ export default function AvgsPage() {
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
           <Button href="#inhalte" variant="text">Coachinginhalte ansehen →</Button>
           <Button href="#ablauf" variant="text">Ablauf kennenlernen →</Button>
+          <Button href="#schnellcheck" variant="text">AVGS-Anfrage vorbereiten →</Button>
         </div>
       </Section>
 
@@ -209,10 +210,9 @@ export default function AvgsPage() {
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Du bist unsicher, wie du deinen Bedarf erklären sollst? Auf Wunsch formulieren wir mit dir eine kurze
-          schriftliche Gesprächsvorlage: Was ist dein berufliches Ziel, wobei brauchst du Unterstützung und warum
-          könnte Einzelcoaching helfen? Du kannst sie zum Beratungstermin mitnehmen. Die Entscheidung über den
-          Gutschein trifft deine Vermittlungsfachkraft.
+          Du bist unsicher, wie du deinen Bedarf erklären sollst? Nach dem AVGS-Schnellcheck kannst du direkt eine
+          kurze Nachricht an deine Vermittlungsfachkraft vorbereiten. Auf Wunsch formulieren wir sie auch gemeinsam
+          mit dir im Erstgespräch. Die Entscheidung über den Gutschein trifft deine Vermittlungsfachkraft.
         </p>
         <div className="mt-8"><VisualSteps steps={guideSteps} /></div>
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-navy-600">
@@ -223,11 +223,11 @@ export default function AvgsPage() {
 
       <Section tone="navy" id="schnellcheck">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">AVGS-Schnellcheck</Eyebrow>
+          <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
           <p className="mt-3 text-white/80">
-            Drei kurze Schritte für eine erste, unverbindliche Einschätzung – keine Anspruchszusage, sondern
-            Orientierung für dein Gespräch mit uns.
+            Drei kurze Schritte für eine erste, unverbindliche Einschätzung. Wenn du noch keinen AVGS hast,
+            kannst du anschließend eine Nachricht an deine Vermittlungsfachkraft vorbereiten.
           </p>
         </div>
         <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">

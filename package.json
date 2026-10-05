@@ -10,7 +10,7 @@
     "docs:build": "node --import tsx scripts/build-downloads.ts",
     "test:seo-downloads": "node scripts/check-local-seo.mjs",
     "test:seo-downloads:local": "node scripts/check-local-build.mjs",
-    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts lib/content/downloads.test.ts lib/lead-form.test.mjs",
+    "test": "node --import tsx --test lib/avgs-logic.test.ts lib/avgs-anfrage.test.ts lib/server/rate-limit.test.ts lib/server/schemas.test.ts lib/content/downloads.test.ts lib/lead-form.test.mjs",
     "test:site-build": "node scripts/check-site-build.mjs",
     "test:http-security": "node scripts/check-http-security.mjs"
   },

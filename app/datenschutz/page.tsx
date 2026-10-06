@@ -67,6 +67,13 @@ export default function DatenschutzPage() {
               ein Erstgespräch, eine Leistung oder eine Kooperation vorzubereiten.
             </p>
             <p className="mt-3">
+              Die Nachrichtenvorlage im AVGS-Schnellcheck wird aus deinen Angaben nur in deinem Browser erstellt.
+              Dein dort eingegebener Name, die freie Beschreibung und der bearbeitete Vorlagentext werden durch
+              diese Funktion nicht an KlarVoran gesendet. Du entscheidest selbst, ob du die Vorlage kopierst und
+              an deine zuständige Stelle schickst. Wenn du das separate Kontaktformular absendest, werden dessen
+              Angaben und deine Antworten aus dem Schnellcheck wie hier beschrieben an uns übermittelt.
+            </p>
+            <p className="mt-3">
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf einen Vertrag oder eine
               vorvertragliche Maßnahme gerichtet ist. Bei allgemeinen oder institutionellen Anfragen ist
               Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse besteht in der sachgerechten

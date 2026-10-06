@@ -20,19 +20,19 @@ import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
   description:
-    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, 32 UE. Mit passendem, bewilligtem AVGS kostenfrei.",
+    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, 32 UE. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
     url: "/avgs",
   },
   twitter: {
     card: "summary_large_image",
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei mit passendem und bewilligtem AVGS.",
+    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
   },
   alternates: { canonical: "/avgs" },
 };
@@ -50,13 +50,13 @@ const guideSteps: VisualStep[] = [
   },
   {
     icon: "document",
-    title: "Gutschein erhalten",
-    text: "Ist deine Vermittlungsfachkraft einverstanden, erhältst du einen AVGS mit Gültigkeitsdauer, Förderziel und Kostenträger.",
+    title: "Prüfung & Gutschein",
+    text: "Deine Vermittlungsfachkraft prüft, ob ein AVGS in deinem Fall infrage kommt. Wird er ausgestellt, beachte Ziel, Gültigkeit, Dauer und Region.",
   },
   {
     icon: "send",
-    title: "Gutschein bei uns einreichen",
-    text: "Bring deinen Gutschein zu KlarVoran – wir prüfen ihn unverbindlich im kostenlosen Erstgespräch.",
+    title: "Passung & Bewilligung",
+    text: "Wir prüfen den AVGS und bestätigen bei Passung die Teilnahmemöglichkeit. Danach entscheidet deine Vermittlungsfachkraft. Beginne erst nach schriftlicher Bewilligung.",
   },
 ];
 
@@ -74,8 +74,8 @@ export default function AvgsPage() {
               Job- und Bewerbungscoaching mit AVGS
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Mit einem bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) von Jobcenter oder Agentur für Arbeit
-              kannst du am individuellen Coaching teilnehmen, ohne die Kosten selbst zu tragen. Du lernst, berufliche
+              Mit einem passenden Aktivierungs- und Vermittlungsgutschein (AVGS) und vorab schriftlich bewilligter
+              Teilnahme übernimmt der zuständige Kostenträger die Kosten des Coachings. Du lernst, berufliche
               Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
               weiterzuführen.
             </p>
@@ -104,7 +104,7 @@ export default function AvgsPage() {
           <FactStat value="1:1" label="Du und dein Coach" />
           <FactStat value={`${totalUe} UE`} label="Eine Einheit dauert 45 Minuten" />
           <FactStat value="8 Wochen" label="In der Regel zwei Termine pro Woche" />
-          <FactStat value="0 €" label="Mit passendem, bewilligtem AVGS" />
+          <FactStat value="0 €" label="Bei passendem AVGS und bewilligter Teilnahme" />
         </div>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-navy-600">
           Du brauchst noch keinen Gutschein, um uns anzusprechen. Vor dem Coaching klären wir mit dir,
@@ -255,7 +255,7 @@ export default function AvgsPage() {
         </div>
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
           Die Maßnahme „Individuelles Bewerbungscoaching“ ist nach § 45 SGB III zugelassen. Bei Vorliegen eines
-          passenden und bewilligten AVGS werden die Kosten vom zuständigen Kostenträger vollständig übernommen.
+          passenden AVGS und vor Beginn schriftlich bewilligter Teilnahme werden die Maßnahmekosten vom zuständigen Kostenträger übernommen.
           Die AZAV legt fest, welche Anforderungen Träger und Maßnahmen der Arbeitsförderung erfüllen müssen.
         </p>
       </Section>

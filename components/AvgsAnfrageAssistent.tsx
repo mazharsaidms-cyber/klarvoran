@@ -112,8 +112,9 @@ export function AvgsAnfrageAssistent({ need, traeger }: { need: AvgsAnliegen; tr
         </div>
       )}
       <p className="mt-4 text-xs leading-relaxed text-navy-600">
-        Der Assistent verschickt deine Angaben nicht. Ob ein AVGS ausgestellt wird, entscheidet deine Vermittlungsfachkraft.
-        Das Coaching beginnt erst nach Prüfung des Gutscheins und schriftlicher Bewilligung.
+        Die Vorlage entsteht in deinem Browser und wird nicht automatisch versendet. Sie ist noch kein Antrag bei
+        Jobcenter oder Agentur für Arbeit. Prüfe sie und sende sie selbst an deine zuständige Stelle, wenn du möchtest.
+        Ob ein AVGS ausgestellt und deine Teilnahme bewilligt wird, entscheidet die zuständige Stelle.
       </p>
     </div>
   );

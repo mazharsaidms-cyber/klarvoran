@@ -21,7 +21,7 @@ export const processSteps: ProcessStep[] = [
     id: 3,
     title: "Gutscheinprüfung & Start",
     description:
-      "Liegt ein AVGS vor, prüfen wir Gültigkeit, Förderziel und Kostenträger. Wenn noch keiner vorliegt, erklären wir dir die Beantragung. Das Coaching beginnt erst nach geklärter Förderung und Aufnahme.",
+      "Liegt ein AVGS vor, prüfen wir Gültigkeit und Passung zur Maßnahme. Wenn noch keiner vorliegt, erklären wir dir die Beantragung. Das Coaching beginnt erst, nachdem die Teilnahme schriftlich bewilligt und die Aufnahme geklärt ist.",
   },
   {
     id: 4,

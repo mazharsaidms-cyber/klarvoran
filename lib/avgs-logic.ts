@@ -42,15 +42,15 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
     answers.form === "praesenz_kriftel"
       ? "Präsenztermine finden nach Bestätigung in der Taunusstraße 52 in Kriftel statt."
       : answers.form === "online"
-        ? "Ein Online-Coaching ist bei uns möglich."
+        ? "Ob Online-Coaching zu den Vorgaben deines AVGS passt, klären wir im Erstgespräch."
         : answers.form === "hybrid"
-          ? "Eine Kombination aus Präsenz- und Online-Terminen ist bei uns möglich."
+          ? "Ob eine Kombination aus Präsenz- und Online-Terminen zu den Vorgaben deines AVGS passt, klären wir im Erstgespräch."
           : "Die passende Form (Präsenz, online oder hybrid) klären wir gemeinsam im Erstgespräch.";
 
   if (answers.status === "hat_avgs") {
     return {
       headline: "Du hast bereits einen AVGS – sehr gut.",
-      message: `Damit ist eine wichtige Voraussetzung erfüllt. Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. ${concernNote} Anschließend klären wir die nächsten Schritte. ${formNote}`,
+      message: `Das ist ein erster Schritt. Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. ${concernNote} Die Teilnahme muss vor Beginn schriftlich bewilligt werden. ${formNote}`,
       primaryCtaLabel: "Erstgespräch anfragen",
       primaryCtaHref: "/termin",
       secondaryCtaLabel: "Direkt per WhatsApp schreiben",

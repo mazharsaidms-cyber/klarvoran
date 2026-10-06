@@ -7,7 +7,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Was kostet das Coaching bei KlarVoran?",
     answer:
-      "Mit einem passenden und bewilligten AVGS ist das AVGS-Coaching für dich kostenfrei. Die Kosten übernimmt der zuständige Kostenträger. Für privates Job- und Bewerbungscoaching erhältst du nach dem kostenlosen Erstgespräch vor der Buchung ein transparentes Angebot mit Umfang und Gesamtpreis.",
+      "Mit einem passenden AVGS und vor Beginn schriftlich bewilligter Teilnahme entstehen dir keine Kosten für die Coaching-Maßnahme. Die Maßnahmekosten übernimmt der zuständige Kostenträger. Für privates Job- und Bewerbungscoaching erhältst du nach dem kostenlosen Erstgespräch vor der Buchung ein transparentes Angebot mit Umfang und Gesamtpreis.",
   },
   {
     question: "Wie starte ich?",
@@ -60,12 +60,12 @@ export const avgsFaq: FaqItem[] = [
   {
     question: "Wer bekommt einen AVGS?",
     answer:
-      "Arbeitsuchende bzw. von Arbeitslosigkeit bedrohte Personen mit Unterstützungsbedarf bei der beruflichen Orientierung, im Bewerbungsprozess oder bei der Integration – nach Ermessen der Vermittlungsfachkraft. Es besteht kein automatischer Rechtsanspruch.",
+      "Ausbildungsuchende, arbeitslose und von Arbeitslosigkeit bedrohte arbeitsuchende Personen können für eine passende Maßnahme in Betracht kommen. Die zuständige Stelle prüft Bedarf und Förderung im Einzelfall. Für einen AVGS zum Coaching besteht kein Rechtsanspruch.",
   },
   {
     question: "Wie läuft die Beantragung ab?",
     answer:
-      "Du sprichst das Thema aktiv bei deinem Beratungstermin an und begründest deinen Bedarf. Ist deine Fachkraft einverstanden, erhältst du einen Gutschein mit Gültigkeitsdauer, Förderziel und Kostenträger. Diesen Gutschein bringst du zu uns – wir prüfen Gutschein und Passung zur Maßnahme und klären die nächsten Schritte mit dir.",
+      "Sprich deinen Unterstützungsbedarf bei deiner Vermittlungsfachkraft an. Sie prüft, ob ein AVGS für dich infrage kommt. Wenn du einen Gutschein erhältst, prüfen wir, ob er zu unserer zugelassenen Maßnahme passt, und bestätigen gegebenenfalls die Teilnahmemöglichkeit. Deine Vermittlungsfachkraft entscheidet anschließend über die Teilnahme. Beginne erst, wenn dir die schriftliche Bewilligung vorliegt.",
   },
   {
     question: "Kann ich den Bildungsträger selbst wählen?",
@@ -73,7 +73,7 @@ export const avgsFaq: FaqItem[] = [
       "Wenn dein AVGS zum Angebot und zur zugelassenen Maßnahme passt, kannst du KlarVoran bei deiner Vermittlungsfachkraft als gewünschten Träger ansprechen. Ob der Gutschein ausgestellt beziehungsweise eingelöst werden kann, wird im Einzelfall geprüft.",
   },
   {
-    question: "Was, wenn ich unsicher bin, ob ich Anspruch habe?",
+    question: "Was, wenn ich unsicher bin, ob ein AVGS infrage kommt?",
     answer:
       "Das ist völlig normal. Nutze unseren AVGS-Schnellcheck oder sprich uns direkt an – wir geben dir eine erste, unverbindliche Einschätzung und begleiten dich bei den nächsten Schritten.",
   },

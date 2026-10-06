@@ -79,7 +79,7 @@ export function ServiceStructuredData() {
             "@type": "Offer",
             price: "0",
             priceCurrency: "EUR",
-            description: "Für Teilnehmende kostenfrei bei passendem und bewilligtem AVGS.",
+            description: "Für Teilnehmende kostenfrei bei passendem AVGS und vorab schriftlich bewilligter Teilnahme.",
           },
         },
       },

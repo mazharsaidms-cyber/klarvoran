@@ -199,8 +199,8 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
               KlarVoran ist ein nach § 178 SGB III (AZAV) zugelassener Bildungsträger.{" "}
               Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
-              passenden und bewilligten Aktivierungs- und Vermittlungsgutschein (AVGS) übernimmt der zuständige
-              Kostenträger die Kosten vollständig.
+              passenden Aktivierungs- und Vermittlungsgutschein (AVGS) und vor Beginn schriftlich bewilligter Teilnahme
+              übernimmt der zuständige Kostenträger die Maßnahmekosten.
             </p>
             <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
               Zertifikat Trägerzulassung (PDF) →

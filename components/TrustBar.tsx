@@ -1,7 +1,7 @@
 const items = [
   "AZAV-zugelassener Bildungsträger",
   "Persönliches 1:1-Coaching",
-  "0 € mit passendem, bewilligtem AVGS",
+  "0 € bei passendem AVGS und bewilligter Teilnahme",
 ];
 
 export function TrustBar({ tone = "light" }: { tone?: "light" | "dark" }) {

@@ -17,13 +17,13 @@ export const leistungen: Leistung[] = [
     title: "AVGS-Bewerbungscoaching",
     audience: "Jobcenter & Agentur für Arbeit",
     summary:
-      "Individuelles 1:1-Coaching nach § 45 SGB III im Rahmen unserer zugelassenen Maßnahme – mit bewilligtem AVGS für dich kostenfrei.",
+      "Individuelles 1:1-Coaching nach § 45 SGB III im Rahmen unserer zugelassenen Maßnahme – kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
     bullets: [
       "32 Einheiten in bis zu 8 Wochen",
       "1:1-Einzelcoaching, keine Gruppe",
       "Zugelassene Maßnahme nach § 45 SGB III",
     ],
-    price: "0 € mit bewilligtem AVGS",
+    price: "0 € bei passendem AVGS und bewilligter Teilnahme",
     href: "/avgs",
     ctaLabel: "AVGS-Coaching ansehen",
   },

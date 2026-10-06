@@ -80,9 +80,9 @@ export default function DatenschutzPage() {
               Bearbeitung geschäftlicher Anfragen.
             </p>
             <p className="mt-3">
-              Name, E-Mail-Adresse, Nachricht und die jeweils als Pflichtfeld gekennzeichneten Angaben werden für
-              die Bearbeitung benötigt. Ohne diese Angaben kann die Anfrage nicht über das Formular versendet und
-              nicht sachgerecht zugeordnet werden. Eine gesetzliche Pflicht zur Nutzung der Formulare besteht nicht;
+              Die im jeweiligen Formular als Pflichtfeld gekennzeichneten Angaben werden für die Bearbeitung
+              benötigt. Ohne sie kann die Anfrage nicht über das Formular versendet und nicht sachgerecht zugeordnet
+              werden. Eine gesetzliche Pflicht zur Nutzung der Formulare besteht nicht;
               alternativ sind Telefon oder E-Mail möglich.
             </p>
             <p className="mt-3">
@@ -229,7 +229,7 @@ export default function DatenschutzPage() {
             </p>
           </section>
 
-          <p className="text-sm text-navy-600">Stand: 20. September 2026</p>
+          <p className="text-sm text-navy-600">Stand: 6. Oktober 2026</p>
         </div>
       </Section>
     </>

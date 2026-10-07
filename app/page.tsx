@@ -13,7 +13,7 @@ import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { FounderExpertise } from "@/components/FounderExpertise";
-import { leistungen } from "@/lib/content/leistungen";
+import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
 
@@ -79,16 +79,16 @@ export default function HomePage() {
               deinen Bewerbungen und üben Vorstellungsgespräche. Im persönlichen Einzelcoaching lernst
               du Schritt für Schritt, selbst weiterzugehen.
             </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Button href="/avgs" onDark>
+                Ich suche Coaching
+              </Button>
+              <Button href="/fachkraefte-kooperationspartner" variant="secondary" onDark>
+                Für Institutionen
+              </Button>
+            </div>
             <div className="mt-6 max-w-xl">
               <AvgsCheckEntry />
-            </div>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href="/termin" variant="secondary" onDark>
-                Kostenloses Erstgespräch
-              </Button>
-              <Button href="/fachkraefte-kooperationspartner" variant="text" onDark>
-                Angebote für Institutionen
-              </Button>
             </div>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
@@ -163,15 +163,22 @@ export default function HomePage() {
       <Section tone="navy">
         <div className="mb-10 text-center">
           <Eyebrow tone="white">Leistungen</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Das passende Angebot für deinen nächsten Schritt</h2>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Coaching für dich · Angebote für Institutionen</h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
             Einzelcoaching für deine Bewerbung und berufliche Orientierung. Für Einrichtungen und Bildungsträger
             bieten wir außerdem Workshops und klar vereinbarte Coachingaufträge an.
           </p>
         </div>
+        <h3 className="mb-5 text-xl font-bold text-white">Du suchst Unterstützung für dich?</h3>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
-          {leistungen.map((l, i) => (
-            <LeistungCard key={l.id} leistung={l} hasMassnahmeBadge={i === 0} />
+          {participantLeistungen.map((l) => (
+            <LeistungCard key={l.id} leistung={l} hasMassnahmeBadge={l.id === "avgs"} headingLevel={4} />
+          ))}
+        </ul>
+        <h3 className="mb-5 mt-10 text-xl font-bold text-white">Sie planen ein Angebot für Ihre Einrichtung?</h3>
+        <ul className="service-grid grid gap-6 sm:grid-cols-2">
+          {institutionalLeistungen.map((l) => (
+            <LeistungCard key={l.id} leistung={l} headingLevel={4} />
           ))}
         </ul>
       </Section>
@@ -247,6 +254,8 @@ export default function HomePage() {
         eyebrow="Nächster Schritt"
         title="Bereit für den ersten Schritt?"
         description="Im kostenlosen, unverbindlichen Erstgespräch klären wir deine Situation – ganz gleich, ob du schon einen AVGS hast oder noch unsicher bist."
+        secondaryLabel="Für Institutionen"
+        secondaryHref="/fachkraefte-kooperationspartner"
       />
     </>
   );

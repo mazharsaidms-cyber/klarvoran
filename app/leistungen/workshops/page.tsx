@@ -125,12 +125,6 @@ export default function WorkshopsPage() {
         </p>
       </Section>
 
-      <Section tone="white">
-        <Eyebrow>Arbeitsweise</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
-        <div className="mt-8"><VisualSteps steps={approach} /></div>
-      </Section>
-
       <Section tone="tint">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
@@ -158,6 +152,12 @@ export default function WorkshopsPage() {
             </p>
           </Card>
         </div>
+      </Section>
+
+      <Section tone="white">
+        <Eyebrow>Arbeitsweise</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
+        <div className="mt-8"><VisualSteps steps={approach} /></div>
       </Section>
 
       <Section tone="navy" id="anfrage">

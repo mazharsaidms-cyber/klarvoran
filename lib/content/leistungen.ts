@@ -13,11 +13,11 @@ export type Leistung = {
 export const leistungen: Leistung[] = [
   {
     id: "avgs",
-    eyebrow: "Für Arbeitsuchende mit Gutschein",
+    eyebrow: "Mit AVGS oder vor der Beantragung",
     title: "AVGS-Bewerbungscoaching",
     audience: "Jobcenter & Agentur für Arbeit",
     summary:
-      "Individuelles 1:1-Coaching nach § 45 SGB III im Rahmen unserer zugelassenen Maßnahme – kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+      "Persönliches Job- und Bewerbungscoaching. Du kannst dich auch melden, wenn du den Gutschein erst beantragen möchtest.",
     bullets: [
       "32 Einheiten in bis zu 8 Wochen",
       "1:1-Einzelcoaching, keine Gruppe",
@@ -29,11 +29,11 @@ export const leistungen: Leistung[] = [
   },
   {
     id: "einzelcoaching",
-    eyebrow: "Für Menschen ohne AVGS",
+    eyebrow: "Privat bezahlt",
     title: "Privates Job- und Bewerbungscoaching",
     audience: "Selbstzahler",
     summary:
-      "Privates Job- und Bewerbungscoaching mit individuell vereinbarten Themen, Umfang und Format – unabhängig von einem Gutschein.",
+      "Du bezahlst das Coaching selbst. Themen, Umfang und Format werden individuell vereinbart; du erhältst vor der Buchung ein schriftliches Angebot.",
     bullets: [
       "Umfang und Themen individuell abgestimmt",
       "Online, hybrid oder in Präsenz",
@@ -76,3 +76,10 @@ export const leistungen: Leistung[] = [
     ctaLabel: "Für Institutionen",
   },
 ];
+
+export const participantLeistungen = leistungen.filter((leistung) =>
+  leistung.id === "avgs" || leistung.id === "einzelcoaching",
+);
+export const institutionalLeistungen = leistungen.filter((leistung) =>
+  leistung.id === "workshops" || leistung.id === "kooperationen",
+);

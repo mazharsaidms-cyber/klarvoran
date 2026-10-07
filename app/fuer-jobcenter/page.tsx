@@ -35,7 +35,10 @@ export default function FuerJobcenterPage() {
               zur Durchführung und zu den vorhandenen Zulassungsnachweisen – kompakt für die Prüfung eines Gutscheins
               und der individuellen Passung.
             </p>
-            <Button href="#anfrage" onDark className="mt-6">Teilnahme abstimmen</Button>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href="#anfrage" onDark>Teilnahme abstimmen</Button>
+              <Button href="#massnahme" onDark variant="secondary">Maßnahmedaten ansehen</Button>
+            </div>
           </div>
           <ContextGraphic
             variant="application"
@@ -45,7 +48,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="tint" id="massnahme">
         <Eyebrow tone="navy">Maßnahme auf einen Blick</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
           {siteConfig.measure.title}
@@ -86,21 +89,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="white">
-        <Eyebrow>Zulassung</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AZAV-Zulassung &amp; Zertifizierung</h2>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
-          <CertificateSeal
-            seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
-          />
-          <div>
-            <CertificateFacts />
-          </div>
-        </div>
-      </Section>
-
-      <Section tone="tint">
+      <Section tone="tint" id="zielgruppe">
         <Eyebrow tone="navy">Zielgruppe & Inhalte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Für wen die Maßnahme geeignet ist</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -172,14 +161,13 @@ export default function FuerJobcenterPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Offizieller BA-Eintrag</h3>
+            <h3 className="font-semibold text-navy">Voraussetzungen vor dem Start</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Die Maßnahme ist im Portal „Coaching und Aktivierung“ der Bundesagentur für Arbeit veröffentlicht.
-              Veranstaltungs-ID: {siteConfig.measure.eventId}.
+              Zunächst werden Unterstützungsbedarf, Gutscheinbedingungen und Maßnahmepassung geprüft. KlarVoran
+              bestätigt bei Passung die Teilnahmemöglichkeit. Die Durchführung beginnt erst nach schriftlicher
+              Bewilligung der Teilnahme durch den zuständigen Kostenträger.
             </p>
-            <Button href={siteConfig.measure.baHref} external variant="text" className="mt-3">
-              BA-Eintrag öffnen →
-            </Button>
+
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Ansprechpartner für die Abstimmung</h3>
@@ -188,6 +176,20 @@ export default function FuerJobcenterPage() {
               Maßnahme – erreichbar über Kontaktformular, Telefon oder E-Mail.
             </p>
           </Card>
+        </div>
+      </Section>
+
+      <Section tone="white">
+        <Eyebrow>Zulassung</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AZAV-Zulassung &amp; Zertifizierung</h2>
+        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
+          <CertificateSeal
+            seal="traeger"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
+          />
+          <div>
+            <CertificateFacts />
+          </div>
         </div>
       </Section>
 

@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LeistungCard } from "@/components/LeistungCard";
 import { Button } from "@/components/Button";
 import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
-import { leistungen } from "@/lib/content/leistungen";
+import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
 const frameworkSteps: VisualStep[] = [
@@ -31,17 +31,32 @@ export default function LeistungenPage() {
           Coaching, Workshops und Zusammenarbeit mit KlarVoran
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran bietet vier klar getrennte Zugänge: gefördertes Einzelcoaching mit AVGS, privates Jobcoaching,
-          praxisnahe Gruppenformate und Zusammenarbeit mit Institutionen. Format, Umfang und Finanzierung richten
-          sich nach dem jeweiligen Bedarf.
+          Du suchst Hilfe bei Bewerbung und beruflicher Orientierung? Hier findest du Einzelcoaching mit Förderung
+          oder privater Bezahlung. Für Institutionen bieten wir Workshops und individuell vereinbarte Aufträge an.
         </p>
-        <div className="mt-6 max-w-2xl"><AvgsCheckEntry /></div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button href="#coaching" onDark>Coaching für mich</Button>
+          <Button href="#institutionen" variant="secondary" onDark>Angebote für Institutionen</Button>
+        </div>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="tint" id="coaching">
+        <h2 className="text-2xl font-bold text-navy sm:text-3xl">Einzelcoaching für dich</h2>
+        <p className="mb-8 mt-4 max-w-2xl text-navy-600">Noch kein Gutschein? Du kannst trotzdem ein Erstgespräch anfragen und die mögliche Förderung klären. Privat bezahltes Coaching ist eine eigene Wahl.</p>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
-          {leistungen.map((l) => (
-            <LeistungCard key={l.id} leistung={l} headingLevel={2} />
+          {participantLeistungen.map((l) => (
+            <LeistungCard key={l.id} leistung={l} />
+          ))}
+        </ul>
+        <div className="mt-8 max-w-2xl"><AvgsCheckEntry /></div>
+      </Section>
+
+      <Section tone="white" id="institutionen">
+        <h2 className="text-2xl font-bold text-navy sm:text-3xl">Für Ihre Institution</h2>
+        <p className="mb-8 mt-4 max-w-2xl text-navy-600">Sie möchten Personen weiterempfehlen oder ein Angebot beauftragen? AVGS-Teilnahme, Workshops und direkte Aufträge haben unterschiedliche Voraussetzungen und werden passend abgestimmt.</p>
+        <ul className="service-grid grid gap-6 sm:grid-cols-2">
+          {institutionalLeistungen.map((l) => (
+            <LeistungCard key={l.id} leistung={l} />
           ))}
         </ul>
       </Section>

@@ -95,6 +95,11 @@ export default function EinzelcoachingPage() {
             </p>
           </Card>
         </div>
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
+          Du möchtest zuerst eine Förderung prüfen? Auch ohne vorhandenen Gutschein kannst du dich über das
+          <a href="/avgs" className="ml-1 font-semibold underline underline-offset-4">AVGS-Coaching</a> informieren
+          oder ein Erstgespräch anfragen. Ohne Gutschein musst du dich nicht automatisch für private Bezahlung entscheiden.
+        </p>
       </Section>
 
       <Section tone="white">

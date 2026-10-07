@@ -15,7 +15,13 @@ export function Header() {
   const pathname = usePathname();
   const open = openPathname === pathname;
   const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-");
-  const showQuickCheck = ["/", "/avgs", "/leistungen", "/leistungen/einzelcoaching", "/faq", "/kontakt", "/ueber-uns"].includes(pathname);
+  const institutionalAudience = institutionalPage || pathname === "/leistungen/workshops";
+  const showQuickCheck = pathname === "/" || pathname === "/avgs";
+  const contactHref = institutionalAudience ? `${pathname}#anfrage` : "/termin";
+  const contactLabel = pathname === "/fuer-jobcenter" ? "Teilnahme abstimmen"
+    : pathname === "/leistungen/workshops" ? "Workshop anfragen"
+    : pathname === "/fuer-kommunen" ? "Vorhaben anfragen"
+    : institutionalAudience ? "Kooperation anfragen" : "Erstgespräch anfragen";
   function isActive(href: string) {
     if (href === "/fachkraefte-kooperationspartner") return institutionalPage;
     if (href === "/leistungen") return pathname.startsWith("/leistungen");
@@ -82,8 +88,8 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 lg:block">
-          <Button href="/termin" size="md" onDark>
-            Erstgespräch anfragen
+          <Button href={contactHref} size="md" onDark>
+            {contactLabel}
           </Button>
         </div>
 
@@ -150,8 +156,8 @@ export function Header() {
               </li>
             ))}
             <li className="mt-2">
-              <Button href="/termin" className="w-full" onDark onClick={closeMenu}>
-                Erstgespräch anfragen
+              <Button href={contactHref} className="w-full" onDark onClick={closeMenu}>
+                {contactLabel}
               </Button>
             </li>
           </ul>

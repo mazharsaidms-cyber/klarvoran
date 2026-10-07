@@ -74,20 +74,17 @@ export default function AvgsPage() {
               Job- und Bewerbungscoaching mit AVGS
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Mit einem passenden Aktivierungs- und Vermittlungsgutschein (AVGS) und vorab schriftlich bewilligter
-              Teilnahme übernimmt der zuständige Kostenträger die Kosten des Coachings. Du lernst, berufliche
-              Anforderungen zu verstehen, Bewerbungen praktisch umzusetzen und die nächsten Schritte selbstständig
-              weiterzuführen.
+              Du suchst Arbeit oder eine Ausbildung? Im Einzelcoaching klären wir deine Richtung, verbessern deine
+              Bewerbungen und üben Vorstellungsgespräche. Mit einem passenden Aktivierungs- und Vermittlungsgutschein
+              (AVGS) und vor Beginn schriftlich bewilligter Teilnahme übernimmt der zuständige Kostenträger die Maßnahmekosten.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
               <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
-              Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
-              {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} – für Hofheim und den
-              Main-Taunus-Kreis sowie Höchst, Zeilsheim und den Frankfurter Westen. Alternativ online oder
-              im Wechsel zwischen Online- und Präsenzterminen (hybrid). Termine nach vorheriger Bestätigung.
+              Du brauchst für den ersten Kontakt noch keinen Gutschein. Persönlich in Kriftel, online oder hybrid.
+              Termine nach vorheriger Bestätigung.
             </p>
           </div>
           <ContextGraphic
@@ -98,26 +95,12 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="navy" id="schnellcheck" spacing="compact">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Dein nächster Schritt – einfach erklärt</h2>
-          <p className="mt-3 text-white/80">
-            Beantworte ein paar einfache Fragen. Du erhältst eine erste Orientierung und kannst bei Bedarf
-            eine Nachricht an dein Jobcenter oder deine Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
-          </p>
-        </div>
-        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <AvgsSchnellcheck />
-        </div>
-      </Section>
-
       <Section tone="tint" spacing="compact">
         <h2 className="sr-only">Das AVGS-Coaching auf einen Blick</h2>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value="1:1" label="Du und dein Coach" />
           <FactStat value={`${totalUe} UE`} label="Eine Einheit dauert 45 Minuten" />
-          <FactStat value="8 Wochen" label="In der Regel zwei Termine pro Woche" />
+          <FactStat value="Bis 8 Wochen" label="Bis zu 8 Wochen · in der Regel zwei Termine pro Woche" />
           <FactStat value="0 €" label="Bei passendem AVGS und bewilligter Teilnahme" />
         </div>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-navy-600">
@@ -127,25 +110,8 @@ export default function AvgsPage() {
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
           <Button href="#inhalte" variant="text">Coachinginhalte ansehen →</Button>
           <Button href="#ablauf" variant="text">Ablauf kennenlernen →</Button>
-          <Button href="#schnellcheck" variant="text">AVGS-Anfrage vorbereiten →</Button>
+          <Button href="#ort" variant="text">Ort &amp; Format ansehen →</Button>
         </div>
-      </Section>
-
-      <Section tone="white" spacing="compact">
-        <Eyebrow>In deiner Nähe</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-          Jobcoaching für Hofheim, Kriftel und Frankfurt-West
-        </h2>
-        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Du kommst aus Hofheim, Kriftel, Frankfurt-Höchst, Frankfurt-Zeilsheim oder der Umgebung?
-          Bei KlarVoran erhältst du persönliche Bewerbungshilfe im Main-Taunus-Kreis.
-          Das Einzelcoaching findet nach Terminbestätigung in den {siteConfig.presenceLocation.name} in Kriftel
-          statt. So musst du für einen Präsenztermin nicht in die Frankfurter Innenstadt fahren.
-        </p>
-        <p className="mt-3 max-w-3xl leading-relaxed text-navy-600">
-          Online oder hybrid ist ebenfalls möglich. Im kostenlosen Erstgespräch klären wir, welches Format
-          zu deiner Situation und den Vorgaben deines AVGS passt.
-        </p>
       </Section>
 
       <Section tone="tint">
@@ -184,6 +150,20 @@ export default function AvgsPage() {
         </div>
       </Section>
 
+      <Section tone="navy" id="schnellcheck" spacing="compact">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Dein nächster Schritt – einfach erklärt</h2>
+          <p className="mt-3 text-white/80">
+            Beantworte ein paar einfache Fragen. Du erhältst eine erste Orientierung und kannst bei Bedarf
+            eine Nachricht an dein Jobcenter oder deine Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
+          <AvgsSchnellcheck />
+        </div>
+      </Section>
+
       <Section tone="white" id="inhalte">
         <Eyebrow>Coachinginhalte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
@@ -211,13 +191,29 @@ export default function AvgsPage() {
         </ol>
       </Section>
 
-      {/* Integrierter Ablauf: 5-stufiger Prozess direkt hier, keine eigene Ablauf-Seite. */}
       <Section tone="tint" id="ablauf">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
         <div className="mt-8">
           <ProcessStepper steps={processSteps} />
         </div>
+      </Section>
+
+      <Section tone="white" spacing="compact" id="ort">
+        <Eyebrow>In deiner Nähe</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
+          Jobcoaching für Hofheim, Kriftel und Frankfurt-West
+        </h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
+          Du kommst aus Hofheim, Kriftel, Frankfurt-Höchst, Frankfurt-Zeilsheim oder der Umgebung?
+          Bei KlarVoran erhältst du persönliche Bewerbungshilfe im Main-Taunus-Kreis.
+          Das Einzelcoaching findet nach Terminbestätigung in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street},
+          {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} statt. So musst du für einen Präsenztermin nicht in die Frankfurter Innenstadt fahren.
+        </p>
+        <p className="mt-3 max-w-3xl leading-relaxed text-navy-600">
+          Online oder hybrid ist ebenfalls möglich. Im kostenlosen Erstgespräch klären wir, welches Format
+          zu deiner Situation und den Vorgaben deines AVGS passt.
+        </p>
       </Section>
 
       <Section tone="white" id="leitfaden">
@@ -274,6 +270,8 @@ export default function AvgsPage() {
       <CtaSection
         title="Unsicher, ob das auf dich zutrifft?"
         description="Kein Problem – im kostenlosen Erstgespräch schauen wir gemeinsam auf deine Situation."
+        secondaryLabel="AVGS-Schnellcheck starten"
+        secondaryHref="#schnellcheck"
       />
     </>
   );

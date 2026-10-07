@@ -1,9 +1,19 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 
 export function WhatsAppButton() {
+  const pathname = usePathname();
+  const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-") || pathname === "/leistungen/workshops";
+  const message = institutionalPage
+    ? "Guten Tag, ich möchte eine Zusammenarbeit mit KlarVoran besprechen."
+    : pathname === "/avgs" ? "Hallo! Ich habe eine Frage zum AVGS-Coaching bei KlarVoran."
+    : "Hallo! Ich habe eine Frage zum Coaching bei KlarVoran.";
+  if (pathname === "/impressum" || pathname === "/datenschutz") return null;
   return (
     <a
-      href={siteConfig.contact.whatsappHref("Hallo! Ich habe eine Frage zum AVGS-Coaching bei KlarVoran.")}
+      href={siteConfig.contact.whatsappHref(message)}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-5 right-5 z-30 flex items-center gap-2 rounded-[var(--radius-full)] bg-[#25D366] px-4 py-3 text-sm font-semibold text-navy shadow-card-hover transition-transform motion-reduce:transition-none hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"

@@ -55,10 +55,14 @@ export default function FachkraeftePage() {
               Verlässliche Coaching- und Bildungsleistungen für Ihre Institution
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Wählen Sie den Bereich, der zu Ihrem Anliegen passt. Dort finden Sie die relevanten Angaben zu
-              Zulassung, Durchführung, Kooperation, Dokumentation und Kontakt.
+              Wir unterstützen Ihre Zielgruppe mit Bewerbungscoaching, beruflicher Orientierung und Workshops.
+              Ob AVGS-Teilnahme, Weiterempfehlung oder direkter Auftrag: Wählen Sie Ihren Bereich für die
+              passenden Leistungen, Voraussetzungen und Unterlagen.
             </p>
-            <Button href="#anfrage" onDark className="mt-6">Kooperation anfragen</Button>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href="#bereiche" onDark>Meinen Bereich wählen</Button>
+              <Button href="#anfrage" onDark variant="secondary">Zusammenarbeit anfragen</Button>
+            </div>
           </div>
           <ContextGraphic
             variant="cooperation"
@@ -68,7 +72,7 @@ export default function FachkraeftePage() {
         </div>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="tint" id="bereiche">
         <ul className="institution-grid grid gap-6 sm:grid-cols-2">
           {audiences.map((a) => (
             <InstitutionCard key={a.href} target={a} headingLevel={2} />

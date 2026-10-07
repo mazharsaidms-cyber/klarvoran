@@ -25,9 +25,9 @@ export function LeistungCard({
 }: {
   leistung: Leistung;
   hasMassnahmeBadge?: boolean;
-  headingLevel?: 2 | 3;
+  headingLevel?: 2 | 3 | 4;
 }) {
-  const Heading = headingLevel === 2 ? "h2" : "h3";
+  const Heading = headingLevel === 2 ? "h2" : headingLevel === 4 ? "h4" : "h3";
 
   return (
     <li data-reveal="" className="list-none h-full">

@@ -109,6 +109,15 @@ export default function FuerKommunenPage() {
         </div>
       </Section>
 
+      <Section tone="tint" spacing="compact">
+        <h2 className="text-xl font-bold text-navy">Fachliche Grundlage und weitere Informationen</h2>
+        <p className="mt-3 max-w-2xl text-navy-600">Mazhar Said verantwortet die fachliche Arbeit. Erfahrungen im Jobcoaching, Arbeitsweise und Trägerzulassung sind transparent einsehbar. Umfang und Finanzierung eines kommunalen Auftrags werden gesondert vereinbart.</p>
+        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+          <Button href="/ueber-uns#gruender" variant="text">Fachlichen Hintergrund ansehen →</Button>
+          <Button href="/leistungen/workshops" variant="text">Workshopthemen &amp; Formate →</Button>
+        </div>
+      </Section>
+
       <Section tone="navy" id="anfrage">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Auftrag besprechen</Eyebrow>

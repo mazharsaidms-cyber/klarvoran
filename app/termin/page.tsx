@@ -20,9 +20,9 @@ export default function TerminPage() {
         <Eyebrow tone="white">Kostenloses Erstgespräch</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Kostenloses Erstgespräch anfragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Im kostenlosen, unverbindlichen Erstgespräch klären wir deine Situation, deinen AVGS-Status und die
-          nächsten Schritte. Nach deiner Anfrage melden wir uns persönlich bei dir, um einen passenden Termin zu
-          finden.
+          Im kostenlosen, unverbindlichen Erstgespräch sprechen wir über dein berufliches Ziel und die passende
+          Unterstützung. Wenn du Coaching mit Förderung suchst, klären wir auch den Weg zum AVGS. Nach deiner
+          Anfrage melden wir uns persönlich, um einen Termin abzustimmen.
         </p>
 
         {siteConfig.booking.url && (

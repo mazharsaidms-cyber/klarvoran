@@ -4,9 +4,9 @@ import { Button } from "./Button";
 export function AvgsCheckEntry() {
   return (
     <div className="rounded-[var(--radius-lg)] border-l-4 border-btn-red bg-white p-5 text-navy shadow-card sm:p-6">
-      <h2 className="text-xl font-bold">Kann dein Coaching gefördert werden?</h2>
+      <h2 className="text-xl font-bold">Du möchtest Coaching mit Förderung?</h2>
       <p className="mt-2 leading-relaxed text-navy-600">
-        Beantworte ein paar einfache Fragen und erfahre, wie du weiterkommst. Auch wenn du noch keinen Gutschein hast.
+        Der Schnellcheck zeigt dir deinen nächsten Schritt – mit oder ohne Gutschein. Beantworte dafür ein paar einfache Fragen.
       </p>
       <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <Button href="/avgs#schnellcheck" className="w-full sm:w-auto">AVGS-Schnellcheck starten</Button>

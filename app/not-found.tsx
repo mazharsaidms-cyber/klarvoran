@@ -19,8 +19,8 @@ export default function NotFound() {
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <Button href="/">Zur Startseite</Button>
-        <Button href="/avgs#schnellcheck" variant="ghost">
-          AVGS-Schnellcheck starten
+        <Button href="/leistungen" variant="ghost">
+          Angebote ansehen
         </Button>
         <Button href="/kontakt" variant="text">
           Kontakt aufnehmen →

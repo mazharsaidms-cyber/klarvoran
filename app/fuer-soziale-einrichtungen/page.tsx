@@ -30,7 +30,10 @@ export default function FuerSozialeEinrichtungenPage() {
           KlarVoran ergänzt Ihre Arbeit mit individuellem Bewerbungscoaching und praxisnahen Gruppenformaten. Ziele,
           Zuständigkeiten und Rahmenbedingungen stimmen wir vorab klar mit Ihnen ab.
         </p>
-            <Button href="#anfrage" onDark className="mt-6">Kooperation besprechen</Button>
+            <div className="mt-6 flex flex-wrap gap-3">
+          <Button href="#anfrage" onDark>Kooperation besprechen</Button>
+          <Button href="#wege" onDark variant="secondary">Weiterempfehlung oder Auftrag?</Button>
+        </div>
       </Section>
 
       <Section tone="tint">
@@ -46,21 +49,42 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      {/* Trägerdaten: ausschließlich das Trägerzeichen, kein Maßnahmesiegel. */}
-      <Section tone="white" spacing="compact">
-        <Eyebrow>Trägerdaten</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
-        <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-          <CertificateSeal
-            seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
-          />
-          <div className="max-w-md">
-            <p className="text-sm leading-relaxed text-navy-600">
-              Das vorhandene Trägerzertifikat nach § 178 SGB III wurde durch {siteConfig.certificate.issuer}{" "}
-              ausgestellt (Zertifikat {siteConfig.certificate.number}).
+      <Section tone="tint" id="wege">
+        <Eyebrow tone="navy">Zusammenarbeit</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
+        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+          <Card>
+            <h3 className="font-semibold text-navy">Weg 1: AVGS-Weiterempfehlung</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Sie informieren passende Klientinnen und Klienten über das Angebot. Bei vorhandenem oder geplantem
+              AVGS klärt KlarVoran Gutschein, Maßnahmepassung und weitere Schritte direkt mit der Person.
+              Die Förderung muss vor Beginn bewilligt sein. Eine Weiterempfehlung ist keine Beauftragung
+              durch Ihre Einrichtung.
             </p>
-          </div>
+            <Button href="/avgs#schnellcheck" variant="text" className="mt-4">Schnellcheck für Ihre Klientinnen und Klienten →</Button>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Weg 2: Direkter Auftrag</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Workshops oder Coaching-Kontingente im Rahmen eigener Projektmittel oder Budgets Ihrer Einrichtung –
+              Umfang, Zuständigkeiten und Gesamtpreis werden vor Beauftragung schriftlich vereinbart.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Coaching in Ihrer Einrichtung</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              AVGS-Einzelcoaching ist nach Bewilligung und bestätigtem Durchführungsort auch in Ihrer
+              Einrichtung möglich. Räume, Technik und Termine stimmen wir vorab ab. Für direkt beauftragte
+              Workshops oder Coachings wird der Ort im Angebot vereinbart.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold text-navy">Ansprechpartner</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              {siteConfig.founder} ist der feste Ansprechpartner für Bedarfsklärung, Angebot, Abstimmung und
+              Rückfragen während der Zusammenarbeit.
+            </p>
+          </Card>
         </div>
       </Section>
 
@@ -123,41 +147,20 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="tint">
-        <Eyebrow tone="navy">Zusammenarbeit</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
-          <Card>
-            <h3 className="font-semibold text-navy">Weg 1: AVGS-Weiterempfehlung</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Sie informieren passende Klientinnen und Klienten über das Angebot. Bei vorhandenem oder geplantem
-              AVGS klärt KlarVoran Gutschein, Maßnahmepassung und weitere Schritte direkt mit der Person.
-              Die Förderung muss vor Beginn bewilligt sein. Eine Weiterempfehlung ist keine Beauftragung
-              durch Ihre Einrichtung.
+      <Section tone="white" spacing="compact">
+        <Eyebrow>Trägerdaten</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
+        <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+          <CertificateSeal
+            seal="traeger"
+            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
+          />
+          <div className="max-w-md">
+            <p className="text-sm leading-relaxed text-navy-600">
+              Das vorhandene Trägerzertifikat nach § 178 SGB III wurde durch {siteConfig.certificate.issuer}{" "}
+              ausgestellt (Zertifikat {siteConfig.certificate.number}).
             </p>
-          </Card>
-          <Card>
-            <h3 className="font-semibold text-navy">Weg 2: Direkter Auftrag</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Workshops oder Coaching-Kontingente im Rahmen eigener Projektmittel oder Budgets Ihrer Einrichtung –
-              Umfang, Zuständigkeiten und Gesamtpreis werden vor Beauftragung schriftlich vereinbart.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="font-semibold text-navy">Coaching in Ihrer Einrichtung</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              AVGS-Einzelcoaching ist nach Bewilligung und bestätigtem Durchführungsort auch in Ihrer
-              Einrichtung möglich. Räume, Technik und Termine stimmen wir vorab ab. Für direkt beauftragte
-              Workshops oder Coachings wird der Ort im Angebot vereinbart.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="font-semibold text-navy">Ansprechpartner</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              {siteConfig.founder} ist der feste Ansprechpartner für Bedarfsklärung, Angebot, Abstimmung und
-              Rückfragen während der Zusammenarbeit.
-            </p>
-          </Card>
+          </div>
         </div>
       </Section>
 

@@ -7,8 +7,8 @@ export function CtaSection({
   description,
   primaryLabel = "Erstgespräch anfragen",
   primaryHref = "/termin",
-  secondaryLabel = "AVGS-Schnellcheck starten",
-  secondaryHref = "/avgs#schnellcheck",
+  secondaryLabel,
+  secondaryHref,
 }: {
   eyebrow?: string;
   title: string;
@@ -32,9 +32,11 @@ export function CtaSection({
           <Button href={primaryHref} size="lg" onDark>
             {primaryLabel}
           </Button>
-          <Button href={secondaryHref} variant="ghost" size="lg" onDark>
-            {secondaryLabel}
-          </Button>
+          {secondaryLabel && secondaryHref && (
+            <Button href={secondaryHref} variant="ghost" size="lg" onDark>
+              {secondaryLabel}
+            </Button>
+          )}
         </div>
       </div>
     </Section>

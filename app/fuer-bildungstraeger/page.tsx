@@ -7,7 +7,6 @@ import { Card, FactStat } from "@/components/Card";
 import { CertificateFacts } from "@/components/CertificateFacts";
 import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
-import { siteConfig } from "@/lib/site-config";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 import { ContextGraphic } from "@/components/ContextGraphic";
 
@@ -118,9 +117,11 @@ export default function FuerBildungstraegerPage() {
             </p>
           </Card>
           <Card>
-            <h3 className="font-semibold text-navy">Zertifizierung</h3>
+            <h3 className="font-semibold text-navy">Auftrag und Maßnahme getrennt abstimmen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Trägerzulassung durch CERTQUA ({siteConfig.certificate.number}), Fachbereich FB1 nach § 45 Abs. 1 SGB III.
+              Bei einem Unterauftrag gelten der vereinbarte Rahmen Ihrer Maßnahme und Ihre Vorgaben. Ein solcher
+              Einsatz ist keine Teilnahme an unserer eigenen AVGS-Maßnahme; deren Umfang und Finanzierung
+              werden nicht pauschal auf Unteraufträge übertragen.
             </p>
           </Card>
         </div>

@@ -27,7 +27,7 @@ export function AppointmentForm() {
       <TextField id="phone" {...field("phone")} label="Telefon (optional)" type="tel" autoComplete="tel" error={state.fieldErrors?.phone} />
 
       <RadioGroupField
-        legend="Bevorzugte Form"
+        legend="Wie möchtest du später am Coaching teilnehmen?"
         name="format"
         required
         value={format}
@@ -41,6 +41,9 @@ export function AppointmentForm() {
         ]}
       />
 
+      <p className="text-sm text-navy-600">
+        Du brauchst für das Erstgespräch noch keinen Gutschein. Wenn du privat bezahltes Coaching suchst, ist das ebenfalls möglich.
+      </p>
       <RadioGroupField
         legend="Hast du bereits einen AVGS?"
         name="hasAvgs"

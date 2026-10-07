@@ -7,6 +7,7 @@ import { CtaSection } from "@/components/CtaSection";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { CoachProfile } from "@/components/CoachProfile";
 import { VisualIcon } from "@/components/VisualIcon";
+import { Button } from "@/components/Button";
 
 export const metadata: Metadata = pageMetadata(
   "Über uns",
@@ -30,12 +31,12 @@ export default function UeberUnsPage() {
           <div>
             <Eyebrow>Über uns</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-navy sm:text-4xl">
-              Lebenslage verstehen. Berufliche Handlungsfähigkeit aufbauen.
+              Wer hinter KlarVoran steht und wie wir arbeiten
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy-600">
-              KlarVoran verbindet aufmerksames Zuhören mit einer klaren, praktischen Vorgehensweise. Wir helfen dir,
-              deine Situation einzuordnen, Anforderungen zu verstehen und konkrete Schritte umzusetzen – bis du
-              mit passenden Werkzeugen selbstständig weitergehen kannst.
+              KlarVoran wurde von Mazhar Said gegründet. Unser Schwerpunkt ist berufliche Orientierung und
+              Bewerbungscoaching: im Einzelcoaching und in Angeboten für Institutionen. Aufmerksames Zuhören,
+              verständliche Erklärungen und praktische Übungen helfen Menschen, zunehmend selbstständig zu handeln.
             </p>
           </div>
           <ContextGraphic
@@ -64,7 +65,7 @@ export default function UeberUnsPage() {
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {[
             "Klare Zielvereinbarungen",
-            "Strukturierte Durchführung nach definierten Modulen",
+            "Strukturierte Durchführung im vereinbarten Rahmen",
             "Vollständige und nachvollziehbare Dokumentation",
             "Überprüfbare Zielschritte",
             "Regelmäßige Überprüfung und Weiterentwicklung unserer Prozesse",
@@ -78,9 +79,11 @@ export default function UeberUnsPage() {
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
           Zur Qualitätssicherung gehören Teilnehmerfeedback, dokumentierte Prozessprüfungen und festgelegte
           Managementbewertungen. Erkenntnisse werden ausgewertet und in konkrete Verbesserungen überführt. Die
-          Durchführung orientiert sich am individuellen Unterstützungsbedarf innerhalb der zugelassenen
-          Maßnahmestruktur und bleibt gegenüber Kostenträgern nachvollziehbar dokumentiert.
+          AVGS-Durchführung orientiert sich am individuellen Unterstützungsbedarf innerhalb der zugelassenen
+          Maßnahmestruktur. Bei Workshops und anderen Aufträgen werden Inhalte, Umfang und Dokumentation vorab
+          mit der beauftragenden Institution vereinbart.
         </p>
+        <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">Trägerzulassung ansehen (PDF) →</Button>
       </Section>
 
       <Section tone="white">
@@ -110,6 +113,8 @@ export default function UeberUnsPage() {
       <CtaSection
         title="KlarVoran im kostenlosen Erstgespräch kennenlernen"
         description="Ganz unverbindlich klären wir, ob und wie wir dich unterstützen können."
+        secondaryLabel="Zusammenarbeit als Institution"
+        secondaryHref="/fachkraefte-kooperationspartner"
       />
     </>
   );

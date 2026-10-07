@@ -16,7 +16,7 @@ const documents = [
 // fact sheets alongside the current, audience-specific flyers.
 const legacyDocuments = ["/dokumente/KlarVoran-Massnahmenblatt-AVGS.pdf", "/dokumente/KlarVoran-Kooperationsblatt.pdf"];
 const pages = [
-  ["/", "Job- & Bewerbungscoaching Rhein-Main | KlarVoran"],
+  ["/", "Jobcoaching Hofheim & Frankfurt-West | KlarVoran"],
   ["/avgs", "AVGS-Bewerbungscoaching in Kriftel | KlarVoran", documents[3]],
   ["/fachkraefte-kooperationspartner", null, ...documents.slice(0, 3)],
   ["/fuer-jobcenter", null, documents[0]],

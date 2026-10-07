@@ -43,16 +43,6 @@ export const generalFaq: FaqItem[] = [
 
 export const avgsFaq: FaqItem[] = [
   {
-    question: "Wer ist der zugelassene Träger hinter KlarVoran?",
-    answer:
-      "Mazhar Said – KlarVoran ist als Träger nach § 178 SGB III zugelassen. Das aktualisierte CERTQUA-Trägerzertifikat trägt die Nr. 26-20859-T und gilt vom 24.07.2026 bis 23.07.2031. Auch die konkrete Coaching-Maßnahme ist zugelassen.",
-  },
-  {
-    question: "Was ist die AZAV?",
-    answer:
-      "Die AZAV (Akkreditierungs- und Zulassungsverordnung Arbeitsförderung) legt fest, welche Anforderungen ein Bildungsträger erfüllen muss, um Maßnahmen der Arbeitsförderung durchführen zu dürfen. Die Zulassung erfolgt durch eine fachkundige Stelle wie CERTQUA.",
-  },
-  {
     question: "Was ist ein AVGS?",
     answer:
       "Der Aktivierungs- und Vermittlungsgutschein (AVGS) nach § 45 SGB III ist ein Gutschein, den Jobcenter oder Agentur für Arbeit ausstellen können, um Unterstützungsleistungen wie Bewerbungscoaching zu finanzieren.",
@@ -76,5 +66,30 @@ export const avgsFaq: FaqItem[] = [
     question: "Was, wenn ich unsicher bin, ob ein AVGS infrage kommt?",
     answer:
       "Das ist völlig normal. Nutze unseren AVGS-Schnellcheck oder sprich uns direkt an – wir geben dir eine erste, unverbindliche Einschätzung und begleiten dich bei den nächsten Schritten.",
+  },
+  {
+    question: "Wer ist der zugelassene Träger hinter KlarVoran?",
+    answer:
+      "Mazhar Said – KlarVoran ist als Träger nach § 178 SGB III zugelassen. Das aktualisierte CERTQUA-Trägerzertifikat trägt die Nr. 26-20859-T und gilt vom 24.07.2026 bis 23.07.2031. Auch die konkrete Coaching-Maßnahme ist zugelassen.",
+  },
+  {
+    question: "Was ist die AZAV?",
+    answer:
+      "Die AZAV (Akkreditierungs- und Zulassungsverordnung Arbeitsförderung) legt fest, welche Anforderungen ein Bildungsträger erfüllen muss, um Maßnahmen der Arbeitsförderung durchführen zu dürfen. Die Zulassung erfolgt durch eine fachkundige Stelle wie CERTQUA.",
+  },
+];
+
+export const institutionFaq: FaqItem[] = [
+  {
+    question: "Ist eine Weiterempfehlung bereits ein Auftrag unserer Einrichtung?",
+    answer: "Nein. Bei einer AVGS-Weiterempfehlung klärt KlarVoran Gutschein und Maßnahmepassung mit der interessierten Person. Die zuständige Stelle entscheidet über die Förderung und muss die Teilnahme vor Beginn schriftlich bewilligen. Ein direkter Auftrag Ihrer Einrichtung wird gesondert vereinbart.",
+  },
+  {
+    question: "Gelten 32 Unterrichtseinheiten und acht Wochen auch für Workshops oder Unteraufträge?",
+    answer: "Diese Angaben gehören zu unserer eigenen AVGS-Maßnahme. Bei Workshops, Unteraufträgen und anderen direkt beauftragten Leistungen stimmen wir Ziele, Umfang, Zeitraum, Verantwortlichkeiten und Gesamtpreis vor Beauftragung schriftlich ab. Daraus entsteht keine automatische AVGS-Finanzierung.",
+  },
+  {
+    question: "Welche Angaben braucht KlarVoran für eine institutionelle Anfrage?",
+    answer: "Nennen Sie Institution, Zielgruppe, gewünschte Leistung, Umfang und Zeitraum, soweit diese bereits feststehen. Über den Bereich „Für Institutionen“ gelangen Sie zur passenden Anfrage für Jobcenter, soziale Einrichtungen, Bildungsträger oder Kommunen. Bitte übermitteln Sie keine sensiblen Unterlagen zu einzelnen Personen unaufgefordert.",
   },
 ];

@@ -67,17 +67,16 @@ export default function HomePage() {
 
       {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt-West &amp; Main-Taunus-Kreis</Eyebrow>
-            <h1 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.5rem]">
               <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Du suchst Arbeit oder eine Ausbildung? Wir klären gemeinsam deine Richtung, arbeiten an
-              deinen Bewerbungen und üben Vorstellungsgespräche. Im persönlichen Einzelcoaching lernst
-              du Schritt für Schritt, selbst weiterzugehen.
+              Du suchst Arbeit oder eine Ausbildung? Wir klären gemeinsam deine Richtung, verbessern deine
+              Bewerbungen und üben Vorstellungsgespräche – damit du Schritt für Schritt selbst weiterkommst.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button href="/avgs" onDark>
@@ -94,7 +93,7 @@ export default function HomePage() {
               Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
               und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
-            <div className="mt-10">
+            <div className="mt-6">
               <TrustBar tone="dark" />
             </div>
           </div>
@@ -105,7 +104,7 @@ export default function HomePage() {
             width={1400}
             height={781}
             sizes="(min-width: 1152px) 468px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
-            className="w-full rounded-[var(--radius-lg)] border border-white/15"
+            className="w-full rounded-[var(--radius-lg)] border border-white/15 lg:mt-12"
             preload
           />
         </div>
@@ -125,7 +124,7 @@ export default function HomePage() {
             und entwickeln daraus einen realistischen nächsten Schritt.
           </p>
         </div>
-        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-3">
+        <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-3">
           <Card>
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
               <VisualIcon name="orientation" />
@@ -161,7 +160,7 @@ export default function HomePage() {
 
       {/* Leistungen: dunkelblaue Fläche, weiße Zielkarten mit Invert-Hover. */}
       <Section tone="navy">
-        <div className="mb-10 text-center">
+        <div className="mb-8 text-center">
           <Eyebrow tone="white">Leistungen</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Coaching für dich · Angebote für Institutionen</h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/80">
@@ -175,7 +174,7 @@ export default function HomePage() {
             <LeistungCard key={l.id} leistung={l} hasMassnahmeBadge={l.id === "avgs"} headingLevel={4} />
           ))}
         </ul>
-        <h3 className="mb-5 mt-10 text-xl font-bold text-white">Sie planen ein Angebot für Ihre Einrichtung?</h3>
+        <h3 className="mb-5 mt-8 text-xl font-bold text-white">Sie planen ein Angebot für Ihre Einrichtung?</h3>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {institutionalLeistungen.map((l) => (
             <LeistungCard key={l.id} leistung={l} headingLevel={4} />
@@ -185,7 +184,7 @@ export default function HomePage() {
 
       {/* Die vier Schritte bilden eine durchgehende Lesezeile statt einer weiteren Kartenreihe. */}
       <Section tone="tint">
-        <div className="mb-10">
+        <div className="mb-8">
           <Eyebrow tone="navy">Unsere Arbeitsweise</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
             Damit du deinen nächsten Schritt selbst gehen kannst.
@@ -200,7 +199,7 @@ export default function HomePage() {
       {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
           ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
       <Section tone="white" spacing="compact">
-        <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[260px_1fr]">
           <CertificateSeal
             seal="traeger"
             caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
@@ -222,7 +221,7 @@ export default function HomePage() {
 
       {/* Gründerabschnitt: ruhige weiße Lesefläche. */}
       <Section tone="white">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,320px)_1fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,320px)_1fr]">
           <FounderExpertise />
           <div>
             <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
@@ -240,7 +239,7 @@ export default function HomePage() {
       </Section>
 
       <Section tone="tint">
-        <div className="mb-8">
+        <div className="mb-6">
           <Eyebrow tone="navy">FAQ</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Häufige Fragen</h2>
         </div>

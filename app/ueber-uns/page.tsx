@@ -27,7 +27,7 @@ export default function UeberUnsPage() {
     <>
       <Breadcrumbs items={[{ href: "/ueber-uns", label: "Über uns" }]} />
       <Section tone="white" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow>Über uns</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-navy sm:text-4xl">
@@ -54,7 +54,7 @@ export default function UeberUnsPage() {
           Notariatsbereich sowie Erfahrung in der Arbeitswelt und im Vertrieb. Im Mittelpunkt stehen verständliche
           Erklärungen, praktische Übungen und klare berufliche Ziele.
         </p>
-        <div className="mt-10">
+        <div className="mt-8">
           <CoachProfile />
         </div>
       </Section>
@@ -89,7 +89,7 @@ export default function UeberUnsPage() {
       <Section tone="white">
         <Eyebrow>Werte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wofür wir stehen</h2>
-        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <Card key={v.title}>
               <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
@@ -100,7 +100,7 @@ export default function UeberUnsPage() {
             </Card>
           ))}
         </div>
-        <p className="mt-8 max-w-2xl text-sm italic leading-relaxed text-navy-600">
+        <p className="mt-6 max-w-2xl text-sm italic leading-relaxed text-navy-600">
           Gute Begleitung macht nicht abhängig: Sie schafft Verständnis, stärkt Handlungssicherheit und wird mit
           jedem selbstständig übernommenen Schritt weniger nötig.
         </p>

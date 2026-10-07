@@ -48,7 +48,7 @@ export default function FachkraeftePage() {
     <>
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }]} />
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.7fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.7fr]">
           <div>
             <Eyebrow tone="white">Für Institutionen & Kooperationspartner</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
@@ -87,7 +87,7 @@ export default function FachkraeftePage() {
           Drei einseitige PDFs für Ihre interne Abstimmung oder zur Weitergabe: zur AVGS-Maßnahme, zur
           Zusammenarbeit mit Bildungsträgern und zu Angeboten für soziale Einrichtungen.
         </p>
-        <div className="download-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="download-grid mt-6 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="jobcenterFlyer" />
           <InstitutionDownload kind="educationFlyer" />
           <InstitutionDownload kind="socialFlyer" />
@@ -97,7 +97,7 @@ export default function FachkraeftePage() {
       <Section tone="white">
         <Eyebrow>Zulassung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Trägerdaten im Überblick</h2>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
+        <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
@@ -118,7 +118,7 @@ export default function FachkraeftePage() {
             direkt. Wir melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
-        <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
           <ContactForm formal />
         </div>
       </Section>

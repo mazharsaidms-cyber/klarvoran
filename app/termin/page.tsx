@@ -26,7 +26,7 @@ export default function TerminPage() {
         </p>
 
         {siteConfig.booking.url && (
-          <div className="mt-8 rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-6">
+          <div className="mt-6 rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-6">
             <h2 className="font-semibold text-navy">Direkt online buchen</h2>
             <p className="mt-2 text-sm text-navy-600">Wähle einen freien Termin direkt in unserem Kalender.</p>
             <Button href={siteConfig.booking.url} external className="mt-4">
@@ -35,7 +35,7 @@ export default function TerminPage() {
           </div>
         )}
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
           <h2 className="text-lg font-bold text-navy">Terminanfrage senden</h2>
           <p className="mt-2 text-sm text-navy-600">
             Nach deiner Anfrage melden wir uns persönlich, um einen passenden Termin abzustimmen. Der Termin ist

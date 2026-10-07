@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <Section tone="white" className="pt-20 text-center">
+    <Section tone="white" spacing="hero" className="text-center">
       <Eyebrow>404</Eyebrow>
       <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Diese Seite gibt es nicht (mehr)</h1>
       <p className="mx-auto mt-4 max-w-md text-navy-600">

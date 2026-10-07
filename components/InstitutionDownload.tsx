@@ -4,7 +4,7 @@ export function InstitutionDownload({ kind }: { kind: InstitutionalDownloadKind 
   const document = institutionalDownloads[kind];
 
   return (
-    <div className="download-card rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card sm:p-6">
+    <div className="download-card rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card">
       <h3 className="text-lg font-semibold text-navy">{document.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-navy-600">{document.description}</p>
       <p className="mt-3 text-xs text-navy-600">PDF · 1 Seite · Stand {document.updatedAt}</p>

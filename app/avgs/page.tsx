@@ -67,7 +67,7 @@ export default function AvgsPage() {
 
       {/* Dunkelblauer Einstieg. */}
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Coaching mit Förderung</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
@@ -131,7 +131,7 @@ export default function AvgsPage() {
             deinen Unterstützungsbedarf für das Gespräch mit deiner Vermittlungsfachkraft klar zu beschreiben.
           </p>
         </div>
-        <div className="text-card-grid mt-8 grid gap-6 sm:grid-cols-2">
+        <div className="text-card-grid mt-6 grid gap-6 sm:grid-cols-2">
           <Card>
             <h3 className="text-lg font-bold text-navy">Wenn dir Orientierung oder Struktur fehlt</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -159,7 +159,7 @@ export default function AvgsPage() {
             eine Nachricht an dein Jobcenter oder deine Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
           </p>
         </div>
-        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
+        <div className="mx-auto mt-6 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
           <AvgsSchnellcheck />
         </div>
       </Section>
@@ -172,7 +172,7 @@ export default function AvgsPage() {
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
           Die Inhalte bauen aufeinander auf und werden an deiner beruflichen Ausgangslage praktisch bearbeitet.
         </p>
-        <ol className="mt-8 grid gap-5 sm:grid-cols-2">
+        <ol className="mt-6 grid gap-5 sm:grid-cols-2">
           {coachingModules.map((module) => (
             <li key={module.id} className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card">
               <div className="flex items-start justify-between gap-4">
@@ -194,7 +194,7 @@ export default function AvgsPage() {
       <Section tone="tint" id="ablauf">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
-        <div className="mt-8">
+        <div className="mt-6">
           <ProcessStepper steps={processSteps} />
         </div>
       </Section>
@@ -224,7 +224,7 @@ export default function AvgsPage() {
           kurze Nachricht an deine Vermittlungsfachkraft vorbereiten. Auf Wunsch formulieren wir sie auch gemeinsam
           mit dir im Erstgespräch. Die Entscheidung über den Gutschein trifft deine Vermittlungsfachkraft.
         </p>
-        <div className="mt-8"><VisualSteps steps={guideSteps} /></div>
+        <div className="mt-6"><VisualSteps steps={guideSteps} /></div>
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-navy-600">
           Ein Gutschein allein ist noch kein Startsignal: Das Coaching beginnt erst, wenn der AVGS zu unserem
           Angebot passt und deine Teilnahme vor Beginn schriftlich bewilligt wurde.
@@ -241,7 +241,7 @@ export default function AvgsPage() {
         <div className="mt-6 max-w-xl">
           <InstitutionDownload kind="participantFlyer" />
         </div>
-        <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
+        <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
           <CertificateSeal
             seal="traeger"
             caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
@@ -261,7 +261,7 @@ export default function AvgsPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">FAQ</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Fragen rund um AZAV &amp; AVGS</h2>
-        <div className="mt-8">
+        <div className="mt-6">
           <FaqAccordion items={avgsFaq} />
         </div>
         <FaqStructuredData items={avgsFaq} />

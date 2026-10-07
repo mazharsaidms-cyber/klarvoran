@@ -52,7 +52,7 @@ export default function FuerSozialeEinrichtungenPage() {
       <Section tone="tint" id="wege">
         <Eyebrow tone="navy">Zusammenarbeit</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Weg 1: AVGS-Weiterempfehlung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -89,7 +89,7 @@ export default function FuerSozialeEinrichtungenPage() {
       </Section>
 
       <Section tone="white">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <ContextGraphic
             variant="conversation"
             title="Verständliche arbeitsmarktbezogene Begleitung für unterschiedliche Ausgangslagen"
@@ -108,7 +108,7 @@ export default function FuerSozialeEinrichtungenPage() {
             </p>
           </div>
         </div>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Einzelcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -186,7 +186,7 @@ export default function FuerSozialeEinrichtungenPage() {
             Kooperationsinteresse. Wir melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
-        <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
           <ContactForm formal defaultRequestType="kooperation" />
         </div>
       </Section>

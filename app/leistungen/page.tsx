@@ -42,18 +42,18 @@ export default function LeistungenPage() {
 
       <Section tone="tint" id="coaching">
         <h2 className="text-2xl font-bold text-navy sm:text-3xl">Einzelcoaching für dich</h2>
-        <p className="mb-8 mt-4 max-w-2xl text-navy-600">Noch kein Gutschein? Du kannst trotzdem ein Erstgespräch anfragen und die mögliche Förderung klären. Privat bezahltes Coaching ist eine eigene Wahl.</p>
+        <p className="mb-6 mt-4 max-w-2xl text-navy-600">Noch kein Gutschein? Du kannst trotzdem ein Erstgespräch anfragen und die mögliche Förderung klären. Privat bezahltes Coaching ist eine eigene Wahl.</p>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {participantLeistungen.map((l) => (
             <LeistungCard key={l.id} leistung={l} />
           ))}
         </ul>
-        <div className="mt-8 max-w-2xl"><AvgsCheckEntry /></div>
+        <div className="mt-6 max-w-2xl"><AvgsCheckEntry /></div>
       </Section>
 
       <Section tone="white" id="institutionen">
         <h2 className="text-2xl font-bold text-navy sm:text-3xl">Für Ihre Institution</h2>
-        <p className="mb-8 mt-4 max-w-2xl text-navy-600">Sie möchten Personen weiterempfehlen oder ein Angebot beauftragen? AVGS-Teilnahme, Workshops und direkte Aufträge haben unterschiedliche Voraussetzungen und werden passend abgestimmt.</p>
+        <p className="mb-6 mt-4 max-w-2xl text-navy-600">Sie möchten Personen weiterempfehlen oder ein Angebot beauftragen? AVGS-Teilnahme, Workshops und direkte Aufträge haben unterschiedliche Voraussetzungen und werden passend abgestimmt.</p>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {institutionalLeistungen.map((l) => (
             <LeistungCard key={l.id} leistung={l} />
@@ -68,7 +68,7 @@ export default function LeistungenPage() {
           Wir hören zuerst zu, erklären die Anforderungen verständlich und üben den nächsten Schritt praktisch.
           So kannst du ihn zunehmend selbst übernehmen.
         </p>
-        <div className="mt-8"><VisualSteps steps={frameworkSteps} /></div>
+        <div className="mt-6"><VisualSteps steps={frameworkSteps} /></div>
       </Section>
 
       <Section tone="navy">
@@ -77,7 +77,7 @@ export default function LeistungenPage() {
             <Eyebrow tone="white">Der passende nächste Schritt</Eyebrow>
             <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">So geht es passend weiter</h2>
           </div>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col items-start rounded-[var(--radius-md)] border border-white/15 bg-white p-6 text-navy">
               <h3 className="text-lg font-bold">Du suchst Unterstützung?</h3>
               <p className="mt-2 text-sm leading-relaxed text-navy-600">

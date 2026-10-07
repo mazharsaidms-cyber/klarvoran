@@ -25,9 +25,9 @@ export function Section({
   spacing?: "default" | "compact" | "hero";
 }) {
   const spacingClasses = {
-    default: "py-16 sm:py-20 lg:py-24",
-    compact: "py-10 sm:py-12 lg:py-14",
-    hero: "pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24",
+    default: "py-12 sm:py-14 lg:py-18",
+    compact: "py-8 sm:py-10 lg:py-11",
+    hero: "pt-8 pb-12 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16",
   };
   return (
     <section id={id} data-reveal-section={spacing !== "hero" ? "" : undefined} className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}>

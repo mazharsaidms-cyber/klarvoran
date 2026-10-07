@@ -43,7 +43,7 @@ export default function EinzelcoachingPage() {
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/einzelcoaching", label: "Privates Coaching" }]} />
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
@@ -105,7 +105,7 @@ export default function EinzelcoachingPage() {
       <Section tone="white">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
-        <div className="mt-8"><VisualSteps steps={steps} /></div>
+        <div className="mt-6"><VisualSteps steps={steps} /></div>
       </Section>
 
       <CtaSection

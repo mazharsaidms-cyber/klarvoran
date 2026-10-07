@@ -9,7 +9,7 @@ export type VisualStep = {
 /** A compact, readable sequence for a process; all content remains plain HTML. */
 export function VisualSteps({ steps }: { steps: readonly VisualStep[] }) {
   return (
-    <ol className={`step-grid grid gap-x-7 gap-y-8 sm:grid-cols-2 ${steps.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+    <ol className={`step-grid grid gap-x-6 gap-y-6 sm:grid-cols-2 ${steps.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
       {steps.map((step, index) => (
         <li
           data-reveal=""

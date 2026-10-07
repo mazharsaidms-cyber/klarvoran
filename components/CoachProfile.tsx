@@ -3,7 +3,7 @@ import { FounderExpertise } from "@/components/FounderExpertise";
 
 export function CoachProfile() {
   return (
-    <div className="grid gap-12 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
       <FounderExpertise />
 
       <div className="space-y-8">

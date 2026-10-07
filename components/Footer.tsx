@@ -7,7 +7,7 @@ import { Logo } from "./Logo";
 export function Footer() {
   return (
     <footer className="border-t border-navy-100 bg-navy text-white">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2.5 font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-[var(--radius-sm)]">
             <Image src={siteConfig.images.badge} alt="" width={40} height={40} className="h-10 w-10 rounded-full" />
@@ -112,7 +112,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-white/10 pt-5 pb-24">
+      <div className="border-t border-white/10 pt-4 pb-24 sm:pb-20">
         <Container className="flex flex-col gap-2 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}

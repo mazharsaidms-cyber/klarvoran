@@ -24,7 +24,7 @@ export default function FuerJobcenterPage() {
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-jobcenter", label: "Jobcenter & Agentur für Arbeit" }]} />
 
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Für Jobcenter & Agentur für Arbeit</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
@@ -56,13 +56,13 @@ export default function FuerJobcenterPage() {
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="jobcenterFlyer" />
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value={`${totalUe} UE`} label="à 45 Minuten" />
           <FactStat value="8 Wochen" label="Maximale Laufzeit" />
           <FactStat value="1:1" label="Einzelcoaching" />
           <FactStat value="§ 45 SGB III" label="Rechtsgrundlage" />
         </div>
-        <dl className="mt-8 grid gap-4 rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 text-sm sm:grid-cols-2 lg:grid-cols-3">
+        <dl className="mt-6 grid gap-4 rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 text-sm sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["Maßnahmezulassung", `${siteConfig.measure.approvalFrom} – ${siteConfig.measure.approvalTo}`],
             ["Maßnahmezertifikat", siteConfig.measure.certificateNumber],
@@ -81,7 +81,7 @@ export default function FuerJobcenterPage() {
           Offiziellen Eintrag bei der Bundesagentur für Arbeit ansehen →
         </Button>
         {/* Maßnahmezeichen direkt bei der eigenen AVGS-Maßnahme (CERTQUA-Vorgabe). */}
-        <div className="mt-8">
+        <div className="mt-6">
           <CertificateSeal
             seal="massnahme"
             caption="Individuelles Bewerbungscoaching nach § 45 SGB III (Zugelassene Maßnahme nach AZAV)"
@@ -92,7 +92,7 @@ export default function FuerJobcenterPage() {
       <Section tone="tint" id="zielgruppe">
         <Eyebrow tone="navy">Zielgruppe & Inhalte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Für wen die Maßnahme geeignet ist</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Zielgruppe</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -110,7 +110,7 @@ export default function FuerJobcenterPage() {
             </p>
           </Card>
         </div>
-        <ol className="mt-8 divide-y divide-navy-100 rounded-[var(--radius-md)] border border-navy-100 bg-white sm:hidden">
+        <ol className="mt-6 divide-y divide-navy-100 rounded-[var(--radius-md)] border border-navy-100 bg-white sm:hidden">
           {coachingModules.map((module) => (
             <li key={module.id} className="p-5">
               <p className="font-mono text-xs font-semibold text-red-700">Modul {module.id} · {module.ue} UE</p>
@@ -119,7 +119,7 @@ export default function FuerJobcenterPage() {
             </li>
           ))}
         </ol>
-        <div className="mt-8 hidden sm:block rounded-[var(--radius-md)] border border-navy-100">
+        <div className="mt-6 hidden sm:block rounded-[var(--radius-md)] border border-navy-100">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm">
             <thead>
               <tr className="bg-navy-50 text-navy">
@@ -144,7 +144,7 @@ export default function FuerJobcenterPage() {
       <Section tone="white">
         <Eyebrow>Ablauf & Durchführung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von der Gutscheinprüfung bis zum Abschluss</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Durchführungsform</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -182,7 +182,7 @@ export default function FuerJobcenterPage() {
       <Section tone="white">
         <Eyebrow>Zulassung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AZAV-Zulassung &amp; Zertifizierung</h2>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
+        <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           <CertificateSeal
             seal="traeger"
             caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
@@ -202,7 +202,7 @@ export default function FuerJobcenterPage() {
             direkt. Wir melden uns in der Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
-        <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
           <ContactForm formal defaultRequestType="avgs_rueckfrage" />
         </div>
       </Section>

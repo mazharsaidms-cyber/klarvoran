@@ -33,7 +33,7 @@ export function LeistungCard({
     <li data-reveal="" className="list-none h-full">
       <Link
         href={leistung.href}
-        className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card transition-[color,background-color,border-color,transform,box-shadow] duration-200 motion-reduce:transform-none motion-reduce:transition-none hover:-translate-y-0.5 hover:border-white hover:bg-navy hover:text-white hover:shadow-card-hover focus-visible:-translate-y-0.5 focus-visible:border-white focus-visible:bg-navy focus-visible:text-white focus-visible:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btn-red"
+        className="group relative flex h-full flex-col gap-4 rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card transition-[color,background-color,border-color,transform,box-shadow] duration-200 motion-reduce:transform-none motion-reduce:transition-none hover:-translate-y-0.5 hover:border-white hover:bg-navy hover:text-white hover:shadow-card-hover focus-visible:-translate-y-0.5 focus-visible:border-white focus-visible:bg-navy focus-visible:text-white focus-visible:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btn-red"
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
           <span className="inline-flex items-center rounded-[var(--radius-full)] bg-navy-50 px-3 py-1 text-xs font-mono font-semibold uppercase tracking-wide text-navy transition-colors group-hover:bg-white/10 group-hover:text-white group-focus-visible:bg-white/10 group-focus-visible:text-white">

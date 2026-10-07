@@ -76,7 +76,7 @@ export default function WorkshopsPage() {
     <>
       <Breadcrumbs items={[{ href: "/leistungen", label: "Leistungen" }, { href: "/leistungen/workshops", label: "Workshops & Gruppenformate" }]} />
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Eyebrow tone="white">Workshops &amp; Gruppenformate</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
@@ -103,7 +103,7 @@ export default function WorkshopsPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Themen</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Woran wir mit Gruppen arbeiten</h2>
-        <div className="icon-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           {themen.map((t) => (
             <Card key={t.title}>
               <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
@@ -128,7 +128,7 @@ export default function WorkshopsPage() {
       <Section tone="tint">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-3">
+        <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-3">
           {formats.map((f) => (
             <Card key={f.title}>
               <h3 className="font-semibold text-navy">{f.title}</h3>
@@ -136,7 +136,7 @@ export default function WorkshopsPage() {
             </Card>
           ))}
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Gruppengröße & Ort</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -157,7 +157,7 @@ export default function WorkshopsPage() {
       <Section tone="white">
         <Eyebrow>Arbeitsweise</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So arbeiten wir mit Gruppen</h2>
-        <div className="mt-8"><VisualSteps steps={approach} /></div>
+        <div className="mt-6"><VisualSteps steps={approach} /></div>
       </Section>
 
       <Section tone="navy" id="anfrage">
@@ -169,7 +169,7 @@ export default function WorkshopsPage() {
             innerhalb von 1–2 Werktagen, um die passenden Inhalte und den Umfang abzustimmen.
           </p>
         </div>
-        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-6 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
           <ContactForm formal defaultRequestType="workshop" />
         </div>
       </Section>

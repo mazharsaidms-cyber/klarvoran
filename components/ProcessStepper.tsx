@@ -2,7 +2,7 @@ import type { ProcessStep } from "@/lib/content/process";
 
 export function ProcessStepper({ steps }: { steps: ProcessStep[] }) {
   return (
-    <ol className="step-grid grid gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-5">
+    <ol className="step-grid grid gap-x-6 gap-y-6 sm:grid-cols-2 xl:grid-cols-5">
       {steps.map((step) => (
         <li key={step.id} className="group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none">
           <span

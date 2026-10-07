@@ -22,7 +22,7 @@ export default function FuerBildungstraegerPage() {
       <Breadcrumbs items={[{ href: "/fachkraefte-kooperationspartner", label: "Für Institutionen" }, { href: "/fuer-bildungstraeger", label: "Bildungsträger" }]} />
 
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Eyebrow tone="white">Für Bildungsträger & Kooperationspartner</Eyebrow>
             <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">
@@ -58,7 +58,7 @@ export default function FuerBildungstraegerPage() {
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <InstitutionDownload kind="educationFlyer" />
         </div>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Unterauftrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -93,7 +93,7 @@ export default function FuerBildungstraegerPage() {
       <Section tone="tint">
         <Eyebrow tone="navy">Erfahrung & Reichweite</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Warum KlarVoran als Partner</h2>
-        <div className="text-card-grid mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Praxis in Bewerbungsmanagement und Jobcoaching</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
@@ -130,7 +130,7 @@ export default function FuerBildungstraegerPage() {
       <Section tone="white">
         <Eyebrow>Trägerdaten</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
+        <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">
           {/* Ausschließlich das Trägerzeichen – kein pauschales Maßnahmesiegel. */}
           <CertificateSeal
             seal="traeger"
@@ -151,7 +151,7 @@ export default function FuerBildungstraegerPage() {
             Regel innerhalb von 1–2 Werktagen zurück.
           </p>
         </div>
-        <div className="mx-auto mt-10 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
+        <div className="mx-auto mt-8 max-w-xl rounded-[var(--radius-lg)] bg-white p-6 sm:p-8">
           <ContactForm formal defaultRequestType="unterauftrag" />
         </div>
       </Section>

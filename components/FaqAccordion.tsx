@@ -6,7 +6,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
       {items.map((item) => (
         <details
           key={item.question}
-          className="group rounded-[var(--radius-sm)] p-5 transition-colors duration-200 motion-reduce:transition-none open:pb-5 hover:bg-navy-50 sm:p-6"
+          className="group rounded-[var(--radius-sm)] p-4 transition-colors duration-200 motion-reduce:transition-none hover:bg-navy-50 sm:p-5"
         >
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy rounded-[var(--radius-sm)]">
             {item.question}

@@ -33,20 +33,20 @@ export default function FaqPage() {
           <Button href="#foerderung" variant="text">AVGS &amp; Förderung</Button>
           <Button href="#institutionen" variant="text">Für Institutionen</Button>
         </div>
-        <div id="coaching" className="mt-10 max-w-3xl scroll-mt-32">
+        <div id="coaching" className="mt-8 max-w-3xl scroll-mt-32">
           <h2 className="text-xl font-bold text-navy sm:text-2xl">Coaching, Kosten und Ablauf</h2>
           <div className="mt-5">
             <FaqAccordion items={generalFaq} />
           </div>
         </div>
-        <div id="foerderung" className="mt-12 max-w-3xl scroll-mt-32">
+        <div id="foerderung" className="mt-10 max-w-3xl scroll-mt-32">
           <h2 className="text-xl font-bold text-navy sm:text-2xl">AVGS und Zulassung</h2>
           <div className="mt-5">
             <FaqAccordion items={avgsFaq} />
           </div>
           <div className="mt-6"><AvgsCheckEntry /></div>
         </div>
-        <div id="institutionen" className="mt-12 max-w-3xl scroll-mt-32">
+        <div id="institutionen" className="mt-10 max-w-3xl scroll-mt-32">
           <h2 className="text-xl font-bold text-navy sm:text-2xl">Zusammenarbeit mit Institutionen</h2>
           <div className="mt-5"><FaqAccordion items={institutionFaq} /></div>
         </div>

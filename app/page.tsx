@@ -67,8 +67,8 @@ export default function HomePage() {
 
       {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
       <Section tone="navy" spacing="hero" className="kv-hero">
-        <div className="grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
+        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-8">
+          <div className="order-1">
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt-West &amp; Main-Taunus-Kreis</Eyebrow>
             <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.5rem]">
               <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
@@ -86,10 +86,14 @@ export default function HomePage() {
                 Für Institutionen
               </Button>
             </div>
-            <div className="mt-6 max-w-xl">
-              <AvgsCheckEntry />
-            </div>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
+          </div>
+
+          <div className="order-2 lg:order-4">
+            <AvgsCheckEntry />
+          </div>
+
+          <div className="order-3">
+            <p className="max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
               und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
@@ -104,7 +108,7 @@ export default function HomePage() {
             width={1400}
             height={781}
             sizes="(min-width: 1152px) 468px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
-            className="w-full rounded-[var(--radius-lg)] border border-white/15 lg:mt-12"
+            className="order-4 w-full rounded-[var(--radius-lg)] border border-white/15 lg:order-2 lg:mt-12"
             preload
           />
         </div>

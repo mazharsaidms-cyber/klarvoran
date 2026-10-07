@@ -4,6 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/Button";
+import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { siteConfig } from "@/lib/site-config";
 import { VisualIcon } from "@/components/VisualIcon";
 
@@ -23,6 +24,7 @@ export default function KontaktPage() {
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
           Ob per Telefon, WhatsApp, E-Mail oder Formular – wähle den Weg, der für dich am einfachsten ist.
         </p>
+        <div className="mt-6 max-w-2xl"><AvgsCheckEntry /></div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
           <div className="space-y-6">

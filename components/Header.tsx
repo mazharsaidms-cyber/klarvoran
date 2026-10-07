@@ -15,6 +15,7 @@ export function Header() {
   const pathname = usePathname();
   const open = openPathname === pathname;
   const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-");
+  const showQuickCheck = ["/", "/avgs", "/leistungen", "/leistungen/einzelcoaching", "/faq", "/kontakt", "/ueber-uns"].includes(pathname);
   function isActive(href: string) {
     if (href === "/fachkraefte-kooperationspartner") return institutionalPage;
     if (href === "/leistungen") return pathname.startsWith("/leistungen");
@@ -107,6 +108,14 @@ export function Header() {
           <span>Menü</span>
         </button>
       </div>
+
+      {showQuickCheck && (
+        <div className="border-t border-white/10 px-5 py-2 lg:hidden">
+          <Button href="/avgs#schnellcheck" className="w-full" onDark onClick={() => setOpenPathname(null)}>
+            AVGS-Schnellcheck starten
+          </Button>
+        </div>
+      )}
 
       <noscript>
         <nav aria-label="Navigation ohne JavaScript" className="border-t border-white/10 px-5 py-3 lg:hidden">

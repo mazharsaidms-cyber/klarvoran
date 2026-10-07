@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { TrustBar } from "@/components/TrustBar";
 import { LeistungCard } from "@/components/LeistungCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
@@ -78,18 +79,21 @@ export default function HomePage() {
               deinen Bewerbungen und üben Vorstellungsgespräche. Im persönlichen Einzelcoaching lernst
               du Schritt für Schritt, selbst weiterzugehen.
             </p>
+            <div className="mt-6 max-w-xl">
+              <AvgsCheckEntry />
+            </div>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Button href="/termin" variant="secondary" onDark>
+                Kostenloses Erstgespräch
+              </Button>
+              <Button href="/fachkraefte-kooperationspartner" variant="text" onDark>
+                Angebote für Institutionen
+              </Button>
+            </div>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
               und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href="/termin" size="lg" onDark>
-                Kostenloses Erstgespräch
-              </Button>
-              <Button href="/fachkraefte-kooperationspartner" variant="secondary" size="lg" onDark>
-                Angebote für Institutionen
-              </Button>
-            </div>
             <div className="mt-10">
               <TrustBar tone="dark" />
             </div>

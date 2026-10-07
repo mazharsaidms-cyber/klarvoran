@@ -80,8 +80,8 @@ export default function AvgsPage() {
               weiterzuführen.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="/termin" onDark>Erstgespräch anfragen</Button>
-              <Button href="#schnellcheck" onDark variant="secondary">AVGS-Schnellcheck</Button>
+              <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
+              <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
               Präsenz in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street}, {" "}
@@ -95,6 +95,20 @@ export default function AvgsPage() {
             title="Bewerbungsunterlagen gemeinsam sichten und den nächsten Schritt planen"
             className="hidden lg:block"
           />
+        </div>
+      </Section>
+
+      <Section tone="navy" id="schnellcheck" spacing="compact">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Dein nächster Schritt – einfach erklärt</h2>
+          <p className="mt-3 text-white/80">
+            Beantworte ein paar einfache Fragen. Du erhältst eine erste Orientierung und kannst bei Bedarf
+            eine Nachricht an dein Jobcenter oder deine Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
+          <AvgsSchnellcheck />
         </div>
       </Section>
 
@@ -221,19 +235,7 @@ export default function AvgsPage() {
         </p>
       </Section>
 
-      <Section tone="navy" id="schnellcheck">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Wo stehst du gerade?</h2>
-          <p className="mt-3 text-white/80">
-            Drei kurze Schritte für eine erste, unverbindliche Einschätzung. Wenn du noch keinen AVGS hast,
-            kannst du anschließend eine Nachricht an deine Vermittlungsfachkraft vorbereiten.
-          </p>
-        </div>
-        <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <AvgsSchnellcheck />
-        </div>
-      </Section>
+
 
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt
           die Seite für Teilnehmende verständlich und zugleich transparent. */}

@@ -4,6 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LeistungCard } from "@/components/LeistungCard";
 import { Button } from "@/components/Button";
+import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { leistungen } from "@/lib/content/leistungen";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
@@ -34,6 +35,7 @@ export default function LeistungenPage() {
           praxisnahe Gruppenformate und Zusammenarbeit mit Institutionen. Format, Umfang und Finanzierung richten
           sich nach dem jeweiligen Bedarf.
         </p>
+        <div className="mt-6 max-w-2xl"><AvgsCheckEntry /></div>
       </Section>
 
       <Section tone="tint">

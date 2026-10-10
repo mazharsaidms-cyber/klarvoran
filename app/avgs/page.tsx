@@ -156,7 +156,7 @@ export default function AvgsPage() {
           <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Dein nächster Schritt – einfach erklärt</h2>
           <p className="mt-3 text-white/80">
             Beantworte ein paar einfache Fragen. Du erhältst eine erste Orientierung und kannst bei Bedarf
-            eine Nachricht an dein Jobcenter oder deine Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
+            deinen persönlichen Antrag für Jobcenter oder Agentur für Arbeit vorbereiten. Kostenlos und ohne Anmeldung.
           </p>
         </div>
         <div className="mx-auto mt-6 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
@@ -221,7 +221,7 @@ export default function AvgsPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
           Du bist unsicher, wie du deinen Bedarf erklären sollst? Nach dem AVGS-Schnellcheck kannst du direkt eine
-          kurze Nachricht an deine Vermittlungsfachkraft vorbereiten. Auf Wunsch formulieren wir sie auch gemeinsam
+          persönlichen Antrag mit deiner Situation, bisherigen Schritten und deinem Unterstützungsbedarf vorbereiten. Auf Wunsch formulieren wir ihn auch gemeinsam
           mit dir im Erstgespräch. Die Entscheidung über den Gutschein trifft deine Vermittlungsfachkraft.
         </p>
         <div className="mt-6"><VisualSteps steps={guideSteps} /></div>

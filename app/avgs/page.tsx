@@ -220,7 +220,7 @@ export default function AvgsPage() {
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Du bist unsicher, wie du deinen Bedarf erklären sollst? Nach dem AVGS-Schnellcheck kannst du direkt eine
+          Du bist unsicher, wie du deinen Bedarf erklären sollst? Nach dem AVGS-Schnellcheck kannst du direkt einen
           persönlichen Antrag mit deiner Situation, bisherigen Schritten und deinem Unterstützungsbedarf vorbereiten. Auf Wunsch formulieren wir ihn auch gemeinsam
           mit dir im Erstgespräch. Die Entscheidung über den Gutschein trifft deine Vermittlungsfachkraft.
         </p>

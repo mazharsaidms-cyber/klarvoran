@@ -10,8 +10,8 @@ import { Button } from "@/components/Button";
 import { generalFaq, avgsFaq, institutionFaq } from "@/lib/content/faq";
 
 export const metadata: Metadata = pageMetadata(
-  "Häufige Fragen (FAQ)",
-  "Antworten auf die häufigsten Fragen zu AVGS-Coaching, Kosten, Ablauf und Zulassung von KlarVoran.",
+  "AVGS-Coaching: Häufige Fragen",
+  "Fragen zu AVGS, Kosten, Ablauf und Zulassung: KlarVoran erklärt das Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis.",
   "/faq",
 );
 

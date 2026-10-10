@@ -112,6 +112,17 @@ export default function AvgsPage() {
           <Button href="#ablauf" variant="text">Ablauf kennenlernen →</Button>
           <Button href="#ort" variant="text">Ort &amp; Format ansehen →</Button>
         </div>
+        <div className="mt-6 rounded-2xl border border-navy-100 bg-white p-5 sm:p-6">
+          <h2 className="text-lg font-bold text-navy">KlarVoran bei der Arbeitsagentur finden</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-navy-600">
+            Du möchtest unser Angebot in KURSNET nachsehen oder mit deiner Vermittlungsfachkraft besprechen?
+            Der Link führt direkt zu unserem Eintrag in der Coaching-Suche der Bundesagentur für Arbeit.
+          </p>
+          <Button href={siteConfig.measure.baHref} external variant="secondary" className="mt-4">
+            KlarVoran in KURSNET ansehen
+            <span className="sr-only"> (öffnet in einem neuen Tab)</span>
+          </Button>
+        </div>
       </Section>
 
       <Section tone="tint">

@@ -40,8 +40,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
-    // Die Website verarbeitet nur kurze Textformulare und keine Uploads.
-    // Ein deutlich kleineres Limit reduziert unnötige Parser- und DoS-Fläche.
+    // Server Actions verarbeiten kurze Kontaktformulare. Teilnehmer-Uploads
+    // verwenden begrenzte Route-Handler mit getrennten Dateiteilen.
     serverActions: {
       bodySizeLimit: "64kb",
     },
@@ -55,6 +55,16 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      { source: "/teilnehmer/:path*", headers: [
+        { key: "Cache-Control", value: "private, no-store, max-age=0" },
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+      ] },
+      { source: "/api/teilnehmer/:path*", headers: [
+        { key: "Cache-Control", value: "private, no-store, max-age=0" },
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+      ] },
     ];
   },
   async redirects() {
@@ -79,3 +89,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

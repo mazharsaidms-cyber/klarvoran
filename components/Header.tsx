@@ -50,6 +50,8 @@ export function Header() {
     menuButtonRef.current?.focus();
   }
 
+  if (pathname.startsWith("/teilnehmer")) return <header className="border-b border-white/10 bg-navy text-white"><div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5"><Link href="/teilnehmer" aria-label="KlarVoran Teilnehmerbereich"><Logo tone="dark" loading="eager" className="h-7 w-auto" /></Link><span className="text-sm font-semibold">Dein Teilnehmerbereich</span></div></header>;
+
   return (
     // Durchgehend dunkelblauer Header (Kundenvorgabe) – performant, SSR-stabil,
     // ohne Scroll-Listener. Bleibt auch auf hellen Leseseiten lesbar.
@@ -166,3 +168,4 @@ export function Header() {
     </header>
   );
 }
+

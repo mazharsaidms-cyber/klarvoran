@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 // or webhook delivery, even if a developer has configured local credentials.
 const base = 'http://127.0.0.1:3092';
 const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '--hostname', '127.0.0.1', '--port', '3092'], {
-  env: { ...process.env, RESEND_API_KEY: '', FORM_WEBHOOK_URL: '', NODE_ENV: 'production' },
+  env: { ...process.env, RESEND_API_KEY: '', FORM_WEBHOOK_URL: '', PORTAL_EMAIL_ENABLED: 'false', NODE_ENV: 'production' },
   stdio: ['ignore', 'pipe', 'pipe'],
 });
 let serverErrors = '';
@@ -45,6 +45,28 @@ try {
     assert.equal(response.headers.get('location'), to);
   }
   console.log('OK: security headers, 404/noindex and permanent redirects');
+
+  for (const path of ['/teilnehmer', '/teilnehmer/datenschutz']) {
+    const response = await fetch(base + path, { redirect: 'manual' });
+    assert.equal(response.status, 200, `${path}: available without ChatGPT redirect`);
+    assert.match(response.headers.get('cache-control') ?? '', /private.*no-store/);
+    assert.equal(response.headers.get('referrer-policy'), 'no-referrer');
+    assert.match(response.headers.get('x-robots-tag') ?? '', /noindex/);
+    assert.ok(/kein ChatGPT-Konto|ChatGPT-Konto ist nicht erforderlich/i.test(await response.text()), `${path}: ordinary email login explained`);
+  }
+  for (const [path, init] of [
+    ['/api/teilnehmer/me', {}],
+    ['/api/teilnehmer/auth/sign-in/email-otp', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://www.klarvoran.de' }, body: JSON.stringify({ email: 'audit@example.invalid', otp: '123456' }) }],
+    ['/api/teilnehmer/mail', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }],
+  ]) {
+    const response = await fetch(base + path, { ...init, redirect: 'manual' });
+    assert.equal(response.status, 503, `${path}: incomplete setup stays closed`);
+    assert.equal(response.headers.get('location'), null);
+    assert.match(response.headers.get('cache-control') ?? '', /private.*no-store/);
+    assert.equal(response.headers.get('referrer-policy'), 'no-referrer');
+    assert.equal(typeof (await response.json()).error, 'string');
+  }
+  console.log('OK: participant pages need no ChatGPT login; API and mail stay closed until connected');
 
   const manifest = JSON.parse(await readFile('.next/server/server-reference-manifest.json', 'utf8'));
   const samples = [
@@ -89,3 +111,4 @@ try {
 } finally {
   server.kill('SIGTERM');
 }
+

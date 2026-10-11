@@ -10,7 +10,7 @@ export function WhatsAppButton() {
     ? "Guten Tag, ich möchte eine Zusammenarbeit mit KlarVoran besprechen."
     : pathname === "/avgs" ? "Hallo! Ich habe eine Frage zum AVGS-Coaching bei KlarVoran."
     : "Hallo! Ich habe eine Frage zum Coaching bei KlarVoran.";
-  if (pathname === "/impressum" || pathname === "/datenschutz") return null;
+  if (pathname === "/impressum" || pathname === "/datenschutz" || pathname.startsWith("/teilnehmer")) return null;
   return (
     <a
       href={siteConfig.contact.whatsappHref(message)}
@@ -26,3 +26,4 @@ export function WhatsAppButton() {
     </a>
   );
 }
+

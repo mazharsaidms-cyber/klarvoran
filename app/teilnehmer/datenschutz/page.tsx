@@ -1,0 +1,17 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = { title: "Datenschutz im Test-Teilnehmerbereich | KlarVoran", robots: { index: false, follow: false } };
+export const dynamic = "force-dynamic";
+export default function ParticipantPrivacyPage() {
+  return <section className="mx-auto max-w-3xl px-6 py-12 leading-relaxed"><Link href="/teilnehmer" className="underline">Zurück zum Teilnehmerbereich</Link><h1 className="mt-8 text-3xl font-bold">Datenschutz im Test-Teilnehmerbereich</h1>
+    <p className="mt-6">Dieser Bereich dient derzeit ausschließlich dem Funktionstest. Bitte verwende erfundene Namen, Angaben und Dokumente. Echte Behördenbriefe und echte Teilnehmerakten sind noch nicht freigegeben.</p>
+    <h2 className="mt-8 text-xl font-bold">Anmeldung und eigene Akte</h2><p className="mt-3">Mazhar ordnet deinem freigegebenen Zugang eine eigene Akte zu. Für die Anmeldung wird deine E-Mail-Adresse verwendet. Du erhältst einen sechsstelligen Code per E-Mail. Er gilt fünf Minuten und kann einmal zur Anmeldung verwendet werden. Ein ChatGPT-Konto ist nicht erforderlich.</p>
+    <p className="mt-3">Die Anmeldung verwendet ein notwendiges, geschütztes Sitzungscookie. Es ist für Seitenskripte nicht lesbar. Eine Sitzung läuft nach sechs Stunden ohne Erneuerung ab. Eine Sperrung oder Änderung deiner Freigabe beendet den Zugang auch vorher. Melde dich auf gemeinsam genutzten Geräten immer ab.</p>
+    <h2 className="mt-8 text-xl font-bold">E-Mail-Versand</h2><p className="mt-3">Einladungen und Anmeldecodes werden über Resend versendet. Dafür werden E-Mail-Adresse, Absender und der jeweilige Nachrichtentext verarbeitet. Dokumente, Akteninhalte und fachliche Hinweise werden nicht per E-Mail verschickt.</p>
+    <h2 className="mt-8 text-xl font-bold">Dateien und Schutz des Zugangs</h2><p className="mt-3">Testdateien werden in einer privaten Dateiablage gespeichert. Aktenzuordnung, Dateiname, Größe, Prüfsumme und Änderungen werden für die Anzeige und Nachvollziehbarkeit verarbeitet. Teilnehmer sehen ausschließlich ihre eigene freigegebene Akte. Die Administration kann die freigegebenen Testakten verwalten.</p>
+    <p className="mt-3">Dateiteile aus noch nicht abgeschlossenen Uploads sind höchstens 24 Stunden lang verwendbar. Abgelaufene Dateiteile, Anmeldecodes und Sitzungen werden beim nächsten Zugriff zur technischen Bereinigung vorgemerkt bzw. entfernt. Angaben zur Begrenzung von Anmeldeversuchen werden nach 24 Stunden beim nächsten Zugriff bereinigt. Für den Schutz vor Missbrauch wird dabei auch die IP-Adresse verarbeitet.</p>
+    <h2 className="mt-8 text-xl font-bold">KI-Verarbeitung und nächste Freigabe</h2><p className="mt-3">Die KI-Auslesung ist im aktuellen Teststand gesperrt. Ein Upload löst keine KI-Verarbeitung aus. Vor einem Einsatz mit echten Teilnehmerdaten müssen Zweck, erforderliche Angaben, Rechtsgrundlage, Anbietervereinbarungen, technische Betriebsfreigabe und Löschfristen verbindlich geklärt werden. Diese Testinformation ersetzt die dann erforderliche vollständige Datenschutzinformation nicht.</p>
+    <p className="mt-8">Ansprechpartner: Mazhar Said, KlarVoran. <a href="tel:+491779548140" className="underline">0177 9548140</a>. Weitere Kontaktangaben stehen im <Link href="/impressum" className="underline">Impressum</Link> und in der <Link href="/datenschutz" className="underline">Datenschutzerklärung der Website</Link>.</p>
+  </section>;
+}

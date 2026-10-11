@@ -51,6 +51,9 @@
 .documents li > p { margin: 14px 0 0; }
 .hints { background: #f1f5f8; border-radius: 10px; padding: 16px; margin-top: 18px; }
 .hints p { margin: 10px 0 0; }
+.reply { background: #eff5f1; border: 1px solid #a7c5b2; border-radius: 10px; padding: 16px; margin-top: 18px; }
+.reply > div { margin-top: 14px; padding-top: 12px; border-top: 1px solid #c6ddce; }
+.reply p { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .help { max-width: 720px; line-height: 1.65; margin-top: 16px; color: #596270; }
 .help strong { color: #1b222e; }
 .help p { margin: 8px 0 12px; }

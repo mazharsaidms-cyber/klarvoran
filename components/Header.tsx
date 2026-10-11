@@ -56,6 +56,17 @@ export function Header() {
     // Durchgehend dunkelblauer Header (Kundenvorgabe) – performant, SSR-stabil,
     // ohne Scroll-Listener. Bleibt auch auf hellen Leseseiten lesbar.
     <header className="sticky top-0 z-40 border-b border-white/10 bg-navy text-white">
+      <div className="border-b border-white/10 bg-navy-700">
+        <div className="mx-auto flex max-w-6xl items-center justify-end gap-3 px-5 py-1 sm:px-6 lg:px-8">
+          <span className="hidden text-xs text-white/75 sm:inline">Schon bei KlarVoran dabei?</span>
+          <Link
+            href="/teilnehmer"
+            className="inline-flex min-h-9 items-center rounded-[var(--radius-sm)] border border-white/50 px-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-navy focus-visible:bg-white focus-visible:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Teilnehmer-Login
+          </Link>
+        </div>
+      </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:gap-3 lg:px-8 xl:gap-5">
         <Link
           href="/"
@@ -135,6 +146,11 @@ export function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <a href="/teilnehmer" className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">
+                Teilnehmer-Login
+              </a>
+            </li>
           </ul>
         </nav>
       </noscript>
@@ -157,6 +173,11 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li className="mt-2">
+              <Button href="/teilnehmer" variant="secondary" className="w-full" onDark onClick={closeMenu}>
+                Teilnehmer-Login
+              </Button>
+            </li>
             <li className="mt-2">
               <Button href={contactHref} className="w-full" onDark onClick={closeMenu}>
                 {contactLabel}

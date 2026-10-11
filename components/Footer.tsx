@@ -49,6 +49,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/teilnehmer" className="inline-flex min-h-9 items-center rounded-[var(--radius-sm)] text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                Teilnehmer-Login
+              </Link>
+            </li>
           </ul>
         </nav>
 

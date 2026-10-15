@@ -39,6 +39,9 @@
 .files li > div { min-width: 0; }
 .files strong, .documents strong { overflow-wrap: anywhere; }
 .files small { margin-top: 4px; }
+.documentKind { display: grid; gap: 7px; margin-top: 12px; font-size: 14px; font-weight: 700; }
+.documentKind select { width: 100%; min-height: 46px; padding: 9px 12px; border: 1px solid #7f8a9a; border-radius: 10px; background: #fff; color: #1b222e; font: inherit; font-weight: 400; }
+.documentKind select:focus-visible { outline: 3px solid #354b65; outline-offset: 3px; }
 .files .linkButton { flex-shrink: 0; }
 .fileError { display: block; color: #8e2626; margin-top: 8px; font-size: 14px; }
 .checkbox { display: flex; align-items: flex-start; gap: 12px; margin: 22px 0; line-height: 1.65; font-size: 14px; }

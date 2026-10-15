@@ -10,7 +10,8 @@ type Document = { id: string; title: string; status: string; currentVersion: num
   versions: Array<{ originalFileName: string; byteSize: number; version: number }>;
   replies: Array<{ id: string; documentVersion: number; body: string; createdAt: string }>;
   extraction: null | { status: string; data: null | { subject: string | null; deadline: string | null; requestedAction: string | null; warnings: string[] } } };
-type Pending = { id: string; file: File; progress: number; error: string; receipt?: string };
+type DocumentKind = "Behördenbrief" | "Sonstiges";
+type Pending = { id: string; file: File; category: DocumentKind | ""; progress: number; error: string; receipt?: string; started?: boolean };
 type Phase = "loading" | "email" | "code" | "case";
 const apiRoot = "/api/teilnehmer";
 const maxBytes = 8 * 1024 * 1024;
@@ -107,16 +108,17 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       setError("Bitte wähle PDF-, JPG- oder PNG-Dateien bis jeweils 8 MB aus. Sehr lange Dateinamen bitte vorher kürzen."); return;
     }
     const additions = selected.filter(file => !pending.some(entry => entry.file.name === file.name && entry.file.size === file.size && entry.file.lastModified === file.lastModified));
-    setPending(current => [...current, ...additions.map(file => ({ id: crypto.randomUUID(), file, error: "", progress: 0 }))]); setError(""); setNotice("");
+    setPending(current => [...current, ...additions.map(file => ({ id: crypto.randomUUID(), file, category: "" as const, error: "", progress: 0 }))]); setError(""); setNotice("");
   }
   function updatePending(id: string, changes: Partial<Pending>) { setPending(current => current.map(entry => entry.id === id ? { ...entry, ...changes } : entry)); }
   async function upload() {
     if (!testConfirmed || !me?.capabilities.upload) return;
+    if (pending.some(entry => !entry.receipt && !entry.category)) { setError("Bitte wähle für jede Datei eine Dokumentart aus."); return; }
     setBusy("upload"); setError(""); setNotice("");
     let delivered = 0;
     try {
       for (const entry of pending.filter(item => !item.receipt)) {
-        updatePending(entry.id, { error: "", progress: 0 });
+        updatePending(entry.id, { error: "", progress: 0, started: true });
         try {
           const bytes = await entry.file.arrayBuffer();
           const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(byte => byte.toString(16).padStart(2, "0")).join("");
@@ -127,7 +129,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
             await api(`/upload/chunk?id=${entry.id}&part=${part}`, { method: "POST", headers: { "content-type": "application/octet-stream" }, body: entry.file.slice(part * PARTICIPANT_CHUNK_BYTES, (part + 1) * PARTICIPANT_CHUNK_BYTES) });
             updatePending(entry.id, { progress: Math.round(90 * (part + 1) / chunkCount) });
           }
-          const receipt = await post<{ documentId?: string }>("/upload/finish", { id: entry.id });
+          const receipt = await post<{ documentId?: string }>("/upload/finish", { id: entry.id, category: entry.category });
           if (!receipt.documentId) throw new Error("Die Datei konnte noch nicht bestätigt werden. Bitte erneut senden.");
           updatePending(entry.id, { progress: 100, receipt: receipt.documentId }); delivered++;
         } catch (caught) { updatePending(entry.id, { error: messageOf(caught) }); throw caught; }
@@ -168,7 +170,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       {!ownCase ? <p className={styles.error}>Deine Akte ist noch nicht verfügbar. Bitte melde dich bei KlarVoran.</p> : <section className={styles.card} aria-labelledby="upload-title"><p className={styles.step}>Foto oder Datei → Prüfen → Senden</p><h2 id="upload-title">Dokumente hochladen</h2><p>Wähle eine PDF-Datei oder ein Foto aus. Du kannst bis zu 20 Dateien mit jeweils höchstens 8 MB senden.</p>
         <input ref={fileInput} className={styles.hidden} type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple onChange={event => { selectFiles(event.target.files); event.target.value = ""; }} />
         <button className={styles.secondary} disabled={Boolean(busy) || !me?.capabilities.upload} onClick={() => fileInput.current?.click()}>Fotos oder Dateien auswählen</button>
-        {pending.length > 0 && <><ul className={styles.files}>{pending.map(entry => <li key={entry.id}><div><strong>{entry.file.name}</strong><small>{formatSize(entry.file.size)} · {entry.receipt ? "Angekommen" : busy === "upload" && entry.progress ? `${entry.progress}% übertragen` : "Zum Senden ausgewählt"}</small>{entry.error && <span className={styles.fileError}>{entry.error}</span>}{entry.receipt && <small>Bestätigung: {entry.receipt}</small>}</div><button className={styles.linkButton} disabled={Boolean(busy)} aria-label={`${entry.file.name} aus der Auswahl entfernen`} onClick={() => setPending(current => current.filter(item => item.id !== entry.id))}>{entry.receipt ? "Auswahl schließen" : "Entfernen"}</button></li>)}</ul>{waiting > 0 && <><label className={styles.checkbox}><input type="checkbox" checked={testConfirmed} disabled={Boolean(busy)} onChange={event => setTestConfirmed(event.target.checked)} />Ich bestätige: Alle ausgewählten Dateien enthalten nur erfundene Testdaten.</label><button className={styles.primary} disabled={Boolean(busy) || !testConfirmed || !me?.capabilities.upload} onClick={() => void upload()}>{busy === "upload" ? "Dateien werden gesendet …" : `${waiting === 1 ? "Datei" : `${waiting} Dateien`} senden`}</button></>}</>}
+        {pending.length > 0 && <><ul className={styles.files}>{pending.map(entry => <li key={entry.id}><div><strong>{entry.file.name}</strong><small>{formatSize(entry.file.size)} · {entry.receipt ? "Angekommen" : busy === "upload" && entry.progress ? `${entry.progress}% übertragen` : "Zum Senden ausgewählt"}</small>{!entry.receipt && <label className={styles.documentKind}>Was für eine Unterlage ist das?<select aria-label={`Dokumentart für ${entry.file.name}`} value={entry.category} disabled={Boolean(busy) || entry.started} onChange={event => setPending(current => current.map(item => item.id === entry.id ? { ...item, category: event.target.value as DocumentKind | "" } : item))}><option value="">Bitte auswählen</option><option value="Behördenbrief">Brief von Agentur, Jobcenter oder anderer Behörde</option><option value="Sonstiges">Andere Unterlage</option></select></label>}{entry.error && <span className={styles.fileError}>{entry.error}</span>}{entry.receipt && <small>Bestätigung: {entry.receipt}</small>}</div><button className={styles.linkButton} disabled={Boolean(busy)} aria-label={`${entry.file.name} aus der Auswahl entfernen`} onClick={() => setPending(current => current.filter(item => item.id !== entry.id))}>{entry.receipt ? "Auswahl schließen" : "Entfernen"}</button></li>)}</ul>{waiting > 0 && <><label className={styles.checkbox}><input type="checkbox" checked={testConfirmed} disabled={Boolean(busy)} onChange={event => setTestConfirmed(event.target.checked)} />Ich bestätige: Alle ausgewählten Dateien enthalten nur erfundene Testdaten.</label><button className={styles.primary} disabled={Boolean(busy) || !testConfirmed || pending.some(entry => !entry.receipt && !entry.category) || !me?.capabilities.upload} onClick={() => void upload()}>{busy === "upload" ? "Dateien werden gesendet …" : `${waiting === 1 ? "Datei" : `${waiting} Dateien`} senden`}</button></>}</>}
         {!me?.capabilities.upload && <p className={styles.error}>Die Dateiablage ist gerade nicht verfügbar. Bitte versuche es später erneut.</p>}
       </section>}
       <section className={styles.card} aria-labelledby="documents-title"><div className={styles.documentHeading}><h2 id="documents-title">Deine Dokumente</h2><span>{documents.length}</span></div>{documents.length === 0 ? <p>Hier erscheinen deine angekommenen Dateien und die Dokumente, die für dich freigegeben werden.</p> : <ul className={styles.documents}>{documents.map(document => <li key={document.id}><div className={styles.documentHeading}><div><strong>{document.title}</strong><p>{formatDate(document.createdAt)} · {statusLabel(document.status)}</p></div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void download(document)}>{busy === `download:${document.id}` ? "Wird geöffnet …" : "Datei herunterladen"}</button></div>{document.replies?.length > 0 && <div className={styles.reply}><strong>Antwort von KlarVoran</strong>{document.replies.map(reply => <div key={reply.id}><small>{formatDate(reply.createdAt)} · zum Dokumentstand {reply.documentVersion}</small><p>{reply.body}</p></div>)}</div>}{document.extraction?.status === "reviewed" && document.extraction.data ? <div className={styles.hints}><strong>Geprüfte Hinweise</strong>{document.extraction.data.subject && <p>{document.extraction.data.subject}</p>}{document.extraction.data.deadline && <p>Frist: <strong>{document.extraction.data.deadline}</strong></p>}{document.extraction.data.requestedAction && <p>Nächster Schritt: {document.extraction.data.requestedAction}</p>}{document.extraction.data.warnings?.map((warning, index) => <p key={index}>{warning}</p>)}</div> : !document.replies?.length && <p className={styles.muted}>Eine persönliche Antwort erscheint hier, sobald das Dokument geprüft wurde. Bei einer dringenden Frist melde dich bitte direkt.</p>}</li>)}</ul>}</section>

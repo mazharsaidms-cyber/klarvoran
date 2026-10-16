@@ -30,7 +30,7 @@ export function gatewayTargetAllowed(method: string, target: string) {
   try { url = new URL(target, "https://gateway.invalid"); } catch { return false; }
   if (url.origin !== "https://gateway.invalid") return false;
   const allowed = new Map([
-    ["/me", ["GET"]], ["/documents", ["GET"]], ["/file", ["GET"]],
+    ["/me", ["GET"]], ["/documents", ["GET", "PATCH"]], ["/file", ["GET"]],
     ["/upload/start", ["POST"]], ["/upload/chunk", ["POST"]], ["/upload/finish", ["POST"]],
     ["/auth/email-otp/send-verification-otp", ["POST"]],
     ["/auth/sign-in/email-otp", ["POST"]], ["/auth/sign-out", ["POST"]],

@@ -24,6 +24,19 @@ test("participant proxy permits only narrow endpoints and same-origin writes", a
   assert.equal((await proxyParticipant(client("/auth/sign-up/email", { method: "POST", body: "{}" }), "/auth/sign-up/email", config, send)).status, 404);
   assert.equal((await proxyParticipant(client("/auth/sign-out", { method: "POST", body: "{}", headers: { origin: "https://foreign.example.invalid" } }), "/auth/sign-out", config, send)).status, 403);
   assert.equal((await proxyParticipant(client("/me", { headers: { "sec-fetch-site": "cross-site" } }), "/me", config, send)).status, 403);
+  assert.equal((await proxyParticipant(client("/documents", { method: "PATCH", body: "{}", headers: { origin: "https://foreign.example.invalid" } }), "/documents", config, send)).status, 403);
+  assert.equal((await proxyParticipant(client("/access", { method: "PATCH", body: "{}" }), "/access", config, send)).status, 404);
+});
+test("coach review is forwarded only to the document endpoint with the signed request body", async () => {
+  const body = JSON.stringify({ documentId: "test-document", action: "mark_reviewed" });
+  const response = await proxyParticipant(client("/documents", { method: "PATCH", body }), "/documents", config, async (_, init) => {
+    const headers = new Headers(init?.headers);
+    assert.equal(init?.method, "PATCH");
+    assert.equal(await new Response(init?.body).text(), body);
+    assert.equal(headers.get("x-portal-proof"), await gatewayMac(config.gatewayKey!, proofText("PATCH", "/documents", headers.get("x-portal-time")!, headers.get("x-portal-nonce")!, await gatewayDigest(body), headers.get("x-portal-client")!)));
+    return Response.json({ documentId: "test-document", status: "reviewed" });
+  });
+  assert.equal(response.status, 200);
 });
 test("bridge signs actual body and replaces all browser identity and authorization headers", async () => {
   let called = false;
@@ -74,6 +87,17 @@ test("signed invitation uses existing Resend project key and carries no case inf
     return Response.json({ id: "fake-provider-receipt" });
   });
   assert.deepEqual(await response.json(), { accepted: true });
+});
+test("coach invitation points to the independent coach login without case details", async () => {
+  const response = await deliverParticipantMail(await mailRequest({ kind: "invitation", role: "coach", email: "coach@example.invalid" }), config, async (_, init) => {
+    const message = JSON.parse(String(init?.body));
+    assert.match(message.text, /klarvoran\.de\/coach/);
+    assert.match(message.text, /kein ChatGPT-Konto/);
+    assert.ok(!message.text.includes("Mazhar"));
+    assert.ok(!message.text.includes("participantId"));
+    return Response.json({ id: "fake-provider-receipt" });
+  });
+  assert.equal(response.status, 200);
 });
 test("provider refusal is a truthful mail failure, not a simulated success", async () => {
   const response = await deliverParticipantMail(await mailRequest({ kind: "code", email: "fictitious@example.invalid", code: "123456" }), config, async () => Response.json({ message: "private provider detail" }, { status: 403 }));

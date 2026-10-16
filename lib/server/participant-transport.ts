@@ -16,10 +16,10 @@ export function participantConfigured(config: ParticipantConfig) {
 export async function proxyParticipant(request: Request, target: string, config: ParticipantConfig, send: typeof fetch = fetch) {
   if (!participantConfigured(config)) return errorResponse(503, "Der Teilnehmerzugang wird noch eingerichtet. Bitte wende dich an KlarVoran.");
   if (!gatewayTargetAllowed(request.method, target)) return errorResponse(404, "Diese Seite ist nicht vorhanden.");
-  if (request.headers.get("sec-fetch-site") === "cross-site" || request.method === "POST" && request.headers.get("origin") !== participantOrigin) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
+  if (request.headers.get("sec-fetch-site") === "cross-site" || request.method !== "GET" && request.headers.get("origin") !== participantOrigin) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
   try {
     const body = await limitedBody(request, GATEWAY_MAX_BODY);
-    if (request.method === "POST" && !target.startsWith("/upload/chunk?") && !request.headers.get("content-type")?.startsWith("application/json")) return errorResponse(415, "Das Anfrageformat ist ungültig.");
+    if (request.method !== "GET" && !target.startsWith("/upload/chunk?") && !request.headers.get("content-type")?.startsWith("application/json")) return errorResponse(415, "Das Anfrageformat ist ungültig.");
     const rawIp = (request.headers.get("x-vercel-forwarded-for") ?? request.headers.get("x-forwarded-for") ?? request.headers.get("x-real-ip") ?? "").split(",")[0].trim();
     const client = isIP(rawIp) ? rawIp : "0.0.0.0";
     const timestamp = String(Date.now()), nonce = crypto.randomUUID();
@@ -31,7 +31,7 @@ export async function proxyParticipant(request: Request, target: string, config:
     const cookie = (request.headers.get("cookie") ?? "").split(";").filter(c => cookieName.test(c.trim().split("=")[0])).join(";");
     if (cookie.length <= 4096) headers.set("cookie", cookie);
     const upstream = await send(`${backendOrigin}/api/participant-gateway`, { method: request.method, headers,
-      ...(request.method === "POST" ? { body } : {}), redirect: "manual", cache: "no-store", signal: AbortSignal.timeout(45_000) });
+      ...(request.method !== "GET" ? { body } : {}), redirect: "manual", cache: "no-store", signal: AbortSignal.timeout(45_000) });
     // A gate/login redirect is a configuration error; credentials never follow a redirect to another host.
     if (upstream.status >= 300 && upstream.status < 400 || !["application/json", "application/octet-stream"].some(type => upstream.headers.get("content-type")?.startsWith(type))) return errorResponse(503, "Die Verbindung zur Akte konnte nicht hergestellt werden. Bitte wende dich an KlarVoran.");
     const responseHeaders = new Headers(privateHeaders);
@@ -56,22 +56,24 @@ export async function deliverParticipantMail(request: Request, config: Participa
     const body = await limitedBody(request, 4096);
     const expected = await gatewayMac(config.gatewayKey!, proofText("POST", "/api/teilnehmer/mail", timestamp, nonce, await gatewayDigest(body), "mail"));
     if (!safeEqual(expected, request.headers.get("x-portal-proof") ?? "")) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
-    const message = JSON.parse(new TextDecoder().decode(body)) as { kind?: unknown; email?: unknown; code?: unknown };
+    const message = JSON.parse(new TextDecoder().decode(body)) as { kind?: unknown; email?: unknown; code?: unknown; role?: unknown };
     if (typeof message.email !== "string" || message.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message.email) || !["invitation", "code"].includes(String(message.kind)) ||
-        message.kind === "code" && (typeof message.code !== "string" || !/^\d{6}$/.test(message.code))) return errorResponse(400, "Die E-Mail-Angaben sind ungültig.");
+        message.kind === "code" && (typeof message.code !== "string" || !/^\d{6}$/.test(message.code)) ||
+        message.role !== undefined && !["participant", "coach"].includes(String(message.role))) return errorResponse(400, "Die E-Mail-Angaben sind ungültig.");
+    const loginUrl = message.role === "coach" ? "https://www.klarvoran.de/coach" : "https://www.klarvoran.de/teilnehmer";
     const text = message.kind === "code" ? [
       "Dein Bestätigungscode für KlarVoran:", String(message.code), "",
       "Der Code gilt fünf Minuten und kann nur einmal zur Anmeldung verwendet werden.",
-      "Gib ihn auf https://www.klarvoran.de/teilnehmer ein. Teile den Code mit niemandem.",
+      `Gib ihn auf ${loginUrl} ein. Teile den Code mit niemandem.`,
       "Wenn du die Anmeldung nicht angefordert hast, ignoriere diese E-Mail.",
     ].join("\n") : [
-      "Hallo,", "", "Mazhar hat deinen persönlichen KlarVoran-Testzugang freigegeben.",
-      "Öffne https://www.klarvoran.de/teilnehmer", "Gib die E-Mail-Adresse ein, an die diese Einladung geschickt wurde.",
+      "Hallo,", "", "Dein persönlicher KlarVoran-Testzugang wurde freigegeben.",
+      `Öffne ${loginUrl}`, "Gib die E-Mail-Adresse ein, an die diese Einladung geschickt wurde.",
       "Du erhältst einen Bestätigungscode per E-Mail. Gib den Code auf der Seite ein.",
-      "Danach kannst du deine eigene Akte öffnen, Dokumente hochladen und Hinweise ansehen.",
+      message.role === "coach" ? "Danach kannst du die dir zugewiesenen Testakten und Dokumente öffnen." : "Danach kannst du deine eigene Akte öffnen, Dokumente hochladen und Hinweise ansehen.",
       "Du brauchst kein ChatGPT-Konto und kein Passwort.", "",
       "Wir testen noch: Bitte lade ausschließlich Dokumente mit erfundenen Angaben hoch.",
-      "Du brauchst Unterstützung? Mazhar hilft dir unter 0177 9548140.",
+      "Du brauchst Unterstützung? KlarVoran hilft dir unter 0177 9548140.",
     ].join("\n");
     const result = await send("https://api.resend.com/emails", { method: "POST", redirect: "manual", signal: AbortSignal.timeout(10_000),
       headers: { authorization: `Bearer ${config.resendKey}`, "content-type": "application/json", "idempotency-key": `participant-${nonce}` },

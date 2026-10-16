@@ -20,6 +20,14 @@ function post<T>(path: string, data: unknown, method = "POST") {
   return api<T>(path, { method, headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
 }
 function errorText(error: unknown) { return error instanceof Error ? error.message : "Ein Fehler ist aufgetreten."; }
+function statusLabel(value: string) {
+  return ({ uploaded: "Hochgeladen", review_pending: "Prüfung offen", reviewed: "Geprüft", approved: "Freigegeben", rejected: "Abgelehnt" } as Record<string, string>)[value] ?? value;
+}
+function documentNumber(document: Document) {
+  const casePart = document.participantId.toUpperCase().replace(/[^A-Z0-9-]/g, "-");
+  const documentPart = document.id.toUpperCase().replace(/[^A-Z0-9-]/g, "-");
+  return `KV-${casePart}-ORIG-${documentPart}-V${String(document.currentVersion).padStart(3, "0")}`;
+}
 
 export default function CoachPortal({ configured }: { configured: boolean }) {
   const [phase, setPhase] = useState<Phase>(configured ? "loading" : "email");
@@ -132,7 +140,8 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
       {selected && <section className={styles.card}><div className={styles.documentHeading}><div><h2>Dokumente</h2><p>Nur Dokumente der ausgewählten Akte.</p></div><span>{documents.filter(item => item.participantId === selected).length}</span></div>
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
-          <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {item.status}</small>
+          <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>
+          <small>Dokument-Nr. {documentNumber(item)}</small>
           <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
             {(item.status === "uploaded" || item.status === "review_pending") && <button className={styles.secondary} disabled={!!busy} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
         </li>)}</ul>}

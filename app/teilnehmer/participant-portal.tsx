@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./participant.module.css";
 import { PARTICIPANT_CHUNK_BYTES } from "@/lib/participant-gateway-proof";
 
-type Me = { user: { displayName: string; participantId: string | null }; cases: Array<{ id: string; name: string }>;
+type Me = { user: { displayName: string; participantId: string | null; role: string }; cases: Array<{ id: string; name: string }>;
   capabilities: { upload: boolean }; realDataAllowed: false; operatingMode: "test" };
 type Document = { id: string; title: string; status: string; currentVersion: number; createdAt: string;
   versions: Array<{ originalFileName: string; byteSize: number; version: number }>;
@@ -46,6 +46,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     (async () => {
       try {
         const identity = await api<Me>("/me", { signal: controller.signal });
+        if (identity.user.role !== "participant") throw new PortalError("Dieser Zugang gehört zum Coachbereich. Öffne klarvoran.de/coach.", 403);
         const result = await api<{ documents: Document[] }>("/documents", { signal: controller.signal });
         if (!controller.signal.aborted) { setMe(identity); setDocuments(result.documents); setPhase("case"); }
       } catch (caught) {
@@ -81,6 +82,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     try {
       await post("/auth/sign-in/email-otp", { email: email.trim(), otp: code });
       const identity = await api<Me>("/me");
+      if (identity.user.role !== "participant") throw new PortalError("Dieser Zugang gehört zum Coachbereich. Öffne klarvoran.de/coach.", 403);
       const result = await api<{ documents: Document[] }>("/documents");
       setCode(""); setMe(identity); setDocuments(result.documents); setPhase("case");
     } catch (caught) { setError(messageOf(caught)); }

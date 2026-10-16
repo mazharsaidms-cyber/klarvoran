@@ -134,7 +134,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {item.status}</small>
           <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
-            {item.status !== "reviewed" && <button className={styles.secondary} disabled={!!busy} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
+            {(item.status === "uploaded" || item.status === "review_pending") && <button className={styles.secondary} disabled={!!busy} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
         </li>)}</ul>}
       </section>}
     </>}

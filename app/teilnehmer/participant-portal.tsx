@@ -11,6 +11,7 @@ type Document = { id: string; title: string; status: string; currentVersion: num
   replies: Array<{ id: string; documentVersion: number; body: string; createdAt: string }>;
   extraction: null | { status: string; data: null | { subject: string | null; deadline: string | null; requestedAction: string | null; warnings: string[] } } };
 type DocumentKind = "Behördenbrief" | "Sonstiges";
+type CaseMessage = { id: string; authorRole: string; body: string; createdAt: string };
 type Pending = { id: string; file: File; category: DocumentKind | ""; progress: number; error: string; receipt?: string; started?: boolean };
 type Phase = "loading" | "email" | "code" | "case";
 const apiRoot = "/api/teilnehmer";
@@ -31,6 +32,12 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
   const [code, setCode] = useState("");
   const [me, setMe] = useState<Me | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
+  const [messages, setMessages] = useState<CaseMessage[]>([]);
+  const [messageBody, setMessageBody] = useState("");
+  const [messageConfirmed, setMessageConfirmed] = useState(false);
+  const [messageError, setMessageError] = useState("");
+  const [messageNotice, setMessageNotice] = useState("");
+  const [messagesLoaded, setMessagesLoaded] = useState(false);
   const [pending, setPending] = useState<Pending[]>([]);
   const [testConfirmed, setTestConfirmed] = useState(false);
   const [busy, setBusy] = useState("");
@@ -48,7 +55,10 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
         const identity = await api<Me>("/me", { signal: controller.signal });
         if (identity.user.role !== "participant") throw new PortalError("Dieser Zugang gehört zum Coachbereich. Öffne klarvoran.de/coach.", 403);
         const result = await api<{ documents: Document[] }>("/documents", { signal: controller.signal });
-        if (!controller.signal.aborted) { setMe(identity); setDocuments(result.documents); setPhase("case"); }
+        if (!controller.signal.aborted) { setMe(identity); setDocuments(result.documents); setPhase("case");
+          const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
+          if (ownId) void loadMessages(ownId, controller.signal);
+        }
       } catch (caught) {
         if (controller.signal.aborted) return;
         if (!(caught instanceof PortalError && caught.status === 401)) setError(messageOf(caught));
@@ -62,7 +72,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
   function handleError(caught: unknown) {
     setError(messageOf(caught));
     if (caught instanceof PortalError && [401, 403].includes(caught.status)) {
-      setMe(null); setDocuments([]); setPending([]); setCode(""); setTestConfirmed(false); setPhase("email");
+      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setPending([]); setCode(""); setTestConfirmed(false); setPhase("email");
     }
   }
 
@@ -85,6 +95,8 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       if (identity.user.role !== "participant") throw new PortalError("Dieser Zugang gehört zum Coachbereich. Öffne klarvoran.de/coach.", 403);
       const result = await api<{ documents: Document[] }>("/documents");
       setCode(""); setMe(identity); setDocuments(result.documents); setPhase("case");
+      const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
+      if (ownId) void loadMessages(ownId);
     } catch (caught) { setError(messageOf(caught)); }
     finally { setBusy(""); }
   }
@@ -92,14 +104,36 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     setBusy("logout"); setError("");
     try {
       await post("/auth/sign-out", {});
-      setMe(null); setDocuments([]); setPending([]); setCode(""); setEmail(""); setTestConfirmed(false); setPhase("email"); setNotice("Du bist abgemeldet.");
+      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setMessageBody(""); setMessageConfirmed(false); setPending([]); setCode(""); setEmail(""); setTestConfirmed(false); setPhase("email"); setNotice("Du bist abgemeldet.");
     } catch (caught) { setError(messageOf(caught)); }
     finally { setBusy(""); }
   }
   async function refresh() {
     setBusy("refresh"); setError("");
-    try { const identity = await api<Me>("/me"); const result = await api<{ documents: Document[] }>("/documents"); setMe(identity); setDocuments(result.documents); }
+    try { const identity = await api<Me>("/me"); const result = await api<{ documents: Document[] }>("/documents"); setMe(identity); setDocuments(result.documents);
+      const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
+      if (ownId) await loadMessages(ownId);
+    }
     catch (caught) { handleError(caught); }
+    finally { setBusy(""); }
+  }
+  async function loadMessages(participantId: string, signal?: AbortSignal) {
+    try {
+      const result = await api<{ messages: CaseMessage[] }>(`/messages?participantId=${encodeURIComponent(participantId)}`, { signal });
+      if (!signal?.aborted) { setMessages(result.messages); setMessagesLoaded(true); setMessageError(""); }
+    } catch (caught) {
+      if (!signal?.aborted) setMessageError(messageOf(caught));
+    }
+  }
+  async function sendMessage(event: FormEvent) {
+    event.preventDefault();
+    if (!ownCase || !messageConfirmed || messageBody.trim().length < 2 || busy) return;
+    setBusy("message"); setMessageError(""); setMessageNotice("");
+    try {
+      await post("/messages", { participantId: ownCase.id, body: messageBody, testDataConfirmed: true });
+      setMessageBody(""); setMessageConfirmed(false); setMessageNotice("Deine Nachricht wurde gesendet.");
+      await loadMessages(ownCase.id);
+    } catch (caught) { setMessageError(messageOf(caught)); }
     finally { setBusy(""); }
   }
   function selectFiles(files: FileList | null) {
@@ -169,6 +203,20 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       </section><aside className={styles.card}><h2>So geht’s</h2><ol className={styles.steps}><li><span>1</span><div><strong>E-Mail eingeben</strong><p>Dein Zugang wurde vorher für dich freigegeben.</p></div></li><li><span>2</span><div><strong>Code bestätigen</strong><p>Den Code findest du in deinem E-Mail-Postfach.</p></div></li><li><span>3</span><div><strong>Eigene Akte öffnen</strong><p>Dateien hochladen und freigegebene Hinweise ansehen.</p></div></li></ol></aside>
     </div> : <>
       <div className={styles.toolbar}><span><strong>{ownCase?.name || "Deine Akte"}</strong> · Nur dein eigener Bereich</span><div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void logout()}>Abmelden</button></div></div>
+      {ownCase && <section className={styles.card} aria-labelledby="messages-title">
+        <div className={styles.documentHeading}><h2 id="messages-title">Nachrichten zu deiner Akte</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Nachrichten aktualisieren</button></div>
+        <p>Kurze Fragen und Hinweise zum Coaching. Dokumente schickst du unten im Dokumentbereich.</p>
+        {messageError && <p className={styles.error} role="alert">{messageError}</p>}
+        {messageNotice && <p className={styles.notice} role="status">{messageNotice}</p>}
+        <div aria-live="polite">{!messagesLoaded && !messageError ? <p>Nachrichten werden geladen …</p> : messagesLoaded && !messages.length ? <p>Noch keine Nachrichten zu deiner Akte.</p> : <ul className={styles.messages}>{messages.map(message => <li key={message.id}><small>{message.authorRole === "participant" ? "Du" : "KlarVoran"} · {formatDate(message.createdAt)}</small><p>{message.body}</p></li>)}</ul>}</div>
+        <form onSubmit={event => void sendMessage(event)}>
+          <label htmlFor="participant-message">Deine Nachricht an KlarVoran</label>
+          <textarea id="participant-message" className={styles.messageInput} value={messageBody} onChange={event => setMessageBody(event.target.value)} minLength={2} maxLength={2000} required placeholder="Deine Frage oder dein Hinweis …" />
+          <label className={styles.checkbox}><input type="checkbox" checked={messageConfirmed} onChange={event => setMessageConfirmed(event.target.checked)} />Diese Nachricht enthält nur erfundene Testdaten.</label>
+          <button className={styles.primary} type="submit" disabled={Boolean(busy) || !messageConfirmed || messageBody.trim().length < 2}>{busy === "message" ? "Wird gesendet …" : "Nachricht senden"}</button>
+          <small>Nachrichten bleiben in dieser Akte und werden nicht per E-Mail verschickt.</small>
+        </form>
+      </section>}
       {!ownCase ? <p className={styles.error}>Deine Akte ist noch nicht verfügbar. Bitte melde dich bei KlarVoran.</p> : <section className={styles.card} aria-labelledby="upload-title"><p className={styles.step}>Foto oder Datei → Prüfen → Senden</p><h2 id="upload-title">Dokumente hochladen</h2><p>Wähle eine PDF-Datei oder ein Foto aus. Du kannst bis zu 20 Dateien mit jeweils höchstens 8 MB senden.</p>
         <input ref={fileInput} className={styles.hidden} type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple onChange={event => { selectFiles(event.target.files); event.target.value = ""; }} />
         <button className={styles.secondary} disabled={Boolean(busy) || !me?.capabilities.upload} onClick={() => fileInput.current?.click()}>Fotos oder Dateien auswählen</button>

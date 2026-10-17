@@ -38,6 +38,19 @@ test("coach review is forwarded only to the document endpoint with the signed re
   });
   assert.equal(response.status, 200);
 });
+test("case messages require signed same-origin requests and preserve the test confirmation", async () => {
+  const body = JSON.stringify({ participantId: "fictional-case", body: "Fiktive Antwort", testDataConfirmed: true });
+  const response = await proxyParticipant(client("/messages", { method: "POST", body }), "/messages", config, async (_, init) => {
+    const headers = new Headers(init?.headers);
+    assert.equal(headers.get("x-portal-target"), "/messages");
+    assert.equal(await new Response(init?.body).text(), body);
+    assert.equal(headers.get("x-portal-proof"), await gatewayMac(config.gatewayKey!, proofText("POST", "/messages", headers.get("x-portal-time")!, headers.get("x-portal-nonce")!, await gatewayDigest(body), headers.get("x-portal-client")!)));
+    return Response.json({ id: "fictional-message" }, { status: 201 });
+  });
+  assert.equal(response.status, 201);
+  assert.equal((await proxyParticipant(client("/messages", { method: "POST", body, headers: { origin: "https://foreign.example.invalid" } }), "/messages", config, async () => { throw new Error("must not send"); })).status, 403);
+  assert.equal((await proxyParticipant(client("/messages", { method: "PATCH", body }), "/messages", config, async () => { throw new Error("must not send"); })).status, 404);
+});
 test("bridge signs actual body and replaces all browser identity and authorization headers", async () => {
   let called = false;
   const body = JSON.stringify({ email: "fictitious@example.invalid", type: "sign-in" });

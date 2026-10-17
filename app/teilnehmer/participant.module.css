@@ -57,6 +57,11 @@
 .reply { background: #eff5f1; border: 1px solid #a7c5b2; border-radius: 10px; padding: 16px; margin-top: 18px; }
 .reply > div { margin-top: 14px; padding-top: 12px; border-top: 1px solid #c6ddce; }
 .reply p { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.messages { list-style: none; padding: 0; margin: 12px 0 22px; max-height: 360px; overflow-y: auto; }
+.messages li { padding: 12px 0; border-top: 1px solid #dce0e5; }
+.messages p { white-space: pre-wrap; overflow-wrap: anywhere; margin: 4px 0 0; }
+.messageInput { width: 100%; min-height: 100px; resize: vertical; border: 1px solid #7f8a9a; border-radius: 10px; padding: 12px; font: inherit; }
+.messageInput:focus-visible { outline: 3px solid #354b65; outline-offset: 3px; }
 .help { max-width: 720px; line-height: 1.65; margin-top: 16px; color: #596270; }
 .help strong { color: #1b222e; }
 .help p { margin: 8px 0 12px; }

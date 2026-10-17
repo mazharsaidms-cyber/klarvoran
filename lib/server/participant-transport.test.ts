@@ -51,6 +51,15 @@ test("case messages require signed same-origin requests and preserve the test co
   assert.equal((await proxyParticipant(client("/messages", { method: "POST", body, headers: { origin: "https://foreign.example.invalid" } }), "/messages", config, async () => { throw new Error("must not send"); })).status, 403);
   assert.equal((await proxyParticipant(client("/messages", { method: "PATCH", body }), "/messages", config, async () => { throw new Error("must not send"); })).status, 404);
 });
+test("own progress is available read-only through the signed bridge", async () => {
+  const response = await proxyParticipant(client("/progress"), "/progress", config, async (_, init) => {
+    assert.equal(init?.method, "GET");
+    assert.equal(new Headers(init?.headers).get("x-portal-target"), "/progress");
+    return Response.json({ goal: "Fiktives Ziel", goalSteps: [], appointments: [] });
+  });
+  assert.equal(response.status, 200);
+  assert.equal((await proxyParticipant(client("/progress", { method: "POST", body: "{}" }), "/progress", config, async () => { throw new Error("must not send"); })).status, 404);
+});
 test("bridge signs actual body and replaces all browser identity and authorization headers", async () => {
   let called = false;
   const body = JSON.stringify({ email: "fictitious@example.invalid", type: "sign-in" });

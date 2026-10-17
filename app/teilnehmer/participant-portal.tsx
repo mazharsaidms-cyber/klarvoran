@@ -12,6 +12,8 @@ type Document = { id: string; title: string; status: string; currentVersion: num
   extraction: null | { status: string; data: null | { subject: string | null; deadline: string | null; requestedAction: string | null; warnings: string[] } } };
 type DocumentKind = "Behördenbrief" | "Sonstiges";
 type CaseMessage = { id: string; authorRole: string; body: string; createdAt: string };
+type CaseProgress = { goal: string; reviewDate: string; goalSteps: Array<{ id: string; title: string; status: string; nextStep: string }>;
+  appointments: Array<{ id: string; date: string; time: string; format: string; response: string }> };
 type Pending = { id: string; file: File; category: DocumentKind | ""; progress: number; error: string; receipt?: string; started?: boolean };
 type Phase = "loading" | "email" | "code" | "case";
 const apiRoot = "/api/teilnehmer";
@@ -38,6 +40,8 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
   const [messageError, setMessageError] = useState("");
   const [messageNotice, setMessageNotice] = useState("");
   const [messagesLoaded, setMessagesLoaded] = useState(false);
+  const [caseProgress, setCaseProgress] = useState<CaseProgress | null>(null);
+  const [progressError, setProgressError] = useState("");
   const [pending, setPending] = useState<Pending[]>([]);
   const [testConfirmed, setTestConfirmed] = useState(false);
   const [busy, setBusy] = useState("");
@@ -57,7 +61,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
         const result = await api<{ documents: Document[] }>("/documents", { signal: controller.signal });
         if (!controller.signal.aborted) { setMe(identity); setDocuments(result.documents); setPhase("case");
           const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
-          if (ownId) void loadMessages(ownId, controller.signal);
+          if (ownId) { void loadMessages(ownId, controller.signal); void loadProgress(controller.signal); }
         }
       } catch (caught) {
         if (controller.signal.aborted) return;
@@ -72,7 +76,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
   function handleError(caught: unknown) {
     setError(messageOf(caught));
     if (caught instanceof PortalError && [401, 403].includes(caught.status)) {
-      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setPending([]); setCode(""); setTestConfirmed(false); setPhase("email");
+      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setCaseProgress(null); setProgressError(""); setPending([]); setCode(""); setTestConfirmed(false); setPhase("email");
     }
   }
 
@@ -96,7 +100,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       const result = await api<{ documents: Document[] }>("/documents");
       setCode(""); setMe(identity); setDocuments(result.documents); setPhase("case");
       const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
-      if (ownId) void loadMessages(ownId);
+      if (ownId) { void loadMessages(ownId); void loadProgress(); }
     } catch (caught) { setError(messageOf(caught)); }
     finally { setBusy(""); }
   }
@@ -104,7 +108,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     setBusy("logout"); setError("");
     try {
       await post("/auth/sign-out", {});
-      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setMessageBody(""); setMessageConfirmed(false); setPending([]); setCode(""); setEmail(""); setTestConfirmed(false); setPhase("email"); setNotice("Du bist abgemeldet.");
+      setMe(null); setDocuments([]); setMessages([]); setMessagesLoaded(false); setCaseProgress(null); setProgressError(""); setMessageBody(""); setMessageConfirmed(false); setPending([]); setCode(""); setEmail(""); setTestConfirmed(false); setPhase("email"); setNotice("Du bist abgemeldet.");
     } catch (caught) { setError(messageOf(caught)); }
     finally { setBusy(""); }
   }
@@ -112,7 +116,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     setBusy("refresh"); setError("");
     try { const identity = await api<Me>("/me"); const result = await api<{ documents: Document[] }>("/documents"); setMe(identity); setDocuments(result.documents);
       const ownId = identity.cases.find(item => item.id === identity.user.participantId)?.id;
-      if (ownId) await loadMessages(ownId);
+      if (ownId) await Promise.all([loadMessages(ownId), loadProgress()]);
     }
     catch (caught) { handleError(caught); }
     finally { setBusy(""); }
@@ -123,6 +127,14 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       if (!signal?.aborted) { setMessages(result.messages); setMessagesLoaded(true); setMessageError(""); }
     } catch (caught) {
       if (!signal?.aborted) setMessageError(messageOf(caught));
+    }
+  }
+  async function loadProgress(signal?: AbortSignal) {
+    try {
+      const result = await api<CaseProgress>("/progress", { signal });
+      if (!signal?.aborted) { setCaseProgress(result); setProgressError(""); }
+    } catch (caught) {
+      if (!signal?.aborted) { setCaseProgress(null); setProgressError(messageOf(caught)); }
     }
   }
   async function sendMessage(event: FormEvent) {
@@ -203,6 +215,15 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       </section><aside className={styles.card}><h2>So geht’s</h2><ol className={styles.steps}><li><span>1</span><div><strong>E-Mail eingeben</strong><p>Dein Zugang wurde vorher für dich freigegeben.</p></div></li><li><span>2</span><div><strong>Code bestätigen</strong><p>Den Code findest du in deinem E-Mail-Postfach.</p></div></li><li><span>3</span><div><strong>Eigene Akte öffnen</strong><p>Dateien hochladen und freigegebene Hinweise ansehen.</p></div></li></ol></aside>
     </div> : <>
       <div className={styles.toolbar}><span><strong>{ownCase?.name || "Deine Akte"}</strong> · Nur dein eigener Bereich</span><div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void logout()}>Abmelden</button></div></div>
+      {ownCase && (caseProgress?.goal || caseProgress?.appointments.length || progressError) && <section className={styles.card} aria-labelledby="progress-title">
+        <h2 id="progress-title">Meine nächsten Schritte</h2>
+        {progressError && <p className={styles.error} role="alert">Die nächsten Schritte sind gerade nicht verfügbar. Bitte aktualisiere die Seite.</p>}
+        {caseProgress?.goal && <><strong>Gemeinsames Ziel</strong><p>{caseProgress.goal}</p>
+          {caseProgress.goalSteps.length > 0 && <ul className={styles.progressList}>{caseProgress.goalSteps.map(step => <li key={step.id}><strong>{step.title}</strong><small>{step.status}{step.nextStep ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></li>)}</ul>}
+          {caseProgress.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}
+        </>}
+        {caseProgress?.appointments.length ? <><h3>Nächste Termine</h3><ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · {item.response}</small></li>)}</ul></> : null}
+      </section>}
       {ownCase && <section className={styles.card} aria-labelledby="messages-title">
         <div className={styles.documentHeading}><h2 id="messages-title">Nachrichten zu deiner Akte</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Nachrichten aktualisieren</button></div>
         <p>Kurze Fragen und Hinweise zum Coaching. Dokumente schickst du unten im Dokumentbereich.</p>

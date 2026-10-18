@@ -224,7 +224,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
         </>}
         {caseProgress?.appointments.length ? <><h3>{caseProgress.startReady === true ? "Nächste Termine" : "Vorgemerkte Termine"}</h3>
           {caseProgress.startReady !== true && <p className={styles.testNotice}>Der Coachingstart ist noch nicht freigegeben. Diese Termine sind vorläufig. Bitte warte auf die Bestätigung durch KlarVoran.</p>}
-          <ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · {item.response}</small></li>)}</ul></> : null}
+          <ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · Terminabstimmung: {item.response}</small></li>)}</ul></> : null}
       </section>}
       {ownCase && <section className={styles.card} aria-labelledby="messages-title">
         <div className={styles.documentHeading}><h2 id="messages-title">Nachrichten zu deiner Akte</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Nachrichten aktualisieren</button></div>

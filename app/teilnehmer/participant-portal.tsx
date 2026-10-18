@@ -12,7 +12,7 @@ type Document = { id: string; title: string; status: string; currentVersion: num
   extraction: null | { status: string; data: null | { subject: string | null; deadline: string | null; requestedAction: string | null; warnings: string[] } } };
 type DocumentKind = "Behördenbrief" | "Sonstiges";
 type CaseMessage = { id: string; authorRole: string; body: string; createdAt: string };
-type CaseProgress = { goal: string; reviewDate: string; goalSteps: Array<{ id: string; title: string; status: string; nextStep: string }>;
+type CaseProgress = { startReady: boolean; goal: string; reviewDate: string; goalSteps: Array<{ id: string; title: string; status: string; nextStep: string }>;
   appointments: Array<{ id: string; date: string; time: string; format: string; response: string }> };
 type Pending = { id: string; file: File; category: DocumentKind | ""; progress: number; error: string; receipt?: string; started?: boolean };
 type Phase = "loading" | "email" | "code" | "case";
@@ -222,7 +222,9 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
           {caseProgress.goalSteps.length > 0 && <ul className={styles.progressList}>{caseProgress.goalSteps.map(step => <li key={step.id}><strong>{step.title}</strong><small>{step.status}{step.nextStep ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></li>)}</ul>}
           {caseProgress.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}
         </>}
-        {caseProgress?.appointments.length ? <><h3>Nächste Termine</h3><ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · {item.response}</small></li>)}</ul></> : null}
+        {caseProgress?.appointments.length ? <><h3>{caseProgress.startReady === true ? "Nächste Termine" : "Vorgemerkte Termine"}</h3>
+          {caseProgress.startReady !== true && <p className={styles.testNotice}>Der Coachingstart ist noch nicht freigegeben. Diese Termine sind vorläufig. Bitte warte auf die Bestätigung durch KlarVoran.</p>}
+          <ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · {item.response}</small></li>)}</ul></> : null}
       </section>}
       {ownCase && <section className={styles.card} aria-labelledby="messages-title">
         <div className={styles.documentHeading}><h2 id="messages-title">Nachrichten zu deiner Akte</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Nachrichten aktualisieren</button></div>

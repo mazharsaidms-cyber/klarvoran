@@ -126,10 +126,13 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       const response = await fetch(`${apiRoot}/file?documentId=${encodeURIComponent(document.id)}`, { cache: "no-store", credentials: "same-origin" });
       if (!response.ok) { const data = await response.json().catch(() => ({})) as { error?: string }; throw new PortalError(data.error || "Datei konnte nicht geladen werden.", response.status); }
       const blob = await response.blob();
+      if (blob.size === 0) throw new PortalError("Die Datei ist leer und konnte nicht heruntergeladen werden.", 502);
       const filename = response.headers.get("content-disposition")?.match(/filename\*=UTF-8''([^;]+)/)?.[1];
       const name = filename ? decodeURIComponent(filename) : document.versions[0]?.originalFileName ?? "Dokument";
       const url = URL.createObjectURL(blob), link = window.document.createElement("a");
-      link.href = url; link.download = name; link.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      link.href = url; link.download = name; window.document.body.append(link); link.click(); link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      setNotice(`Datei vom Server geladen (${blob.size.toLocaleString("de-DE")} Bytes). Prüfe den Downloadordner deines Browsers.`);
     } catch (caught) { setError(errorText(caught)); }
     finally { setBusy(""); }
   }

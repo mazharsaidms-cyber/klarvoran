@@ -51,6 +51,26 @@ test("case messages require signed same-origin requests and preserve the test co
   assert.equal((await proxyParticipant(client("/messages", { method: "POST", body, headers: { origin: "https://foreign.example.invalid" } }), "/messages", config, async () => { throw new Error("must not send"); })).status, 403);
   assert.equal((await proxyParticipant(client("/messages", { method: "PATCH", body }), "/messages", config, async () => { throw new Error("must not send"); })).status, 404);
 });
+test("coach session POST is signed with its exact body and rejects a foreign origin", async () => {
+  const body = JSON.stringify({ participantId: "CASE-FIKTIV", appointmentId: "DATE-FIKTIV", attendance: "Anwesend",
+    endTime: "11:30", pauseMinutes: 0, performedUe: 2, topic: "Fiktives Thema", result: "Fiktives Ergebnis",
+    nextStep: "Fiktiver Schritt", expectedRevision: 4, testDataConfirmed: true });
+  const response = await proxyParticipant(client("/coach-sessions", { method: "POST", body }), "/coach-sessions", config, async (url, init) => {
+    assert.equal(String(url), "https://ms-coaching-prototyp.mazhar-said-ms.chatgpt.site/api/participant-gateway");
+    assert.equal(init?.method, "POST");
+    const headers = new Headers(init?.headers), actual = await new Response(init?.body).text();
+    assert.equal(headers.get("x-portal-target"), "/coach-sessions");
+    assert.equal(headers.get("content-type"), "application/json");
+    assert.equal(actual, body);
+    assert.equal(headers.get("x-portal-proof"), await gatewayMac(config.gatewayKey!, proofText("POST", "/coach-sessions",
+      headers.get("x-portal-time")!, headers.get("x-portal-nonce")!, await gatewayDigest(actual), headers.get("x-portal-client")!)));
+    return Response.json({ saved: true, revision: 5 });
+  });
+  assert.deepEqual(await response.json(), { saved: true, revision: 5 });
+  assert.equal((await proxyParticipant(client("/coach-sessions", { method: "POST", body,
+    headers: { origin: "https://foreign.example.invalid" } }), "/coach-sessions", config,
+    async () => { throw new Error("must not send"); })).status, 403);
+});
 test("own progress is available read-only through the signed bridge", async () => {
   const response = await proxyParticipant(client("/progress"), "/progress", config, async (_, init) => {
     assert.equal(init?.method, "GET");

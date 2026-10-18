@@ -6,6 +6,11 @@ import styles from "../teilnehmer/participant.module.css";
 type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }> };
 type Document = { id: string; participantId: string; title: string; category: string; status: string;
   currentVersion: number; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number }> };
+type CoachSchedule = { participantId: string; revision: number; startReady: boolean;
+  appointments: Array<{ id: string; date: string; time: string; plannedUe: number; moduleId: string;
+    format: string; status: string; documentable: boolean }>;
+  sessions: Array<{ id: string; appointmentId: string; date: string; attendance: string; performedUe: number;
+    topic: string; result: string; nextStep: string }> };
 type Phase = "loading" | "email" | "code" | "cases";
 const apiRoot = "/api/teilnehmer";
 
@@ -36,6 +41,8 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   const [me, setMe] = useState<Me | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [selected, setSelected] = useState("");
+  const [schedule, setSchedule] = useState<CoachSchedule | null>(null);
+  const [sessionAppointment, setSessionAppointment] = useState("");
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -58,6 +65,15 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
     })();
     return () => controller.abort();
   }, [configured]);
+
+  useEffect(() => {
+    if (phase !== "cases" || !selected) { setSchedule(null); return; }
+    const controller = new AbortController();
+    api<CoachSchedule>(`/coach-sessions?participantId=${encodeURIComponent(selected)}`, { signal: controller.signal })
+      .then(value => { if (!controller.signal.aborted) setSchedule(value); })
+      .catch(caught => { if (!controller.signal.aborted) setError(errorText(caught)); });
+    return () => controller.abort();
+  }, [phase, selected]);
 
   async function requestCode(event: FormEvent) {
     event.preventDefault();
@@ -89,6 +105,9 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       const result = await api<{ documents: Document[] }>("/documents");
       setMe(identity); setDocuments(result.documents);
       if (!identity.cases.some(item => item.id === selected)) setSelected(identity.cases[0]?.id ?? "");
+      if (selected && identity.cases.some(item => item.id === selected)) {
+        setSchedule(await api<CoachSchedule>(`/coach-sessions?participantId=${encodeURIComponent(selected)}`));
+      }
     } catch (caught) { setError(errorText(caught)); if (caught instanceof PortalError && [401, 403].includes(caught.status)) { setMe(null); setPhase("email"); } }
     finally { setBusy(""); }
   }
@@ -111,6 +130,24 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       const name = filename ? decodeURIComponent(filename) : document.versions[0]?.originalFileName ?? "Dokument";
       const url = URL.createObjectURL(blob), link = window.document.createElement("a");
       link.href = url; link.download = name; link.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (caught) { setError(errorText(caught)); }
+    finally { setBusy(""); }
+  }
+  async function saveSession(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selected || !schedule || !sessionAppointment) return;
+    const form = new FormData(event.currentTarget);
+    setBusy("session"); setError(""); setNotice("");
+    try {
+      await post("/coach-sessions", {
+        participantId: selected, appointmentId: sessionAppointment, attendance: "Anwesend",
+        endTime: String(form.get("endTime") ?? ""), pauseMinutes: Number(form.get("pauseMinutes") ?? 0),
+        performedUe: Number(form.get("performedUe") ?? 0), topic: String(form.get("topic") ?? ""),
+        result: String(form.get("result") ?? ""), nextStep: String(form.get("nextStep") ?? ""),
+        expectedRevision: schedule.revision, testDataConfirmed: form.get("testDataConfirmed") === "on",
+      });
+      setSchedule(await api<CoachSchedule>(`/coach-sessions?participantId=${encodeURIComponent(selected)}`));
+      setSessionAppointment(""); setNotice("Die fiktive Sitzung wurde gespeichert und die UE wurden aktualisiert.");
     } catch (caught) { setError(errorText(caught)); }
     finally { setBusy(""); }
   }
@@ -138,6 +175,40 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
     {phase === "cases" && me && <>
       <div className={styles.toolbar}><strong>Angemeldet: {me.user.displayName}</strong><div><button className={styles.secondary} disabled={!!busy} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={!!busy} onClick={() => void logout()}>Abmelden</button></div></div>
       <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
+      {selected && <section className={styles.card}><h2>Termine &amp; Sitzungsnotizen</h2>
+        {!schedule || schedule.participantId !== selected ? <p>Termine werden geladen …</p> : <>
+          {!schedule.startReady && <p className={styles.testNotice}>Sitzungsdokumentation gesperrt: Startnachweise und vereinbarter Coachingplan müssen zuerst fachlich freigegeben sein.</p>}
+          {schedule.appointments.length === 0 ? <p>Für diese Akte sind noch keine Termine geplant.</p> :
+            <ul className={styles.documents}>{schedule.appointments.map(item => {
+              const existing = schedule.sessions.find(session => session.appointmentId === item.id);
+              return <li key={item.id}><strong>{item.date} · {item.time} · {item.plannedUe} UE</strong>
+                <small>{item.format} · Modul {item.moduleId} · {item.status}</small>
+                {existing && <p>{existing.attendance} · {existing.performedUe} Ist-UE · {existing.topic}: {existing.result}</p>}
+                {!existing && <div className={styles.inlineActions}><button className={styles.secondary} type="button"
+                  disabled={!item.documentable || !!busy} onClick={() => setSessionAppointment(item.id)}>Sitzung dokumentieren</button></div>}
+              </li>;
+            })}</ul>}
+          {sessionAppointment && (() => {
+            const appointment = schedule.appointments.find(item => item.id === sessionAppointment);
+            if (!appointment?.documentable) return null;
+            return <form className={styles.sessionForm} onSubmit={saveSession}>
+              <h3>Sitzung vom {appointment.date}, {appointment.time}</h3>
+              <p>Erfasse die tatsächlich durchgeführte Sitzung erst nach ihrem Ende. Fehlzeiten werden gesondert geklärt.</p>
+              <label>Ende<input name="endTime" type="time" required /></label>
+              <label>Pause in Minuten<input name="pauseMinutes" type="number" min="0" max="180" step="5" defaultValue="0" required /></label>
+              <label>Geleistete UE<select name="performedUe" required defaultValue={Math.min(2, appointment.plannedUe)}>
+                {Array.from({ length: appointment.plannedUe }, (_, index) => index + 1).map(value => <option key={value} value={value}>{value} UE</option>)}
+              </select></label>
+              <label>Thema<textarea name="topic" maxLength={2000} required /></label>
+              <label>Ergebnis<textarea name="result" maxLength={2000} required /></label>
+              <label>Nächster Schritt<textarea name="nextStep" maxLength={2000} required /></label>
+              <label className={styles.checkbox}><input name="testDataConfirmed" type="checkbox" required /> Diese Angaben sind vollständig erfunden und dienen nur dem Praxistest.</label>
+              <div className={styles.inlineActions}><button className={styles.primary} disabled={!!busy}>Sitzung speichern</button>
+                <button className={styles.secondary} type="button" onClick={() => setSessionAppointment("")}>Abbrechen</button></div>
+            </form>;
+          })()}
+        </>}
+      </section>}
       {selected && <section className={styles.card}><div className={styles.documentHeading}><div><h2>Dokumente</h2><p>Nur Dokumente der ausgewählten Akte.</p></div><span>{documents.filter(item => item.participantId === selected).length}</span></div>
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>

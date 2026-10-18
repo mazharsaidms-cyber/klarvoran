@@ -32,7 +32,7 @@ export function gatewayTargetAllowed(method: string, target: string) {
   const allowed = new Map([
     ["/me", ["GET"]], ["/documents", ["GET", "PATCH"]], ["/file", ["GET"]],
     ["/messages", ["GET", "POST"]],
-    ["/progress", ["GET"]],
+    ["/progress", ["GET"]], ["/coach-sessions", ["GET", "POST"]],
     ["/upload/start", ["POST"]], ["/upload/chunk", ["POST"]], ["/upload/finish", ["POST"]],
     ["/auth/email-otp/send-verification-otp", ["POST"]],
     ["/auth/sign-in/email-otp", ["POST"]], ["/auth/sign-out", ["POST"]],

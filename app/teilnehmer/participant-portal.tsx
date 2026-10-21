@@ -1,5 +1,6 @@
 "use client";
 
+import DocumentWorkflow from "../components/document-workflow";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./participant.module.css";
 import { PARTICIPANT_CHUNK_BYTES } from "@/lib/participant-gateway-proof";
@@ -215,6 +216,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       </section><aside className={styles.card}><h2>So geht’s</h2><ol className={styles.steps}><li><span>1</span><div><strong>E-Mail eingeben</strong><p>Dein Zugang wurde vorher für dich freigegeben.</p></div></li><li><span>2</span><div><strong>Code bestätigen</strong><p>Den Code findest du in deinem E-Mail-Postfach.</p></div></li><li><span>3</span><div><strong>Eigene Akte öffnen</strong><p>Dateien hochladen und freigegebene Hinweise ansehen.</p></div></li></ol></aside>
     </div> : <>
       <div className={styles.toolbar}><span><strong>{ownCase?.name || "Deine Akte"}</strong> · Nur dein eigener Bereich</span><div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void logout()}>Abmelden</button></div></div>
+      {ownCase && <DocumentWorkflow key={ownCase.id} participantId={ownCase.id} participant apiRoot={apiRoot} />}
       {ownCase && (caseProgress?.goal || caseProgress?.appointments.length || progressError) && <section className={styles.card} aria-labelledby="progress-title">
         <h2 id="progress-title">Meine nächsten Schritte</h2>
         {progressError && <p className={styles.error} role="alert">Die nächsten Schritte sind gerade nicht verfügbar. Bitte aktualisiere die Seite.</p>}

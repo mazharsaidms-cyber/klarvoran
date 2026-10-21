@@ -145,3 +145,21 @@ test("provider refusal is a truthful mail failure, not a simulated success", asy
   const response = await deliverParticipantMail(await mailRequest({ kind: "code", email: "fictitious@example.invalid", code: "123456" }), config, async () => Response.json({ message: "private provider detail" }, { status: 403 }));
   assert.equal(response.status, 502); const result = await response.json(); assert.ok(result.error); assert.ok(!JSON.stringify(result).includes("private provider detail"));
 });
+
+test('document decisions and proof downloads stay on the signed, narrow gateway', async () => {
+  const body=JSON.stringify({action:'sign',requestId:'fictitious-request',snapshotSha256:'f'.repeat(64),signedName:'Fiktive Person',confirmed:true,testDataConfirmed:true});
+  const response=await proxyParticipant(client('/document-requests',{method:'POST',body}),'/document-requests',config,async(_,init)=>{
+    const headers=new Headers(init?.headers);
+    assert.equal(headers.get('x-portal-target'),'/document-requests');
+    assert.equal(await new Response(init?.body).text(),body);
+    assert.equal(headers.get('x-portal-proof'),await gatewayMac(config.gatewayKey!,proofText('POST','/document-requests',headers.get('x-portal-time')!,headers.get('x-portal-nonce')!,await gatewayDigest(body),headers.get('x-portal-client')!)));
+    return Response.json({id:'decision'});
+  });
+  assert.equal(response.status,200);
+  const denied:typeof fetch=async()=>{throw Error('must not send');};
+  assert.equal((await proxyParticipant(client('/document-requests',{method:'POST',body,headers:{origin:'https://foreign.invalid'}}),'/document-requests',config,denied)).status,403);
+  assert.equal((await proxyParticipant(client('/document-requests',{method:'PATCH',body}),'/document-requests',config,denied)).status,404);
+  const path='/document-requests/file?requestId=fictitious-request';
+  const file=await proxyParticipant(client(path),path,config,async()=>new Response('%PDF-fictitious',{headers:{'content-type':'application/octet-stream','content-disposition':'attachment; filename="test.pdf"'}}));
+  assert.equal(file.status,200);assert.equal(await file.text(),'%PDF-fictitious');
+});

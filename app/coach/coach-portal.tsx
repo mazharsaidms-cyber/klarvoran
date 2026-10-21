@@ -2,10 +2,13 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import styles from "../teilnehmer/participant.module.css";
+import DocumentWorkflow from "../components/document-workflow";
+import CoachMessages from "../components/coach-messages";
+import CoachUpload from "../components/coach-upload";
 
 type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }> };
 type Document = { id: string; participantId: string; title: string; category: string; status: string;
-  currentVersion: number; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number }> };
+  currentVersion: number; participantVisible: boolean; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number; contentType: string }> };
 type CoachSchedule = { participantId: string; revision: number; startReady: boolean;
   appointments: Array<{ id: string; date: string; time: string; plannedUe: number; moduleId: string;
     format: string; status: string; documentable: boolean }>;
@@ -120,6 +123,12 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
     } catch (caught) { setError(errorText(caught)); if (caught instanceof PortalError && [401, 403].includes(caught.status)) setPhase("email"); }
     finally { setBusy(""); }
   }
+  async function setVisibility(document: Document) {
+    setBusy(document.id); setError("");
+    try { await post("/documents", {documentId:document.id,action:"set_visibility",participantVisible:!document.participantVisible}, "PATCH");
+      const result=await api<{documents:Document[]}>("/documents"); setDocuments(result.documents);
+    } catch(caught) {setError(errorText(caught));} finally {setBusy("");}
+  }
   async function download(document: Document) {
     setBusy(document.id); setError("");
     try {
@@ -178,7 +187,9 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
     {phase === "cases" && me && <>
       <div className={styles.toolbar}><strong>Angemeldet: {me.user.displayName}</strong><div><button className={styles.secondary} disabled={!!busy} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={!!busy} onClick={() => void logout()}>Abmelden</button></div></div>
       <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
-      {selected && <section className={styles.card}><h2>Termine &amp; Sitzungsnotizen</h2>
+      {selected && <DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} />}
+      {selected && <CoachMessages key={`messages-${selected}`} participantId={selected} />}
+      {selected && <section className={styles.card}><h2>Termine &amp; interne Sitzungsnotizen</h2><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p>
         {!schedule || schedule.participantId !== selected ? <p>Termine werden geladen …</p> : <>
           {!schedule.startReady && <p className={styles.testNotice}>Sitzungsdokumentation gesperrt: Startnachweise und vereinbarter Coachingplan müssen zuerst fachlich freigegeben sein.</p>}
           {schedule.appointments.length === 0 ? <p>Für diese Akte sind noch keine Termine geplant.</p> :
@@ -212,11 +223,12 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
           })()}
         </>}
       </section>}
+      {selected && <CoachUpload key={`upload-${selected}`} participantId={selected} onUploaded={refresh} />}
       {selected && <section className={styles.card}><div className={styles.documentHeading}><div><h2>Dokumente</h2><p>Nur Dokumente der ausgewählten Akte.</p></div><span>{documents.filter(item => item.participantId === selected).length}</span></div>
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>
-          <small>Dokument-Nr. {documentNumber(item)}</small>
-          <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
+          <small>Dokument-Nr. {documentNumber(item)} · {item.participantVisible?"Für Teilnehmer sichtbar":"Intern"}</small>
+          <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy} onClick={() => void setVisibility(item)}>{item.participantVisible?"Intern setzen":"Für Teilnehmer sichtbar machen"}</button><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
             {(item.status === "uploaded" || item.status === "review_pending") && <button className={styles.secondary} disabled={!!busy} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
         </li>)}</ul>}
       </section>}

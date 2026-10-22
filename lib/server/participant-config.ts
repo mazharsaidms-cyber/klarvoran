@@ -4,5 +4,7 @@ import type { ParticipantConfig } from "./participant-transport";
 export function participantConfig(): ParticipantConfig {
   return { enabled: process.env.PORTAL_EMAIL_ENABLED, gatewayKey: process.env.PORTAL_GATEWAY_KEY,
     backendBearer: process.env.PORTAL_BACKEND_BEARER, resendKey: process.env.RESEND_API_KEY,
-    sender: process.env.PORTAL_SENDER_EMAIL || process.env.LEAD_SENDER_EMAIL || "KlarVoran <info@klarvoran.de>" };
+    sender: process.env.PORTAL_SENDER_EMAIL || process.env.LEAD_SENDER_EMAIL || "KlarVoran <info@klarvoran.de>",
+    backendOrigin: process.env.PORTAL_BACKEND_ORIGIN, publicOrigin: process.env.PORTAL_PUBLIC_ORIGIN,
+    testRecipients: process.env.PORTAL_TEST_RECIPIENTS };
 }

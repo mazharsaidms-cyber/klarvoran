@@ -18,6 +18,45 @@ test("missing bridge or sender configuration closes email access", async () => {
     assert.equal((await proxyParticipant(client("/me"), "/me", incomplete, async () => { throw new Error("must not send"); })).status, 503);
   }
 });
+test("isolated preview uses its own exact backend and origin without redirecting production traffic", async () => {
+  const staging: ParticipantConfig = { ...config,
+    backendOrigin: "https://klarvoran-gesamt-restore-20261021.mazhar-said-ms.chatgpt.site",
+    publicOrigin: "https://klarvoran-staging.vercel.app", testRecipients: "fictional@example.invalid" };
+  assert.equal(participantConfigured(staging), true);
+  const request = new Request("https://klarvoran-staging.vercel.app/api/teilnehmer/messages", { method: "POST", body: "{}",
+    headers: { origin: staging.publicOrigin!, "content-type": "application/json" } });
+  const result = await proxyParticipant(request, "/messages", staging, async (url) => {
+    assert.equal(String(url), `${staging.backendOrigin}/api/participant-gateway`);
+    return Response.json({ saved: true });
+  });
+  assert.equal(result.status, 200);
+  const foreign = await proxyParticipant(client("/messages", { method: "POST", body: "{}" }), "/messages", staging,
+    async () => { throw Error("foreign origin must not be forwarded"); });
+  assert.equal(foreign.status, 403);
+  for (const invalid of [
+    { ...staging, backendOrigin: "https://other.chatgpt.site" },
+    { ...staging, backendOrigin: "http://klarvoran-gesamt-restore-20261021.mazhar-said-ms.chatgpt.site" },
+    { ...staging, publicOrigin: "https://www.klarvoran.de" },
+    { ...staging, publicOrigin: "https://klarvoran-staging.vercel.app/path" },
+    { ...staging, testRecipients: "" },
+    { ...config, publicOrigin: "https://klarvoran-staging.vercel.app" },
+  ]) assert.equal(participantConfigured(invalid), false);
+});
+test("isolated preview sends codes only to allowed fictional test addresses", async () => {
+  const staging: ParticipantConfig = { ...config,
+    backendOrigin: "https://klarvoran-gesamt-restore-20261021.mazhar-said-ms.chatgpt.site",
+    publicOrigin: "https://klarvoran-staging.vercel.app", testRecipients: "fictional@example.invalid" };
+  const denied = await deliverParticipantMail(await mailRequest({ kind: "code", email: "stranger@example.invalid", code: "123456" }),
+    staging, async () => { throw Error("test mail must not escape allowlist"); });
+  assert.equal(denied.status, 403);
+  const allowed = await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictional@example.invalid" }), staging,
+    async (_, init) => {
+      const message = JSON.parse(String(init?.body));
+      assert.match(message.text, /https:\/\/klarvoran-staging\.vercel\.app\/teilnehmer/);
+      return Response.json({ id: "simulation-mail" });
+    });
+  assert.equal(allowed.status, 200);
+});
 test("participant proxy permits only narrow endpoints and same-origin writes", async () => {
   const send: typeof fetch = async () => { throw new Error("must not send"); };
   assert.equal((await proxyParticipant(client("/access"), "/access", config, send)).status, 404);

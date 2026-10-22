@@ -102,7 +102,33 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">4. Kontakt per E-Mail oder Telefon</h2>
+            <h2 className="text-xl font-bold text-navy">4. Geschützte Coach- und Teilnehmerportale</h2>
+            <p className="mt-3">
+              Eingeladene Coaches und Teilnehmende können sich mit ihrer E-Mail-Adresse und einem zeitlich
+              begrenzten Einmalcode anmelden. Im Portal verarbeiten wir die für den jeweiligen Fall erforderlichen
+              Kontakt- und Zugangsdaten, Nachrichten, freigegebenen Dokumente, Termin- und Anwesenheitsangaben
+              sowie Bestätigungen und digitale Unterschriften mit Zeit- und Dokumentbezug. Änderungen und Abrufe
+              können zum Schutz und zur Nachvollziehbarkeit der Akte protokolliert werden.
+            </p>
+            <p className="mt-3">
+              Die Geschäftsführung verwaltet die Akten; Coaches erhalten nur Zugriff auf zugewiesene Fälle.
+              Teilnehmende sehen ausschließlich die für sie freigegebenen Inhalte ihrer eigenen Akte.
+              Der Webzugang wird bei Vercel bereitgestellt und verbindet angemeldete Anfragen mit der geschützten
+              KlarVoran-App bei ChatGPT Sites. Einladungen und Anmeldecodes werden über Resend versendet. Ein
+              Anmeldecode enthält keine Coachingunterlagen; die Inhalte bleiben im geschützten Portal.
+            </p>
+            <p className="mt-3">
+              Die Verarbeitung für die Aufnahme und Durchführung des vereinbarten Coachings beruht, soweit dafür
+              erforderlich, auf Art. 6 Abs. 1 lit. b DSGVO. Für gesetzlich erforderliche Nachweise kommt Art. 6
+              Abs. 1 lit. c DSGVO nach der jeweils einschlägigen Pflicht in Betracht. Technische Zugriffs- und
+              Sicherheitsprotokolle beruhen, soweit erforderlich, auf Art. 6 Abs. 1 lit. f DSGVO; unser Interesse
+              ist der Schutz der Akte vor unbefugtem Zugriff und die Prüfung von Änderungen. Zusätzliche Angaben
+              zum konkreten AVGS-Auftrag und zu dessen Nachweisfristen erhalten Teilnehmende vor Beginn.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-navy">5. Kontakt per E-Mail oder Telefon</h2>
             <p className="mt-3">
               Wenn du uns per E-Mail oder Telefon kontaktierst, verarbeiten wir deine Kontaktdaten und den Inhalt
               der Kommunikation zur Bearbeitung des Anliegens. Je nach Inhalt beruht die Verarbeitung auf Art. 6
@@ -126,7 +152,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">5. Kontakt über WhatsApp</h2>
+            <h2 className="text-xl font-bold text-navy">6. Kontakt über WhatsApp</h2>
             <p className="mt-3">
               Die WhatsApp-Schaltflächen auf dieser Website sind reine Links. Beim normalen Seitenaufruf werden
               dadurch keine Daten an WhatsApp übertragen. Erst nach deinem Klick öffnet sich WhatsApp. Wenn du uns
@@ -152,7 +178,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">6. Bitte keine sensiblen Daten über offene Kontaktwege</h2>
+            <h2 className="text-xl font-bold text-navy">7. Bitte keine sensiblen Daten über offene Kontaktwege</h2>
             <p className="mt-3">
               Bitte übermittle über Websiteformulare, normale E-Mail oder WhatsApp keine Gesundheitsdaten,
               Diagnosen, vollständigen Bescheide, Ausweisdokumente oder andere besonders sensible Informationen.
@@ -162,7 +188,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">7. Empfänger und Drittlandübermittlungen</h2>
+            <h2 className="text-xl font-bold text-navy">8. Empfänger und Drittlandübermittlungen</h2>
             <p className="mt-3">
               Zugriff auf personenbezogene Daten erhalten nur Personen und Dienstleister, die sie zur Bearbeitung
               des jeweiligen Vorgangs benötigen. Mögliche Empfängerkategorien sind Hosting-, E-Mail-,
@@ -177,7 +203,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">8. Speicherdauer</h2>
+            <h2 className="text-xl font-bold text-navy">9. Speicherdauer</h2>
             <p className="mt-3">
               Anfragedaten werden nur so lange gespeichert, wie sie für Bearbeitung, Rückfragen und die Anbahnung
               einer möglichen Leistung erforderlich sind. Maßgebliche Kriterien sind der Abschluss des Anliegens,
@@ -190,7 +216,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">9. Cookies, Tracking und externe Karten</h2>
+            <h2 className="text-xl font-bold text-navy">10. Cookies, Tracking und externe Karten</h2>
             <p className="mt-3">
               Diese Website setzt aktuell keine Analyse- oder Marketing-Cookies und keine Tracking-Dienste ein.
               Google Maps ist nicht eingebettet. Karten-Links öffnen sich erst nach einem bewussten Klick in einem
@@ -199,7 +225,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">10. Automatisierte Entscheidungen</h2>
+            <h2 className="text-xl font-bold text-navy">11. Automatisierte Entscheidungen</h2>
             <p className="mt-3">
               Es findet keine ausschließlich automatisierte Entscheidung einschließlich Profiling im Sinne von
               Art. 22 DSGVO statt. Auch das Ergebnis des AVGS-Schnellchecks ist nur eine unverbindliche Orientierung
@@ -208,7 +234,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-navy">11. Deine Rechte und Beschwerdemöglichkeit</h2>
+            <h2 className="text-xl font-bold text-navy">12. Deine Rechte und Beschwerdemöglichkeit</h2>
             <p className="mt-3">
               Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung,
               Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen Verarbeitungen auf Basis
@@ -229,7 +255,7 @@ export default function DatenschutzPage() {
             </p>
           </section>
 
-          <p className="text-sm text-navy-600">Stand: 6. Oktober 2026</p>
+          <p className="text-sm text-navy-600">Stand: 23. Oktober 2026</p>
         </div>
       </Section>
     </>

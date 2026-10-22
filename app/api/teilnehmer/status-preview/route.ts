@@ -17,7 +17,7 @@ export function GET() {
     gatewayKey: Boolean(c.gatewayKey && c.gatewayKey.length >= 43),
     backendBearer: Boolean(c.backendBearer && c.backendBearer.length >= 30),
     resendKey: Boolean(c.resendKey),
-    sender: Boolean(c.sender && /@klarvoran\\.de>?$/i.test(c.sender.trim())),
+    sender: Boolean(c.sender && /@klarvoran\.de>?$/i.test(c.sender.trim())),
     backendOrigin: c.backendOrigin === backend,
     publicOrigin: c.publicOrigin === publicUrl,
     testRecipients: Boolean(c.testRecipients?.trim()),

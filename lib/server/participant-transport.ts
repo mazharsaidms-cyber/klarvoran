@@ -1,22 +1,42 @@
 import { isIP } from "node:net";
 import { gatewayDigest, gatewayMac, gatewayTargetAllowed, proofText, safeEqual, GATEWAY_MAX_AGE_MS, GATEWAY_MAX_BODY } from "../participant-gateway-proof";
 
-export type ParticipantConfig = { enabled?: string; gatewayKey?: string; backendBearer?: string; resendKey?: string; sender?: string };
+export type ParticipantConfig = { enabled?: string; gatewayKey?: string; backendBearer?: string; resendKey?: string; sender?: string;
+  backendOrigin?: string; publicOrigin?: string; testRecipients?: string };
 export const participantOrigin = "https://www.klarvoran.de";
 const backendOrigin = "https://ms-coaching-prototyp.mazhar-said-ms.chatgpt.site";
+const simulationBackendOrigin = "https://klarvoran-gesamt-restore-20261021.mazhar-said-ms.chatgpt.site";
 const cookieName = /^(?:__Secure-)?klarvoran-participant\./;
 const privateHeaders = { "cache-control": "private, no-store, max-age=0", "referrer-policy": "no-referrer", "x-content-type-options": "nosniff", "x-frame-options": "DENY" };
 const errorResponse = (status: number, error: string) => Response.json({ error }, { status, headers: privateHeaders });
 
+function exactOrigin(value: string) {
+  try { const parsed = new URL(value); return parsed.protocol === "https:" && !parsed.username && !parsed.password &&
+    !parsed.search && !parsed.hash && parsed.pathname === "/" && parsed.origin === value ? parsed : null; }
+  catch { return null; }
+}
+
+function transportOrigins(config: ParticipantConfig) {
+  const backend = exactOrigin(config.backendOrigin || backendOrigin);
+  const publicUrl = exactOrigin(config.publicOrigin || participantOrigin);
+  if (!backend || !publicUrl) return null;
+  if (backend.origin === backendOrigin && publicUrl.origin === participantOrigin) return { backend: backend.origin, publicUrl: publicUrl.origin, simulation: false };
+  if (backend.origin !== simulationBackendOrigin || !publicUrl.hostname.endsWith(".vercel.app") ||
+      !config.publicOrigin || !config.testRecipients?.trim()) return null;
+  return { backend: backend.origin, publicUrl: publicUrl.origin, simulation: true };
+}
+
 export function participantConfigured(config: ParticipantConfig) {
-  return config.enabled === "true" && Boolean(config.gatewayKey && config.gatewayKey.length >= 43 && config.backendBearer && config.backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
+  return config.enabled === "true" && Boolean(transportOrigins(config) && config.gatewayKey && config.gatewayKey.length >= 43 &&
+    config.backendBearer && config.backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
 }
 
 /** Route handlers pass only server environment values; this module is never imported by participant UI. */
 export async function proxyParticipant(request: Request, target: string, config: ParticipantConfig, send: typeof fetch = fetch) {
   if (!participantConfigured(config)) return errorResponse(503, "Der Teilnehmerzugang wird noch eingerichtet. Bitte wende dich an KlarVoran.");
+  const origins = transportOrigins(config)!;
   if (!gatewayTargetAllowed(request.method, target)) return errorResponse(404, "Diese Seite ist nicht vorhanden.");
-  if (request.headers.get("sec-fetch-site") === "cross-site" || request.method !== "GET" && request.headers.get("origin") !== participantOrigin) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
+  if (request.headers.get("sec-fetch-site") === "cross-site" || request.method !== "GET" && request.headers.get("origin") !== origins.publicUrl) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
   try {
     const body = await limitedBody(request, GATEWAY_MAX_BODY);
     if (request.method !== "GET" && !target.startsWith("/upload/chunk?") && !request.headers.get("content-type")?.startsWith("application/json")) return errorResponse(415, "Das Anfrageformat ist ungültig.");
@@ -30,7 +50,7 @@ export async function proxyParticipant(request: Request, target: string, config:
       "content-type": target.startsWith("/upload/chunk?") ? "application/octet-stream" : "application/json" });
     const cookie = (request.headers.get("cookie") ?? "").split(";").filter(c => cookieName.test(c.trim().split("=")[0])).join(";");
     if (cookie.length <= 4096) headers.set("cookie", cookie);
-    const upstream = await send(`${backendOrigin}/api/participant-gateway`, { method: request.method, headers,
+    const upstream = await send(`${origins.backend}/api/participant-gateway`, { method: request.method, headers,
       ...(request.method !== "GET" ? { body } : {}), redirect: "manual", cache: "no-store", signal: AbortSignal.timeout(45_000) });
     // A gate/login redirect is a configuration error; credentials never follow a redirect to another host.
     if (upstream.status >= 300 && upstream.status < 400 || !["application/json", "application/octet-stream"].some(type => upstream.headers.get("content-type")?.startsWith(type))) return errorResponse(503, "Die Verbindung zur Akte konnte nicht hergestellt werden. Bitte wende dich an KlarVoran.");
@@ -50,6 +70,7 @@ export async function proxyParticipant(request: Request, target: string, config:
 
 export async function deliverParticipantMail(request: Request, config: ParticipantConfig, send: typeof fetch = fetch) {
   if (!participantConfigured(config)) return errorResponse(503, "Der E-Mail-Versand ist noch nicht eingerichtet.");
+  const origins = transportOrigins(config)!;
   const timestamp = request.headers.get("x-portal-time") ?? "", nonce = request.headers.get("x-portal-nonce") ?? "";
   if (!/^\d{13}$/.test(timestamp) || Math.abs(Date.now() - Number(timestamp)) > GATEWAY_MAX_AGE_MS || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(nonce)) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
   try {
@@ -60,7 +81,9 @@ export async function deliverParticipantMail(request: Request, config: Participa
     if (typeof message.email !== "string" || message.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message.email) || !["invitation", "code"].includes(String(message.kind)) ||
         message.kind === "code" && (typeof message.code !== "string" || !/^\d{6}$/.test(message.code)) ||
         message.role !== undefined && !["participant", "coach"].includes(String(message.role))) return errorResponse(400, "Die E-Mail-Angaben sind ungültig.");
-    const loginUrl = message.role === "coach" ? "https://www.klarvoran.de/coach" : "https://www.klarvoran.de/teilnehmer";
+    if (origins.simulation && !config.testRecipients!.split(",").map((address) => address.trim().toLowerCase()).includes(message.email.toLowerCase()))
+      return errorResponse(403, "Diese Testadresse ist nicht freigegeben.");
+    const loginUrl = `${origins.publicUrl}${message.role === "coach" ? "/coach" : "/teilnehmer"}`;
     const text = message.kind === "code" ? [
       "Dein Bestätigungscode für KlarVoran:", String(message.code), "",
       "Der Code gilt fünf Minuten und kann nur einmal zur Anmeldung verwendet werden.",

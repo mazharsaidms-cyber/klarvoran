@@ -18,6 +18,24 @@ test("missing bridge or sender configuration closes email access", async () => {
     assert.equal((await proxyParticipant(client("/me"), "/me", incomplete, async () => { throw new Error("must not send"); })).status, 503);
   }
 });
+test("isolated production backend needs exact origin and an explicit server opt-in", async () => {
+  const origin = "https://klarvoran-produktiv-vorbereitung.mazhar-said-ms.chatgpt.site";
+  for (const unsafe of [
+    { ...config, backendOrigin: origin },
+    { ...config, backendOrigin: `${origin}.attacker.invalid`, productionBackendEnabled: "true" },
+    { ...config, backendOrigin: "http://localhost:3000", productionBackendEnabled: "true" },
+  ]) {
+    assert.equal(participantConfigured(unsafe), false);
+    assert.equal((await proxyParticipant(client("/me"), "/me", unsafe, async () => { throw Error("must not send"); })).status, 503);
+  }
+  const isolated = { ...config, backendOrigin: origin, productionBackendEnabled: "true" };
+  assert.equal(participantConfigured(isolated), true);
+  const response = await proxyParticipant(client("/me"), "/me", isolated, async (url) => {
+    assert.equal(String(url), `${origin}/api/participant-gateway`);
+    return Response.json({ operatingMode: "test" });
+  });
+  assert.equal(response.status, 200);
+});
 test("participant proxy permits only narrow endpoints and same-origin writes", async () => {
   const send: typeof fetch = async () => { throw new Error("must not send"); };
   assert.equal((await proxyParticipant(client("/access"), "/access", config, send)).status, 404);
@@ -129,6 +147,21 @@ test("signed invitation uses existing Resend project key and carries no case inf
     return Response.json({ id: "fake-provider-receipt" });
   });
   assert.deepEqual(await response.json(), { accepted: true });
+});
+test("signed mail rejects a backend/website mode mismatch before provider delivery", async () => {
+  const isolated = { ...config, backendOrigin: "https://klarvoran-produktiv-vorbereitung.mazhar-said-ms.chatgpt.site",
+    productionBackendEnabled: "true", realOperationEnabled: "true" };
+  const denied: typeof fetch = async () => { throw Error("must not send"); };
+  assert.equal((await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid", operatingMode: "test" }), isolated, denied)).status, 409);
+  assert.equal((await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid" }), isolated, denied)).status, 409);
+  assert.equal((await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid", operatingMode: "real" }), config, denied)).status, 409);
+  const response = await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid", operatingMode: "real" }), isolated, async (_, init) => {
+    const message = JSON.parse(String(init?.body));
+    assert.match(message.subject, /persönlicher KlarVoran-Zugang/);
+    assert.doesNotMatch(message.text, /Testzugang|erfundenen Angaben/);
+    return Response.json({ id: "test-provider-receipt" });
+  });
+  assert.equal(response.status, 200);
 });
 test("coach invitation points to the independent coach login without case details", async () => {
   const response = await deliverParticipantMail(await mailRequest({ kind: "invitation", role: "coach", email: "coach@example.invalid" }), config, async (_, init) => {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -47,7 +47,14 @@ export const metadata: Metadata = {
   verification: {
     google: "HXQPvD3_EClL3KarTLI5WNO7i--j9hCmxxwya6G2Cd4",
   },
+  appleWebApp: {
+    capable: true,
+    title: "KlarVoran",
+    statusBarStyle: "default",
+  },
 };
+
+export const viewport: Viewport = { themeColor: "#1b222e" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

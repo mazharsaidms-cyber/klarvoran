@@ -22,6 +22,7 @@ export default function ZugangPage() {
           <h2>Mein Teilnehmerbereich</h2>
           <p>Deine Termine, freigegebenen Unterlagen, Bestätigungen und Nachrichten an KlarVoran.</p>
           <Link href="/teilnehmer" className={styles.action}>Teilnehmerzugang öffnen</Link>
+          <Link href="/teilnehmer/installieren" className={styles.installLink}>Auf dem Handy einrichten</Link>
         </section>
         <section className={styles.card}>
           <span className={styles.tag}>Für Coaches</span>

@@ -6,7 +6,7 @@ import DocumentWorkflow from "../components/document-workflow";
 import CoachMessages from "../components/coach-messages";
 import CoachUpload from "../components/coach-upload";
 
-type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }> };
+type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }>; operatingMode: "test" | "real" };
 type Document = { id: string; participantId: string; title: string; category: string; status: string;
   currentVersion: number; participantVisible: boolean; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number; contentType: string }> };
 type CoachSchedule = { participantId: string; revision: number; startReady: boolean;
@@ -156,10 +156,10 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
         endTime: String(form.get("endTime") ?? ""), pauseMinutes: Number(form.get("pauseMinutes") ?? 0),
         performedUe: Number(form.get("performedUe") ?? 0), topic: String(form.get("topic") ?? ""),
         result: String(form.get("result") ?? ""), nextStep: String(form.get("nextStep") ?? ""),
-        expectedRevision: schedule.revision, testDataConfirmed: form.get("testDataConfirmed") === "on",
+        expectedRevision: schedule.revision, [me?.operatingMode === "real" ? "realDataConfirmed" : "testDataConfirmed"]: form.get("dataConfirmed") === "on",
       });
       setSchedule(await api<CoachSchedule>(`/coach-sessions?participantId=${encodeURIComponent(selected)}`));
-      setSessionAppointment(""); setNotice("Die fiktive Sitzung wurde gespeichert und die UE wurden aktualisiert.");
+      setSessionAppointment(""); setNotice("Die Sitzung wurde gespeichert und die UE wurden aktualisiert.");
     } catch (caught) { setError(errorText(caught)); }
     finally { setBusy(""); }
   }
@@ -171,9 +171,9 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   }
 
   return <main className={styles.portal}>
-    <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Persönlicher Coachbereich</p><h1>Deine zugewiesenen Testakten</h1>
+    <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Persönlicher Coachbereich</p><h1>Deine zugewiesenen Akten</h1>
       <p>Melde dich mit deiner freigegebenen E-Mail-Adresse und einem einmaligen Code an. Ein ChatGPT-Konto ist nicht erforderlich.</p></header>
-    <div className={styles.testNotice}>Testbetrieb: Bitte ausschließlich erfundene Angaben und Testdokumente verwenden.</div>
+    {phase === "cases" && me?.operatingMode === "test" && <div className={styles.testNotice}>Testbetrieb: Bitte ausschließlich erfundene Angaben und Testdokumente verwenden.</div>}
     {!configured && <p className={styles.error} role="alert">Der E-Mail-Zugang ist noch nicht eingerichtet. Bitte wende dich an KlarVoran.</p>}
     {error && <p className={styles.error} role="alert">{error}</p>}
     {notice && <p className={styles.notice} role="status">{notice}</p>}
@@ -187,8 +187,8 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
     {phase === "cases" && me && <>
       <div className={styles.toolbar}><strong>Angemeldet: {me.user.displayName}</strong><div><button className={styles.secondary} disabled={!!busy} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={!!busy} onClick={() => void logout()}>Abmelden</button></div></div>
       <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
-      {selected && <DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} />}
-      {selected && <CoachMessages key={`messages-${selected}`} participantId={selected} />}
+      {selected && <DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} operatingMode={me.operatingMode} />}
+      {selected && <CoachMessages key={`messages-${selected}`} participantId={selected} operatingMode={me.operatingMode} />}
       {selected && <section className={styles.card}><h2>Termine &amp; interne Sitzungsnotizen</h2><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p>
         {!schedule || schedule.participantId !== selected ? <p>Termine werden geladen …</p> : <>
           {!schedule.startReady && <p className={styles.testNotice}>Sitzungsdokumentation gesperrt: Startnachweise und vereinbarter Coachingplan müssen zuerst fachlich freigegeben sein.</p>}
@@ -216,14 +216,14 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
               <label>Thema<textarea name="topic" maxLength={2000} required /></label>
               <label>Ergebnis<textarea name="result" maxLength={2000} required /></label>
               <label>Nächster Schritt<textarea name="nextStep" maxLength={2000} required /></label>
-              <label className={styles.checkbox}><input name="testDataConfirmed" type="checkbox" required /> Diese Angaben sind vollständig erfunden und dienen nur dem Praxistest.</label>
+              <label className={styles.checkbox}><input name="dataConfirmed" type="checkbox" required /> {me.operatingMode === "real" ? "Ich habe die Sitzungsangaben vor dem Speichern geprüft." : "Diese Angaben sind vollständig erfunden und dienen nur dem Praxistest."}</label>
               <div className={styles.inlineActions}><button className={styles.primary} disabled={!!busy}>Sitzung speichern</button>
                 <button className={styles.secondary} type="button" onClick={() => setSessionAppointment("")}>Abbrechen</button></div>
             </form>;
           })()}
         </>}
       </section>}
-      {selected && <CoachUpload key={`upload-${selected}`} participantId={selected} onUploaded={refresh} />}
+      {selected && <CoachUpload key={`upload-${selected}`} participantId={selected} onUploaded={refresh} operatingMode={me.operatingMode} />}
       {selected && <section className={styles.card}><div className={styles.documentHeading}><div><h2>Dokumente</h2><p>Nur Dokumente der ausgewählten Akte.</p></div><span>{documents.filter(item => item.participantId === selected).length}</span></div>
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>

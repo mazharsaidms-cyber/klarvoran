@@ -29,7 +29,7 @@ export default function DocumentWorkflow({participantId,participant,apiRoot='/ap
   const open=data?.requests.filter(r=>!r.actions.length&&!r.sourceIssue).length??0;
   return <section className={styles.panel} aria-label="Unterlagen und Unterschriften">
     <div className={styles.heading}><div><p className={styles.eyebrow}>Gemeinsam dokumentieren</p><h2>{participant?'Lesen & unterschreiben':'Unterlagen & Unterschriften'}</h2></div><button type="button" className={styles.secondary} disabled={loading} onClick={()=>void reload()}>Aktualisieren</button></div>
-    <p>{participant?'Hier findest du die Unterlagen für dich. Lies die vollständige Fassung und entscheide selbst. Deine Antwort und eine PDF-Kopie bleiben in deiner Akte.':'Verträge, gemeinsame Pläne, Datenschutz und Anwesenheiten: Stelle eine geprüfte Fassung bereit und verfolge die persönliche Antwort des Teilnehmers.'}</p>
+    <p>{participant?'Lies die Unterlage vollständig. Danach kannst du antworten oder unterschreiben.':'Geprüfte Unterlage bereitstellen und die Antwort verfolgen.'}</p>
     <p className={styles.hint}>{operatingMode==='real'?'Freigegebener Betrieb':'Testbetrieb · Nur fiktive Daten'} · Elektronische Bestätigung mit eingegebenem Namen; keine qualifizierte Signatur.</p>
     {!participant&&<AuditGuide/>}
     {error&&<p role="alert" className={styles.error}>{error}</p>}{notice&&<p role="status" className={styles.notice}>{notice}</p>}

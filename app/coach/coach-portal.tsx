@@ -172,7 +172,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
 
   return <main className={styles.portal}>
     <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Persönlicher Coachbereich</p><h1>Deine zugewiesenen Akten</h1>
-      <p>Melde dich mit deiner freigegebenen E-Mail-Adresse und einem einmaligen Code an. Ein ChatGPT-Konto ist nicht erforderlich.</p></header>
+      <p>Mit deiner freigegebenen E-Mail-Adresse und einem Code anmelden.</p></header>
     {phase === "cases" && me?.operatingMode === "test" && <div className={styles.testNotice}>Testbetrieb: Bitte ausschließlich erfundene Angaben und Testdokumente verwenden.</div>}
     {!configured && <p className={styles.error} role="alert">Der E-Mail-Zugang ist noch nicht eingerichtet. Bitte wende dich an KlarVoran.</p>}
     {error && <p className={styles.error} role="alert">{error}</p>}
@@ -189,7 +189,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
       {selected && <DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} operatingMode={me.operatingMode} />}
       {selected && <CoachMessages key={`messages-${selected}`} participantId={selected} operatingMode={me.operatingMode} />}
-      {selected && <section className={styles.card}><h2>Termine &amp; interne Sitzungsnotizen</h2><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p>
+      {selected && <section className={styles.card}><h2>Termine &amp; Sitzungsnotizen</h2><details className={styles.help}><summary>Was gehört in diese Notiz?</summary><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p></details>
         {!schedule || schedule.participantId !== selected ? <p>Termine werden geladen …</p> : <>
           {!schedule.startReady && <p className={styles.testNotice}>Sitzungsdokumentation gesperrt: Startnachweise und vereinbarter Coachingplan müssen zuerst fachlich freigegeben sein.</p>}
           {schedule.appointments.length === 0 ? <p>Für diese Akte sind noch keine Termine geplant.</p> :

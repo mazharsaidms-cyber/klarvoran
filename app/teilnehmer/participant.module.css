@@ -47,6 +47,8 @@
 .checkbox { display: flex; align-items: flex-start; gap: 12px; margin: 22px 0; line-height: 1.65; font-size: 14px; }
 .checkbox input { width: 22px; height: 22px; margin-top: 1px; flex-shrink: 0; accent-color: #1b222e; }
 .documentHeading { display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.sectionHeading { display: inline-flex; align-items: center; gap: 10px; }
+.sectionHeading span { font-size: 22px; line-height: 1; flex: none; }
 .documentHeading h2 { margin-bottom: 0; }
 .documentHeading p { margin: 6px 0 0; color: #596270; font-size: 14px; }
 .documentHeading > span { background: #edf0f4; border-radius: 20px; padding: 4px 12px; font-weight: 700; }

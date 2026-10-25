@@ -4,6 +4,7 @@ import DocumentWorkflow from "../components/document-workflow";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./participant.module.css";
 import { PARTICIPANT_CHUNK_BYTES } from "@/lib/participant-gateway-proof";
+import { zoomMeetingUrlFromMessage } from "@/lib/zoom-link";
 
 type Me = { user: { displayName: string; participantId: string | null; role: string }; cases: Array<{ id: string; name: string }>;
   capabilities: { upload: boolean }; realDataAllowed: boolean; operatingMode: "test" | "real" };
@@ -233,7 +234,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
         <div className={styles.documentHeading}><h2 id="messages-title" className={styles.sectionHeading}><span aria-hidden="true">💬</span>Nachrichten</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Aktualisieren</button></div>
         {messageError && <p className={styles.error} role="alert">{messageError}</p>}
         {messageNotice && <p className={styles.notice} role="status">{messageNotice}</p>}
-        <div aria-live="polite">{!messagesLoaded && !messageError ? <p>Nachrichten werden geladen …</p> : messagesLoaded && !messages.length ? <p>Noch keine Nachrichten zu deiner Akte.</p> : <ul className={styles.messages}>{messages.map(message => <li key={message.id}><small>{message.authorRole === "participant" ? "Du" : "KlarVoran"} · {formatDate(message.createdAt)}</small><p>{message.body}</p></li>)}</ul>}</div>
+        <div aria-live="polite">{!messagesLoaded && !messageError ? <p>Nachrichten werden geladen …</p> : messagesLoaded && !messages.length ? <p>Noch keine Nachrichten zu deiner Akte.</p> : <ul className={styles.messages}>{messages.map(message => { const zoomUrl = zoomMeetingUrlFromMessage(message.body); return <li key={message.id}><small>{message.authorRole === "participant" ? "Du" : "KlarVoran"} · {formatDate(message.createdAt)}</small><p>{message.body}</p>{zoomUrl && <a className={`${styles.secondary} ${styles.zoomLink}`} href={zoomUrl} target="_blank" rel="noopener noreferrer" aria-label="Zoom-Termin in neuem Tab öffnen">Zoom-Termin öffnen ↗</a>}</li>; })}</ul>}</div>
         <form onSubmit={event => void sendMessage(event)}>
           <label htmlFor="participant-message">Deine Nachricht an KlarVoran</label>
           <textarea id="participant-message" className={styles.messageInput} value={messageBody} onChange={event => setMessageBody(event.target.value)} minLength={2} maxLength={2000} required placeholder="Deine Frage oder dein Hinweis …" />

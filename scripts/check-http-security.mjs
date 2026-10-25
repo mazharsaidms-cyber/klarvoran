@@ -46,13 +46,15 @@ try {
   }
   console.log('OK: security headers, 404/noindex and permanent redirects');
 
-  for (const path of ['/teilnehmer', '/teilnehmer/datenschutz']) {
+  for (const path of ['/teilnehmer', '/teilnehmer/datenschutz', '/coach']) {
     const response = await fetch(base + path, { redirect: 'manual' });
     assert.equal(response.status, 200, `${path}: available without ChatGPT redirect`);
     assert.match(response.headers.get('cache-control') ?? '', /private.*no-store/);
     assert.equal(response.headers.get('referrer-policy'), 'no-referrer');
     assert.match(response.headers.get('x-robots-tag') ?? '', /noindex/);
-    assert.ok(/kein ChatGPT-Konto|ChatGPT-Konto ist nicht erforderlich/i.test(await response.text()), `${path}: ordinary email login explained`);
+    if (path.startsWith('/teilnehmer')) {
+      assert.ok(/kein ChatGPT-Konto|ChatGPT-Konto ist nicht erforderlich/i.test(await response.text()), `${path}: ordinary email login explained`);
+    }
   }
   for (const [path, init] of [
     ['/api/teilnehmer/me', {}],

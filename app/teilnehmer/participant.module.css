@@ -62,6 +62,7 @@
 .messages { list-style: none; padding: 0; margin: 12px 0 22px; max-height: 360px; overflow-y: auto; }
 .messages li { padding: 12px 0; border-top: 1px solid #dce0e5; }
 .messages p { white-space: pre-wrap; overflow-wrap: anywhere; margin: 4px 0 0; }
+.zoomLink { display: inline-flex; align-items: center; margin-top: 10px; text-decoration: none; }
 .messageInput { width: 100%; min-height: 100px; resize: vertical; border: 1px solid #7f8a9a; border-radius: 10px; padding: 12px; font: inherit; }
 .messageInput:focus-visible { outline: 3px solid #354b65; outline-offset: 3px; }
 .progressList { list-style: none; padding: 0; margin: 12px 0 20px; }

@@ -7,5 +7,8 @@ export function participantConfig(): ParticipantConfig {
     sender: process.env.PORTAL_SENDER_EMAIL || process.env.LEAD_SENDER_EMAIL || "KlarVoran <info@klarvoran.de>",
     backendOrigin: process.env.PORTAL_BACKEND_ORIGIN,
     productionBackendEnabled: process.env.PORTAL_PRODUCTION_BACKEND_ENABLED,
-    realOperationEnabled: process.env.PORTAL_REAL_OPERATION_ENABLED };
+    realOperationEnabled: process.env.PORTAL_REAL_OPERATION_ENABLED,
+    betriebBackendEnabled: process.env.PORTAL_BETRIEB_BACKEND_ENABLED,
+    betriebGatewayKey: process.env.PORTAL_BETRIEB_GATEWAY_KEY,
+    betriebBackendBearer: process.env.PORTAL_BETRIEB_BACKEND_BEARER };
 }

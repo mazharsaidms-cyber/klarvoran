@@ -2,10 +2,12 @@ import { isIP } from "node:net";
 import { gatewayDigest, gatewayMac, gatewayTargetAllowed, proofText, safeEqual, GATEWAY_MAX_AGE_MS, GATEWAY_MAX_BODY } from "../participant-gateway-proof";
 
 export type ParticipantConfig = { enabled?: string; gatewayKey?: string; backendBearer?: string; resendKey?: string; sender?: string;
-  backendOrigin?: string; productionBackendEnabled?: string; realOperationEnabled?: string };
+  backendOrigin?: string; productionBackendEnabled?: string; realOperationEnabled?: string;
+  betriebBackendEnabled?: string; betriebGatewayKey?: string; betriebBackendBearer?: string };
 export const participantOrigin = "https://www.klarvoran.de";
 const backendOrigin = "https://ms-coaching-prototyp.mazhar-said-ms.chatgpt.site";
 const productionBackendOrigin = "https://klarvoran-produktiv-vorbereitung.mazhar-said-ms.chatgpt.site";
+const betriebBackendOrigin = "https://klarvoran-betrieb.mazhar-said-ms.chatgpt.site";
 const cookieName = /^(?:__Secure-)?klarvoran-participant\./;
 const privateHeaders = { "cache-control": "private, no-store, max-age=0", "referrer-policy": "no-referrer", "x-content-type-options": "nosniff", "x-frame-options": "DENY" };
 const errorResponse = (status: number, error: string) => Response.json({ error }, { status, headers: privateHeaders });
@@ -13,11 +15,19 @@ const errorResponse = (status: number, error: string) => Response.json({ error }
 function selectedBackend(config: ParticipantConfig) {
   if (!config.backendOrigin || config.backendOrigin === backendOrigin) return backendOrigin;
   if (config.backendOrigin === productionBackendOrigin && config.productionBackendEnabled === "true") return productionBackendOrigin;
+  if (config.backendOrigin === betriebBackendOrigin && config.betriebBackendEnabled === "true") return betriebBackendOrigin;
   return null;
 }
 
+function selectedSecrets(config: ParticipantConfig) {
+  return selectedBackend(config) === betriebBackendOrigin
+    ? { gatewayKey: config.betriebGatewayKey, backendBearer: config.betriebBackendBearer }
+    : { gatewayKey: config.gatewayKey, backendBearer: config.backendBearer };
+}
+
 export function participantConfigured(config: ParticipantConfig) {
-  return config.enabled === "true" && Boolean(selectedBackend(config) && config.gatewayKey && config.gatewayKey.length >= 43 && config.backendBearer && config.backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
+  const { gatewayKey, backendBearer } = selectedSecrets(config);
+  return config.enabled === "true" && Boolean(selectedBackend(config) && gatewayKey && gatewayKey.length >= 43 && backendBearer && backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
 }
 
 /** Route handlers pass only server environment values; this module is never imported by participant UI. */
@@ -31,9 +41,10 @@ export async function proxyParticipant(request: Request, target: string, config:
     const rawIp = (request.headers.get("x-vercel-forwarded-for") ?? request.headers.get("x-forwarded-for") ?? request.headers.get("x-real-ip") ?? "").split(",")[0].trim();
     const client = isIP(rawIp) ? rawIp : "0.0.0.0";
     const timestamp = String(Date.now()), nonce = crypto.randomUUID();
-    const proof = await gatewayMac(config.gatewayKey!, proofText(request.method, target, timestamp, nonce, await gatewayDigest(body), client));
+    const { gatewayKey, backendBearer } = selectedSecrets(config);
+    const proof = await gatewayMac(gatewayKey!, proofText(request.method, target, timestamp, nonce, await gatewayDigest(body), client));
     // Never forward browser-supplied identity, bridge proof, authorization, or native Sites headers.
-    const headers = new Headers({ "OAI-Sites-Authorization": `Bearer ${config.backendBearer}`, "x-portal-target": target,
+    const headers = new Headers({ "OAI-Sites-Authorization": `Bearer ${backendBearer}`, "x-portal-target": target,
       "x-portal-time": timestamp, "x-portal-nonce": nonce, "x-portal-proof": proof, "x-portal-client": client,
       "content-type": target.startsWith("/upload/chunk?") ? "application/octet-stream" : "application/json" });
     const cookie = (request.headers.get("cookie") ?? "").split(";").filter(c => cookieName.test(c.trim().split("=")[0])).join(";");
@@ -62,7 +73,7 @@ export async function deliverParticipantMail(request: Request, config: Participa
   if (!/^\d{13}$/.test(timestamp) || Math.abs(Date.now() - Number(timestamp)) > GATEWAY_MAX_AGE_MS || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(nonce)) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
   try {
     const body = await limitedBody(request, 4096);
-    const expected = await gatewayMac(config.gatewayKey!, proofText("POST", "/api/teilnehmer/mail", timestamp, nonce, await gatewayDigest(body), "mail"));
+    const expected = await gatewayMac(selectedSecrets(config).gatewayKey!, proofText("POST", "/api/teilnehmer/mail", timestamp, nonce, await gatewayDigest(body), "mail"));
     if (!safeEqual(expected, request.headers.get("x-portal-proof") ?? "")) return errorResponse(403, "Diese Anfrage ist nicht zulässig.");
     const message = JSON.parse(new TextDecoder().decode(body)) as { kind?: unknown; email?: unknown; code?: unknown; role?: unknown; operatingMode?: unknown };
     if (typeof message.email !== "string" || message.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message.email) || !["invitation", "code"].includes(String(message.kind)) ||

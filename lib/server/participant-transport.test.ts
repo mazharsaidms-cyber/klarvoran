@@ -6,9 +6,9 @@ import { gatewayDigest, gatewayMac, proofText } from "../participant-gateway-pro
 const config: ParticipantConfig = { enabled: "true", gatewayKey: "g".repeat(43), backendBearer: "b".repeat(43), resendKey: "re_fake_local_test", sender: "KlarVoran <info@klarvoran.de>" };
 function client(path: string, init: RequestInit = {}) { return new Request(`https://www.klarvoran.de/api/teilnehmer${path}`, { ...init,
   headers: { origin: "https://www.klarvoran.de", "content-type": "application/json", "x-forwarded-for": "192.0.2.20", ...Object.fromEntries(new Headers(init.headers)) } }); }
-async function mailRequest(message: unknown, changes: Record<string, string> = {}) {
+async function mailRequest(message: unknown, changes: Record<string, string> = {}, signingKey = config.gatewayKey!) {
   const body = JSON.stringify(message), timestamp = String(Date.now()), nonce = crypto.randomUUID();
-  const proof = await gatewayMac(config.gatewayKey!, proofText("POST", "/api/teilnehmer/mail", timestamp, nonce, await gatewayDigest(body), "mail"));
+  const proof = await gatewayMac(signingKey, proofText("POST", "/api/teilnehmer/mail", timestamp, nonce, await gatewayDigest(body), "mail"));
   return client("/mail", { method: "POST", body, headers: { "x-portal-time": timestamp, "x-portal-nonce": nonce, "x-portal-proof": proof, ...changes } });
 }
 
@@ -35,6 +35,36 @@ test("isolated production backend needs exact origin and an explicit server opt-
     return Response.json({ operatingMode: "test" });
   });
   assert.equal(response.status, 200);
+});
+test("current test backend requires exact origin, opt-in and separate credentials", async () => {
+  const origin = "https://klarvoran-betrieb.mazhar-said-ms.chatgpt.site";
+  const isolated: ParticipantConfig = { ...config, backendOrigin: origin, betriebBackendEnabled: "true",
+    betriebGatewayKey: "x".repeat(43), betriebBackendBearer: "y".repeat(43) };
+  for (const unsafe of [
+    { ...isolated, betriebBackendEnabled: "false" },
+    { ...isolated, betriebGatewayKey: "" },
+    { ...isolated, betriebBackendBearer: "" },
+    { ...isolated, backendOrigin: origin + ".attacker.invalid" },
+  ]) assert.equal(participantConfigured(unsafe), false);
+  assert.equal(participantConfigured(isolated), true);
+  const response = await proxyParticipant(client("/me"), "/me", isolated, async (url, init) => {
+    assert.equal(String(url), `${origin}/api/participant-gateway`);
+    const headers = new Headers(init?.headers);
+    assert.equal(headers.get("oai-sites-authorization"), "Bearer " + isolated.betriebBackendBearer);
+    assert.equal(headers.get("x-portal-proof"), await gatewayMac(isolated.betriebGatewayKey!,
+      proofText("GET", "/me", headers.get("x-portal-time")!, headers.get("x-portal-nonce")!, await gatewayDigest(new Uint8Array()), headers.get("x-portal-client")!)));
+    return Response.json({ operatingMode: "test" });
+  });
+  assert.equal(response.status, 200);
+  const message = { kind: "invitation", email: "fictitious@example.invalid", operatingMode: "test" };
+  assert.equal((await deliverParticipantMail(await mailRequest(message), isolated, async () => { throw Error("wrong key"); })).status, 403);
+  assert.equal((await deliverParticipantMail(await mailRequest({ ...message, operatingMode: "real" }, {}, isolated.betriebGatewayKey!), isolated,
+    async () => { throw Error("real mode"); })).status, 409);
+  const sent = await deliverParticipantMail(await mailRequest(message, {}, isolated.betriebGatewayKey!), isolated, async (_, init) => {
+    assert.match(JSON.parse(String(init?.body)).text, /Testzugang/);
+    return Response.json({ id: "fake-provider-receipt" });
+  });
+  assert.equal(sent.status, 200);
 });
 test("participant proxy permits only narrow endpoints and same-origin writes", async () => {
   const send: typeof fetch = async () => { throw new Error("must not send"); };

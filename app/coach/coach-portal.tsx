@@ -8,7 +8,7 @@ import CoachUpload from "../components/coach-upload";
 
 type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }>; operatingMode: "test" | "real" };
 type Document = { id: string; participantId: string; title: string; category: string; status: string;
-  currentVersion: number; participantVisible: boolean; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number; contentType: string }> };
+  currentVersion: number; participantVisible: boolean; deletionStatus?: string; updatedAt: string; versions: Array<{ version: number; originalFileName: string; byteSize: number; contentType: string }> };
 type CoachSchedule = { participantId: string; revision: number; startReady: boolean;
   appointments: Array<{ id: string; date: string; time: string; plannedUe: number; moduleId: string;
     format: string; status: string; documentable: boolean }>;
@@ -228,8 +228,9 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>
           <small>Dokument-Nr. {documentNumber(item)} · {item.participantVisible?"Für Teilnehmer sichtbar":"Intern"}</small>
-          <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy} onClick={() => void setVisibility(item)}>{item.participantVisible?"Intern setzen":"Für Teilnehmer sichtbar machen"}</button><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
-            {(item.status === "uploaded" || item.status === "review_pending") && <button className={styles.secondary} disabled={!!busy} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
+          {item.deletionStatus && item.deletionStatus !== "active" && <small>Löschanfrage in Prüfung – Änderungen gesperrt.</small>}
+          <div className={styles.inlineActions}><button className={styles.secondary} disabled={!!busy || (item.deletionStatus !== undefined && item.deletionStatus !== "active")} onClick={() => void setVisibility(item)}>{item.participantVisible?"Intern setzen":"Für Teilnehmer sichtbar machen"}</button><button className={styles.secondary} disabled={!!busy} onClick={() => void download(item)}>Datei herunterladen</button>
+            {(item.status === "uploaded" || item.status === "review_pending") && <button className={styles.secondary} disabled={!!busy || (item.deletionStatus !== undefined && item.deletionStatus !== "active")} onClick={() => void markReviewed(item)}>Als geprüft markieren</button>}</div>
         </li>)}</ul>}
       </section>}
     </>}

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
+import { VisualIcon } from "./VisualIcon";
 
 const headerNav = siteConfig.nav.filter((item) => item.href !== "/faq" && item.href !== "/kontakt");
 
@@ -63,7 +64,7 @@ export function Header() {
             href="/teilnehmer"
             className="inline-flex min-h-9 items-center rounded-[var(--radius-sm)] border border-white/50 px-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-navy focus-visible:bg-white focus-visible:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            Teilnehmer-Login
+            <VisualIcon name="document" className="mr-2 h-4 w-4" />Meine Akte öffnen
           </Link>
         </div>
       </div>
@@ -148,7 +149,7 @@ export function Header() {
             ))}
             <li>
               <a href="/teilnehmer" className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">
-                Teilnehmer-Login
+                Meine Akte öffnen
               </a>
             </li>
           </ul>
@@ -175,7 +176,7 @@ export function Header() {
             ))}
             <li className="mt-2">
               <Button href="/teilnehmer" variant="secondary" className="w-full" onDark onClick={closeMenu}>
-                Teilnehmer-Login
+                Meine Akte öffnen
               </Button>
             </li>
             <li className="mt-2">

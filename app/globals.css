@@ -61,6 +61,8 @@ body {
    deliberate reading surface for cards, forms and protected records. */
 .kv-section-paper { background: var(--surface-paper); }
 .kv-section-mist { background: var(--surface-mist); }
+.kv-section-paper + .kv-section-paper,
+.kv-section-mist + .kv-section-mist { border-top: 2px solid #cbd7de; }
 .kv-section-navy {
   background-color: var(--brand-navy);
   background-image:
@@ -83,17 +85,37 @@ body {
   height: 3px;
   background: var(--brand-red);
 }
-.kv-process-step { position: relative; }
+.kv-process-step {
+  position: relative;
+  min-height: 100%;
+  padding: 1.25rem;
+  border: 1px solid #d5e0e6;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: 0 12px 28px -25px #142538;
+}
 .kv-process-step::before {
   content: "";
   position: absolute;
-  top: -5px;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  top: 0;
+  left: 1.25rem;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 0 0 4px 4px;
   background: var(--brand-red);
 }
+.kv-process-step::after {
+  content: attr(data-step);
+  position: absolute;
+  top: 0.65rem;
+  right: 1rem;
+  color: #cbd9e2;
+  font-family: var(--font-mono-num), monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.kv-process-step:nth-child(even)::before { background: #3b667b; }
 .kv-legal-copy > * + * { border-top: 1px solid var(--brand-navy-100); padding-top: 1.5rem; }
 .kv-legal-copy h2 { border-left: 3px solid var(--brand-red); padding-left: 0.9rem; }
 

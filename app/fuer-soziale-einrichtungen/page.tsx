@@ -88,7 +88,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <ContextGraphic
             variant="conversation"
@@ -147,7 +147,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="tint" spacing="compact">
+      <Section tone="white" spacing="compact">
         <Eyebrow>Trägerdaten</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
         <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
@@ -164,7 +164,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow>Verantwortung &amp; Datenschutz</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Klare Rollen und vertraulicher Umgang</h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">

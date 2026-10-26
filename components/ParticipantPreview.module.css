@@ -1,0 +1,21 @@
+.preview { width: 100%; overflow: hidden; border: 1px solid #d9e2e9; border-radius: 18px; background: #f6f8f8; box-shadow: 0 24px 52px -32px #091a2d8c; color: #1b222e; }
+.topbar { display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 8px 16px; background: #202d3b; color: white; }
+.brandMark { display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; border-radius: 8px; background: white; color: #202d3b; font-size: 10px; font-weight: 900; letter-spacing: -.08em; }
+.brandMark span { color: #b93449; }
+.topbarTitle { font-size: 11px; font-weight: 700; letter-spacing: .01em; }
+.topbarDot { width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: #a4d7ca; }
+.canvas { padding: clamp(14px, 3vw, 22px); }
+.welcome { display: grid; gap: 7px; min-height: 92px; padding: 15px 18px; border-radius: 12px; background: linear-gradient(120deg, #283e54, #1b222e); color: white; }
+.welcome span { color: #c8d9e7; font-size: 9px; font-weight: 800; letter-spacing: .12em; }
+.welcome strong { font-size: clamp(17px, 2.5vw, 23px); line-height: 1.2; }
+.welcome i { width: 44px; height: 3px; border-radius: 5px; background: #f3bd87; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin-top: 12px; }
+.tile { display: grid; justify-items: start; gap: 5px; min-width: 0; min-height: 115px; padding: 13px 10px; border: 1px solid #e0e6ea; border-radius: 12px; background: white; }
+.tile > span { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 8px; }
+.tile svg { width: 17px; height: 17px; }
+.blue { background: #e8f0f6; color: #294963; }
+.coral { background: #f9e9e8; color: #a43440; }
+.green { background: #e9f4ef; color: #2d6856; }
+.tile strong { font-size: clamp(10px, 1.8vw, 13px); line-height: 1.1; }
+.tile small { color: #596270; font-size: 10px; line-height: 1.2; }
+@media (max-width: 380px) { .tile { padding: 10px 6px; } .tile strong { font-size: 10px; } .tile small { font-size: 9px; } }

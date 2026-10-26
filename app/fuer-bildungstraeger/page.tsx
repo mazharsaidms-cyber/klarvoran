@@ -38,7 +38,7 @@ export default function FuerBildungstraegerPage() {
           <ContextGraphic
             variant="cooperation"
             title="Abgestimmte Aufgaben, Dokumentation und Zusammenarbeit im Unterauftrag"
-            className="hidden lg:block"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
           />
         </div>
       </Section>

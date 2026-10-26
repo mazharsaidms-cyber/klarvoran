@@ -89,8 +89,11 @@ export function ContextGraphic({ variant, title, className = "" }: ContextGraphi
         className="h-auto w-full text-white"
         preserveAspectRatio="xMidYMid meet"
       >
-        <rect width="640" height="440" fill="#2d3543" />
-        <path d="M0 402h640" stroke="#454e5f" strokeWidth="2" />
+        <rect width="640" height="440" fill="#263747" />
+        <circle cx="590" cy="44" r="186" fill="#334c60" opacity="0.72" />
+        <circle cx="64" cy="422" r="176" fill="#b93242" opacity="0.13" />
+        <path d="M0 402h640" stroke="#678297" strokeOpacity=".3" strokeWidth="2" />
+        <path d="M20 58h78M20 78h42M534 394h66" stroke="#d9e4eb" strokeOpacity=".35" strokeWidth="3" strokeLinecap="round" />
         <g className="context-graphic-content">
           {variant === "application" && <ApplicationGraphic />}
           {variant === "conversation" && <ConversationGraphic />}

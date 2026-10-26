@@ -13,6 +13,7 @@ import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { FounderExpertise } from "@/components/FounderExpertise";
+import { ParticipantPreview } from "@/components/ParticipantPreview";
 import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
@@ -202,6 +203,22 @@ export default function HomePage() {
 
       {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
           ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
+      <Section tone="white" spacing="compact">
+        <div className="grid items-center gap-7 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-5 shadow-card sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          <div>
+            <Eyebrow>Für bestehende Teilnehmende</Eyebrow>
+            <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Dein Coaching bleibt übersichtlich.</h2>
+            <p className="mt-4 max-w-lg leading-relaxed text-navy-600">
+              Schon bei KlarVoran dabei? In deinem persönlichen Bereich findest du Termine, Unterlagen und Nachrichten.
+              Für die Anmeldung brauchst du deine Einladung und einen Code per E-Mail.
+            </p>
+            <Button href="/teilnehmer" className="mt-6">Meinen Teilnehmerbereich öffnen</Button>
+            <p className="mt-3 text-xs text-navy-600">Die Darstellung ist eine grafische Vorschau ohne persönliche Daten.</p>
+          </div>
+          <ParticipantPreview />
+        </div>
+      </Section>
+
       <Section tone="tint" spacing="compact">
         <div className="grid items-center gap-8 lg:grid-cols-[260px_1fr]">
           <CertificateSeal

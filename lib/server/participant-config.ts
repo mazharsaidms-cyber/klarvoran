@@ -8,6 +8,7 @@ export function participantConfig(): ParticipantConfig {
     backendOrigin: process.env.PORTAL_BACKEND_ORIGIN,
     productionBackendEnabled: process.env.PORTAL_PRODUCTION_BACKEND_ENABLED,
     realOperationEnabled: process.env.PORTAL_REAL_OPERATION_ENABLED,
+    privacyApprovedVersion: process.env.PORTAL_PRIVACY_APPROVED_VERSION,
     betriebBackendEnabled: process.env.PORTAL_BETRIEB_BACKEND_ENABLED,
     betriebGatewayKey: process.env.PORTAL_BETRIEB_GATEWAY_KEY,
     betriebBackendBearer: process.env.PORTAL_BETRIEB_BACKEND_BEARER,

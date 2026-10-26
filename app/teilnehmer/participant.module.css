@@ -82,3 +82,74 @@
 .progressDetails { border-top: 1px solid #dce0e5; margin-top: 16px; padding-top: 14px; }
 .progressDetails summary { cursor: pointer; color: #354b65; font-weight: 700; padding: 8px 0; }
 .progressDetails summary:focus-visible { outline: 3px solid #354b65; outline-offset: 3px; }
+
+/* Teilnehmerbereich: sichtbare Aktionen und klare Flächen statt Textblöcke */
+.portal { max-width: 1160px; }
+.loginGrid { max-width: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr); gap: 0; align-items: stretch; margin: 12px 0 30px; box-shadow: 0 22px 50px -35px #101a32; border-radius: 26px; overflow: hidden; }
+.loginIntro { position: relative; overflow: hidden; min-height: 500px; padding: clamp(30px, 5vw, 60px); background: radial-gradient(circle at 88% 12%, #35475e 0, transparent 40%), linear-gradient(145deg, #1b222e, #263c54); color: white; }
+.loginIntro::after { content: ""; position: absolute; width: 360px; height: 360px; border: 1px solid #ffffff2c; border-radius: 50%; right: -180px; bottom: -185px; pointer-events: none; }
+.loginTag, .heroEyebrow, .loginStep, .planLabel { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+.loginTag { color: #cddce9; }
+.loginIntro h1 { max-width: 560px; font-size: clamp(34px, 4.3vw, 52px); line-height: 1.07; letter-spacing: -.035em; margin: 45px 0 22px; }
+.loginIntro p { max-width: 390px; font-size: 18px; line-height: 1.5; color: #d9e2ea; }
+.loginIllustration { position: relative; display: flex; align-items: center; gap: 13px; height: 92px; margin-top: 34px; }
+.illustrationMark { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 20px; background: white; color: #1b222e; font-weight: 900; font-size: 26px; box-shadow: 0 16px 32px #101a324d; transform: rotate(-6deg); }
+.illustrationMark span { color: #c23e4c; margin-left: -5px; }
+.illustrationLine { width: 76px; border-top: 2px dashed #c9d5e4; }
+.illustrationDot { width: 35px; height: 35px; background: #f2b675; border: 6px solid #ffffff20; border-radius: 50%; box-shadow: 0 0 0 1px #ffffff64; }
+.illustrationDot:last-child { width: 20px; height: 20px; background: #a4d7ca; border-width: 3px; }
+.loginTrust { display: inline-flex; align-items: center; gap: 9px; color: #cddce9; font-size: 14px; margin-top: 18px; }
+.loginTrust::before { content: "✓"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #1b222e; background: #a4d7ca; font-weight: 900; }
+.loginCard.card { border: 0; border-radius: 0; box-shadow: none; margin: 0; padding: clamp(30px, 5vw, 62px); display: flex; flex-direction: column; justify-content: center; }
+.loginStep { color: #af3d4d; margin-bottom: 12px; }
+.loginCard h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 24px; }
+.loginCard form { gap: 16px; }
+.loginCard form p { color: #596270; }
+.loginCard .primary { display: flex; align-items: center; justify-content: center; gap: 12px; background: #b93449; border-color: #b93449; }
+.loginCard .primary:hover { background: #99293b; }
+.loginCard small a { color: #354b65; text-decoration: underline; }
+.dashboardHero { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, .85fr); gap: 30px; align-items: center; padding: clamp(30px, 4vw, 50px); margin-bottom: 18px; border-radius: 26px; color: white; background: radial-gradient(circle at 93% -24%, #49627c 0, transparent 38%), linear-gradient(125deg, #1b222e, #263c54); }
+.dashboardHero::after { content: ""; position: absolute; width: 430px; height: 430px; right: -130px; bottom: -330px; border: 1px solid #ffffff25; border-radius: 50%; pointer-events: none; }
+.heroEyebrow { color: #c8d9e7; }
+.heroCopy h1 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; margin: 12px 0; letter-spacing: -.025em; }
+.heroCopy p { color: #e4edf4; font-size: 17px; margin: 0 0 25px; }
+.heroActions { display: flex; flex-wrap: wrap; gap: 10px; }
+.heroActions a { min-height: 48px; padding: 11px 18px; border-radius: 10px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 13px; }
+.heroPrimary { background: #fff; color: #1b222e; }
+.heroPrimary:hover { background: #eaf0f5; }
+.heroSecondary { border: 1px solid #ffffff91; color: white; }
+.heroSecondary:hover { background: #ffffff20; }
+.heroAppointment { position: relative; z-index: 1; display: grid; gap: 8px; padding: 24px; min-height: 180px; border-radius: 18px; background: #ffffff13; border: 1px solid #ffffff35; backdrop-filter: blur(8px); }
+.heroAppointment svg { width: 27px; height: 27px; color: #f3bd87; }
+.heroAppointment > span { color: #d3e1ed; letter-spacing: .1em; font-size: 11px; font-weight: 800; }
+.heroAppointment strong { font-size: 24px; line-height: 1.2; }
+.heroAppointment small { color: #e5edf4; }
+.quickActions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 26px; }
+.quickActions a { display: flex; align-items: center; gap: 14px; min-height: 94px; padding: 16px; border-radius: 16px; border: 1px solid #dce0e5; background: #fff; box-shadow: 0 9px 22px -19px #15253e; color: #1b222e; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.quickActions a:hover { transform: translateY(-2px); box-shadow: 0 15px 26px -19px #15253e; }
+.quickActions a > span:nth-child(2) { display: grid; gap: 4px; min-width: 0; }
+.quickActions a > span:last-child { margin-left: auto; color: #b93449; font-size: 20px; }
+.quickActions small { color: #596270; }
+.quickIcon { display: grid; place-items: center; flex: none; width: 45px; height: 45px; border-radius: 13px; color: #294963; background: #e8f0f6; }
+.quickActions a:nth-child(2) .quickIcon { background: #e9f4ef; color: #2d6856; }
+.quickActions a:nth-child(3) .quickIcon { background: #fdf0e8; color: #9c5141; }
+.quickIcon svg, .sectionHeading svg { width: 23px; height: 23px; flex: none; }
+.workspaceGrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr); gap: 20px; align-items: start; }
+.workspaceGrid > * { min-width: 0; }
+.anchorSection, #nachrichten, #dokument-senden, #meine-dokumente { scroll-margin-top: 24px; }
+.planCard { background: #edf3f6; border-color: #d4e1e9; box-shadow: none; }
+.planCard h2 { font-size: 21px; }
+.planCard .sectionHeading svg { color: #345a72; }
+.planLabel { color: #526a78; margin: 10px 0 5px; }
+.planCard .planGoal { margin: 0 0 12px; font-size: 17px; font-weight: 700; line-height: 1.4; }
+.planNote { padding: 12px; background: #fff5e7; border-radius: 10px; font-size: 14px; }
+.uploadCard { background: #fbfaf7; }
+.uploadPick { display: grid; justify-items: center; gap: 9px; width: 100%; border: 2px dashed #9ab0be; border-radius: 15px; padding: 30px 18px; background: #f2f7fa; color: #1b222e; cursor: pointer; font: inherit; text-align: center; }
+.uploadPick:hover { background: #e8f2f7; border-color: #45677d; }
+.uploadPick svg { width: 29px; height: 29px; color: #345a72; }
+.uploadPick small { font-weight: 400; }
+.portal a:focus-visible, .portal button:focus-visible, .portal summary:focus-visible { outline: 3px solid #b93449; outline-offset: 3px; }
+@media (max-width: 900px) { .dashboardHero { grid-template-columns: 1fr; } .heroAppointment { min-height: 0; } .workspaceGrid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginIllustration { height: 62px; margin-top: 20px; } .illustrationMark { width: 50px; height: 50px; font-size: 20px; } .loginTrust { margin-top: 10px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .heroActions a { width: 100%; justify-content: center; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
+@media (prefers-reduced-motion: reduce) { .quickActions a { transition: none; } }
+

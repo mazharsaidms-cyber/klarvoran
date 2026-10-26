@@ -51,6 +51,8 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [resendAt, setResendAt] = useState(0);
+  const activeCase = me?.cases.find(item => item.id === selected);
+  const caseDocuments = documents.filter(item => item.participantId === selected);
 
   useEffect(() => {
     if (!configured) return;
@@ -172,27 +174,50 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   }
 
   return <section className={styles.portal} aria-label="KlarVoran Coachbereich">
-    <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Coachbereich</p><h1>{phase === "cases" ? "Dein Arbeitsbereich" : "Als Coach anmelden"}</h1>
-      <p>{phase === "cases" ? "Wähle eine Akte. Die wichtigsten Arbeitsbereiche findest du direkt darunter." : "Nutze deine freigegebene E-Mail-Adresse und den Code aus der Nachricht."}</p></header>
     {phase === "cases" && me?.operatingMode === "test" && <div className={styles.testNotice}>Testbetrieb: Bitte ausschließlich erfundene Angaben und Testdokumente verwenden.</div>}
     {!configured && <p className={styles.error} role="alert">Der E-Mail-Zugang ist noch nicht eingerichtet. Bitte wende dich an KlarVoran.</p>}
     {error && <p className={styles.error} role="alert">{error}</p>}
     {notice && <p className={styles.notice} role="status">{notice}</p>}
-    {phase === "loading" && <section className={styles.card}><p>Dein Zugang wird geprüft …</p></section>}
-    {phase === "email" && <section className={styles.card}><h2>1 · E-Mail-Adresse</h2><form onSubmit={requestCode}>
-      <label htmlFor="coach-email">Deine freigegebene E-Mail-Adresse</label><input id="coach-email" type="email" required autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} />
-      <button className={styles.primary} disabled={!configured || !!busy}>Code anfordern</button></form></section>}
-    {phase === "code" && <section className={styles.card}><h2>2 · Bestätigungscode</h2><p>Der sechsstellige Code ist fünf Minuten gültig.</p><form onSubmit={signIn}>
-      <label htmlFor="coach-code">Code aus der E-Mail</label><input id="coach-code" className={styles.codeInput} type="text" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} required autoComplete="one-time-code" value={code} onChange={event => setCode(event.target.value.replace(/\D/g, ""))} />
-      <button className={styles.primary} disabled={!!busy}>Anmelden</button></form><button className={styles.linkButton} onClick={() => setPhase("email")}>E-Mail-Adresse ändern</button></section>}
+    {phase === "loading" ? <p role="status">Dein Zugang wird geprüft …</p> : phase !== "cases" ? <div className={styles.loginGrid}>
+      <div className={styles.loginIntro}>
+        <span className={styles.loginTag}>DEIN COACHBEREICH</span>
+        <h1>Deine Fälle. Deine nächsten Schritte.</h1>
+        <p>Eine Akte auswählen und direkt zu Unterlagen, Nachrichten oder Terminen gehen.</p>
+        <div className={styles.coachPreview} aria-hidden="true">
+          <div className={styles.coachPreviewTop}><span><VisualIcon name="quality" /> KlarVoran</span><span>Coach</span></div>
+          <div className={styles.coachPreviewCase}><span className={styles.coachPreviewAvatar}><VisualIcon name="social" /></span><span><strong>Ausgewählte Akte</strong><small>Alles an einem Ort</small></span><span className={styles.coachPreviewDot} /></div>
+          <div className={styles.coachPreviewTiles}><span><VisualIcon name="document" /> Unterlagen</span><span><VisualIcon name="conversation" /> Nachrichten</span><span><VisualIcon name="calendar" /> Termine</span></div>
+        </div>
+        <span className={styles.loginTrust}>Nur für freigegebene Coaches</span>
+      </div>
+      <section className={`${styles.card} ${styles.loginCard}`} aria-labelledby="coach-login-title">
+        <span className={styles.loginStep}>SCHRITT {phase === "code" ? "2" : "1"} / 2</span>
+        <h2 id="coach-login-title">{phase === "code" ? "Code eingeben" : "Jetzt anmelden"}</h2>
+        {phase === "email" ? <form onSubmit={requestCode}>
+          <p>Gib die E-Mail-Adresse aus deiner Einladung ein.</p>
+          <label htmlFor="coach-email">Deine E-Mail-Adresse</label><input id="coach-email" type="email" required autoComplete="email" inputMode="email" maxLength={254} disabled={!!busy || !configured} value={email} onChange={event => setEmail(event.target.value)} />
+          <button className={styles.primary} disabled={!configured || !!busy}>{busy === "send" ? "Code wird gesendet …" : "Code anfordern →"}</button>
+          <small>Ohne Passwort · Zugang nur mit Einladung</small>
+        </form> : <form onSubmit={signIn}>
+          <p>Gib den sechsstelligen Code aus der E-Mail an <strong>{email.trim()}</strong> ein. Er gilt fünf Minuten.</p>
+          <label htmlFor="coach-code">Bestätigungscode</label><input id="coach-code" className={styles.codeInput} type="text" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} required autoComplete="one-time-code" value={code} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} />
+          <button className={styles.primary} disabled={!!busy || code.length !== 6}>{busy === "login" ? "Anmeldung läuft …" : "Coachbereich öffnen →"}</button>
+          <button type="button" className={styles.linkButton} disabled={!!busy} onClick={() => { setPhase("email"); setCode(""); setError(""); setNotice(""); }}>E-Mail-Adresse ändern</button>
+        </form>}
+      </section>
+    </div> : null}
     {phase === "cases" && me && <>
       <div className={styles.toolbar}><strong>Angemeldet: {me.user.displayName}</strong><div><button className={styles.secondary} disabled={!!busy} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={!!busy} onClick={() => void logout()}>Abmelden</button></div></div>
-      <section className={styles.card}><h2>Akte wählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => { setSchedule(null); setSelected(event.target.value); }}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
+      <div className={styles.dashboardHero}>
+        <div className={styles.heroCopy}><span className={styles.heroEyebrow}>DEIN ARBEITSBEREICH</span><h1>{activeCase ? activeCase.name : "Deine Akten im Blick"}</h1><p>{activeCase ? "Wähle unten, was du für diesen Fall erledigen möchtest." : "Wähle eine Akte, sobald sie dir zugewiesen wurde."}</p></div>
+        <div className={styles.heroAppointment}><VisualIcon name="signpost" /><span>NÄCHSTER SCHRITT</span><strong>{activeCase ? !schedule || schedule.participantId !== selected ? "Stand wird geladen" : schedule.startReady ? "Coaching begleiten" : "Start prüfen" : "Akte auswählen"}</strong><small>{activeCase ? !schedule || schedule.participantId !== selected ? "Die Angaben zur Akte werden abgerufen." : schedule.startReady ? `${schedule.appointments.length} Termine · ${caseDocuments.length} Dateien` : "Startnachweise und Coachingplan ansehen" : "Deine zugewiesenen Fälle erscheinen hier."}</small></div>
+      </div>
+      {me.cases.length === 0 ? <p className={styles.card}>Dir ist derzeit keine Akte zugewiesen.</p> : <section className={styles.card}><h2>Akte wählen</h2><label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => { setSchedule(null); setSelected(event.target.value); }}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label></section>}
       {selected && <nav className={styles.coachNav} aria-label="Direkt zum Arbeitsbereich">
-        <a href="#coach-unterlagen"><VisualIcon name="document" /><span>Unterlagen</span></a>
-        <a href="#coach-nachrichten"><VisualIcon name="conversation" /><span>Nachrichten</span></a>
-        <a href="#coach-termine"><VisualIcon name="calendar" /><span>Termine &amp; Notizen</span></a>
-        <a href="#coach-dateien"><VisualIcon name="laptop" /><span>Dateien</span></a>
+        <a href="#coach-unterlagen"><span className={styles.quickIcon}><VisualIcon name="document" /></span><span><strong>Unterlagen</strong><small>Prüfen &amp; bestätigen</small></span><span aria-hidden="true">→</span></a>
+        <a href="#coach-nachrichten"><span className={styles.quickIcon}><VisualIcon name="conversation" /></span><span><strong>Nachrichten</strong><small>Im Austausch bleiben</small></span><span aria-hidden="true">→</span></a>
+        <a href="#coach-termine"><span className={styles.quickIcon}><VisualIcon name="calendar" /></span><span><strong>Termine</strong><small>Sitzungen dokumentieren</small></span><span aria-hidden="true">→</span></a>
+        <a href="#coach-dateien"><span className={styles.quickIcon}><VisualIcon name="laptop" /></span><span><strong>Dateien</strong><small>Hochladen &amp; ansehen</small></span><span aria-hidden="true">→</span></a>
       </nav>}
       {selected && <div id="coach-unterlagen" className={styles.coachAnchor}><DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} operatingMode={me.operatingMode} /></div>}
       {selected && <div id="coach-nachrichten" className={styles.coachAnchor}><CoachMessages key={`messages-${selected}`} participantId={selected} operatingMode={me.operatingMode} /></div>}

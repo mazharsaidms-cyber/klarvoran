@@ -26,7 +26,7 @@ export type AvgsResult = {
 };
 
 const DISCLAIMER =
-  "Diese Einschätzung ist eine erste Orientierung von KlarVoran und ersetzt keine verbindliche Entscheidung deines Jobcenters oder deiner Agentur für Arbeit.";
+  "Erste Orientierung, keine verbindliche Zusage. Über den AVGS entscheidet dein Jobcenter oder deine Agentur für Arbeit.";
 
 /**
  * Regelbasierte, bewusst vorsichtige Einschätzung – keine Rechtsberatung und keine
@@ -35,22 +35,22 @@ const DISCLAIMER =
 export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
   const concernNote =
     answers.anliegen === "anderes"
-      ? "Dein konkretes Anliegen ordnen wir im Erstgespräch gemeinsam ein."
-      : `Dein ausgewähltes Thema „${avgsAnliegenLabels[answers.anliegen]}“ gehört zu den Punkten, die wir im Erstgespräch auf die Passung zur Maßnahme prüfen.`;
+      ? "Dein Anliegen klären wir im Erstgespräch."
+      : `Dein Thema: ${avgsAnliegenLabels[answers.anliegen]}. Ob unser Coaching passt, klären wir im Erstgespräch.`;
 
   const formNote =
     answers.form === "praesenz_kriftel"
       ? "Präsenztermine finden nach Bestätigung in der Taunusstraße 52 in Kriftel statt."
       : answers.form === "online"
-        ? "Ob Online-Coaching zu den Vorgaben deines AVGS passt, klären wir im Erstgespräch."
+        ? "Ob Online-Coaching zum AVGS passt, klären wir im Erstgespräch."
         : answers.form === "hybrid"
-          ? "Ob eine Kombination aus Präsenz- und Online-Terminen zu den Vorgaben deines AVGS passt, klären wir im Erstgespräch."
-          : "Die passende Form (Präsenz, online oder hybrid) klären wir gemeinsam im Erstgespräch.";
+          ? "Ob Präsenz und Online zum AVGS passen, klären wir im Erstgespräch."
+          : "Präsenz, online oder hybrid? Das klären wir im Gespräch.";
 
   if (answers.status === "hat_avgs") {
     return {
       headline: "Du hast bereits einen AVGS – sehr gut.",
-      message: `Das ist ein erster Schritt. Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. ${concernNote} Die Teilnahme muss vor Beginn schriftlich bewilligt werden. ${formNote}`,
+      message: `Im kostenlosen Erstgespräch prüfen wir, ob dein Gutschein gültig ist und zu unserer Maßnahme passt. ${concernNote} Vor dem Coaching brauchst du eine schriftliche Bewilligung. ${formNote}`,
       primaryCtaLabel: "Erstgespräch anfragen",
       primaryCtaHref: "/termin",
       secondaryCtaLabel: "Direkt per WhatsApp schreiben",
@@ -62,14 +62,14 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
   if (answers.status === "moechte_beantragen") {
     const traegerNote =
       answers.traeger === "jobcenter"
-        ? "Sprich dein Anliegen bei deiner nächsten Beratung im Jobcenter aktiv an."
+        ? "Sprich dein Anliegen beim nächsten Termin im Jobcenter an."
         : answers.traeger === "arbeitsagentur"
-          ? "Sprich dein Anliegen bei deiner nächsten Beratung in der Agentur für Arbeit aktiv an."
-          : "Kläre zunächst, ob Jobcenter oder Agentur für Arbeit für dich zuständig ist – wir helfen dir dabei.";
+          ? "Sprich dein Anliegen beim nächsten Termin in der Agentur für Arbeit an."
+          : "Welche Stelle ist zuständig? Das klären wir gemeinsam.";
 
     return {
       headline: "Einen AVGS kannst du aktiv beantragen.",
-      message: `${traegerNote} ${concernNote} Wir erklären dir im kostenlosen Erstgespräch die nächsten Schritte zur Beantragung. ${formNote}`,
+      message: `${traegerNote} ${concernNote} Im kostenlosen Erstgespräch helfen wir beim nächsten Schritt. ${formNote}`,
       primaryCtaLabel: "AVGS-Leitfaden ansehen",
       primaryCtaHref: "/avgs#leitfaden",
       secondaryCtaLabel: "Erstgespräch anfragen",
@@ -80,7 +80,7 @@ export function evaluateAvgsCheck(answers: AvgsAnswers): AvgsResult {
 
   return {
     headline: "Kein Problem – das klären wir gemeinsam.",
-    message: `Ob und wie du einen AVGS bekommst, muss nicht vorab feststehen. ${concernNote} Im kostenlosen, unverbindlichen Erstgespräch schauen wir uns deine Situation an und sagen dir ehrlich, ob und wie wir dich unterstützen können. ${formNote}`,
+    message: `Du brauchst noch keinen Gutschein für das kostenlose Erstgespräch. ${concernNote} ${formNote}`,
     primaryCtaLabel: "Erstgespräch anfragen",
     primaryCtaHref: "/termin",
     secondaryCtaLabel: "Direkt per WhatsApp schreiben",

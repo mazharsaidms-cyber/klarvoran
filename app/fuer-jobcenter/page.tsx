@@ -43,7 +43,7 @@ export default function FuerJobcenterPage() {
           <ContextGraphic
             variant="application"
             title="Bewerbungsunterlagen, passende Maßnahme und klare Abstimmung"
-            className="hidden lg:block"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
           />
         </div>
       </Section>
@@ -141,7 +141,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow>Ablauf & Durchführung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von der Gutscheinprüfung bis zum Abschluss</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -179,7 +179,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="white">
         <Eyebrow>Zulassung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AZAV-Zulassung &amp; Zertifizierung</h2>
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">

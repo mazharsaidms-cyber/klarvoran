@@ -55,7 +55,7 @@ export default function FuerKommunenPage() {
           <ContextGraphic
             variant="workshop"
             title="Abgegrenzte Workshopbausteine mit vereinbarten Zielen und Ergebnissen"
-            className="hidden lg:block"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
           />
         </div>
       </Section>

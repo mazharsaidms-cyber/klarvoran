@@ -92,12 +92,7 @@
 .loginTag { color: #cddce9; }
 .loginIntro h1 { max-width: 560px; font-size: clamp(34px, 4.3vw, 52px); line-height: 1.07; letter-spacing: -.035em; margin: 45px 0 22px; }
 .loginIntro p { max-width: 390px; font-size: 18px; line-height: 1.5; color: #d9e2ea; }
-.loginIllustration { position: relative; display: flex; align-items: center; gap: 13px; height: 92px; margin-top: 34px; }
-.illustrationMark { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 20px; background: white; color: #1b222e; font-weight: 900; font-size: 26px; box-shadow: 0 16px 32px #101a324d; transform: rotate(-6deg); }
-.illustrationMark span { color: #c23e4c; margin-left: -5px; }
-.illustrationLine { width: 76px; border-top: 2px dashed #c9d5e4; }
-.illustrationDot { width: 35px; height: 35px; background: #f2b675; border: 6px solid #ffffff20; border-radius: 50%; box-shadow: 0 0 0 1px #ffffff64; }
-.illustrationDot:last-child { width: 20px; height: 20px; background: #a4d7ca; border-width: 3px; }
+.loginPreview { width: min(100%, 480px); margin-top: 24px; }
 .loginTrust { display: inline-flex; align-items: center; gap: 9px; color: #cddce9; font-size: 14px; margin-top: 18px; }
 .loginTrust::before { content: "✓"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #1b222e; background: #a4d7ca; font-weight: 900; }
 .loginCard.card { border: 0; border-radius: 0; box-shadow: none; margin: 0; padding: clamp(30px, 5vw, 62px); display: flex; flex-direction: column; justify-content: center; }
@@ -150,7 +145,7 @@
 .uploadPick small { font-weight: 400; }
 .portal a:focus-visible, .portal button:focus-visible, .portal summary:focus-visible { outline: 3px solid #b93449; outline-offset: 3px; }
 @media (max-width: 900px) { .dashboardHero { grid-template-columns: 1fr; } .heroAppointment { min-height: 0; } .workspaceGrid { grid-template-columns: 1fr; } }
-@media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginIllustration { height: 62px; margin-top: 20px; } .illustrationMark { width: 50px; height: 50px; font-size: 20px; } .loginTrust { margin-top: 10px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .heroActions a { width: 100%; justify-content: center; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
+@media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginPreview { margin-top: 20px; } .loginTrust { margin-top: 12px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .heroActions a { width: 100%; justify-content: center; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
 @media (prefers-reduced-motion: reduce) { .quickActions a { transition: none; } }
 .help { max-width: none; border: 1px solid #dce0e5; border-radius: 16px; padding: 18px 22px; background: #fff; margin: 0 0 28px; color: #1b222e; }
 .helpMain { display: flex; align-items: center; gap: 16px; }

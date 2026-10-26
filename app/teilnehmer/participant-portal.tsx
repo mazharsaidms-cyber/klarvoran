@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./participant.module.css";
 import { PARTICIPANT_CHUNK_BYTES } from "@/lib/participant-gateway-proof";
 import { zoomMeetingUrlFromMessage } from "@/lib/zoom-link";
+import { ParticipantPreview } from "@/components/ParticipantPreview";
 
 type Me = { user: { displayName: string; participantId: string | null; role: string }; cases: Array<{ id: string; name: string }>;
   capabilities: { upload: boolean }; realDataAllowed: boolean; operatingMode: "test" | "real" };
@@ -214,12 +215,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
         <span className={styles.loginTag}>DEIN PERSÖNLICHER BEREICH</span>
         <h1>Dein Coaching. Dein Überblick.</h1>
         <p>Unterlagen bestätigen, Termine sehen und KlarVoran schreiben.</p>
-        <div className={styles.loginIllustration} aria-hidden="true">
-          <span className={styles.illustrationMark}>K<span>V</span></span>
-          <span className={styles.illustrationLine} />
-          <span className={styles.illustrationDot} />
-          <span className={styles.illustrationDot} />
-        </div>
+        <div className={styles.loginPreview}><ParticipantPreview /></div>
         <span className={styles.loginTrust}>Nur mit deiner Einladung zugänglich</span>
       </div>
       <section className={`${styles.card} ${styles.loginCard}`} aria-labelledby="login-title"><span className={styles.loginStep}>{phase === "code" ? "SCHRITT 2 / 2" : "SCHRITT 1 / 2"}</span><h2 id="login-title">{phase === "code" ? "Code eingeben" : "Jetzt anmelden"}</h2>

@@ -93,7 +93,7 @@ export default function AvgsPage() {
           <ContextGraphic
             variant="application"
             title="Bewerbungsunterlagen gemeinsam sichten und den nächsten Schritt planen"
-            className="hidden lg:block"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
           />
         </div>
       </Section>
@@ -218,7 +218,7 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="tint" spacing="compact" id="ort">
+      <Section tone="white" spacing="compact" id="ort">
         <Eyebrow>In deiner Nähe</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
           Jobcoaching für Hofheim, Kriftel und Frankfurt-West
@@ -235,7 +235,7 @@ export default function AvgsPage() {
         </p>
       </Section>
 
-      <Section tone="white" id="leitfaden">
+      <Section tone="tint" id="leitfaden">
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
@@ -254,7 +254,7 @@ export default function AvgsPage() {
 
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt
           die Seite für Teilnehmende verständlich und zugleich transparent. */}
-      <Section tone="tint" spacing="compact">
+      <Section tone="white" spacing="compact">
         <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zugelassenes Coaching – transparent nachgewiesen</h2>
         <div className="mt-6 max-w-xl">
@@ -277,7 +277,7 @@ export default function AvgsPage() {
         </p>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow tone="navy">FAQ</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Fragen rund um AZAV &amp; AVGS</h2>
         <div className="mt-6">

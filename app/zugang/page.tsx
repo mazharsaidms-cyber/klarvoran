@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ParticipantPreview } from "@/components/ParticipantPreview";
 import { VisualIcon } from "@/components/VisualIcon";
 import styles from "./zugang.module.css";
 
@@ -12,29 +13,37 @@ export const metadata: Metadata = {
 export default function ZugangPage() {
   return (
     <div className={styles.shell}>
-      <div className={styles.heading}>
-        <p className={styles.eyebrow}>KlarVoran · Persönlicher Zugang</p>
-        <h1>Deine Akte direkt öffnen</h1>
-        <p>Wähle deinen Bereich. Die Anmeldung erfolgt mit der E-Mail-Adresse, die KlarVoran für dich freigegeben hat, und einem einmaligen Code.</p>
-      </div>
-      <div className={styles.grid}>
-        <section className={styles.card}>
-          <span className={styles.icon}><VisualIcon name="document" /></span>
-          <span className={styles.tag}>Für Teilnehmende</span>
-          <h2>Mein Teilnehmerbereich</h2>
-          <p>Deine Termine, freigegebenen Unterlagen, Bestätigungen und Nachrichten an KlarVoran.</p>
-          <Link href="/teilnehmer" className={styles.action}>Teilnehmerzugang öffnen</Link>
-          <Link href="/teilnehmer/installieren" className={styles.installLink}>Auf dem Handy einrichten</Link>
-        </section>
-        <section className={styles.card}>
-          <span className={styles.icon}><VisualIcon name="quality" /></span>
-          <span className={styles.tag}>Für Coaches</span>
-          <h2>Mein Coachbereich</h2>
-          <p>Deine zugewiesenen Fälle, Sitzungen, Unterlagen und Nachrichten.</p>
-          <Link href="/coach" className={styles.action}>Coachzugang öffnen</Link>
-        </section>
-      </div>
-      <p className={styles.help}>Ein Zugang wird zuerst von KlarVoran freigegeben. Das Symbol auf dem Startbildschirm ersetzt diese persönliche Anmeldung nicht.</p>
+      <section className={styles.hero} aria-labelledby="zugang-title">
+        <div className={styles.intro}>
+          <span className={styles.eyebrow}>KlarVoran · Persönlicher Zugang</span>
+          <h1 id="zugang-title">Dein Coaching. Dein Bereich.</h1>
+          <p>Du bist bereits bei KlarVoran? Hier findest du Termine, Unterlagen und Nachrichten an einem Ort.</p>
+          <Link href="/teilnehmer" className={styles.action}>Meinen Teilnehmerbereich öffnen <span aria-hidden="true">→</span></Link>
+          <p className={styles.accessNote}><VisualIcon name="quality" />Du brauchst eine Einladung von KlarVoran. Melde dich dann mit deiner E-Mail-Adresse und einem einmaligen Code an.</p>
+        </div>
+        <div className={styles.previewColumn}>
+          <span className={styles.previewLabel}>So ist dein Bereich aufgebaut · grafische Vorschau</span>
+          <ParticipantPreview />
+        </div>
+      </section>
+
+      <section className={styles.guide} aria-labelledby="guide-title">
+        <div>
+          <span className={styles.eyebrow}>Einfach anmelden</span>
+          <h2 id="guide-title">In zwei Schritten zu deiner Akte</h2>
+        </div>
+        <ol className={styles.steps}>
+          <li><span>01</span><div><strong>E-Mail eingeben</strong><p>Nutze die Adresse aus deiner Einladung.</p></div></li>
+          <li><span>02</span><div><strong>Code bestätigen</strong><p>Den Code schicken wir dir per E-Mail.</p></div></li>
+        </ol>
+        <Link href="/teilnehmer/installieren" className={styles.installLink}>Auf dem Handy einrichten <span aria-hidden="true">↗</span></Link>
+      </section>
+
+      <aside className={styles.coach} aria-label="Zugang für Coaches">
+        <span className={styles.coachIcon}><VisualIcon name="quality" /></span>
+        <div><strong>Du arbeitest als Coach mit KlarVoran?</strong><p>Deine zugewiesenen Fälle und Sitzungen findest du im Coachbereich.</p></div>
+        <Link href="/coach">Coachbereich öffnen <span aria-hidden="true">→</span></Link>
+      </aside>
     </div>
   );
 }

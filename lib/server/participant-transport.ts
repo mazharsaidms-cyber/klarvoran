@@ -3,11 +3,13 @@ import { gatewayDigest, gatewayMac, gatewayTargetAllowed, proofText, safeEqual, 
 
 export type ParticipantConfig = { enabled?: string; gatewayKey?: string; backendBearer?: string; resendKey?: string; sender?: string;
   backendOrigin?: string; productionBackendEnabled?: string; realOperationEnabled?: string;
-  betriebBackendEnabled?: string; betriebGatewayKey?: string; betriebBackendBearer?: string };
+  betriebBackendEnabled?: string; betriebGatewayKey?: string; betriebBackendBearer?: string;
+  cleanBackendEnabled?: string; cleanGatewayKey?: string; cleanBackendBearer?: string };
 export const participantOrigin = "https://www.klarvoran.de";
 const backendOrigin = "https://ms-coaching-prototyp.mazhar-said-ms.chatgpt.site";
 const productionBackendOrigin = "https://klarvoran-produktiv-vorbereitung.mazhar-said-ms.chatgpt.site";
 const betriebBackendOrigin = "https://klarvoran-betrieb.mazhar-said-ms.chatgpt.site";
+const cleanBackendOrigin = "https://klarvoran-betrieb-sauber.mazhar-said-ms.chatgpt.site";
 const cookieName = /^(?:__Secure-)?klarvoran-participant\./;
 const privateHeaders = { "cache-control": "private, no-store, max-age=0", "referrer-policy": "no-referrer", "x-content-type-options": "nosniff", "x-frame-options": "DENY" };
 const errorResponse = (status: number, error: string) => Response.json({ error }, { status, headers: privateHeaders });
@@ -16,13 +18,15 @@ function selectedBackend(config: ParticipantConfig) {
   if (!config.backendOrigin || config.backendOrigin === backendOrigin) return backendOrigin;
   if (config.backendOrigin === productionBackendOrigin && config.productionBackendEnabled === "true") return productionBackendOrigin;
   if (config.backendOrigin === betriebBackendOrigin && config.betriebBackendEnabled === "true") return betriebBackendOrigin;
+  if (config.backendOrigin === cleanBackendOrigin && config.cleanBackendEnabled === "true") return cleanBackendOrigin;
   return null;
 }
 
 function selectedSecrets(config: ParticipantConfig) {
-  return selectedBackend(config) === betriebBackendOrigin
-    ? { gatewayKey: config.betriebGatewayKey, backendBearer: config.betriebBackendBearer }
-    : { gatewayKey: config.gatewayKey, backendBearer: config.backendBearer };
+  const selected = selectedBackend(config);
+  if (selected === cleanBackendOrigin) return { gatewayKey: config.cleanGatewayKey, backendBearer: config.cleanBackendBearer };
+  if (selected === betriebBackendOrigin) return { gatewayKey: config.betriebGatewayKey, backendBearer: config.betriebBackendBearer };
+  return { gatewayKey: config.gatewayKey, backendBearer: config.backendBearer };
 }
 
 export function participantConfigured(config: ParticipantConfig) {
@@ -79,7 +83,8 @@ export async function deliverParticipantMail(request: Request, config: Participa
     if (typeof message.email !== "string" || message.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message.email) || !["invitation", "code"].includes(String(message.kind)) ||
         message.kind === "code" && (typeof message.code !== "string" || !/^\d{6}$/.test(message.code)) ||
         message.role !== undefined && !["participant", "coach"].includes(String(message.role))) return errorResponse(400, "Die E-Mail-Angaben sind ungültig.");
-    const real = selectedBackend(config) === productionBackendOrigin && config.realOperationEnabled === "true";
+    const selected = selectedBackend(config);
+    const real = (selected === productionBackendOrigin || selected === cleanBackendOrigin) && config.realOperationEnabled === "true";
     if (message.operatingMode !== undefined && message.operatingMode !== (real ? "real" : "test") || real && message.operatingMode !== "real")
       return errorResponse(409, "Der Betriebsmodus für den E-Mail-Zugang stimmt nicht überein.");
     const loginUrl = message.role === "coach" ? "https://www.klarvoran.de/coach" : "https://www.klarvoran.de/teilnehmer";

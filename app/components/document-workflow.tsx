@@ -26,17 +26,19 @@ export default function DocumentWorkflow({participantId,participant,apiRoot='/ap
   useEffect(()=>{const c=new AbortController();void refresh(c.signal).catch(e=>{if(!c.signal.aborted)setError(errorText(e));});return()=>c.abort();},[refresh]);
   async function reload(){setLoading(true);setError('');try{await refresh();}catch(e){setError(errorText(e));}finally{setLoading(false);}}
   async function update(body:Record<string,unknown>){setError('');setNotice('');await json(`${apiRoot}/document-requests`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});setNotice('Gespeichert. Die Entscheidung bleibt dieser Fassung zugeordnet.');try{await refresh();}catch{setError('Gespeichert, aber die Ansicht konnte nicht aktualisiert werden. Bitte neu laden.');}}
-  const open=data?.requests.filter(r=>!r.actions.length&&!r.sourceIssue).length??0;
+  const open=data?.requests.filter(r=>!r.actions.length).length??0;
+  const pending=data?.requests.filter(r=>!r.actions.length)??[];
+  const completed=data?.requests.filter(r=>r.actions.length)??[];
   return <section className={styles.panel} aria-label="Unterlagen und Unterschriften">
-    <div className={styles.heading}><div><p className={styles.eyebrow}>Gemeinsam dokumentieren</p><h2>{participant?'Lesen & unterschreiben':'Unterlagen & Unterschriften'}</h2></div><button type="button" className={styles.secondary} disabled={loading} onClick={()=>void reload()}>Aktualisieren</button></div>
-    <p>{participant?'Lies die Unterlage vollständig. Danach kannst du antworten oder unterschreiben.':'Geprüfte Unterlage bereitstellen und die Antwort verfolgen.'}</p>
-    <p className={styles.hint}>{operatingMode==='real'?'Freigegebener Betrieb':'Testbetrieb · Nur fiktive Daten'} · Elektronische Bestätigung mit eingegebenem Namen; keine qualifizierte Signatur.</p>
+    <div className={styles.heading}><div><p className={styles.eyebrow}>Gemeinsam dokumentieren</p><h2>{participant?'Für dich zu bestätigen':'Unterlagen & Unterschriften'}</h2></div><button type="button" className={styles.secondary} disabled={loading} onClick={()=>void reload()}>Aktualisieren</button></div>
+    <p>{participant?'Öffne eine Unterlage, lies sie und bestätige sie anschließend.':'Geprüfte Unterlage bereitstellen und die Antwort verfolgen.'}</p>
+    {!participant&&<p className={styles.hint}>{operatingMode==='real'?'Freigegebener Betrieb':'Testbetrieb · Nur fiktive Daten'} · Elektronische Bestätigung mit eingegebenem Namen; keine qualifizierte Signatur.</p>}
     {!participant&&<AuditGuide/>}
     {error&&<p role="alert" className={styles.error}>{error}</p>}{notice&&<p role="status" className={styles.notice}>{notice}</p>}
     {!participant&&data&&<Composer participantId={participantId} participantName={data.participantName} sessions={data.sessions} documents={documents} approvedUe={data.approvedUe} voucherUe={data.voucherUe} onSave={update} operatingMode={operatingMode}/>}
     {!data&&!error&&<p>Unterlagen werden geladen …</p>}
-    {data&&<><p className={styles.count}>{open} offen · {data.requests.length} Unterlagen</p>{!data.requests.length&&<p className={styles.empty}>{participant?'Du hast zurzeit keine Unterlagen zur Unterschrift.':'Noch keine Unterlage bereitgestellt.'}</p>}
-      <div className={styles.list}>{[...data.requests].sort((a,b)=>Number(Boolean(a.actions.length||a.sourceIssue))-Number(Boolean(b.actions.length||b.sourceIssue))).map(item=><RequestCard key={item.id} item={item} participant={participant} apiRoot={apiRoot} onSave={update} operatingMode={operatingMode}/>)}</div></>}
+    {data&&<><p className={styles.count}>{open} offen{!participant?` · ${data.requests.length} Unterlagen`:''}</p>{!data.requests.length&&<p className={styles.empty}>{participant?'Du hast zurzeit keine Unterlagen zur Unterschrift.':'Noch keine Unterlage bereitgestellt.'}</p>}
+      <div className={styles.list}>{(participant?pending:[...data.requests].sort((a,b)=>Number(Boolean(a.actions.length||a.sourceIssue))-Number(Boolean(b.actions.length||b.sourceIssue)))).map(item=><RequestCard key={item.id} item={item} participant={participant} apiRoot={apiRoot} onSave={update} operatingMode={operatingMode}/>)}</div>{participant&&completed.length>0&&<details className={styles.completed}><summary>Erledigte Unterlagen ({completed.length})</summary><div className={styles.list}>{completed.map(item=><RequestCard key={item.id} item={item} participant={participant} apiRoot={apiRoot} onSave={update} operatingMode={operatingMode}/>)}</div></details>}</>}
   </section>;
 }
 function Composer({participantId,participantName,sessions,documents,approvedUe,voucherUe,onSave,operatingMode}:{participantId:string;participantName:string;sessions:Session[];documents:Doc[];approvedUe:number|null;voucherUe:number|null;onSave:(body:Record<string,unknown>)=>Promise<void>;operatingMode:'test'|'real'}){
@@ -96,7 +98,7 @@ function RequestCard({item,participant,apiRoot,onSave,operatingMode}:{item:Item;
       </fieldset>{!pdfReady&&<p>Bitte zuerst die vollständige PDF öffnen und lesen.</p>}</form>}
       {pending&&<details className={styles.alternative}><summary>{participant?'Etwas stimmt nicht? Klärung anfordern':'Offene Unterlage zurückziehen'}</summary><form onSubmit={e=>void submit(e,participant?'decline':'cancel')}><fieldset disabled={busy}><label>{participant?'Was möchtest du klären?':'Grund für das Zurückziehen'}<textarea name="note" required minLength={3} maxLength={1000}/></label><TestCheck operatingMode={operatingMode}/><button className={styles.secondary} type="submit">{participant?'Klärung anfordern – ohne Unterschrift':'Unterlage zurückziehen'}</button></fieldset></form></details>}
       {canWithdraw&&<details className={styles.alternative}><summary>Einwilligung widerrufen</summary><form onSubmit={e=>void submit(e,'withdraw')}><fieldset disabled={busy}><label>Hinweis (freiwillig)<textarea name="note" maxLength={1000}/></label><label className={styles.check}><input name="confirmed" type="checkbox" required/><span>Ich widerrufe diese Einwilligung mit Wirkung für die Zukunft.</span></label><TestCheck operatingMode={operatingMode}/><button className={styles.secondary} type="submit">Widerruf speichern</button></fieldset></form></details>}
-      <small className={styles.hash}>Fassung {item.id}<br/>Prüfsumme {item.snapshotSha256}</small>
+      <details className={styles.technical}><summary>Technische Prüfdaten</summary><small className={styles.hash}>Fassung {item.id}<br/>Prüfsumme {item.snapshotSha256}</small></details>
     </div>}
   </article>;
 }

@@ -125,7 +125,7 @@
 .quickIcon svg, .sectionHeading svg { width: 23px; height: 23px; flex: none; }
 .workspaceGrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr); gap: 20px; align-items: start; }
 .workspaceGrid > * { min-width: 0; }
-.anchorSection, #nachrichten, #dokument-senden, #meine-dokumente { scroll-margin-top: 24px; }
+.anchorSection, #nachrichten, #dokument-senden, #meine-dokumente { scroll-margin-top: 8.5rem; }
 .planCard { background: #edf3f6; border-color: #d4e1e9; box-shadow: none; }
 .planCard h2 { font-size: 21px; }
 .planCard .sectionHeading svg { color: #345a72; }
@@ -157,7 +157,7 @@
 .coachNav a { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 12px; border: 1px solid #d5e0e6; border-radius: 12px; background: #fff; color: #1b222e; font-size: 13px; font-weight: 800; text-decoration: none; }
 .coachNav a:hover, .coachNav a:focus-visible { background: #e9eff3; }
 .coachNav svg { width: 22px; height: 22px; flex: none; color: #a51116; }
-.coachAnchor { scroll-margin-top: 18px; }
+.coachAnchor { scroll-margin-top: 8.5rem; }
 @media (max-width: 720px) { .coachNav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Coach portal: the same visual language as the participant entry, with task-focused cues. */

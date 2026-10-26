@@ -152,4 +152,15 @@
 @media (max-width: 900px) { .dashboardHero { grid-template-columns: 1fr; } .heroAppointment { min-height: 0; } .workspaceGrid { grid-template-columns: 1fr; } }
 @media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginIllustration { height: 62px; margin-top: 20px; } .illustrationMark { width: 50px; height: 50px; font-size: 20px; } .loginTrust { margin-top: 10px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .heroActions a { width: 100%; justify-content: center; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
 @media (prefers-reduced-motion: reduce) { .quickActions a { transition: none; } }
+.help { max-width: none; border: 1px solid #dce0e5; border-radius: 16px; padding: 18px 22px; background: #fff; margin: 0 0 28px; color: #1b222e; }
+.helpMain { display: flex; align-items: center; gap: 16px; }
+.helpSymbol { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; flex: none; font-weight: 900; color: #294963; background: #e8f0f6; }
+.helpMain > div { flex: 1; }
+.helpMain p { color: #596270; margin: 2px 0 0; }
+.help .helpCall { display: inline-flex; align-items: center; gap: 12px; padding: 11px 16px; border-radius: 10px; text-decoration: none; background: #edf3f6; color: #294963; white-space: nowrap; }
+.help .helpCall:hover { background: #dcebf3; }
+.helpDetails { border-top: 1px solid #e6e9ed; margin-top: 15px; padding-top: 10px; color: #596270; font-size: 14px; }
+.helpDetails summary { cursor: pointer; font-weight: 700; }
+.helpDetails p { margin: 8px 0; }
+@media (max-width: 720px) { .helpMain { align-items: flex-start; flex-wrap: wrap; } .helpCall { margin-left: 60px; } }
 

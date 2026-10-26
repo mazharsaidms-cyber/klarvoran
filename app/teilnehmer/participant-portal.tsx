@@ -212,7 +212,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     {phase === "loading" ? <p role="status">Dein Zugang wird geprüft …</p> : phase !== "case" ? <div className={styles.loginGrid}>
       <div className={styles.loginIntro}>
         <span className={styles.loginTag}>DEIN PERSÖNLICHER BEREICH</span>
-        <h1>Alles für dein Coaching. An einem Ort.</h1>
+        <h1>Dein Coaching. Dein Überblick.</h1>
         <p>Unterlagen bestätigen, Termine sehen und KlarVoran schreiben.</p>
         <div className={styles.loginIllustration} aria-hidden="true">
           <span className={styles.illustrationMark}>K<span>V</span></span>
@@ -273,7 +273,7 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
       </div>
       <section id="meine-dokumente" className={styles.card} aria-labelledby="documents-title"><div className={styles.documentHeading}><h2 id="documents-title" className={styles.sectionHeading}><PortalGlyph kind="folder" />Deine Dokumente</h2><span>{documents.length}</span></div>{documents.length === 0 ? <p>Hier erscheinen deine Dateien und freigegebenen Unterlagen.</p> : <ul className={styles.documents}>{documents.map(document => <li key={document.id}><div className={styles.documentHeading}><div><strong>{document.title}</strong><p>{formatDate(document.createdAt)} · {statusLabel(document.status)}</p></div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void download(document)}>{busy === `download:${document.id}` ? "Wird geöffnet …" : "Datei herunterladen"}</button></div>{document.replies?.length > 0 && <div className={styles.reply}><strong>Antwort von KlarVoran</strong>{document.replies.map(reply => <div key={reply.id}><small>{formatDate(reply.createdAt)} · zum Dokumentstand {reply.documentVersion}</small><p>{reply.body}</p></div>)}</div>}{document.extraction?.status === "reviewed" && document.extraction.data ? <div className={styles.hints}><strong>Geprüfte Hinweise</strong>{document.extraction.data.subject && <p>{document.extraction.data.subject}</p>}{document.extraction.data.deadline && <p>Frist: <strong>{document.extraction.data.deadline}</strong></p>}{document.extraction.data.requestedAction && <p>Nächster Schritt: {document.extraction.data.requestedAction}</p>}{document.extraction.data.warnings?.map((warning, index) => <p key={index}>{warning}</p>)}</div> : !document.replies?.length && <p className={styles.muted}>Noch keine Antwort. Bei dringender Frist bitte direkt melden.</p>}</li>)}</ul>}</section>
     </>}
-    <aside className={styles.help}><strong>Du brauchst Unterstützung?</strong><p>Wir helfen dir Schritt für Schritt. <a href="tel:+491779548140">0177 9548140 anrufen</a></p><p>Halte deinen Bestätigungscode geheim. Melde dich auf gemeinsam genutzten Geräten nach dem Hochladen ab.</p><a href="/teilnehmer/datenschutz">Datenschutz im Teilnehmerbereich</a></aside>
+    <aside className={styles.help}><div className={styles.helpMain}><span className={styles.helpSymbol} aria-hidden="true">?</span><div><strong>Du brauchst Unterstützung?</strong><p>Ruf KlarVoran an. Wir helfen dir beim nächsten Schritt.</p></div><a className={styles.helpCall} href="tel:+491779548140">Jetzt anrufen <span aria-hidden="true">→</span></a></div><details className={styles.helpDetails}><summary>Sicherheit & Datenschutz</summary><p>Halte deinen Bestätigungscode geheim und melde dich auf gemeinsam genutzten Geräten ab.</p><a href="/teilnehmer/datenschutz">Datenschutz im Teilnehmerbereich</a></details></aside>
   </section>;
 }
 

@@ -10,5 +10,8 @@ export function participantConfig(): ParticipantConfig {
     realOperationEnabled: process.env.PORTAL_REAL_OPERATION_ENABLED,
     betriebBackendEnabled: process.env.PORTAL_BETRIEB_BACKEND_ENABLED,
     betriebGatewayKey: process.env.PORTAL_BETRIEB_GATEWAY_KEY,
-    betriebBackendBearer: process.env.PORTAL_BETRIEB_BACKEND_BEARER };
+    betriebBackendBearer: process.env.PORTAL_BETRIEB_BACKEND_BEARER,
+    cleanBackendEnabled: process.env.PORTAL_CLEAN_BACKEND_ENABLED,
+    cleanGatewayKey: process.env.PORTAL_CLEAN_GATEWAY_KEY,
+    cleanBackendBearer: process.env.PORTAL_CLEAN_BACKEND_BEARER };
 }

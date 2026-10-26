@@ -205,30 +205,32 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
   const ownCase = me?.cases.find(item => item.id === me.user.participantId);
   const waiting = pending.filter(item => !item.receipt).length;
   return <section className={styles.portal} aria-label="Dein KlarVoran-Teilnehmerbereich">
-    <div className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Dein Teilnehmerbereich</p><h1>{phase === "case" ? "Deine persönliche Akte" : "Einfach zu deiner Akte"}</h1><p>{phase === "case" ? `Hallo ${me?.user.displayName || ""}. Hier findest du deine Unterlagen und Termine.` : "Mit deiner E-Mail-Adresse und einem Code anmelden."}</p></div>
+    <div className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Dein Teilnehmerbereich</p><h1>{phase === "case" ? "Deine persönliche Akte" : "Einfach zu deiner Akte"}</h1><p>{phase === "case" ? `Hallo ${me?.user.displayName || ""}. Hier siehst du, was als Nächstes ansteht.` : "Mit deiner E-Mail-Adresse und einem Code anmelden."}</p></div>
     {phase === "case" && me?.operatingMode === "test" && <div className={styles.testNotice}><strong>Wir testen noch.</strong> Bitte verwende ausschließlich erfundene Angaben und Testdokumente. Echte Behördenbriefe bitte noch nicht hochladen.</div>}
     {phase !== "case" && <div className={styles.testNotice}>Dein Zugang wird vorher von KlarVoran freigegeben.</div>}
     {!configured && <div className={styles.notice} role="status">Der Teilnehmerzugang wird noch eingerichtet. KlarVoran informiert dich, sobald du deine Einladung nutzen kannst.</div>}
     {error && <p className={styles.error} role="alert">{error}</p>}
     {notice && <p className={styles.notice} role="status">{notice}</p>}
     {phase === "loading" ? <p role="status">Dein Zugang wird geprüft …</p> : phase !== "case" ? <div className={styles.loginGrid}>
-      <section className={styles.card} aria-labelledby="login-title"><p className={styles.step}>{phase === "code" ? "Schritt 2 von 3" : "Schritt 1 von 3"}</p><h2 id="login-title">{phase === "code" ? "Code eingeben" : "Mit E-Mail anmelden"}</h2>
+      <section className={styles.card} aria-labelledby="login-title"><h2 id="login-title">{phase === "code" ? "Code eingeben" : "Mit E-Mail anmelden"}</h2>
         {phase === "code" ? <form onSubmit={event => void signIn(event)}><p>Gib den sechsstelligen Code aus der E-Mail an <strong>{email.trim()}</strong> ein. Er gilt fünf Minuten.</p><label htmlFor="participant-code">Bestätigungscode</label><input ref={codeInput} id="participant-code" name="code" value={code} onChange={event => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))} inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" maxLength={6} required className={styles.codeInput} /><button className={styles.primary} disabled={Boolean(busy) || code.length !== 6}>{busy === "sign-in" ? "Anmeldung läuft …" : "Meine Akte öffnen"}</button><div className={styles.inlineActions}><button className={styles.linkButton} type="button" disabled={Boolean(busy)} onClick={() => void requestCode()}>Code erneut senden</button><button className={styles.linkButton} type="button" disabled={Boolean(busy)} onClick={() => { setPhase("email"); setCode(""); setError(""); setNotice(""); setResendAt(0); }}>E-Mail ändern</button></div></form>
           : <form onSubmit={event => void requestCode(event)}><p>Nutze die E-Mail-Adresse, mit der du eingeladen wurdest.</p><p>Vor der Eingabe: <a href="/teilnehmer/datenschutz">Datenschutzinformation für Teilnehmende (Testentwurf)</a></p><label htmlFor="participant-email">Deine E-Mail-Adresse</label><input id="participant-email" name="email" type="email" autoComplete="email" inputMode="email" value={email} onChange={event => setEmail(event.target.value)} maxLength={254} required disabled={Boolean(busy) || !configured} /><button className={styles.primary} disabled={Boolean(busy) || !configured}>{busy === "code-send" ? "Code wird angefordert …" : "Code per E-Mail erhalten"}</button><small>Kein Passwort. Kein ChatGPT-Konto nötig.</small></form>}
-      </section><aside className={styles.card}><h2>In drei Schritten</h2><ol className={styles.steps}><li><span>1</span><div><strong>E-Mail eingeben</strong></div></li><li><span>2</span><div><strong>Code aus der E-Mail eingeben</strong></div></li><li><span>3</span><div><strong>Akte öffnen</strong></div></li></ol></aside>
+      </section>
     </div> : <>
       <div className={styles.toolbar}><span><strong>{ownCase?.name || "Deine Akte"}</strong> · Nur dein eigener Bereich</span><div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void logout()}>Abmelden</button></div></div>
       {ownCase && <DocumentWorkflow key={ownCase.id} participantId={ownCase.id} participant apiRoot={apiRoot} operatingMode={me!.operatingMode} />}
       {ownCase && (caseProgress?.goal || caseProgress?.appointments.length || progressError) && <section className={styles.card} aria-labelledby="progress-title">
         <h2 id="progress-title" className={styles.sectionHeading}><span aria-hidden="true">📅</span>Meine nächsten Schritte</h2>
         {progressError && <p className={styles.error} role="alert">Die nächsten Schritte sind gerade nicht verfügbar. Bitte aktualisiere die Seite.</p>}
-        {caseProgress?.goal && <><strong>Gemeinsames Ziel</strong><p>{caseProgress.goal}</p>
-          {caseProgress.goalSteps.length > 0 && <ul className={styles.progressList}>{caseProgress.goalSteps.map(step => <li key={step.id}><strong>{step.title}</strong><small>{step.status}{step.nextStep ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></li>)}</ul>}
-          {caseProgress.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}
-        </>}
-        {caseProgress?.appointments.length ? <><h3>{caseProgress.startReady === true ? "Nächste Termine" : "Vorgemerkte Termine"}</h3>
-          {caseProgress.startReady !== true && <p className={styles.testNotice}>Der Coachingstart ist noch nicht freigegeben. Diese Termine sind vorläufig. Bitte warte auf die Bestätigung durch KlarVoran.</p>}
-          <ul className={styles.progressList}>{caseProgress.appointments.map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · Terminabstimmung: {item.response}</small></li>)}</ul></> : null}
+        {caseProgress?.appointments.length ? <><h3>{caseProgress.startReady === true ? "Nächster Termin" : "Vorgemerkter Termin"}</h3>
+          <p><strong>{formatDate(caseProgress.appointments[0].date)} · {caseProgress.appointments[0].time} Uhr</strong><br />{caseProgress.appointments[0].format}</p>
+          {caseProgress.startReady !== true && <p className={styles.testNotice}>Der Termin ist vorläufig. KlarVoran bestätigt dir den Coachingstart.</p>}</> : null}
+        {(caseProgress?.goal || (caseProgress?.appointments.length ?? 0) > 1) && <details className={styles.progressDetails}><summary>Ziel und weitere Termine anzeigen</summary>
+          {caseProgress?.goal && <><strong>Gemeinsames Ziel</strong><p>{caseProgress.goal}</p>
+            {caseProgress.goalSteps.length > 0 && <ul className={styles.progressList}>{caseProgress.goalSteps.map(step => <li key={step.id}><strong>{step.title}</strong><small>{step.status}{step.nextStep ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></li>)}</ul>}
+            {caseProgress.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}</>}
+          {(caseProgress?.appointments.length ?? 0) > 1 && <><h3>Weitere Termine</h3><ul className={styles.progressList}>{caseProgress!.appointments.slice(1).map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · Terminabstimmung: {item.response}</small></li>)}</ul></>}
+        </details>}
       </section>}
       {ownCase && <section className={styles.card} aria-labelledby="messages-title">
         <div className={styles.documentHeading}><h2 id="messages-title" className={styles.sectionHeading}><span aria-hidden="true">💬</span>Nachrichten</h2><button className={styles.secondary} type="button" disabled={Boolean(busy)} onClick={() => void loadMessages(ownCase.id)}>Aktualisieren</button></div>

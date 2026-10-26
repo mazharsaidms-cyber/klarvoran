@@ -46,9 +46,7 @@ export default function FuerKommunenPage() {
               Arbeitsmarktbezogene Workshops und Coachingbausteine für regionale Vorhaben
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              KlarVoran übernimmt Bewerbungs-, Orientierungs- und Coachingbausteine für klar definierte Zielgruppen im
-              Rhein-Main-Gebiet. Ziele, Zeitraum, Zuständigkeiten, Durchführung und erforderliche Nachweise werden vor
-              der Beauftragung schriftlich vereinbart.
+              Bewerbung, Orientierung und Coaching für regionale Vorhaben. Ziele, Zeitraum, Zuständigkeiten und Nachweise werden vorab schriftlich vereinbart.
             </p>
             <Button href="#anfrage" onDark className="mt-6">Vorhaben anfragen</Button>
           </div>
@@ -80,23 +78,19 @@ export default function FuerKommunenPage() {
           <Card>
             <h3 className="font-semibold text-navy">Vorab eindeutig vereinbart</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Zielgruppe, Inhalte, Termine, Zuständigkeiten und gewünschte Nachweise werden vor der Durchführung
-              abgestimmt.
+              Zielgruppe, Inhalte, Termine, Zuständigkeiten und Nachweise stehen vorab fest.
             </p>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Verlässlich umsetzbar</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Leistungsumfang, Zeitplan, eingesetzte Fachkraft und gegebenenfalls vereinbarte Vertretung, Räume,
-              Technik und erforderliche Abstimmungen werden vor Beauftragung geprüft und transparent im Angebot
-              festgehalten.
+              Umfang, Fachkraft, mögliche Vertretung, Räume und Technik werden vor Beauftragung geprüft und im Angebot festgehalten.
             </p>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Dokumentation und Rückmeldung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Vereinbarte Leistungen, Anwesenheiten, Ergebnisse und relevante Abweichungen werden nachvollziehbar
-              dokumentiert. Form und Rhythmus der Rückmeldung richten sich nach dem Auftrag.
+              Leistungen, Anwesenheiten und Ergebnisse dokumentieren wir im vereinbarten Umfang. Rückmeldungen richten sich nach dem Auftrag.
             </p>
           </Card>
           <Card>

@@ -147,8 +147,8 @@ export function AvgsSchnellcheck() {
           <p className="text-sm leading-relaxed text-navy-600">{result.message}</p>
           <p className="text-xs italic text-navy-600/80">{result.disclaimer}</p>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Button href={result.primaryCtaHref} variant="text">{result.primaryCtaLabel} →</Button>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Button href={result.primaryCtaHref}>{result.primaryCtaLabel}</Button>
             {result.secondaryCtaHref && result.secondaryCtaLabel && (
               <Button
                 href={result.secondaryCtaHref === "whatsapp" ? siteConfig.contact.whatsappHref() : result.secondaryCtaHref}
@@ -160,15 +160,14 @@ export function AvgsSchnellcheck() {
             )}
           </div>
 
-          {answers.status !== "hat_avgs" && (
+          {answers.status !== "hat_avgs" && <details className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-4 sm:p-5">
+            <summary className="cursor-pointer font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Persönlichen AVGS-Antrag vorbereiten</summary>
             <AvgsAnfrageAssistent need={answers.anliegen} traeger={answers.traeger} />
-          )}
+          </details>}
 
-          <form ref={formRef} action={formAction} className="space-y-5 border-t border-navy-100 pt-6" aria-busy={pending}>
-            <h3 className="text-lg font-bold text-navy">KlarVoran kontaktieren</h3>
-            <p className="text-sm leading-relaxed text-navy-600">
-              Du möchtest einen Rückruf oder eine Antwort per E-Mail? Sende uns dafür deine Kontaktdaten.
-            </p>
+          <details className="rounded-[var(--radius-md)] border border-navy-100 p-4 sm:p-5" open={state.status === "error" || state.status === "rate-limited" ? true : undefined}>
+            <summary className="cursor-pointer font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Rückruf oder Antwort anfragen</summary>
+          <form ref={formRef} action={formAction} className="mt-5 space-y-5 border-t border-navy-100 pt-5" aria-busy={pending}>
 
             <input type="hidden" name="status" value={answers.status} />
             <input type="hidden" name="traeger" value={answers.traeger} />
@@ -215,6 +214,7 @@ export function AvgsSchnellcheck() {
               </Button>
             </div>
           </form>
+          </details>
         </div>
       )}
 

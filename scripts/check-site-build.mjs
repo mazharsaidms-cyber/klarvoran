@@ -13,12 +13,13 @@ async function htmlFiles(directory) {
   return results.flat();
 }
 const pages = new Map();
+const dynamicRoutes = new Set(['/teilnehmer', '/coach']);
 for (const file of await htmlFiles(buildRoot)) {
   const route = path.relative(buildRoot, file).replace(/\.html$/, '');
   if (route.startsWith('_')) continue;
   pages.set(route === 'index' ? '/' : `/${route}`, new JSDOM(await readFile(file, 'utf8')));
 }
-assert.equal(pages.size, 16, 'All public content pages must be covered');
+assert.equal(pages.size, 19, 'All statically built content pages must be covered');
 let linkCount = 0;
 for (const [route, dom] of pages) {
   const document = dom.window.document;
@@ -26,7 +27,9 @@ for (const [route, dom] of pages) {
   assert.ok(document.title.trim(), `${route}: title`);
   assert.ok(document.querySelector('meta[name="description"]')?.content, `${route}: description`);
   assert.equal(new URL(document.querySelector('link[rel="canonical"]').href).pathname, route, `${route}: canonical path`);
-  assert.equal(document.querySelector('meta[property="og:title"]')?.content, document.title, `${route}: social title`);
+  if (!document.querySelector('meta[name="robots"]')?.content.includes('noindex')) {
+    assert.equal(document.querySelector('meta[property="og:title"]')?.content, document.title, `${route}: social title`);
+  }
   const ids = [...document.querySelectorAll('[id]')].map((node) => node.id);
   assert.equal(ids.length, new Set(ids).size, `${route}: no duplicate IDs`);
   for (const script of document.querySelectorAll('script[type="application/ld+json"]')) JSON.parse(script.textContent);
@@ -45,7 +48,7 @@ for (const [route, dom] of pages) {
     const targetPage = pages.get(target.pathname);
     if (targetPage) {
       if (target.hash) assert.ok(targetPage.window.document.getElementById(decodeURIComponent(target.hash.slice(1))), `${route}: target ${link.href}`);
-    } else {
+    } else if (!dynamicRoutes.has(target.pathname)) {
       assert.ok((await stat(path.join('public', decodeURIComponent(target.pathname)))).isFile(), `${route}: linked file`);
     }
   }

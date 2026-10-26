@@ -17,7 +17,7 @@ export const leistungen: Leistung[] = [
     title: "AVGS-Bewerbungscoaching",
     audience: "Jobcenter & Agentur für Arbeit",
     summary:
-      "Persönliches Job- und Bewerbungscoaching. Du kannst dich auch melden, wenn du den Gutschein erst beantragen möchtest.",
+      "1:1 bei Bewerbung und beruflicher Orientierung. Auch ohne Gutschein kannst du uns anfragen.",
     bullets: [
       "32 Einheiten in bis zu 8 Wochen",
       "1:1-Einzelcoaching, keine Gruppe",
@@ -33,7 +33,7 @@ export const leistungen: Leistung[] = [
     title: "Privates Job- und Bewerbungscoaching",
     audience: "Selbstzahler",
     summary:
-      "Du bezahlst das Coaching selbst. Themen, Umfang und Format werden individuell vereinbart; du erhältst vor der Buchung ein schriftliches Angebot.",
+      "Individuelle Hilfe mit schriftlichem Angebot vor der Buchung.",
     bullets: [
       "Umfang und Themen individuell abgestimmt",
       "Online, hybrid oder in Präsenz",
@@ -49,7 +49,7 @@ export const leistungen: Leistung[] = [
     title: "Workshops & Gruppenformate",
     audience: "Institutionen & Unternehmen",
     summary:
-      "Kompakte Formate zu Bewerbung, beruflicher Orientierung und digitaler Kompetenz für Einrichtungen, Bildungsträger und Unternehmen.",
+      "Praktische Gruppenformate für Einrichtungen, Träger und Unternehmen.",
     bullets: [
       "Halbtags-, Ganztags- oder Modulformat",
       "Themen individuell nach Bedarf",
@@ -65,7 +65,7 @@ export const leistungen: Leistung[] = [
     title: "Für Institutionen",
     audience: "Kooperation & Auftrag",
     summary:
-      "Gutscheinabstimmung, Kooperation oder Unterauftrag: passende Informationen für Vermittlungsfachkräfte, soziale Einrichtungen und Bildungsträger.",
+      "Informationen für Gutscheinabstimmung, Kooperation und Auftrag.",
     bullets: [
       "Zulassungsdaten und Nachweise auf einen Blick",
       "Klare Durchführung und Dokumentation",

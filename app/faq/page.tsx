@@ -25,8 +25,7 @@ export default function FaqPage() {
         <Eyebrow tone="white">FAQ</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Häufige Fragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Die Antworten auf die Fragen, die uns am häufigsten erreichen. Ist deine Frage nicht dabei? Schreib uns
-          einfach.
+          Finde schnell die Antwort zu Coaching, AVGS oder Zusammenarbeit. Deine Frage fehlt? Schreib uns.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button href="#coaching" variant="secondary" onDark>Coaching &amp; Kosten</Button>

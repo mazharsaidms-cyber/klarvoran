@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Card, FactStat } from "@/components/Card";
+import { FactStat } from "@/components/Card";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { AvgsSchnellcheck } from "@/components/AvgsSchnellcheck";
 import { FaqStructuredData } from "@/components/StructuredData";
@@ -17,6 +17,7 @@ import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { VisualIcon, type IconName } from "@/components/VisualIcon";
+import { QuickPoints } from "@/components/QuickPoints";
 
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
@@ -77,17 +78,19 @@ export default function AvgsPage() {
               Job- und Bewerbungscoaching mit AVGS
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Du suchst Arbeit oder eine Ausbildung? Im Einzelcoaching klären wir deine Richtung, verbessern deine
-              Bewerbungen und üben Vorstellungsgespräche. Mit einem passenden Aktivierungs- und Vermittlungsgutschein
-              (AVGS) und vor Beginn schriftlich bewilligter Teilnahme übernimmt der zuständige Kostenträger die Maßnahmekosten.
+              Persönliche Unterstützung bei Orientierung, Bewerbungen und Vorstellungsgesprächen.
             </p>
+            <QuickPoints onDark items={[
+              { icon: "orientation", label: "Ziel klären" },
+              { icon: "document", label: "Bewerbung verbessern" },
+              { icon: "conversation", label: "Gespräche üben" },
+            ]} />
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
               <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
-              Du brauchst für den ersten Kontakt noch keinen Gutschein. Persönlich in Kriftel, online oder hybrid.
-              Termine nach vorheriger Bestätigung.
+              Für die Anfrage brauchst du noch keinen Gutschein. Mit passendem AVGS und schriftlicher Bewilligung vor Beginn übernimmt der Kostenträger die Maßnahmekosten. In Kriftel, online oder hybrid.
             </p>
           </div>
           <ContextGraphic
@@ -131,37 +134,12 @@ export default function AvgsPage() {
       <Section tone="white">
         <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
-        <div className="mt-4 max-w-3xl space-y-3 leading-relaxed text-navy-600">
-          <p>
-            Eine Zeit ohne Arbeit kann belastend sein, besonders wenn du dich dafür erklären sollst.
-            Bei uns musst du dich nicht rechtfertigen. Wir hören erst einmal zu.
-          </p>
-          <p>
-            Wenn auf Bewerbungen nur Absagen oder gar keine Antworten kommen, ist schwer zu erkennen,
-            woran es liegt. Wir schauen gemeinsam auf konkrete Unterlagen und mögliche nächste Schritte.
-          </p>
-          <p>
-            Auch der Weg zum AVGS kann unübersichtlich wirken. Wir erklären dir den Ablauf und helfen dir,
-            deinen Unterstützungsbedarf für das Gespräch mit deiner Vermittlungsfachkraft klar zu beschreiben.
-          </p>
-        </div>
-        <div className="text-card-grid mt-6 grid gap-6 sm:grid-cols-2">
-          <Card>
-            <h3 className="text-lg font-bold text-navy">Wenn dir Orientierung oder Struktur fehlt</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Das Coaching unterstützt dich bei beruflicher Orientierung, Bewerbungsunterlagen, Stellensuche und
-              Vorstellungsgesprächen. Gemeinsam klären wir, wo du stehst und welcher nächste Schritt realistisch ist.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="text-lg font-bold text-navy">Damit du später selbst weiterkommst</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Du sollst Anforderungen nicht nur erklärt bekommen. Du übst konkrete Schritte, erkennst deine
-              Fortschritte und lernst, Bewerbungsaufgaben zunehmend selbst zu übernehmen und bei Rückschlägen
-              weiterzumachen.
-            </p>
-          </Card>
-        </div>
+        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">Du musst dich nicht rechtfertigen. Wir hören zu und arbeiten an dem, was dich gerade aufhält.</p>
+        <QuickPoints items={[
+          { icon: "orientation", label: "Richtung noch unklar" },
+          { icon: "document", label: "Bewerbungen ohne Erfolg" },
+          { icon: "signpost", label: "AVGS-Weg unübersichtlich" },
+        ]} />
       </Section>
 
       <Section tone="navy" id="schnellcheck" spacing="compact">
@@ -239,9 +217,7 @@ export default function AvgsPage() {
         <Eyebrow>Leitfaden</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So beantragst du einen AVGS</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Du bist unsicher, wie du deinen Bedarf erklären sollst? Nach dem AVGS-Schnellcheck kannst du direkt einen
-          persönlichen Antrag mit deiner Situation, bisherigen Schritten und deinem Unterstützungsbedarf vorbereiten. Auf Wunsch formulieren wir ihn auch gemeinsam
-          mit dir im Erstgespräch. Die Entscheidung über den Gutschein trifft deine Vermittlungsfachkraft.
+          Der Schnellcheck hilft dir, deinen Bedarf zu ordnen. Danach kannst du einen persönlichen Antragsentwurf erstellen oder im Erstgespräch Hilfe bekommen. Über den Gutschein entscheidet deine Vermittlungsfachkraft.
         </p>
         <div className="mt-6"><VisualSteps steps={guideSteps} /></div>
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-navy-600">

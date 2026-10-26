@@ -21,8 +21,7 @@ export default function KontaktPage() {
         <Eyebrow tone="white">Kontakt</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">So erreichst du KlarVoran</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Du hast eine Frage oder möchtest Unterstützung anfragen? Ruf an, schreib uns oder nutze das Formular.
-          Wir melden uns in der Regel innerhalb von 1–2 Werktagen.
+          Wähle den Weg, der für dich am einfachsten ist. Wir antworten in der Regel innerhalb von 1–2 Werktagen.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <div className="rounded-[var(--radius-md)] bg-white p-5 text-navy">
@@ -39,9 +38,8 @@ export default function KontaktPage() {
           </div>
         </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="#nachricht" onDark variant="secondary">Kontaktformular</Button>
-          <Button href="/termin" onDark variant="secondary">Kostenloses Erstgespräch</Button>
-          <Button href="/fachkraefte-kooperationspartner#anfrage" onDark variant="secondary">Anfrage als Institution</Button>
+          <Button href="#nachricht" onDark>Nachricht schreiben</Button>
+          <Button href="/termin" onDark variant="text">Erstgespräch anfragen →</Button>
         </div>
       </Section>
 
@@ -50,9 +48,11 @@ export default function KontaktPage() {
           <div>
             <Eyebrow tone="navy">Deine Nachricht</Eyebrow>
             <h2 className="mt-3 text-2xl font-bold text-navy">Was möchtest du klären?</h2>
-            <p className="mt-4 leading-relaxed text-navy-600">Schreib kurz, worum es geht. Für die erste Anfrage brauchst du noch keine umfangreichen Unterlagen und keinen AVGS.</p>
-            <p className="mt-4 text-sm leading-relaxed text-navy-600">Sie vertreten eine Institution? Nutzen Sie die <a href="/fachkraefte-kooperationspartner#anfrage" className="font-semibold underline underline-offset-4">institutionelle Anfrage</a> für Teilnahmeabstimmung, Zusammenarbeit oder einen Auftrag.</p>
-            <p className="mt-4 text-sm leading-relaxed text-navy-600">Du möchtest wissen, wie Coaching mit Förderung funktioniert? <a href="/avgs#schnellcheck" className="font-semibold underline underline-offset-4">Zum AVGS-Schnellcheck</a>.</p>
+            <p className="mt-4 leading-relaxed text-navy-600">Eine kurze Nachricht reicht. Bitte sende hier noch keine Unterlagen oder sensiblen Daten.</p>
+            <div className="mt-5 grid gap-2 text-sm text-navy-600">
+              <a href="/fachkraefte-kooperationspartner#anfrage" className="font-semibold underline underline-offset-4">Für Institutionen: zur passenden Anfrage →</a>
+              <a href="/avgs#schnellcheck" className="font-semibold underline underline-offset-4">Förderung unklar? AVGS-Schnellcheck →</a>
+            </div>
           </div>
           <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8"><ContactForm /></div>
         </div>

@@ -7,6 +7,7 @@ import styles from "./zugang.module.css";
 export const metadata: Metadata = {
   title: "Persönlicher Zugang | KlarVoran",
   description: "Direkt zu deinem Teilnehmer- oder Coachbereich.",
+  alternates: { canonical: "/zugang" },
   robots: { index: false, follow: false, noarchive: true },
 };
 

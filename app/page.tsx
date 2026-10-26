@@ -13,6 +13,7 @@ import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { FounderExpertise } from "@/components/FounderExpertise";
+import { QuickPoints } from "@/components/QuickPoints";
 import { ParticipantPreview } from "@/components/ParticipantPreview";
 import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
 import { generalFaq } from "@/lib/content/faq";
@@ -76,9 +77,13 @@ export default function HomePage() {
               <span className="text-logo-red">voran</span>kommen.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Du suchst Arbeit oder eine Ausbildung? Wir klären gemeinsam deine Richtung, verbessern deine
-              Bewerbungen und üben Vorstellungsgespräche – damit du Schritt für Schritt selbst weiterkommst.
+              Du suchst Arbeit oder eine Ausbildung? Wir finden gemeinsam deinen nächsten Schritt.
             </p>
+            <QuickPoints onDark items={[
+              { icon: "orientation", label: "Richtung finden" },
+              { icon: "document", label: "Bewerbung verbessern" },
+              { icon: "conversation", label: "Gespräche üben" },
+            ]} />
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button href="/avgs" onDark>
                 Ich suche Coaching
@@ -124,9 +129,7 @@ export default function HomePage() {
             Du musst nicht schon wissen, wie alles weitergeht.
           </h2>
           <p className="mt-4 leading-relaxed text-navy-600">
-            Vielleicht fehlt eine klare berufliche Richtung, Bewerbungen führen bisher nicht weiter oder digitale
-            und formale Anforderungen wirken unübersichtlich. Wir schauen zuerst, was hinter der Situation steckt,
-            und entwickeln daraus einen realistischen nächsten Schritt.
+            Wir beginnen dort, wo du gerade stehst – auch wenn dein Ziel noch nicht feststeht.
           </p>
         </div>
         <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-3">
@@ -136,8 +139,7 @@ export default function HomePage() {
             </span>
             <h3 className="font-semibold text-navy">Ausgangslage ordnen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Wir halten fest, was bereits gelingt, was dich gerade bremst und welches berufliche Ziel realistisch
-              ist.
+              Was klappt schon? Was bremst dich? Wir ordnen es gemeinsam.
             </p>
           </Card>
           <Card>
@@ -146,8 +148,7 @@ export default function HomePage() {
             </span>
             <h3 className="font-semibold text-navy">Anforderungen verstehen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Erwartungen von Arbeitgebern, Jobcenter und digitalen Bewerbungswegen werden in klare Schritte
-              übersetzt.
+              Wir übersetzen Anforderungen in verständliche Schritte.
             </p>
           </Card>
           <Card>
@@ -156,8 +157,7 @@ export default function HomePage() {
             </span>
             <h3 className="font-semibold text-navy">Ins Handeln kommen</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Wir besprechen nicht nur, was zu tun ist. Der erste passende Schritt wird praktisch umgesetzt und
-              anschließend zunehmend selbst übernommen.
+              Du übst den nächsten Schritt direkt – mit Unterstützung.
             </p>
           </Card>
         </div>
@@ -209,8 +209,7 @@ export default function HomePage() {
             <Eyebrow>Für bestehende Teilnehmende</Eyebrow>
             <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Dein Coaching bleibt übersichtlich.</h2>
             <p className="mt-4 max-w-lg leading-relaxed text-navy-600">
-              Schon bei KlarVoran dabei? In deinem persönlichen Bereich findest du Termine, Unterlagen und Nachrichten.
-              Für die Anmeldung brauchst du deine Einladung und einen Code per E-Mail.
+              Termine, Unterlagen und Nachrichten an einem Ort. Melde dich mit deiner Einladung und einem Code per E-Mail an.
             </p>
             <Button href="/teilnehmer" className="mt-6">Meinen Teilnehmerbereich öffnen</Button>
             <p className="mt-3 text-xs text-navy-600">Die Darstellung ist eine grafische Vorschau ohne persönliche Daten.</p>

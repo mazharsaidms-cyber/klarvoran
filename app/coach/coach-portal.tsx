@@ -5,6 +5,7 @@ import styles from "../teilnehmer/participant.module.css";
 import DocumentWorkflow from "../components/document-workflow";
 import CoachMessages from "../components/coach-messages";
 import CoachUpload from "../components/coach-upload";
+import { VisualIcon } from "@/components/VisualIcon";
 
 type Me = { user: { displayName: string; role: string }; cases: Array<{ id: string; name: string; status: string }>; operatingMode: "test" | "real" };
 type Document = { id: string; participantId: string; title: string; category: string; status: string;
@@ -70,7 +71,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   }, [configured]);
 
   useEffect(() => {
-    if (phase !== "cases" || !selected) { setSchedule(null); return; }
+    if (phase !== "cases" || !selected) return;
     const controller = new AbortController();
     api<CoachSchedule>(`/coach-sessions?participantId=${encodeURIComponent(selected)}`, { signal: controller.signal })
       .then(value => { if (!controller.signal.aborted) setSchedule(value); })
@@ -96,7 +97,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       const identity = await api<Me>("/me");
       if (identity.user.role !== "coach") throw new PortalError("Dieser Zugang gehört zum Teilnehmerbereich.", 403);
       const result = await api<{ documents: Document[] }>("/documents");
-      setCode(""); setMe(identity); setDocuments(result.documents); setSelected(identity.cases[0]?.id ?? ""); setPhase("cases");
+      setCode(""); setMe(identity); setDocuments(result.documents); setSchedule(null); setSelected(identity.cases[0]?.id ?? ""); setPhase("cases");
     } catch (caught) { setError(errorText(caught)); }
     finally { setBusy(""); }
   }
@@ -165,14 +166,14 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
   }
   async function logout() {
     setBusy("logout"); setError("");
-    try { await post("/auth/sign-out", {}); setMe(null); setDocuments([]); setEmail(""); setCode(""); setPhase("email"); setNotice("Du bist abgemeldet."); }
+    try { await post("/auth/sign-out", {}); setMe(null); setDocuments([]); setSchedule(null); setEmail(""); setCode(""); setPhase("email"); setNotice("Du bist abgemeldet."); }
     catch (caught) { setError(errorText(caught)); }
     finally { setBusy(""); }
   }
 
-  return <main className={styles.portal}>
-    <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Persönlicher Coachbereich</p><h1>Deine zugewiesenen Akten</h1>
-      <p>Mit deiner freigegebenen E-Mail-Adresse und einem Code anmelden.</p></header>
+  return <section className={styles.portal} aria-label="KlarVoran Coachbereich">
+    <header className={styles.heading}><p className={styles.eyebrow}>KlarVoran · Coachbereich</p><h1>{phase === "cases" ? "Dein Arbeitsbereich" : "Als Coach anmelden"}</h1>
+      <p>{phase === "cases" ? "Wähle eine Akte. Die wichtigsten Arbeitsbereiche findest du direkt darunter." : "Nutze deine freigegebene E-Mail-Adresse und den Code aus der Nachricht."}</p></header>
     {phase === "cases" && me?.operatingMode === "test" && <div className={styles.testNotice}>Testbetrieb: Bitte ausschließlich erfundene Angaben und Testdokumente verwenden.</div>}
     {!configured && <p className={styles.error} role="alert">Der E-Mail-Zugang ist noch nicht eingerichtet. Bitte wende dich an KlarVoran.</p>}
     {error && <p className={styles.error} role="alert">{error}</p>}
@@ -186,10 +187,16 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       <button className={styles.primary} disabled={!!busy}>Anmelden</button></form><button className={styles.linkButton} onClick={() => setPhase("email")}>E-Mail-Adresse ändern</button></section>}
     {phase === "cases" && me && <>
       <div className={styles.toolbar}><strong>Angemeldet: {me.user.displayName}</strong><div><button className={styles.secondary} disabled={!!busy} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={!!busy} onClick={() => void logout()}>Abmelden</button></div></div>
-      <section className={styles.card}><h2>Fall auswählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => setSelected(event.target.value)}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
-      {selected && <DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} operatingMode={me.operatingMode} />}
-      {selected && <CoachMessages key={`messages-${selected}`} participantId={selected} operatingMode={me.operatingMode} />}
-      {selected && <section className={styles.card}><h2>Termine &amp; Sitzungsnotizen</h2><details className={styles.help}><summary>Was gehört in diese Notiz?</summary><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p></details>
+      <section className={styles.card}><h2>Akte wählen</h2>{me.cases.length === 0 ? <p>Dir ist derzeit keine Akte zugewiesen.</p> : <label className={styles.documentKind}>Zugewiesene Akte<select value={selected} onChange={event => { setSchedule(null); setSelected(event.target.value); }}>{me.cases.map(item => <option key={item.id} value={item.id}>{item.name} · {item.status}</option>)}</select></label>}</section>
+      {selected && <nav className={styles.coachNav} aria-label="Direkt zum Arbeitsbereich">
+        <a href="#coach-unterlagen"><VisualIcon name="document" /><span>Unterlagen</span></a>
+        <a href="#coach-nachrichten"><VisualIcon name="conversation" /><span>Nachrichten</span></a>
+        <a href="#coach-termine"><VisualIcon name="calendar" /><span>Termine &amp; Notizen</span></a>
+        <a href="#coach-dateien"><VisualIcon name="laptop" /><span>Dateien</span></a>
+      </nav>}
+      {selected && <div id="coach-unterlagen" className={styles.coachAnchor}><DocumentWorkflow key={`sign-${selected}`} participantId={selected} participant={false} apiRoot={apiRoot} documents={documents.filter(d => d.participantId === selected)} operatingMode={me.operatingMode} /></div>}
+      {selected && <div id="coach-nachrichten" className={styles.coachAnchor}><CoachMessages key={`messages-${selected}`} participantId={selected} operatingMode={me.operatingMode} /></div>}
+      {selected && <section id="coach-termine" className={`${styles.card} ${styles.coachAnchor}`}><h2 className={styles.sectionHeading}><VisualIcon name="calendar" />Termine &amp; Sitzungsnotizen</h2><details className={styles.help}><summary>Was gehört in diese Notiz?</summary><p>Diese Notizen bleiben im Coachbereich. Anwesenheiten stellst du oben gesondert zur Unterschrift bereit. Gemeinsame Gesprächsergebnisse kannst du dort als eigenen Dokumenttext freigeben.</p></details>
         {!schedule || schedule.participantId !== selected ? <p>Termine werden geladen …</p> : <>
           {!schedule.startReady && <p className={styles.testNotice}>Sitzungsdokumentation gesperrt: Startnachweise und vereinbarter Coachingplan müssen zuerst fachlich freigegeben sein.</p>}
           {schedule.appointments.length === 0 ? <p>Für diese Akte sind noch keine Termine geplant.</p> :
@@ -223,7 +230,7 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
           })()}
         </>}
       </section>}
-      {selected && <CoachUpload key={`upload-${selected}`} participantId={selected} onUploaded={refresh} operatingMode={me.operatingMode} />}
+      {selected && <div id="coach-dateien" className={styles.coachAnchor}><CoachUpload key={`upload-${selected}`} participantId={selected} onUploaded={refresh} operatingMode={me.operatingMode} /></div>}
       {selected && <section className={styles.card}><div className={styles.documentHeading}><div><h2>Dokumente</h2><p>Nur Dokumente der ausgewählten Akte.</p></div><span>{documents.filter(item => item.participantId === selected).length}</span></div>
         {documents.filter(item => item.participantId === selected).length === 0 ? <p>Für diese Akte sind noch keine Dokumente vorhanden.</p> : <ul className={styles.documents}>{documents.filter(item => item.participantId === selected).map(item => <li key={item.id}>
           <strong>{item.title}</strong><small>{item.category} · Version {item.currentVersion} · {statusLabel(item.status)}</small>
@@ -235,5 +242,5 @@ export default function CoachPortal({ configured }: { configured: boolean }) {
       </section>}
     </>}
     <aside className={styles.help}>Bei Fragen erreichst du KlarVoran unter <a href="tel:+491779548140">0177 9548140</a>. Melde dich auf gemeinsam genutzten Geräten nach der Arbeit ab.</aside>
-  </main>;
+  </section>;
 }

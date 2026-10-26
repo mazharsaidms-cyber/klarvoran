@@ -31,13 +31,11 @@ export default function FuerJobcenterPage() {
               AZAV-zugelassene Maßnahme für die Gutschein- und Teilnahmeabstimmung
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Hier finden Vermittlungsfachkräfte die wesentlichen Angaben zur zugelassenen Maßnahme, zur Zielgruppe,
-              zur Durchführung und zu den vorhandenen Zulassungsnachweisen – kompakt für die Prüfung eines Gutscheins
-              und der individuellen Passung.
+              Maßnahmedaten, Zielgruppe und Nachweise für die Gutschein- und Teilnahmeabstimmung auf einen Blick.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#anfrage" onDark>Teilnahme abstimmen</Button>
-              <Button href="#massnahme" onDark variant="secondary">Maßnahmedaten ansehen</Button>
+              <Button href="#massnahme" onDark variant="text">Maßnahmedaten ansehen →</Button>
             </div>
           </div>
           <ContextGraphic

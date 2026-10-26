@@ -26,43 +26,29 @@ export function AppointmentForm() {
       </div>
       <TextField id="phone" {...field("phone")} label="Telefon (optional)" type="tel" autoComplete="tel" error={state.fieldErrors?.phone} />
 
-      <RadioGroupField
-        legend="Wie möchtest du später am Coaching teilnehmen?"
-        name="format"
-        required
-        value={format}
-        onChange={setFormat}
-        error={state.fieldErrors?.format}
-        options={[
-          { value: "praesenz_kriftel", label: "Präsenz (Kriftel)" },
-          { value: "online", label: "Online" },
-          { value: "hybrid", label: "Online und Präsenz im Wechsel" },
-          { value: "unsicher", label: "Noch unsicher" },
-        ]}
-      />
-
-      <p className="text-sm text-navy-600">
-        Du brauchst für das Erstgespräch noch keinen Gutschein. Wenn du privat bezahltes Coaching suchst, ist das ebenfalls möglich.
-      </p>
-      <RadioGroupField
-        legend="Hast du bereits einen AVGS?"
-        name="hasAvgs"
-        required
-        value={hasAvgs}
-        onChange={setHasAvgs}
-        error={state.fieldErrors?.hasAvgs}
-        options={[
-          { value: "ja", label: "Ja" },
-          { value: "nein", label: "Nein" },
-          { value: "unsicher", label: "Unsicher" },
-        ]}
-      />
-
       <TextareaField
         id="message" {...field("message")}
-        label="Wunschtermin oder Anmerkungen (optional)"
+        label="Wunschtermin oder Frage (optional)"
+        rows={3}
         error={state.fieldErrors?.message}
       />
+      <details className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-4">
+        <summary className="cursor-pointer font-semibold text-navy">Coachingform und AVGS angeben (optional)</summary>
+        <div className="mt-5 space-y-5">
+          <RadioGroupField legend="Wie möchtest du teilnehmen?" name="format" value={format} onChange={setFormat} error={state.fieldErrors?.format} options={[
+            { value: "praesenz_kriftel", label: "Präsenz (Kriftel)" },
+            { value: "online", label: "Online" },
+            { value: "hybrid", label: "Online und Präsenz" },
+            { value: "unsicher", label: "Noch unsicher" },
+          ]} />
+          <RadioGroupField legend="Hast du bereits einen AVGS?" name="hasAvgs" value={hasAvgs} onChange={setHasAvgs} error={state.fieldErrors?.hasAvgs} options={[
+            { value: "ja", label: "Ja" },
+            { value: "nein", label: "Nein" },
+            { value: "unsicher", label: "Unsicher" },
+          ]} />
+        </div>
+      </details>
+      <p className="text-sm text-navy-600">Du brauchst für das Erstgespräch noch keinen Gutschein.</p>
       <p className="-mt-2 text-xs leading-relaxed text-navy-600">
         Bitte hier keine Gesundheitsdaten, Diagnosen, vollständigen Bescheide oder Ausweisdokumente eintragen.
       </p>

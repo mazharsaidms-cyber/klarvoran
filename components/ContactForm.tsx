@@ -83,6 +83,7 @@ export function ContactForm({
         id="message" {...field("message")}
         label={formal ? "Ihre Nachricht" : "Deine Nachricht"}
         required
+        rows={3}
         error={state.fieldErrors?.message}
       />
       <p className="-mt-2 text-xs leading-relaxed text-navy-600">

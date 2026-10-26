@@ -27,12 +27,11 @@ export default function FuerSozialeEinrichtungenPage() {
           Ein externer Coaching-Partner für Ihre Klientinnen und Klienten
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          KlarVoran ergänzt Ihre Arbeit mit individuellem Bewerbungscoaching und praxisnahen Gruppenformaten. Ziele,
-          Zuständigkeiten und Rahmenbedingungen stimmen wir vorab klar mit Ihnen ab.
+          Individuelles Bewerbungscoaching und praktische Workshops für Ihre Klientinnen und Klienten. Den Rahmen stimmen wir gemeinsam ab.
         </p>
             <div className="mt-6 flex flex-wrap gap-3">
           <Button href="#anfrage" onDark>Kooperation besprechen</Button>
-          <Button href="#wege" onDark variant="secondary">Weiterempfehlung oder Auftrag?</Button>
+          <Button href="#wege" onDark variant="text">Zusammenarbeitswege ansehen →</Button>
         </div>
       </Section>
 
@@ -55,27 +54,23 @@ export default function FuerSozialeEinrichtungenPage() {
         <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
           <Card>
             <h3 className="font-semibold text-navy">Weg 1: AVGS-Weiterempfehlung</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Sie informieren passende Klientinnen und Klienten über das Angebot. Bei vorhandenem oder geplantem
-              AVGS klärt KlarVoran Gutschein, Maßnahmepassung und weitere Schritte direkt mit der Person.
-              Die Förderung muss vor Beginn bewilligt sein. Eine Weiterempfehlung ist keine Beauftragung
-              durch Ihre Einrichtung.
-            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-navy-600">
+              <li>Sie informieren passende Personen über das Angebot.</li>
+              <li>Wir klären Gutschein und Passung direkt mit ihnen.</li>
+              <li>Start erst nach Bewilligung; Weiterempfehlung ist kein Auftrag Ihrer Einrichtung.</li>
+            </ul>
             <Button href="/avgs#schnellcheck" variant="text" className="mt-4">Schnellcheck für Ihre Klientinnen und Klienten →</Button>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Weg 2: Direkter Auftrag</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Workshops oder Coaching-Kontingente im Rahmen eigener Projektmittel oder Budgets Ihrer Einrichtung –
-              Umfang, Zuständigkeiten und Gesamtpreis werden vor Beauftragung schriftlich vereinbart.
+              Workshops oder Coaching aus Ihrem Budget. Umfang, Zuständigkeiten und Gesamtpreis vereinbaren wir vorab schriftlich.
             </p>
           </Card>
           <Card>
             <h3 className="font-semibold text-navy">Coaching in Ihrer Einrichtung</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              AVGS-Einzelcoaching ist nach Bewilligung und bestätigtem Durchführungsort auch in Ihrer
-              Einrichtung möglich. Räume, Technik und Termine stimmen wir vorab ab. Für direkt beauftragte
-              Workshops oder Coachings wird der Ort im Angebot vereinbart.
+              AVGS-Einzelcoaching kann nach Bewilligung und bestätigtem Ort bei Ihnen stattfinden. Räume, Technik und Termine stimmen wir vorab ab; bei Direktaufträgen steht der Ort im Angebot.
             </p>
           </Card>
           <Card>
@@ -101,10 +96,7 @@ export default function FuerSozialeEinrichtungenPage() {
               Passend zum Bedarf Ihrer Klientinnen und Klienten
             </h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-              Das Angebot richtet sich an Menschen, die beim Übergang in Arbeit oder Ausbildung Orientierung
-              und praktische Unterstützung brauchen – darunter Jugendliche und junge Erwachsene sowie Menschen
-              mit unterschiedlichen Bildungswegen und Migrationserfahrungen. Wir klären im Gespräch, welche
-              beruflichen Schritte zum individuellen Bedarf passen.
+              Für Jugendliche und Erwachsene im Übergang zu Arbeit oder Ausbildung – mit unterschiedlichen Bildungswegen und Migrationserfahrungen. Den konkreten Bedarf klären wir im Gespräch.
             </p>
           </div>
         </div>

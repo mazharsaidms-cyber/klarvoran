@@ -34,9 +34,7 @@ export default function UeberUnsPage() {
               Wer hinter KlarVoran steht und wie wir arbeiten
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy-600">
-              KlarVoran wurde von Mazhar Said gegründet. Unser Schwerpunkt ist berufliche Orientierung und
-              Bewerbungscoaching: im Einzelcoaching und in Angeboten für Institutionen. Aufmerksames Zuhören,
-              verständliche Erklärungen und praktische Übungen helfen Menschen, zunehmend selbstständig zu handeln.
+              Gegründet von Mazhar Said. Wir verbinden persönliche Begleitung mit klaren Schritten, damit Menschen beruflich selbstständig weiterkommen.
             </p>
           </div>
           <ContextGraphic
@@ -49,10 +47,7 @@ export default function UeberUnsPage() {
       <Section id="gruender" tone="white" className="scroll-mt-24">
         <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Mazhar Said hat KlarVoran gegründet und verantwortet die fachliche Arbeit. Seine Erfahrung im
-          Bewerbungsmanagement und Jobcoaching verbindet er mit strukturiertem Arbeiten aus dem Rechts- und
-          Notariatsbereich sowie Erfahrung in der Arbeitswelt und im Vertrieb. Im Mittelpunkt stehen verständliche
-          Erklärungen, praktische Übungen und klare berufliche Ziele.
+          Mazhar Said verantwortet die fachliche Arbeit. Er verbindet Jobcoaching und Bewerbungsmanagement mit strukturiertem Arbeiten aus dem Rechts- und Notariatsbereich und Erfahrung in Arbeitswelt und Vertrieb.
         </p>
         <div className="mt-8">
           <CoachProfile />

@@ -29,9 +29,7 @@ export default function FuerBildungstraegerPage() {
               Jobcoaching und Bewerbungsmanagement – verlässlich im Unterauftrag
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              KlarVoran übernimmt klar definierte Coaching- und Bewerbungsmanagement-Module im Unterauftrag oder im
-              Rahmen vereinbarter Dozenteneinsätze. Umfang, Verantwortlichkeiten, Dokumentation und Verfügbarkeit
-              werden vor dem Einsatz verbindlich abgestimmt.
+              Coaching, Bewerbungsmanagement und Dozenteneinsätze als klar vereinbarte Leistungsbausteine. Umfang, Zuständigkeiten und Dokumentation stimmen wir vorab ab.
             </p>
             <Button href="#anfrage" onDark className="mt-6">Zusammenarbeit anfragen</Button>
           </div>

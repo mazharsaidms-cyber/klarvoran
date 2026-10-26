@@ -2,7 +2,7 @@ import { isIP } from "node:net";
 import { gatewayDigest, gatewayMac, gatewayTargetAllowed, proofText, safeEqual, GATEWAY_MAX_AGE_MS, GATEWAY_MAX_BODY } from "../participant-gateway-proof";
 
 export type ParticipantConfig = { enabled?: string; gatewayKey?: string; backendBearer?: string; resendKey?: string; sender?: string;
-  backendOrigin?: string; productionBackendEnabled?: string; realOperationEnabled?: string;
+  backendOrigin?: string; productionBackendEnabled?: string; realOperationEnabled?: string; privacyApprovedVersion?: string;
   betriebBackendEnabled?: string; betriebGatewayKey?: string; betriebBackendBearer?: string;
   cleanBackendEnabled?: string; cleanGatewayKey?: string; cleanBackendBearer?: string };
 export const participantOrigin = "https://www.klarvoran.de";
@@ -29,9 +29,18 @@ function selectedSecrets(config: ParticipantConfig) {
   return { gatewayKey: config.gatewayKey, backendBearer: config.backendBearer };
 }
 
+export function participantRealOperationConfigured(config: ParticipantConfig) {
+  const selected = selectedBackend(config);
+  return (selected === productionBackendOrigin || selected === cleanBackendOrigin) &&
+    config.realOperationEnabled === "true" && config.privacyApprovedVersion === "2.8";
+}
+
 export function participantConfigured(config: ParticipantConfig) {
+  const selected = selectedBackend(config);
+  const realRequested = (selected === productionBackendOrigin || selected === cleanBackendOrigin) && config.realOperationEnabled === "true";
+  if (realRequested && !participantRealOperationConfigured(config)) return false;
   const { gatewayKey, backendBearer } = selectedSecrets(config);
-  return config.enabled === "true" && Boolean(selectedBackend(config) && gatewayKey && gatewayKey.length >= 43 && backendBearer && backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
+  return config.enabled === "true" && Boolean(selected && gatewayKey && gatewayKey.length >= 43 && backendBearer && backendBearer.length >= 30 && config.resendKey && config.sender && /@klarvoran\.de>?$/i.test(config.sender.trim()));
 }
 
 /** Route handlers pass only server environment values; this module is never imported by participant UI. */
@@ -83,8 +92,7 @@ export async function deliverParticipantMail(request: Request, config: Participa
     if (typeof message.email !== "string" || message.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message.email) || !["invitation", "code"].includes(String(message.kind)) ||
         message.kind === "code" && (typeof message.code !== "string" || !/^\d{6}$/.test(message.code)) ||
         message.role !== undefined && !["participant", "coach"].includes(String(message.role))) return errorResponse(400, "Die E-Mail-Angaben sind ungültig.");
-    const selected = selectedBackend(config);
-    const real = (selected === productionBackendOrigin || selected === cleanBackendOrigin) && config.realOperationEnabled === "true";
+    const real = participantRealOperationConfigured(config);
     if (message.operatingMode !== undefined && message.operatingMode !== (real ? "real" : "test") || real && message.operatingMode !== "real")
       return errorResponse(409, "Der Betriebsmodus für den E-Mail-Zugang stimmt nicht überein.");
     const loginUrl = message.role === "coach" ? "https://www.klarvoran.de/coach" : "https://www.klarvoran.de/teilnehmer";
@@ -95,6 +103,7 @@ export async function deliverParticipantMail(request: Request, config: Participa
       "Wenn du die Anmeldung nicht angefordert hast, ignoriere diese E-Mail.",
     ].join("\n") : [
       "Hallo,", "", real ? "Dein persönlicher KlarVoran-Zugang wurde freigegeben." : "Dein persönlicher KlarVoran-Testzugang wurde freigegeben.",
+      ...(message.role === "participant" ? ["Datenschutzinformation vor der Anmeldung: https://www.klarvoran.de/teilnehmer/datenschutz"] : []),
       `Öffne ${loginUrl}`, "Gib die E-Mail-Adresse ein, an die diese Einladung geschickt wurde.",
       "Du erhältst einen Bestätigungscode per E-Mail. Gib den Code auf der Seite ein.",
       message.role === "coach" ? `Danach kannst du die dir zugewiesenen ${real ? "Akten" : "Testakten"} und Dokumente öffnen.` : "Danach kannst du deine eigene Akte öffnen, Dokumente hochladen und Hinweise ansehen.",

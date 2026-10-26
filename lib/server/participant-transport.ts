@@ -103,7 +103,7 @@ export async function deliverParticipantMail(request: Request, config: Participa
       "Wenn du die Anmeldung nicht angefordert hast, ignoriere diese E-Mail.",
     ].join("\n") : [
       "Hallo,", "", real ? "Dein persönlicher KlarVoran-Zugang wurde freigegeben." : "Dein persönlicher KlarVoran-Testzugang wurde freigegeben.",
-      ...(message.role === "participant" ? ["Datenschutzinformation vor der Anmeldung: https://www.klarvoran.de/teilnehmer/datenschutz"] : []),
+      ...(message.role !== "coach" ? ["Datenschutzinformation vor der Anmeldung: https://www.klarvoran.de/teilnehmer/datenschutz"] : []),
       `Öffne ${loginUrl}`, "Gib die E-Mail-Adresse ein, an die diese Einladung geschickt wurde.",
       "Du erhältst einen Bestätigungscode per E-Mail. Gib den Code auf der Seite ein.",
       message.role === "coach" ? `Danach kannst du die dir zugewiesenen ${real ? "Akten" : "Testakten"} und Dokumente öffnen.` : "Danach kannst du deine eigene Akte öffnen, Dokumente hochladen und Hinweise ansehen.",

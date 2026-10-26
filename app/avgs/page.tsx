@@ -16,6 +16,7 @@ import { coachingModules, totalUe } from "@/lib/content/modules";
 import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
+import { VisualIcon, type IconName } from "@/components/VisualIcon";
 
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
@@ -59,6 +60,8 @@ const guideSteps: VisualStep[] = [
     text: "Wir prüfen den AVGS und bestätigen bei Passung die Teilnahmemöglichkeit. Danach entscheidet deine Vermittlungsfachkraft. Beginne erst nach schriftlicher Bewilligung.",
   },
 ];
+
+const moduleIcons: IconName[] = ["orientation", "document", "laptop", "conversation"];
 
 export default function AvgsPage() {
   return (
@@ -125,7 +128,7 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="white">
         <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
         <div className="mt-4 max-w-3xl space-y-3 leading-relaxed text-navy-600">
@@ -187,7 +190,12 @@ export default function AvgsPage() {
           {coachingModules.map((module) => (
             <li key={module.id} className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-5 shadow-card">
               <div className="flex items-start justify-between gap-4">
-                <span className="font-mono text-sm font-semibold text-red-700">Modul {module.id}</span>
+                <span className="flex items-center gap-3 font-mono text-sm font-semibold text-red-700">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-sm)] bg-red/10" aria-hidden="true">
+                    <VisualIcon name={moduleIcons[module.id - 1]} className="h-5 w-5" />
+                  </span>
+                  Modul {module.id}
+                </span>
                 <span className="rounded-[var(--radius-full)] bg-navy-50 px-3 py-1 font-mono text-xs font-semibold text-navy">
                   {module.ue} UE
                 </span>
@@ -210,7 +218,7 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="white" spacing="compact" id="ort">
+      <Section tone="tint" spacing="compact" id="ort">
         <Eyebrow>In deiner Nähe</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
           Jobcoaching für Hofheim, Kriftel und Frankfurt-West
@@ -246,7 +254,7 @@ export default function AvgsPage() {
 
       {/* Formale Nachweise folgen nach Nutzen, Inhalten und Ablauf. So bleibt
           die Seite für Teilnehmende verständlich und zugleich transparent. */}
-      <Section tone="white" spacing="compact">
+      <Section tone="tint" spacing="compact">
         <Eyebrow>Zulassung &amp; Zertifizierung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zugelassenes Coaching – transparent nachgewiesen</h2>
         <div className="mt-6 max-w-xl">
@@ -269,7 +277,7 @@ export default function AvgsPage() {
         </p>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="white">
         <Eyebrow tone="navy">FAQ</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Fragen rund um AZAV &amp; AVGS</h2>
         <div className="mt-6">

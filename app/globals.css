@@ -23,7 +23,9 @@
   --elevation-card: 0 1px 2px rgba(27, 34, 46, 0.04), 0 8px 24px -12px rgba(27, 34, 46, 0.16);
   --elevation-card-hover: 0 4px 8px rgba(27, 34, 46, 0.06), 0 16px 32px -12px rgba(27, 34, 46, 0.22);
 
-  --background: #ffffff;
+  --surface-paper: #f8f6f2;
+  --surface-mist: #e9eff3;
+  --background: var(--surface-paper);
   --foreground: #1b222e;
 }
 
@@ -54,6 +56,46 @@ body {
   color: var(--foreground);
   overflow-wrap: anywhere;
 }
+
+/* Editorial surfaces give long pages a clear rhythm while white remains a
+   deliberate reading surface for cards, forms and protected records. */
+.kv-section-paper { background: var(--surface-paper); }
+.kv-section-mist { background: var(--surface-mist); }
+.kv-section-navy {
+  background-color: var(--brand-navy);
+  background-image:
+    radial-gradient(circle at 90% 5%, rgb(236 28 35 / 0.13), transparent 28rem),
+    linear-gradient(132deg, #1b222e 16%, #293746 100%);
+}
+.kv-hero.kv-section-navy {
+  background-image:
+    radial-gradient(circle at 86% 16%, rgb(236 28 35 / 0.17), transparent 24rem),
+    radial-gradient(circle at 12% 90%, rgb(116 151 174 / 0.16), transparent 27rem),
+    linear-gradient(132deg, #1b222e 8%, #293746 100%);
+}
+.kv-card { position: relative; overflow: hidden; }
+.kv-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.5rem;
+  height: 3px;
+  background: var(--brand-red);
+}
+.kv-process-step { position: relative; }
+.kv-process-step::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-red);
+}
+.kv-legal-copy > * + * { border-top: 1px solid var(--brand-navy-100); padding-top: 1.5rem; }
+.kv-legal-copy h2 { border-left: 3px solid var(--brand-red); padding-left: 0.9rem; }
 
 /* Long German headings and anchor links remain readable below the sticky header. */
 h1, h2, h3 {

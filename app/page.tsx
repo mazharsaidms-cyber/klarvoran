@@ -202,7 +202,7 @@ export default function HomePage() {
 
       {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
           ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
-      <Section tone="white" spacing="compact">
+      <Section tone="tint" spacing="compact">
         <div className="grid items-center gap-8 lg:grid-cols-[260px_1fr]">
           <CertificateSeal
             seal="traeger"

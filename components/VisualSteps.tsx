@@ -14,7 +14,7 @@ export function VisualSteps({ steps }: { steps: readonly VisualStep[] }) {
         <li
           data-reveal=""
           key={step.title}
-          className="group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none"
+          className="kv-process-step group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none"
         >
           <div className="mb-4 flex items-center gap-3 sm:mb-0">
             <span

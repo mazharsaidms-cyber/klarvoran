@@ -125,7 +125,7 @@ export default function WorkshopsPage() {
         </p>
       </Section>
 
-      <Section tone="tint">
+      <Section tone="white">
         <Eyebrow>Format</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Von Halbtag bis Modulreihe</h2>
         <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-3">

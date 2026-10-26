@@ -4,9 +4,9 @@ import { Container } from "./Container";
 type Tone = "white" | "navy" | "tint";
 
 const toneClasses: Record<Tone, string> = {
-  white: "bg-white text-navy",
-  navy: "bg-navy text-white",
-  tint: "bg-navy-50 text-navy",
+  white: "kv-section-paper text-navy",
+  navy: "kv-section-navy text-white",
+  tint: "kv-section-mist text-navy",
 };
 
 export function Section({
@@ -25,9 +25,9 @@ export function Section({
   spacing?: "default" | "compact" | "hero";
 }) {
   const spacingClasses = {
-    default: "py-12 sm:py-14 lg:py-18",
-    compact: "py-8 sm:py-10 lg:py-11",
-    hero: "pt-8 pb-12 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16",
+    default: "py-10 sm:py-12 lg:py-14",
+    compact: "py-8 sm:py-9 lg:py-10",
+    hero: "pt-8 pb-11 sm:pt-10 sm:pb-12 lg:pt-12 lg:pb-14",
   };
   return (
     <section id={id} data-reveal-section={spacing !== "hero" ? "" : undefined} className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}>

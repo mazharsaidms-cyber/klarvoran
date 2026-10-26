@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AppointmentForm } from "@/components/AppointmentForm";
 import { Button } from "@/components/Button";
 import { siteConfig } from "@/lib/site-config";
+import { VisualIcon } from "@/components/VisualIcon";
 
 export const metadata: Metadata = pageMetadata(
   "Termin & Erstgespräch",
@@ -24,6 +25,20 @@ export default function TerminPage() {
           Unterstützung. Wenn du Coaching mit Förderung suchst, klären wir auch den Weg zum AVGS. Nach deiner
           Anfrage melden wir uns persönlich, um einen Termin abzustimmen.
         </p>
+
+        <ol className="mt-7 grid max-w-4xl gap-3 sm:grid-cols-3" aria-label="So kommt dein Erstgespräch zustande">
+          {[
+            { icon: "send" as const, title: "Anfrage senden" },
+            { icon: "phone" as const, title: "Rückmeldung erhalten" },
+            { icon: "calendar" as const, title: "Termin bestätigen" },
+          ].map((step, index) => (
+            <li key={step.title} className="flex items-center gap-3 rounded-[var(--radius-md)] border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white">
+              <span className="font-mono text-white/70" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <VisualIcon name={step.icon} className="h-5 w-5 shrink-0" />
+              {step.title}
+            </li>
+          ))}
+        </ol>
 
         {siteConfig.booking.url && (
           <div className="mt-6 rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-6">

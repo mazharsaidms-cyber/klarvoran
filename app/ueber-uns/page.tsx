@@ -26,7 +26,7 @@ export default function UeberUnsPage() {
   return (
     <>
       <Breadcrumbs items={[{ href: "/ueber-uns", label: "Über uns" }]} />
-      <Section tone="white" spacing="hero" className="kv-hero">
+      <Section tone="tint" spacing="hero" className="kv-hero">
         <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Eyebrow>Über uns</Eyebrow>

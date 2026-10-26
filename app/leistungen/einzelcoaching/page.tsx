@@ -8,6 +8,7 @@ import { CtaSection } from "@/components/CtaSection";
 import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
+import { VisualIcon } from "@/components/VisualIcon";
 
 export const metadata: Metadata = pageMetadata(
   "Privates Job- und Bewerbungscoaching",
@@ -67,28 +68,28 @@ export default function EinzelcoachingPage() {
       <Section tone="tint">
         <div className="text-card-grid grid gap-6 sm:grid-cols-2">
           <Card>
-            <h2 className="text-lg font-bold text-navy">Für wen?</h2>
+            <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="orientation" className="text-red-700" />Für wen?</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Für Menschen, die ein konkretes Bewerbungsthema, eine berufliche Entscheidung oder ein bevorstehendes
               Vorstellungsgespräch gezielt bearbeiten möchten – unabhängig von Jobcenter oder Agentur für Arbeit.
             </p>
           </Card>
           <Card>
-            <h2 className="text-lg font-bold text-navy">Format</h2>
+            <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="location" className="text-red-700" />Format</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Online, hybrid oder in Präsenz in der {siteConfig.presenceLocation.street} in{" "}
               {siteConfig.presenceLocation.city}. Anzahl und Länge der Einheiten werden vor der Buchung festgelegt.
             </p>
           </Card>
           <Card>
-            <h2 className="text-lg font-bold text-navy">Themen</h2>
+            <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="document" className="text-red-700" />Themen</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Standortbestimmung, Bewerbungsunterlagen, Stellensuche oder Vorstellungsgespräch – einzeln oder als
               zusammenhängendes Programm.
             </p>
           </Card>
           <Card>
-            <h2 className="text-lg font-bold text-navy">Kosten</h2>
+            <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="quality" className="text-red-700" />Kosten</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
               Nach dem kostenlosen Erstgespräch erhältst du ein schriftliches Angebot mit dem vereinbarten Umfang
               und dem vollständigen Gesamtpreis. Kosten entstehen erst, wenn du das Angebot annimmst.

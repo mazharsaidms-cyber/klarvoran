@@ -61,7 +61,7 @@ export default function LeistungenPage() {
         </ul>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow tone="navy">Unsere Arbeitsweise</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Eine Methode, unterschiedliche Zugänge</h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">

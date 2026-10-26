@@ -94,7 +94,7 @@ export default function FachkraeftePage() {
         </div>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow>Zulassung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Trägerdaten im Überblick</h2>
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">

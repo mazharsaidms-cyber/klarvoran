@@ -20,7 +20,7 @@ export default function DatenschutzPage() {
         <Eyebrow>Datenschutz</Eyebrow>
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Datenschutzerklärung</h1>
 
-        <div className="mt-8 max-w-2xl space-y-8 text-navy-600">
+        <div className="kv-legal-copy mt-8 max-w-3xl space-y-8 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 text-navy-600 shadow-card sm:p-8">
           <section>
             <h2 className="text-xl font-bold text-navy">1. Verantwortlicher</h2>
             <p className="mt-3">

@@ -89,7 +89,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="tint" id="zielgruppe">
+      <Section tone="white" id="zielgruppe">
         <Eyebrow tone="navy">Zielgruppe & Inhalte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Für wen die Maßnahme geeignet ist</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -179,7 +179,7 @@ export default function FuerJobcenterPage() {
         </div>
       </Section>
 
-      <Section tone="white">
+      <Section tone="tint">
         <Eyebrow>Zulassung</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AZAV-Zulassung &amp; Zertifizierung</h2>
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[280px_1fr]">

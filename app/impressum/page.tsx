@@ -18,7 +18,7 @@ export default function ImpressumPage() {
         <Eyebrow>Impressum</Eyebrow>
         <h1 className="mt-4 text-3xl font-bold text-navy sm:text-4xl">Impressum</h1>
 
-        <div className="mt-8 max-w-2xl space-y-8 text-navy-600">
+        <div className="kv-legal-copy mt-8 max-w-2xl space-y-8 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 text-navy-600 shadow-card sm:p-8">
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-navy-600">
               Angaben gemäß § 5 DDG

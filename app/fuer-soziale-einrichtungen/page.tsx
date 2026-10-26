@@ -49,7 +49,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="tint" id="wege">
+      <Section tone="white" id="wege">
         <Eyebrow tone="navy">Zusammenarbeit</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wie eine Kooperation aussehen kann</h2>
         <div className="text-card-grid mt-6 grid gap-5 sm:grid-cols-2">
@@ -147,7 +147,7 @@ export default function FuerSozialeEinrichtungenPage() {
         </div>
       </Section>
 
-      <Section tone="white" spacing="compact">
+      <Section tone="tint" spacing="compact">
         <Eyebrow>Trägerdaten</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Zulassung im Überblick</h2>
         <div className="mt-6 flex flex-col items-start gap-6 sm:flex-row sm:items-center">

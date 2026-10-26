@@ -31,7 +31,7 @@ export default function ParticipantPrivacyPage() {
     </div>}
     <p className="mt-6">Für den {approved ? "Zugang" : "Testzugang"} sendet KlarVoran einen einmaligen sechsstelligen Code per E-Mail über Resend. Er gilt fünf Minuten. Das erforderliche Sitzungscookie ist für Seitenskripte nicht lesbar; die Sitzung läuft nach sechs Stunden ohne Erneuerung ab. Die KI-Auslesung von Uploads ist gesperrt.</p>
     <p className="mt-3">Die Information ist bereits vor der Anmeldung erreichbar. Der spätere Empfangsnachweis in der Akte ist eine gesonderte Bestätigung und keine Einwilligung.</p>
-    <article className="mt-8 space-y-8">
+    <article className="kv-legal-copy mt-8 space-y-8 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 shadow-card sm:p-8">
       {sections.map((section, index) => {
         const [heading, ...body] = section.trim().split("\n");
         return <section key={index} aria-labelledby={`privacy-section-${index}`}>

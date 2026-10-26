@@ -4,7 +4,7 @@ export function ProcessStepper({ steps }: { steps: ProcessStep[] }) {
   return (
     <ol className="step-grid grid gap-x-6 gap-y-6 sm:grid-cols-2 xl:grid-cols-5">
       {steps.map((step) => (
-        <li key={step.id} className="group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none">
+        <li key={step.id} className="kv-process-step group border-t-2 border-navy-100 pt-5 transition-colors duration-200 hover:border-red-700 motion-reduce:transition-none">
           <span
             className="flex h-11 w-11 items-center justify-center rounded-full bg-navy font-mono text-sm font-bold text-white transition-transform duration-200 group-hover:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none"
             aria-hidden="true"

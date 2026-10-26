@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { VisualIcon } from "@/components/VisualIcon";
 import styles from "./zugang.module.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function ZugangPage() {
       </div>
       <div className={styles.grid}>
         <section className={styles.card}>
+          <span className={styles.icon}><VisualIcon name="document" /></span>
           <span className={styles.tag}>Für Teilnehmende</span>
           <h2>Mein Teilnehmerbereich</h2>
           <p>Deine Termine, freigegebenen Unterlagen, Bestätigungen und Nachrichten an KlarVoran.</p>
@@ -25,6 +27,7 @@ export default function ZugangPage() {
           <Link href="/teilnehmer/installieren" className={styles.installLink}>Auf dem Handy einrichten</Link>
         </section>
         <section className={styles.card}>
+          <span className={styles.icon}><VisualIcon name="quality" /></span>
           <span className={styles.tag}>Für Coaches</span>
           <h2>Mein Coachbereich</h2>
           <p>Deine zugewiesenen Fälle, Sitzungen, Unterlagen und Nachrichten.</p>

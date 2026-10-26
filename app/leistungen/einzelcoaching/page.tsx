@@ -9,6 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { VisualIcon } from "@/components/VisualIcon";
+import { QuickPoints } from "@/components/QuickPoints";
 
 export const metadata: Metadata = pageMetadata(
   "Privates Job- und Bewerbungscoaching",
@@ -48,14 +49,16 @@ export default function EinzelcoachingPage() {
           <div>
             <Eyebrow tone="white">Privates Job- und Bewerbungscoaching</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-white sm:text-4xl">
-              Privates Job- und Bewerbungscoaching für deinen konkreten nächsten Schritt
+              Persönliches Coaching für deinen nächsten Schritt
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Du brauchst gezielte Unterstützung bei deiner Bewerbung, beruflichen Orientierung oder der
-              Vorbereitung auf ein Vorstellungsgespräch? Im privaten Einzelcoaching vereinbaren wir genau die
-              Themen, die du jetzt brauchst. Vor der Buchung erhältst du ein schriftliches Angebot mit Umfang und
-              Gesamtpreis.
+              Wir arbeiten gezielt an deinem Thema. Vor der Buchung erhältst du ein schriftliches Angebot mit Umfang und Gesamtpreis.
             </p>
+            <QuickPoints onDark items={[
+              { icon: "orientation", label: "Orientierung" },
+              { icon: "document", label: "Bewerbung" },
+              { icon: "conversation", label: "Gesprächstraining" },
+            ]} />
             <Button href="/termin" onDark className="mt-6">Kostenloses Erstgespräch anfragen</Button>
           </div>
           <ContextGraphic
@@ -70,8 +73,7 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="orientation" className="text-red-700" />Für wen?</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Für Menschen, die ein konkretes Bewerbungsthema, eine berufliche Entscheidung oder ein bevorstehendes
-              Vorstellungsgespräch gezielt bearbeiten möchten – unabhängig von Jobcenter oder Agentur für Arbeit.
+              Für ein konkretes Bewerbungsthema, eine Entscheidung oder ein bevorstehendes Gespräch – unabhängig von Jobcenter oder Agentur für Arbeit.
             </p>
           </Card>
           <Card>
@@ -84,8 +86,7 @@ export default function EinzelcoachingPage() {
           <Card>
             <h2 className="flex items-center gap-3 text-lg font-bold text-navy"><VisualIcon name="document" className="text-red-700" />Themen</h2>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Standortbestimmung, Bewerbungsunterlagen, Stellensuche oder Vorstellungsgespräch – einzeln oder als
-              zusammenhängendes Programm.
+              Standortbestimmung, Unterlagen, Stellensuche und Gespräche – nach Bedarf.
             </p>
           </Card>
           <Card>
@@ -97,9 +98,7 @@ export default function EinzelcoachingPage() {
           </Card>
         </div>
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-navy-600">
-          Du möchtest zuerst eine Förderung prüfen? Auch ohne vorhandenen Gutschein kannst du dich über das
-          <a href="/avgs" className="ml-1 font-semibold underline underline-offset-4">AVGS-Coaching</a> informieren
-          oder ein Erstgespräch anfragen. Ohne Gutschein musst du dich nicht automatisch für private Bezahlung entscheiden.
+          Förderung zuerst prüfen? Informiere dich über das <a href="/avgs" className="font-semibold underline underline-offset-4">AVGS-Coaching</a>. Ohne Gutschein musst du dich nicht automatisch für private Bezahlung entscheiden.
         </p>
       </Section>
 

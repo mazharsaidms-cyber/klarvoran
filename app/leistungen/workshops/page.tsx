@@ -7,6 +7,7 @@ import { Card } from "@/components/Card";
 import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/Button";
 import { VisualIcon } from "@/components/VisualIcon";
+import { QuickPoints } from "@/components/QuickPoints";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 
 export const metadata: Metadata = pageMetadata(
@@ -83,10 +84,13 @@ export default function WorkshopsPage() {
               Praxisnahe Workshops für Bewerbung und berufliche Orientierung
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Für Einrichtungen, Bildungsträger und Unternehmen: kompakte Formate rund um Bewerbung, berufliche
-              Orientierung und digitale Kompetenz – auf Ihre Zielgruppe, Ihre Ziele und den verfügbaren Zeitrahmen
-              abgestimmt.
+              Praktische Gruppenformate für Einrichtungen, Bildungsträger und Unternehmen – passend zu Zielgruppe und Zeitrahmen.
             </p>
+            <QuickPoints onDark items={[
+              { icon: "document", label: "Bewerbung" },
+              { icon: "orientation", label: "Orientierung" },
+              { icon: "laptop", label: "Digitale Wege" },
+            ]} />
             <Button href="#anfrage" onDark className="mt-6">Workshop anfragen</Button>
           </div>
           <Image

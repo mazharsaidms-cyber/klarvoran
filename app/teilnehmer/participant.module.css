@@ -108,12 +108,6 @@
 .heroEyebrow { color: #c8d9e7; }
 .heroCopy h1 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; margin: 12px 0; letter-spacing: -.025em; }
 .heroCopy p { color: #e4edf4; font-size: 17px; margin: 0 0 25px; }
-.heroActions { display: flex; flex-wrap: wrap; gap: 10px; }
-.heroActions a { min-height: 48px; padding: 11px 18px; border-radius: 10px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 13px; }
-.heroPrimary { background: #fff; color: #1b222e; }
-.heroPrimary:hover { background: #eaf0f5; }
-.heroSecondary { border: 1px solid #ffffff91; color: white; }
-.heroSecondary:hover { background: #ffffff20; }
 .heroAppointment { position: relative; z-index: 1; display: grid; gap: 8px; padding: 24px; min-height: 180px; border-radius: 18px; background: #ffffff13; border: 1px solid #ffffff35; backdrop-filter: blur(8px); }
 .heroAppointment svg { width: 27px; height: 27px; color: #f3bd87; }
 .heroAppointment > span { color: #d3e1ed; letter-spacing: .1em; font-size: 11px; font-weight: 800; }
@@ -145,7 +139,7 @@
 .uploadPick small { font-weight: 400; }
 .portal a:focus-visible, .portal button:focus-visible, .portal summary:focus-visible { outline: 3px solid #b93449; outline-offset: 3px; }
 @media (max-width: 900px) { .dashboardHero { grid-template-columns: 1fr; } .heroAppointment { min-height: 0; } .workspaceGrid { grid-template-columns: 1fr; } }
-@media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginPreview { margin-top: 20px; } .loginTrust { margin-top: 12px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .heroActions a { width: 100%; justify-content: center; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
+@media (max-width: 720px) { .loginGrid { grid-template-columns: 1fr; } .loginIntro { min-height: 0; padding: 30px 25px; } .loginIntro h1 { font-size: 32px; margin: 26px 0 14px; } .loginPreview { margin-top: 20px; } .loginTrust { margin-top: 12px; } .loginCard.card { padding: 30px 24px; } .dashboardHero { padding: 27px 22px; } .quickActions { grid-template-columns: 1fr; gap: 9px; } .quickActions a { min-height: 70px; padding: 11px 14px; } .quickIcon { width: 42px; height: 42px; } }
 @media (prefers-reduced-motion: reduce) { .quickActions a { transition: none; } }
 .help { max-width: none; border: 1px solid #dce0e5; border-radius: 16px; padding: 18px 22px; background: #fff; margin: 0 0 28px; color: #1b222e; }
 .helpMain { display: flex; align-items: center; gap: 16px; }
@@ -158,4 +152,11 @@
 .helpDetails summary { cursor: pointer; font-weight: 700; }
 .helpDetails p { margin: 8px 0; }
 @media (max-width: 720px) { .helpMain { align-items: flex-start; flex-wrap: wrap; } .helpCall { margin-left: 60px; } }
+
+.coachNav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: -8px 0 22px; }
+.coachNav a { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 12px; border: 1px solid #d5e0e6; border-radius: 12px; background: #fff; color: #1b222e; font-size: 13px; font-weight: 800; text-decoration: none; }
+.coachNav a:hover, .coachNav a:focus-visible { background: #e9eff3; }
+.coachNav svg { width: 22px; height: 22px; flex: none; color: #a51116; }
+.coachAnchor { scroll-margin-top: 18px; }
+@media (max-width: 720px) { .coachNav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 

@@ -5,6 +5,8 @@ import { participantRealOperationConfigured } from "@/lib/server/participant-tra
 
 export const metadata: Metadata = {
   title: "Datenschutz im Teilnehmerbereich | KlarVoran",
+  description: "Datenschutzinformation für die Nutzung des KlarVoran-Teilnehmerbereichs.",
+  alternates: { canonical: "/teilnehmer/datenschutz" },
   robots: { index: false, follow: false },
 };
 

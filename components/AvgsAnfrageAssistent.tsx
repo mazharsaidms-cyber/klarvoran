@@ -62,10 +62,9 @@ export function AvgsAnfrageAssistent({ need, traeger }: { need: AvgsAnliegen; tr
 
   return (
     <div className="mt-7 border-t border-navy-100 pt-6">
-      <h3 ref={headingRef} tabIndex={-1} className="text-lg font-bold text-navy outline-none">Deinen persönlichen AVGS-Antrag vorbereiten</h3>
+      <h3 ref={headingRef} tabIndex={-1} className="text-lg font-bold text-navy outline-none">Dein Entwurf in drei Schritten</h3>
       <p className="mt-2 text-sm leading-relaxed text-navy-600">
-        Beschreibe deine Situation in eigenen Worten. Daraus entsteht ein Entwurf für deine Vermittlungsfachkraft.
-        Kurze Antworten reichen. Du kannst den Entwurf bearbeiten oder uns direkt kontaktieren.
+        Kurze Antworten reichen. Du kannst den Entwurf anschließend selbst prüfen und ändern.
       </p>
       {traeger === "andere_unsicher" && <p className="mt-3 text-sm text-navy-600">Kläre vor dem Versenden, ob Jobcenter oder Agentur für Arbeit für dich zuständig ist.</p>}
       <p className="mt-4 text-xs text-navy-600">Deine Antworten bleiben in diesem Browser und werden nicht an KlarVoran gesendet. Bitte keine Gesundheitsdaten oder Aktenzeichen eingeben.</p>

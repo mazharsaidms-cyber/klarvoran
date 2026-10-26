@@ -7,6 +7,7 @@ import { Button } from "@/components/Button";
 import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
+import { QuickPoints } from "@/components/QuickPoints";
 
 const frameworkSteps: VisualStep[] = [
   { icon: "conversation", title: "Verstanden werden", text: "Ausgangslage und Ziel klären." },
@@ -31,9 +32,13 @@ export default function LeistungenPage() {
           Coaching, Workshops und Zusammenarbeit mit KlarVoran
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Du suchst Hilfe bei Bewerbung und beruflicher Orientierung? Hier findest du Einzelcoaching mit Förderung
-          oder privater Bezahlung. Für Institutionen bieten wir Workshops und individuell vereinbarte Aufträge an.
+          Finde die passende Unterstützung – für dich oder deine Institution.
         </p>
+        <QuickPoints onDark items={[
+          { icon: "orientation", label: "Einzelcoaching" },
+          { icon: "social", label: "Workshops" },
+          { icon: "provider", label: "Kooperation" },
+        ]} />
         <div className="mt-6 flex flex-wrap gap-3">
           <Button href="#coaching" onDark>Coaching für mich</Button>
           <Button href="#institutionen" variant="secondary" onDark>Angebote für Institutionen</Button>
@@ -42,7 +47,7 @@ export default function LeistungenPage() {
 
       <Section tone="tint" id="coaching">
         <h2 className="text-2xl font-bold text-navy sm:text-3xl">Einzelcoaching für dich</h2>
-        <p className="mb-6 mt-4 max-w-2xl text-navy-600">Noch kein Gutschein? Du kannst trotzdem ein Erstgespräch anfragen und die mögliche Förderung klären. Privat bezahltes Coaching ist eine eigene Wahl.</p>
+        <p className="mb-6 mt-4 max-w-2xl text-navy-600">Auch ohne Gutschein kannst du ein Erstgespräch anfragen. Privates Coaching ist eine eigene Option.</p>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {participantLeistungen.map((l) => (
             <LeistungCard key={l.id} leistung={l} />

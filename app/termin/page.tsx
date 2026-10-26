@@ -21,9 +21,7 @@ export default function TerminPage() {
         <Eyebrow tone="white">Kostenloses Erstgespräch</Eyebrow>
         <h1 className="mt-4 max-w-3xl text-3xl font-bold text-white sm:text-4xl">Kostenloses Erstgespräch anfragen</h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Im kostenlosen, unverbindlichen Erstgespräch sprechen wir über dein berufliches Ziel und die passende
-          Unterstützung. Wenn du Coaching mit Förderung suchst, klären wir auch den Weg zum AVGS. Nach deiner
-          Anfrage melden wir uns persönlich, um einen Termin abzustimmen.
+          Wir klären dein Ziel, mögliche Unterstützung und bei Bedarf den AVGS-Weg. Kostenlos und unverbindlich.
         </p>
 
         <ol className="mt-7 grid max-w-4xl gap-3 sm:grid-cols-3" aria-label="So kommt dein Erstgespräch zustande">
@@ -53,8 +51,7 @@ export default function TerminPage() {
         <div className="mx-auto mt-8 max-w-2xl rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:p-8">
           <h2 className="text-lg font-bold text-navy">Terminanfrage senden</h2>
           <p className="mt-2 text-sm text-navy-600">
-            Nach deiner Anfrage melden wir uns persönlich, um einen passenden Termin abzustimmen. Der Termin ist
-            erst verbindlich, wenn du eine Bestätigung von uns erhalten hast.
+            Wir melden uns zur Abstimmung. Verbindlich ist der Termin erst nach unserer Bestätigung.
           </p>
           <div className="mt-6">
             <AppointmentForm />

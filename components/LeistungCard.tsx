@@ -61,7 +61,7 @@ export function LeistungCard({
         </p>
 
         <ul className="space-y-1.5 text-sm text-navy-600 transition-colors group-hover:text-white/90 group-focus-visible:text-white/90">
-          {leistung.bullets.map((b) => (
+          {leistung.bullets.slice(0, 2).map((b) => (
             <li key={b} className="flex items-start gap-2">
               <span
                 className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-btn-red transition-colors group-hover:bg-white group-focus-visible:bg-white"

@@ -145,7 +145,7 @@ export function RadioGroupField({
         {options.map((opt) => (
           <label
             key={opt.value}
-            className="flex min-h-11 cursor-pointer items-start gap-2.5 rounded-[var(--radius-sm)] border border-navy-600/65 px-3.5 py-2.5 text-sm text-navy has-[:checked]:border-navy has-[:checked]:bg-navy-50 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy"
+            className="flex min-h-12 cursor-pointer items-center gap-2.5 rounded-[var(--radius-sm)] border border-navy-600/65 px-3.5 py-2.5 text-sm text-navy transition-colors has-[:checked]:border-btn-red has-[:checked]:bg-red/5 has-[:checked]:font-semibold has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy motion-reduce:transition-none"
           >
             <input
               type="radio"
@@ -154,7 +154,7 @@ export function RadioGroupField({
               required={required}
               checked={value === opt.value}
               onChange={() => onChange?.(opt.value)}
-              className="mt-0.5 h-4 w-4 shrink-0 accent-btn-red"
+              className="h-5 w-5 shrink-0 accent-btn-red"
             />
             <span className="min-w-0">{opt.label}</span>
           </label>

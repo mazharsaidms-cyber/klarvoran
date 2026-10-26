@@ -8,6 +8,7 @@ import { CertificateSeal } from "@/components/CertificateSeal";
 import { ContactForm } from "@/components/ContactForm";
 import { InstitutionCard, type InstitutionTarget } from "@/components/InstitutionCard";
 import { ContextGraphic } from "@/components/ContextGraphic";
+import { QuickPoints } from "@/components/QuickPoints";
 import { InstitutionDownload } from "@/components/InstitutionDownload";
 
 export const metadata: Metadata = pageMetadata(
@@ -19,27 +20,27 @@ export const metadata: Metadata = pageMetadata(
 const audiences: InstitutionTarget[] = [
   {
     title: "Jobcenter & Agentur für Arbeit",
-    text: "AVGS, § 45 SGB III, Maßnahmezulassung, Zielgruppe, Ablauf und Ansprechpartner für Gutscheinprüfung und Teilnahmeabstimmung.",
+    text: "AVGS-Maßnahme, Zulassung und Teilnahmeabstimmung.",
     href: "/fuer-jobcenter",
-    cta: "Zur Seite für Jobcenter / Agentur für Arbeit",
+    cta: "Maßnahmedaten ansehen",
   },
   {
     title: "Soziale Einrichtungen & Beratungsstellen",
-    text: "Externe Coaching- und Workshopangebote, berufliche Orientierung und Kooperationsmöglichkeiten für Ihre Klientinnen und Klienten.",
+    text: "Coaching, Workshops und Wege der Zusammenarbeit.",
     href: "/fuer-soziale-einrichtungen",
-    cta: "Zur Seite für soziale Einrichtungen",
+    cta: "Angebote ansehen",
   },
   {
     title: "Bildungsträger & Kooperationspartner",
-    text: "Unteraufträge, Dozenteneinsätze oder abgestimmte Vertretung – mit klaren Zuständigkeiten und Praxis in Jobcoaching und Bewerbungsmanagement.",
+    text: "Unteraufträge, Dozenteneinsätze und Vertretung.",
     href: "/fuer-bildungstraeger",
-    cta: "Zur Seite für Bildungsträger",
+    cta: "Leistungen ansehen",
   },
   {
     title: "Kommunen & öffentliche Auftraggeber",
-    text: "Klar abgegrenzte Bildungs-, Coaching- und Workshopaufträge für regionale Projekte und Vorhaben.",
+    text: "Coaching- und Workshopbausteine für regionale Vorhaben.",
     href: "/fuer-kommunen",
-    cta: "Zur Seite für Kommunen",
+    cta: "Vorhaben ansehen",
   },
 ];
 
@@ -55,13 +56,16 @@ export default function FachkraeftePage() {
               Verlässliche Coaching- und Bildungsleistungen für Ihre Institution
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              Wir unterstützen Ihre Zielgruppe mit Bewerbungscoaching, beruflicher Orientierung und Workshops.
-              Ob AVGS-Teilnahme, Weiterempfehlung oder direkter Auftrag: Wählen Sie Ihren Bereich für die
-              passenden Leistungen, Voraussetzungen und Unterlagen.
+              Wählen Sie Ihre Einrichtung. Dort finden Sie Leistungen, Voraussetzungen und Unterlagen für die Zusammenarbeit.
             </p>
+            <QuickPoints onDark items={[
+              { icon: "jobcenter", label: "AVGS-Teilnahme" },
+              { icon: "social", label: "Weiterempfehlung" },
+              { icon: "provider", label: "Auftrag" },
+            ]} />
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#bereiche" onDark>Meinen Bereich wählen</Button>
-              <Button href="#anfrage" onDark variant="secondary">Zusammenarbeit anfragen</Button>
+              <Button href="#anfrage" onDark variant="text">Direkt anfragen →</Button>
             </div>
           </div>
           <ContextGraphic

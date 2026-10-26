@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { participantConfig } from "@/lib/server/participant-config";
+import { participantRealOperationConfigured } from "@/lib/server/participant-transport";
 
 export const metadata: Metadata = {
   title: "Datenschutz im Teilnehmerbereich | KlarVoran",
@@ -18,15 +20,16 @@ function TextWithLinks({ text }: { text: string }) {
 }
 
 export default function ParticipantPrivacyPage() {
+  const approved = participantRealOperationConfigured(participantConfig());
   const sections = notice.split(/\n(?=\d+\. )/).slice(1);
   return <main className="mx-auto max-w-3xl px-6 py-12 leading-relaxed">
     <Link href="/teilnehmer" className="underline">← Zurück zum Teilnehmerbereich</Link>
     <h1 className="mt-8 text-3xl font-bold">Datenschutz für Teilnehmende</h1>
-    <p className="mt-2 text-sm">Entwurf · Version 2.8 · 25.10.2026</p>
-    <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-slate-900">
+    <p className="mt-2 text-sm">{approved ? "Version 2.8 · 25.10.2026" : "Entwurf · Version 2.8 · 25.10.2026"}</p>
+    {!approved && <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-slate-900">
       <strong>Testbetrieb:</strong> Der Zugang ist noch nicht für echte Teilnehmerdaten freigegeben. Bitte verwende hier nur erfundene Testangaben. Die folgende vollständige Fassung wird vor dem Echtbetrieb fachlich geprüft.
-    </div>
-    <p className="mt-6">Für den Testzugang sendet KlarVoran einen einmaligen sechsstelligen Code per E-Mail über Resend. Er gilt fünf Minuten. Das erforderliche Sitzungscookie ist für Seitenskripte nicht lesbar; die Sitzung läuft nach sechs Stunden ohne Erneuerung ab. Die KI-Auslesung von Uploads ist gesperrt.</p>
+    </div>}
+    <p className="mt-6">Für den {approved ? "Zugang" : "Testzugang"} sendet KlarVoran einen einmaligen sechsstelligen Code per E-Mail über Resend. Er gilt fünf Minuten. Das erforderliche Sitzungscookie ist für Seitenskripte nicht lesbar; die Sitzung läuft nach sechs Stunden ohne Erneuerung ab. Die KI-Auslesung von Uploads ist gesperrt.</p>
     <p className="mt-3">Die Information ist bereits vor der Anmeldung erreichbar. Der spätere Empfangsnachweis in der Akte ist eine gesonderte Bestätigung und keine Einwilligung.</p>
     <article className="mt-8 space-y-8">
       {sections.map((section, index) => {

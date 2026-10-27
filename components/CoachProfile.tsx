@@ -9,7 +9,7 @@ export function CoachProfile() {
         <figure className="overflow-hidden rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 shadow-sm">
           <Image
             src="/images/mazhar-said-portrait.jpg"
-            alt="Mazhar Said, Gründer und fachliche Leitung von KlarVoran"
+            alt="Porträt des Gründers von KlarVoran"
             width={591}
             height={827}
             sizes="(max-width: 1023px) min(100vw - 3rem, 400px), 320px"
@@ -22,11 +22,10 @@ export function CoachProfile() {
 
       <div className="space-y-8">
         <div>
-          <h2 className="text-2xl font-bold text-navy sm:text-3xl">Mazhar Said</h2>
+          <h2 className="text-2xl font-bold text-navy sm:text-3xl">So arbeitet KlarVoran</h2>
           <p className="mt-3 text-lg leading-relaxed text-navy-600">
-            Ich verbinde strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung
-            und einem praxisnahen Verständnis von Arbeitswelt, Unternehmen und Vertrieb. So entstehen aus
-            beruflicher Unsicherheit klare und umsetzbare nächste Schritte.
+            Wir hören zu, ordnen die Ausgangslage und machen Anforderungen verständlich. Mit klaren Aufgaben und
+            praktischer Übung wächst die Sicherheit, Bewerbungen und berufliche Schritte selbst zu gestalten.
           </p>
         </div>
 
@@ -34,7 +33,7 @@ export function CoachProfile() {
           <p className="text-lg font-medium leading-relaxed text-navy sm:text-xl">
             „Gute Begleitung macht nicht abhängig: Sie schafft Verständnis, stärkt Handlungssicherheit und wird mit jedem selbstständig übernommenen Schritt weniger nötig.“
           </p>
-          <footer className="mt-5 text-sm font-semibold text-red-700">— Mazhar Said</footer>
+          <footer className="mt-5 text-sm font-semibold text-red-700">— Gründer von KlarVoran</footer>
         </blockquote>
 
         <div>

@@ -2,21 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
-import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { TrustBar } from "@/components/TrustBar";
-import { LeistungCard } from "@/components/LeistungCard";
-import { FaqAccordion } from "@/components/FaqAccordion";
 import { CtaSection } from "@/components/CtaSection";
-import { CertificateSeal } from "@/components/CertificateSeal";
 import { Card } from "@/components/Card";
 import { ServiceStructuredData } from "@/components/StructuredData";
 import { VisualIcon } from "@/components/VisualIcon";
-import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
-import { FounderExpertise } from "@/components/FounderExpertise";
-import { QuickPoints } from "@/components/QuickPoints";
 import { ParticipantPreview } from "@/components/ParticipantPreview";
-import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
-import { generalFaq } from "@/lib/content/faq";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -39,38 +30,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const methodSteps: VisualStep[] = [
-  {
-    title: "Verstanden werden",
-    text: "Wir starten mit einem echten Gespräch und klären deine Ausgangslage, deine Ziele und deine Hürden.",
-    icon: "conversation",
-  },
-  {
-    title: "System verstehen",
-    text: "Wir übersetzen Anforderungen und ordnen sie in klare, nachvollziehbare Schritte.",
-    icon: "signpost",
-  },
-  {
-    title: "Selbst handeln",
-    text: "Du passt Unterlagen an, recherchierst Stellen und bereitest Gespräche zunehmend selbst vor.",
-    icon: "laptop",
-  },
-  {
-    title: "Dranbleiben",
-    text: "Du machst Fortschritte sichtbar, wertest Rückschläge aus und passt deinen nächsten Schritt an.",
-    icon: "progress",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
       <ServiceStructuredData />
 
-      {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
       <Section tone="navy" spacing="hero" className="kv-hero kv-home-hero">
-        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-8">
-          <div className="order-1">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt-West &amp; Main-Taunus-Kreis</Eyebrow>
             <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.5rem]">
               <span className="text-logo-red">Klar</span> sehen. Selbstständig handeln. Beruflich{" "}
@@ -79,31 +46,19 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
               Du suchst Arbeit oder eine Ausbildung? Wir finden gemeinsam deinen nächsten Schritt.
             </p>
-            <QuickPoints onDark items={[
-              { icon: "orientation", label: "Richtung finden" },
-              { icon: "document", label: "Bewerbung verbessern" },
-              { icon: "conversation", label: "Gespräche üben" },
-            ]} />
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href="/avgs" onDark>
+              <Button href="/leistungen#coaching" onDark>
                 Ich suche Coaching
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" onDark>
                 Für Institutionen
               </Button>
             </div>
-          </div>
-
-          <div className="order-2 lg:order-4">
-            <AvgsCheckEntry />
-          </div>
-
-          <div className="order-3">
-            <p className="max-w-xl text-sm leading-relaxed text-white/80">
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/80">
               Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
               und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
             </p>
-            <div className="mt-6">
+            <div className="mt-5">
               <TrustBar tone="dark" />
             </div>
           </div>
@@ -114,159 +69,67 @@ export default function HomePage() {
             width={1400}
             height={781}
             sizes="(min-width: 1152px) 468px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
-            className="kv-home-photo order-4 w-full rounded-[var(--radius-lg)] border border-white/15 lg:order-2 lg:mt-12"
+            className="kv-home-photo w-full rounded-[var(--radius-lg)] border border-white/15"
             preload
           />
         </div>
       </Section>
 
-      {/* Die Zielgruppe erkennt zuerst ihre Situation, bevor Angebote und
-          formale Nachweise erklärt werden. */}
       <Section tone="tint">
-        <div className="max-w-3xl">
-          <Eyebrow tone="navy">Wenn gerade der Überblick fehlt</Eyebrow>
+        <div className="max-w-2xl">
+          <Eyebrow tone="navy">Dein Weg zu KlarVoran</Eyebrow>
           <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-            Du musst nicht schon wissen, wie alles weitergeht.
+            Welcher Weg passt zu deiner Anfrage?
           </h2>
           <p className="mt-4 leading-relaxed text-navy-600">
-            Wir beginnen dort, wo du gerade stehst – auch wenn dein Ziel noch nicht feststeht.
+            Ob du selbst den nächsten beruflichen Schritt angehen möchtest oder für eine Einrichtung anfragst: Wähle den passenden Einstieg.
           </p>
         </div>
-        <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-3">
-          <Card>
+        <div className="icon-card-grid mt-6 grid gap-5 md:grid-cols-2">
+          <Card className="flex flex-col items-start">
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
               <VisualIcon name="orientation" />
             </span>
-            <h3 className="font-semibold text-navy">Ausgangslage ordnen</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Was klappt schon? Was bremst dich? Wir ordnen es gemeinsam.
+            <h3 className="text-xl font-bold text-navy">Ich suche Coaching</h3>
+            <p className="mt-3 leading-relaxed text-navy-600">
+              Für Bewerbung, Ausbildung oder berufliche Orientierung – mit AVGS oder als privates Coaching.
             </p>
+            <Button href="/leistungen#coaching" variant="text" className="mt-auto pt-5">Angebote für mich ansehen →</Button>
           </Card>
-          <Card>
+          <Card className="flex flex-col items-start">
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
-              <VisualIcon name="system" />
+              <VisualIcon name="provider" />
             </span>
-            <h3 className="font-semibold text-navy">Anforderungen verstehen</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Wir übersetzen Anforderungen in verständliche Schritte.
+            <h3 className="text-xl font-bold text-navy">Wir vertreten eine Institution</h3>
+            <p className="mt-3 leading-relaxed text-navy-600">
+              Für Gutscheinabstimmung, Workshops oder eine Zusammenarbeit mit klaren Zuständigkeiten und Nachweisen.
             </p>
-          </Card>
-          <Card>
-            <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
-              <VisualIcon name="action" />
-            </span>
-            <h3 className="font-semibold text-navy">Ins Handeln kommen</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Du übst den nächsten Schritt direkt – mit Unterstützung.
-            </p>
+            <Button href="/fachkraefte-kooperationspartner" variant="text" className="mt-auto pt-5">Bereich für Institutionen öffnen →</Button>
           </Card>
         </div>
       </Section>
 
-      {/* Leistungen: dunkelblaue Fläche, weiße Zielkarten mit Invert-Hover. */}
-      <Section tone="navy">
-        <div className="mb-8 text-center">
-          <Eyebrow tone="white">Leistungen</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Coaching für dich · Angebote für Institutionen</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-white/80">
-            Einzelcoaching für deine Bewerbung und berufliche Orientierung. Für Einrichtungen und Bildungsträger
-            bieten wir außerdem Workshops und klar vereinbarte Coachingaufträge an.
-          </p>
-        </div>
-        <h3 className="mb-5 text-xl font-bold text-white">Du suchst Unterstützung für dich?</h3>
-        <ul className="service-grid grid gap-6 sm:grid-cols-2">
-          {participantLeistungen.map((l) => (
-            <LeistungCard key={l.id} leistung={l} hasMassnahmeBadge={l.id === "avgs"} headingLevel={4} />
-          ))}
-        </ul>
-        <h3 className="mb-5 mt-8 text-xl font-bold text-white">Sie planen ein Angebot für Ihre Einrichtung?</h3>
-        <ul className="service-grid grid gap-6 sm:grid-cols-2">
-          {institutionalLeistungen.map((l) => (
-            <LeistungCard key={l.id} leistung={l} headingLevel={4} />
-          ))}
-        </ul>
-      </Section>
-
-      {/* Die vier Schritte bilden eine durchgehende Lesezeile statt einer weiteren Kartenreihe. */}
-      <Section tone="tint">
-        <div className="mb-8">
-          <Eyebrow tone="navy">Unsere Arbeitsweise</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-            Damit du deinen nächsten Schritt selbst gehen kannst.
-          </h2>
-          <p className="mt-3 max-w-2xl text-navy-600">
-            Nicht nur gemeinsam erledigen. Lernen, es selbst zu können.
-          </p>
-        </div>
-        <VisualSteps steps={methodSteps} />
-      </Section>
-
-      {/* Zulassungsnachweis nach Angeboten und Methode: wichtig für Vertrauen,
-          ohne den Einstieg der Teilnehmenden mit Formalien zu unterbrechen. */}
       <Section tone="white" spacing="compact">
-        <div className="grid items-center gap-7 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-5 shadow-card sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-          <div>
-            <Eyebrow>Für bestehende Teilnehmende</Eyebrow>
-            <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Dein Coaching bleibt übersichtlich.</h2>
-            <p className="mt-4 max-w-lg leading-relaxed text-navy-600">
-              Termine, Unterlagen und Nachrichten an einem Ort. Melde dich mit deiner Einladung und einem Code per E-Mail an.
-            </p>
-            <Button href="/teilnehmer" className="mt-6">Meinen Teilnehmerbereich öffnen</Button>
-            <p className="mt-3 text-xs text-navy-600">Die Darstellung ist eine grafische Vorschau ohne persönliche Daten.</p>
+        <div className="flex flex-col gap-5 rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="max-w-2xl">
+            <Eyebrow>So arbeiten wir</Eyebrow>
+            <h2 className="mt-3 text-xl font-bold text-navy sm:text-2xl">Verstehen. Üben. Selbst weitergehen.</h2>
+            <p className="mt-3 leading-relaxed text-navy-600">Wir ordnen die Ausgangslage, erklären berufliche Anforderungen und üben konkrete Schritte, bis du sie zunehmend selbst übernehmen kannst.</p>
           </div>
-          <ParticipantPreview />
+          <Button href="/ueber-uns" variant="secondary" className="shrink-0">KlarVoran kennenlernen</Button>
         </div>
       </Section>
 
       <Section tone="tint" spacing="compact">
-        <div className="grid items-center gap-8 lg:grid-cols-[260px_1fr]">
-          <CertificateSeal
-            seal="traeger"
-            caption="Trägerzertifikat – ausgestellt auf Mazhar Said – KlarVoran"
-          />
+        <div className="grid items-center gap-6 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-5 shadow-card sm:p-7 lg:grid-cols-[1fr_0.8fr]">
           <div>
-            <h2 className="text-xl font-bold text-navy sm:text-2xl">Zulassung transparent erklärt</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
-              KlarVoran ist ein nach § 178 SGB III (AZAV) zugelassener Bildungsträger.{" "}
-              Das individuelle Bewerbungscoaching ist als Maßnahme nach § 45 SGB III zugelassen. Mit einem
-              passenden Aktivierungs- und Vermittlungsgutschein (AVGS) und vor Beginn schriftlich bewilligter Teilnahme
-              übernimmt der zuständige Kostenträger die Maßnahmekosten.
-            </p>
-            <Button href="/dokumente/CERTQUA.pdf" external variant="text" className="mt-4">
-              Zertifikat Trägerzulassung (PDF) →
-            </Button>
+            <Eyebrow>Für bestehende Teilnehmende</Eyebrow>
+            <h2 className="mt-3 text-xl font-bold text-navy sm:text-2xl">Dein Teilnehmerbereich</h2>
+            <p className="mt-3 max-w-lg leading-relaxed text-navy-600">Termine, Unterlagen und Nachrichten an einem Ort – für Teilnehmende mit Einladung.</p>
+            <Button href="/teilnehmer" className="mt-5">Teilnehmerbereich öffnen</Button>
           </div>
+          <div className="mx-auto w-full max-w-sm" aria-label="Grafische Vorschau ohne persönliche Daten"><ParticipantPreview /></div>
         </div>
-      </Section>
-
-      {/* Gründerabschnitt: ruhige weiße Lesefläche. */}
-      <Section tone="white">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,320px)_1fr]">
-          <FounderExpertise />
-          <div>
-            <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
-            <blockquote className="mt-4 text-xl font-semibold leading-snug text-navy sm:text-2xl">
-              „Ich verbinde strukturiertes Arbeiten aus dem Rechts- und Notariatsbereich mit pädagogischer Erfahrung
-              und einem praxisnahen Verständnis von Arbeitswelt, Unternehmen und Vertrieb. So entstehen aus
-              beruflicher Unsicherheit klare und umsetzbare nächste Schritte.“
-            </blockquote>
-            <p className="mt-4 text-sm text-navy-600">Mazhar Said, Gründer von KlarVoran</p>
-            <Button href="/ueber-uns#gruender" variant="text" className="mt-5">
-              Mehr über Mazhar erfahren →
-            </Button>
-          </div>
-        </div>
-      </Section>
-
-      <Section tone="tint">
-        <div className="mb-6">
-          <Eyebrow tone="navy">FAQ</Eyebrow>
-          <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Häufige Fragen</h2>
-        </div>
-        <FaqAccordion items={generalFaq.slice(0, 4)} />
-        <Button href="/faq" variant="text" className="mt-6">
-          Alle Fragen ansehen →
-        </Button>
       </Section>
 
       <CtaSection

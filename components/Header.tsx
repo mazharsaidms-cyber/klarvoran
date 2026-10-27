@@ -14,6 +14,7 @@ const headerNav = siteConfig.nav.filter((item) => item.href !== "/faq" && item.h
 export function Header() {
   const [openPathname, setOpenPathname] = useState<string | null>(null);
   const pathname = usePathname();
+  const publicPage = !pathname.startsWith("/teilnehmer") && pathname !== "/coach" && pathname !== "/zugang" && pathname !== "/impressum" && pathname !== "/datenschutz";
   const open = openPathname === pathname;
   const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-");
   const institutionalAudience = institutionalPage || pathname === "/leistungen/workshops";
@@ -187,6 +188,7 @@ export function Header() {
           </ul>
         </nav>
       )}
+      {publicPage && <div className="kv-scroll-track" aria-hidden="true"><span className="kv-scroll-progress" /></div>}
     </header>
   );
 }

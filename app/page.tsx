@@ -68,7 +68,7 @@ export default function HomePage() {
       <ServiceStructuredData />
 
       {/* Hero: dunkelblauer Einstieg, weiße Überschrift, keine Fototapete. */}
-      <Section tone="navy" spacing="hero" className="kv-hero">
+      <Section tone="navy" spacing="hero" className="kv-hero kv-home-hero">
         <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-8">
           <div className="order-1">
             <Eyebrow tone="white">Job- &amp; Bewerbungscoaching · Frankfurt-West &amp; Main-Taunus-Kreis</Eyebrow>
@@ -114,7 +114,7 @@ export default function HomePage() {
             width={1400}
             height={781}
             sizes="(min-width: 1152px) 468px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 40px)"
-            className="order-4 w-full rounded-[var(--radius-lg)] border border-white/15 lg:order-2 lg:mt-12"
+            className="kv-home-photo order-4 w-full rounded-[var(--radius-lg)] border border-white/15 lg:order-2 lg:mt-12"
             preload
           />
         </div>

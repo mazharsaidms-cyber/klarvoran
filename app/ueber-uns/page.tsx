@@ -65,7 +65,7 @@ export default function UeberUnsPage() {
             "Überprüfbare Zielschritte",
             "Regelmäßige Überprüfung und Weiterentwicklung unserer Prozesse",
           ].map((item) => (
-            <li key={item} className="flex items-start gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-4 text-sm text-navy-600">
+            <li key={item} data-reveal="" className="kv-about-quality flex items-start gap-3 rounded-[var(--radius-md)] border border-navy-100 bg-white p-4 text-sm text-navy-600">
               <span className="shrink-0 text-red-700" aria-hidden="true"><VisualIcon name="quality" /></span>
               <span>{item}</span>
             </li>
@@ -86,7 +86,7 @@ export default function UeberUnsPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Wofür wir stehen</h2>
         <div className="icon-card-grid mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
-            <Card key={v.title}>
+            <Card key={v.title} className="kv-about-value">
               <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
                 <VisualIcon name={v.icon} />
               </span>

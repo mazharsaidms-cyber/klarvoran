@@ -19,7 +19,7 @@ export const leistungen: Leistung[] = [
     summary:
       "1:1 bei Bewerbung und beruflicher Orientierung. Auch ohne Gutschein kannst du uns anfragen.",
     bullets: [
-      "32 Einheiten in bis zu 8 Wochen",
+      "Bis zu 32 UE in maximal 8 Wochen",
       "1:1-Einzelcoaching, keine Gruppe",
       "Zugelassene Maßnahme nach § 45 SGB III",
     ],

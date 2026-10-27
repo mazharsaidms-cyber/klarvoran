@@ -20,7 +20,7 @@ export function CtaSection({
 }) {
   return (
     <Section tone="navy">
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="kv-cta-panel mx-auto max-w-2xl text-center">
         {eyebrow && (
           <p className="mb-3">
             <Eyebrow tone="white">{eyebrow}</Eyebrow>

@@ -46,7 +46,7 @@ export function Eyebrow({ children, tone = "red" }: { children: ReactNode; tone?
   } as const;
   return (
     <span
-      className={`inline-flex items-center rounded-[var(--radius-full)] px-3 py-1 text-xs font-mono font-semibold uppercase tracking-wide ${colors[tone]}`}
+      className={`kv-eyebrow inline-flex items-center rounded-[var(--radius-full)] px-3 py-1 text-xs font-mono font-semibold uppercase tracking-wide ${colors[tone]}`}
     >
       {children}
     </span>

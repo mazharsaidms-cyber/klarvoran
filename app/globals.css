@@ -57,6 +57,49 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* A persistent, unobtrusive cue that responds to the visitor's scroll position. */
+.kv-scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 80;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-red), #ff6857);
+  box-shadow: 0 1px 7px rgb(236 28 35 / 0.4);
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.kv-eyebrow { position: relative; }
+.kv-eyebrow::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  left: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.75;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+[data-section-visible] .kv-eyebrow::after { transform: scaleX(1); }
+.kv-cta-panel h2::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 4px;
+  margin: 0.8rem auto 0;
+  border-radius: 999px;
+  background: var(--brand-red);
+  transform: scaleX(0);
+}
+[data-section-visible] .kv-cta-panel h2::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: no-preference) {
+  .kv-eyebrow::after,
+  .kv-cta-panel h2::after { transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1); }
+}
+
 /* Editorial surfaces give long pages a clear rhythm while white remains a
    deliberate reading surface for cards, forms and protected records. */
 .kv-section-paper { background: var(--surface-paper); }
@@ -85,6 +128,7 @@ body {
   height: 3px;
   background: var(--brand-red);
 }
+.kv-interactive-card[data-reveal-state="visible"]::before { width: 5.5rem; }
 .kv-interactive-card,
 .kv-interactive-card::before,
 .kv-interactive-card > span:first-child,
@@ -128,6 +172,11 @@ body {
   height: 4px;
   border-radius: 0 0 4px 4px;
   background: var(--brand-red);
+}
+.kv-process-step[data-reveal-state="visible"]::before { width: 4.5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .kv-interactive-card::before,
+  .kv-process-step::before { transition: width 650ms 100ms ease-out; }
 }
 .kv-process-step::after {
   content: attr(data-step);
@@ -293,12 +342,12 @@ h1, h2, h3 {
    Only JS-armed, initially offscreen elements can be hidden. */
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal-state] {
-    transition: opacity 520ms ease, translate 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: opacity 680ms ease, translate 680ms cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
   [data-reveal-state="pending"] {
     opacity: 0;
-    translate: 0 20px;
+    translate: 0 34px;
   }
   [data-reveal-state="visible"] {
     opacity: 1;
@@ -311,8 +360,8 @@ h1, h2, h3 {
   }
   :is(.kv-about-portrait, .kv-about-quote, .kv-about-quality, .kv-about-value, .kv-about-milestone, .kv-interactive-card, .kv-process-step)[data-reveal-state] {
     transition:
-      opacity 520ms ease var(--reveal-delay, 0ms),
-      translate 520ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+      opacity 680ms ease var(--reveal-delay, 0ms),
+      translate 680ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
       transform 240ms ease,
       box-shadow 240ms ease,
       border-color 240ms ease;
@@ -321,6 +370,7 @@ h1, h2, h3 {
 
 @media print {
   [data-reveal-state] { opacity: 1 !important; translate: none !important; }
+  .kv-scroll-progress { display: none; }
 }
 
 /* Align icons, headings and body text by content height, also when titles wrap. */
@@ -345,11 +395,16 @@ h1, h2, h3 {
   .kv-hero > div {
     animation: kv-hero-enter 420ms ease-out both;
   }
+  .kv-hero h1 { animation: kv-headline-enter 650ms 100ms ease-out both; }
   .kv-home-photo { animation: kv-photo-enter 650ms 120ms ease-out both; }
 }
 
 @keyframes kv-hero-enter {
   from { opacity: 0.88; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes kv-headline-enter {
+  from { opacity: 0.6; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes kv-photo-enter {
@@ -370,6 +425,8 @@ h1, h2, h3 {
     transform: none !important;
   }
   [data-reveal-state] { opacity: 1 !important; translate: none !important; }
+  .kv-eyebrow::after,
+  .kv-cta-panel h2::after { transform: scaleX(1); }
   .kv-interactive-card,
   .kv-interactive-card::before,
   .kv-interactive-card > span:first-child,

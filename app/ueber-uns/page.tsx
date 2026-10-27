@@ -95,10 +95,6 @@ export default function UeberUnsPage() {
             </Card>
           ))}
         </div>
-        <p className="mt-6 max-w-2xl text-sm italic leading-relaxed text-navy-600">
-          Gute Begleitung macht nicht abhängig: Sie schafft Verständnis, stärkt Handlungssicherheit und wird mit
-          jedem selbstständig übernommenen Schritt weniger nötig.
-        </p>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-600">
           Wer berufliche Aufgaben selbst bewältigen kann, gewinnt Handlungsspielraum. Damit möchten wir zu
           besseren Zugängen in Arbeit und Ausbildung und zu mehr gesellschaftlicher Teilhabe beitragen.

@@ -1,10 +1,24 @@
+import Image from "next/image";
 import { coachExperience, coachQualifications } from "@/lib/content/coach";
 import { FounderExpertise } from "@/components/FounderExpertise";
 
 export function CoachProfile() {
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
-      <FounderExpertise />
+      <div className="space-y-5">
+        <figure className="overflow-hidden rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 shadow-sm">
+          <Image
+            src="/images/mazhar-said-portrait.jpg"
+            alt="Mazhar Said, Gründer und fachliche Leitung von KlarVoran"
+            width={591}
+            height={827}
+            sizes="(max-width: 1023px) min(100vw - 3rem, 400px), 320px"
+            className="aspect-[4/5] w-full object-cover object-top"
+          />
+          <figcaption className="px-5 py-4 text-sm font-semibold text-navy">Mazhar Said <span className="block font-normal text-navy-600">Gründer &amp; fachliche Leitung</span></figcaption>
+        </figure>
+        <FounderExpertise />
+      </div>
 
       <div className="space-y-8">
         <div>
@@ -15,6 +29,13 @@ export function CoachProfile() {
             beruflicher Unsicherheit klare und umsetzbare nächste Schritte.
           </p>
         </div>
+
+        <blockquote className="rounded-[var(--radius-lg)] border border-navy-100 border-l-4 border-l-red bg-navy-50 px-6 py-6 sm:px-8">
+          <p className="text-lg font-medium leading-relaxed text-navy sm:text-xl">
+            „Gute Begleitung macht nicht abhängig: Sie schafft Verständnis, stärkt Handlungssicherheit und wird mit jedem selbstständig übernommenen Schritt weniger nötig.“
+          </p>
+          <footer className="mt-5 text-sm font-semibold text-red-700">— Mazhar Said</footer>
+        </blockquote>
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-600">Fachlicher Hintergrund</h3>

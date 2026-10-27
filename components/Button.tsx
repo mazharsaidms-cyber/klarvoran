@@ -33,7 +33,7 @@ type ButtonAsButton = CommonProps &
 export type ButtonProps = ButtonAsLink | ButtonAsButton;
 
 const base =
-  "inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-[var(--radius-full)] text-center font-semibold transition-colors duration-200 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "kv-action inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-[var(--radius-full)] text-center font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 // Border-2 ist auch bei Varianten ohne sichtbaren Rand fix gesetzt, damit
 // Abmessungen und Randstärke beim Hover-Wechsel nicht springen.

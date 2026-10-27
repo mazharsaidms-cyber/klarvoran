@@ -31,10 +31,10 @@ export default function UeberUnsPage() {
           <div>
             <Eyebrow>Über uns</Eyebrow>
             <h1 className="mt-4 max-w-xl text-3xl font-bold text-navy sm:text-4xl">
-              Wer hinter KlarVoran steht und wie wir arbeiten
+              Warum es KlarVoran gibt und wer dahintersteht
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy-600">
-              KlarVoran verbindet persönliche Begleitung mit klaren Schritten. Du verstehst berufliche Anforderungen und übernimmst deinen Weg zunehmend selbst.
+              KlarVoran wurde gegründet, damit Job- und Bewerbungscoaching über fertige Unterlagen hinausgeht: Menschen sollen Anforderungen verstehen und ihren nächsten beruflichen Schritt selbst gestalten können.
             </p>
           </div>
           <ContextGraphic
@@ -47,7 +47,7 @@ export default function UeberUnsPage() {
       <Section id="gruender" tone="white" className="scroll-mt-24">
         <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          KlarVoran steht für verständliches Job- und Bewerbungscoaching mit fachlicher Struktur. Unser Ziel ist, dass aus Orientierung konkrete eigene Schritte in Arbeit oder Ausbildung werden.
+          Die fachliche Leitung verbindet Erfahrung aus dem Jobcoaching, pädagogischer Praxis und strukturiertem Arbeiten. Hier erfährst du, wer KlarVoran gegründet hat und welche Haltung die Arbeit prägt.
         </p>
         <div className="mt-8">
           <CoachProfile />

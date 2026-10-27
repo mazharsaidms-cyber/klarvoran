@@ -85,6 +85,31 @@ body {
   height: 3px;
   background: var(--brand-red);
 }
+.kv-interactive-card,
+.kv-interactive-card::before,
+.kv-interactive-card > span:first-child,
+.kv-process-step,
+.kv-quick-point,
+.kv-quick-point svg {
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease, background-color 240ms ease, width 240ms ease;
+}
+.kv-faq-item[open] { background: var(--brand-navy-50); box-shadow: inset 3px 0 var(--brand-red); }
+.kv-faq-item[open] > p { animation: kv-faq-answer 220ms ease-out both; }
+@keyframes kv-faq-answer {
+  from { opacity: 0.7; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .kv-interactive-card:hover { transform: translateY(-3px); border-color: #abbfc9; box-shadow: var(--elevation-card-hover); }
+  .kv-interactive-card:hover::before { width: 5.5rem; }
+  .kv-interactive-card:hover > span:first-child { transform: rotate(-5deg) scale(1.06); }
+  .kv-process-step:hover { transform: translateY(-3px); box-shadow: var(--elevation-card-hover); }
+  .kv-quick-point:hover { transform: translateY(-2px); border-color: rgb(255 255 255 / 0.55); }
+  .kv-quick-point:hover svg { transform: scale(1.12); }
+  .kv-section-paper .kv-action:hover:not(:disabled),
+  .kv-section-mist .kv-action:hover:not(:disabled),
+  .kv-section-navy .kv-action:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--elevation-card-hover); }
+}
 .kv-process-step {
   position: relative;
   min-height: 100%;
@@ -208,6 +233,62 @@ h1, h2, h3 {
   border-bottom-color: var(--brand-red);
 }
 
+/* Über uns: motion follows the existing reveal system and remains purely decorative. */
+.kv-about-portrait img,
+.kv-about-portrait,
+.kv-about-quote,
+.kv-about-quality,
+.kv-about-value,
+.kv-about-milestone {
+  transition-property: transform, box-shadow, border-color, background-color;
+  transition-duration: 240ms;
+  transition-timing-function: ease;
+}
+.kv-about-portrait img { display: block; }
+.kv-about-timeline {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.kv-about-timeline::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  left: 0.4rem;
+  width: 2px;
+  background: linear-gradient(var(--brand-red), #cad6de);
+}
+.kv-about-milestone { position: relative; border: 1px solid transparent; }
+.kv-about-milestone::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: -1.16rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid var(--brand-red-700);
+  border-radius: 50%;
+  background: var(--surface-paper);
+}
+.kv-about-milestone:first-child { background: #fff; border-color: var(--brand-navy-100); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .kv-about-portrait:hover { box-shadow: var(--elevation-card-hover); }
+  .kv-about-portrait:hover img { transform: scale(1.025); }
+  .kv-about-quote:hover,
+  .kv-about-quality:hover,
+  .kv-about-value:hover,
+  .kv-about-milestone:hover { transform: translateY(-3px); box-shadow: var(--elevation-card-hover); }
+  .kv-about-quality:hover,
+  .kv-about-value:hover,
+  .kv-about-milestone:hover { border-color: #abbfc9; }
+}
+
+@media (hover: hover) {
+  .context-graphic:hover .context-graphic-content {
+    transform: translateY(-4px);
+  }
+}
+
 /* A small shared motion system: no layout movement, continuous loops or library.
    Only JS-armed, initially offscreen elements can be hidden. */
 @media (prefers-reduced-motion: no-preference) {
@@ -227,6 +308,14 @@ h1, h2, h3 {
     opacity: 1;
     translate: none;
     transition: none;
+  }
+  :is(.kv-about-portrait, .kv-about-quote, .kv-about-quality, .kv-about-value, .kv-about-milestone, .kv-interactive-card, .kv-process-step)[data-reveal-state] {
+    transition:
+      opacity 520ms ease var(--reveal-delay, 0ms),
+      translate 520ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+      transform 240ms ease,
+      box-shadow 240ms ease,
+      border-color 240ms ease;
   }
 }
 
@@ -251,22 +340,21 @@ h1, h2, h3 {
   transform-origin: center;
 }
 
-@media (hover: hover) {
-  .context-graphic:hover .context-graphic-content {
-    transform: translateY(-4px);
-  }
-}
-
 /* The first content block settles gently into place on page load. */
 @media (prefers-reduced-motion: no-preference) {
   .kv-hero > div {
     animation: kv-hero-enter 420ms ease-out both;
   }
+  .kv-home-photo { animation: kv-photo-enter 650ms 120ms ease-out both; }
 }
 
 @keyframes kv-hero-enter {
   from { opacity: 0.88; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes kv-photo-enter {
+  from { opacity: 0.88; transform: translateY(9px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -282,6 +370,19 @@ h1, h2, h3 {
     transform: none !important;
   }
   [data-reveal-state] { opacity: 1 !important; translate: none !important; }
+  .kv-interactive-card,
+  .kv-interactive-card::before,
+  .kv-interactive-card > span:first-child,
+  .kv-process-step,
+  .kv-quick-point,
+  .kv-quick-point svg,
+  .kv-action { transform: none !important; transition: none !important; }
+  .kv-about-portrait img,
+  .kv-about-portrait,
+  .kv-about-quote,
+  .kv-about-quality,
+  .kv-about-value,
+  .kv-about-milestone { transform: none !important; transition: none !important; }
 }
 
 .skip-link {

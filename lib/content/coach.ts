@@ -8,6 +8,11 @@ export const coachQualifications = [
 
 export const coachExperience = [
   {
+    role: "Gründung & fachliche Leitung",
+    org: "KlarVoran · Job- und Bewerbungscoaching",
+    period: "seit 2026",
+  },
+  {
     role: "Dozent – Bewerbungsmanagement & Jobcoaching",
     org: "Bildungswerk der Hessischen Wirtschaft e. V. (BWHW)",
     period: "seit 2026",

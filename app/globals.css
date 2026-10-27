@@ -57,15 +57,22 @@ body {
   overflow-wrap: anywhere;
 }
 
-/* A persistent, unobtrusive cue that responds to the visitor's scroll position. */
+/* A readable progress line directly under the sticky public navigation. */
+.kv-scroll-track {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 5px;
+  background: #d1dce2;
+  pointer-events: none;
+}
 .kv-scroll-progress {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 80;
-  height: 4px;
+  display: block;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(90deg, var(--brand-red), #ff6857);
   box-shadow: 0 1px 7px rgb(236 28 35 / 0.4);
-  pointer-events: none;
   transform: scaleX(0);
   transform-origin: left center;
 }
@@ -370,7 +377,7 @@ h1, h2, h3 {
 
 @media print {
   [data-reveal-state] { opacity: 1 !important; translate: none !important; }
-  .kv-scroll-progress { display: none; }
+  .kv-scroll-track { display: none; }
 }
 
 /* Align icons, headings and body text by content height, also when titles wrap. */

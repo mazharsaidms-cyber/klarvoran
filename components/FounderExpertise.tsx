@@ -1,7 +1,7 @@
 export function FounderExpertise() {
   return (
-    <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 p-6 sm:p-7" aria-label="Fachlicher Hintergrund von Mazhar Said">
-      <p className="text-xs font-semibold uppercase tracking-wide text-red-700">Mazhar Said</p>
+    <div className="rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 p-6 sm:p-7" aria-label="Fachliche Wurzeln von KlarVoran">
+      <p className="text-xs font-semibold uppercase tracking-wide text-red-700">KlarVoran</p>
       <p className="mt-3 text-xl font-bold leading-snug text-navy">Erfahrung, die zu klaren Schritten führt.</p>
       <dl className="mt-6 space-y-4 border-t border-navy-100 pt-5">
         <div>

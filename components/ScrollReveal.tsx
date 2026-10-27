@@ -99,5 +99,5 @@ export function ScrollReveal() {
     };
   }, [pathname, publicPage]);
 
-  return publicPage ? <div className="kv-scroll-progress" aria-hidden="true" /> : null;
+  return null;
 }

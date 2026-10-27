@@ -17,24 +17,23 @@ import { siteConfig } from "@/lib/site-config";
 import { ContextGraphic } from "@/components/ContextGraphic";
 import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { VisualIcon, type IconName } from "@/components/VisualIcon";
-import { QuickPoints } from "@/components/QuickPoints";
 
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
   description:
-    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, 32 UE. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, bis zu 32 UE. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    description: "Bis zu 32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
     url: "/avgs",
   },
   twitter: {
     card: "summary_large_image",
     title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    description: "Bis zu 32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
   },
   alternates: { canonical: "/avgs" },
 };
@@ -80,11 +79,6 @@ export default function AvgsPage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
               Persönliche Unterstützung bei Orientierung, Bewerbungen und Vorstellungsgesprächen.
             </p>
-            <QuickPoints onDark items={[
-              { icon: "orientation", label: "Ziel klären" },
-              { icon: "document", label: "Bewerbung verbessern" },
-              { icon: "conversation", label: "Gespräche üben" },
-            ]} />
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
               <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
@@ -105,13 +99,13 @@ export default function AvgsPage() {
         <h2 className="sr-only">Das AVGS-Coaching auf einen Blick</h2>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           <FactStat value="1:1" label="Du und dein Coach" />
-          <FactStat value={`${totalUe} UE`} label="Eine Einheit dauert 45 Minuten" />
-          <FactStat value="Bis 8 Wochen" label="Bis zu 8 Wochen · in der Regel zwei Termine pro Woche" />
+          <FactStat value={`Bis ${totalUe} UE`} label="Eine Einheit dauert 45 Minuten" />
+          <FactStat value="Bis 8 Wochen" label="Individuell geplant · in der Regel 1–2 Termine pro Woche" />
           <FactStat value="0 €" label="Bei passendem AVGS und bewilligter Teilnahme" />
         </div>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-navy-600">
-          Du brauchst noch keinen Gutschein, um uns anzusprechen. Vor dem Coaching klären wir mit dir,
-          ob dein Gutschein passt und die Teilnahme bewilligt ist.
+          Der Umfang richtet sich innerhalb der zugelassenen Maßnahme nach deinem Bedarf: Bis zu 32 UE, bei Bedarf auch weniger.
+          Vereinbarte Termine, tatsächlich durchgeführte Einheiten und Unterlagen werden entsprechend dokumentiert.
         </p>
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
           <Button href="#inhalte" variant="text">Coachinginhalte ansehen →</Button>
@@ -131,17 +125,6 @@ export default function AvgsPage() {
         </div>
       </Section>
 
-      <Section tone="white">
-        <Eyebrow tone="navy">Passt das Coaching zu deiner Situation?</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Hier setzt das Einzelcoaching an</h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">Du musst dich nicht rechtfertigen. Wir hören zu und arbeiten an dem, was dich gerade aufhält.</p>
-        <QuickPoints items={[
-          { icon: "orientation", label: "Richtung noch unklar" },
-          { icon: "document", label: "Bewerbungen ohne Erfolg" },
-          { icon: "signpost", label: "AVGS-Weg unübersichtlich" },
-        ]} />
-      </Section>
-
       <Section tone="navy" id="schnellcheck" spacing="compact">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow tone="white">Schnellcheck &amp; Anfrage</Eyebrow>
@@ -159,10 +142,11 @@ export default function AvgsPage() {
       <Section tone="white" id="inhalte">
         <Eyebrow>Coachinginhalte</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-          Vier Module – insgesamt {totalUe} Unterrichtseinheiten
+          Vier Module – bis zu {totalUe} Unterrichtseinheiten
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-          Die Inhalte bauen aufeinander auf und werden an deiner beruflichen Ausgangslage praktisch bearbeitet.
+          Die Module zeigen den zugelassenen Rahmen. Welche Inhalte und wie viele Einheiten du tatsächlich nutzt,
+          wird individuell vereinbart und in der Durchführung dokumentiert.
         </p>
         <ol className="mt-6 grid gap-5 sm:grid-cols-2">
           {coachingModules.map((module) => (
@@ -175,7 +159,7 @@ export default function AvgsPage() {
                   Modul {module.id}
                 </span>
                 <span className="rounded-[var(--radius-full)] bg-navy-50 px-3 py-1 font-mono text-xs font-semibold text-navy">
-                  {module.ue} UE
+                  Bis {module.ue} UE
                 </span>
               </div>
               <h3 className="mt-3 font-semibold text-navy">{module.title}</h3>

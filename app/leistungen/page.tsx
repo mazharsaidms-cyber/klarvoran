@@ -4,17 +4,8 @@ import { Section, Eyebrow } from "@/components/Section";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LeistungCard } from "@/components/LeistungCard";
 import { Button } from "@/components/Button";
-import { AvgsCheckEntry } from "@/components/AvgsCheckEntry";
 import { participantLeistungen, institutionalLeistungen } from "@/lib/content/leistungen";
-import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { QuickPoints } from "@/components/QuickPoints";
-
-const frameworkSteps: VisualStep[] = [
-  { icon: "conversation", title: "Verstanden werden", text: "Ausgangslage und Ziel klären." },
-  { icon: "signpost", title: "System verstehen", text: "Anforderungen nachvollziehen." },
-  { icon: "laptop", title: "Selbst handeln", text: "Den nächsten Schritt selbst üben." },
-  { icon: "progress", title: "Dranbleiben", text: "Fortschritt erkennen und anpassen." },
-];
 
 export const metadata: Metadata = pageMetadata(
   "Leistungen – Coaching, Workshops & Kooperationen",
@@ -32,7 +23,7 @@ export default function LeistungenPage() {
           Coaching, Workshops und Zusammenarbeit mit KlarVoran
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-          Finde die passende Unterstützung – für dich oder deine Institution.
+          Vergleiche die Angebote und wähle den passenden Weg für dich oder deine Institution.
         </p>
         <QuickPoints onDark items={[
           { icon: "orientation", label: "Einzelcoaching" },
@@ -47,13 +38,13 @@ export default function LeistungenPage() {
 
       <Section tone="tint" id="coaching">
         <h2 className="text-2xl font-bold text-navy sm:text-3xl">Einzelcoaching für dich</h2>
-        <p className="mb-6 mt-4 max-w-2xl text-navy-600">Auch ohne Gutschein kannst du ein Erstgespräch anfragen. Privates Coaching ist eine eigene Option.</p>
+        <p className="mb-6 mt-4 max-w-2xl text-navy-600">AVGS-Coaching ist an einen passenden Gutschein und die Bewilligung gebunden. Für privat finanziertes Coaching vereinbaren wir Umfang und Kosten vor der Buchung. Ein Erstgespräch kannst du in beiden Fällen ohne Gutschein anfragen.</p>
         <ul className="service-grid grid gap-6 sm:grid-cols-2">
           {participantLeistungen.map((l) => (
             <LeistungCard key={l.id} leistung={l} />
           ))}
         </ul>
-        <div className="mt-6 max-w-2xl"><AvgsCheckEntry /></div>
+        <Button href="/avgs#schnellcheck" variant="text" className="mt-6">AVGS-Weg und Schnellcheck ansehen →</Button>
       </Section>
 
       <Section tone="white" id="institutionen">
@@ -64,16 +55,6 @@ export default function LeistungenPage() {
             <LeistungCard key={l.id} leistung={l} />
           ))}
         </ul>
-      </Section>
-
-      <Section tone="tint">
-        <Eyebrow tone="navy">Unsere Arbeitsweise</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Eine Methode, unterschiedliche Zugänge</h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-navy-600">
-          Wir hören zuerst zu, erklären die Anforderungen verständlich und üben den nächsten Schritt praktisch.
-          So kannst du ihn zunehmend selbst übernehmen.
-        </p>
-        <div className="mt-6"><VisualSteps steps={frameworkSteps} /></div>
       </Section>
 
       <Section tone="navy">

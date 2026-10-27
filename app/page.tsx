@@ -85,7 +85,7 @@ export default function HomePage() {
             Ob du selbst den nächsten beruflichen Schritt angehen möchtest oder für eine Einrichtung anfragst: Wähle den passenden Einstieg.
           </p>
         </div>
-        <div className="icon-card-grid mt-6 grid gap-5 md:grid-cols-2">
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           <Card className="flex flex-col items-start">
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">
               <VisualIcon name="orientation" />

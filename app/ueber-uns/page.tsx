@@ -45,12 +45,9 @@ export default function UeberUnsPage() {
       </Section>
 
       <Section id="gruender" tone="white" className="scroll-mt-24">
-        <Eyebrow>Die Idee hinter KlarVoran</Eyebrow>
-        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Warum KlarVoran gegründet wurde</h2>
-        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-navy-600">
-          Berufliche Unterstützung soll mehr bewirken als fertige Bewerbungsunterlagen. KlarVoran wurde gegründet,
-          damit Menschen Anforderungen verstehen, passende Schritte praktisch üben und ihren Weg in Arbeit oder
-          Ausbildung zunehmend selbst gestalten können.
+        <Eyebrow>Gründer &amp; fachliche Leitung</Eyebrow>
+        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
+          KlarVoran steht für verständliches Job- und Bewerbungscoaching mit fachlicher Struktur. Unser Ziel ist, dass aus Orientierung konkrete eigene Schritte in Arbeit oder Ausbildung werden.
         </p>
         <div className="mt-8">
           <CoachProfile />

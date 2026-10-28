@@ -15,7 +15,7 @@ type Document = { id: string; title: string; status: string; currentVersion: num
   extraction: null | { status: string; data: null | { subject: string | null; deadline: string | null; requestedAction: string | null; warnings: string[] } } };
 type DocumentKind = "Behördenbrief" | "Sonstiges";
 type CaseMessage = { id: string; authorRole: string; body: string; createdAt: string };
-type CaseProgress = { startReady: boolean; goal: string; reviewDate: string; goalSteps: Array<{ id: string; title: string; status: string; nextStep: string }>;
+type CaseProgress = { startReady: boolean; goal: string; reviewDate: string; coaching?: { totalUe: number; completedUe: number; completedSessions: number } | null; goalSteps: Array<{ id: string; title: string; status: string; nextStep: string }>;
   appointments: Array<{ id: string; date: string; time: string; format: string; response: string }> };
 type Pending = { id: string; file: File; category: DocumentKind | ""; progress: number; error: string; receipt?: string; started?: boolean };
 type Phase = "loading" | "email" | "code" | "case";
@@ -205,6 +205,10 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
 
   const ownCase = me?.cases.find(item => item.id === me.user.participantId);
   const waiting = pending.filter(item => !item.receipt).length;
+  const goalSteps = caseProgress?.goalSteps ?? [];
+  const reachedSteps = goalSteps.filter(step => step.status === "Erreicht").length;
+  const nextGoalStep = goalSteps.find(step => step.status !== "Erreicht");
+  const coaching = caseProgress?.startReady ? caseProgress.coaching : null;
   return <section className={styles.portal} aria-label="Dein KlarVoran-Teilnehmerbereich">
     {phase === "case" && me?.operatingMode === "test" && <div className={styles.testNotice}><strong>Wir testen noch.</strong> Bitte verwende ausschließlich erfundene Angaben und Testdokumente. Echte Behördenbriefe bitte noch nicht hochladen.</div>}
     {!configured && <div className={styles.notice} role="status">Der Teilnehmerzugang wird noch eingerichtet. KlarVoran informiert dich, sobald du deine Einladung nutzen kannst.</div>}
@@ -225,23 +229,28 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
     </div> : <>
       <div className={styles.toolbar}><span>Angemeldet als <strong>{me?.user.displayName}</strong></span><div><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void refresh()}>Aktualisieren</button><button className={styles.secondary} disabled={Boolean(busy)} onClick={() => void logout()}>Abmelden</button></div></div>
       <div className={styles.dashboardHero}>
-        <div className={styles.heroCopy}><span className={styles.heroEyebrow}>DEINE AKTE</span><h1>Hallo {me?.user.displayName}.</h1><p>Deine Termine und nächsten Schritte auf einen Blick.</p></div>
-        <div className={styles.heroAppointment}><PortalGlyph kind="calendar" /><span>NÄCHSTER TERMIN</span>{caseProgress?.appointments[0] ? <><strong>{formatDate(caseProgress.appointments[0].date)}</strong><small>{caseProgress.appointments[0].time} Uhr · {caseProgress.appointments[0].format}</small></> : <><strong>Noch offen</strong><small>Hier erscheint dein nächster Termin.</small></>}</div>
+        <div className={styles.heroCopy}><span className={styles.heroEyebrow}>DEINE AKTE</span><h1>Hallo {me?.user.displayName}.</h1><p>Dein Weg im Blick. Ein Schritt nach dem anderen.</p>{nextGoalStep && <a className={styles.heroNext} href="#fortschritt"><span>DEIN NÄCHSTER SCHRITT</span><strong>{nextGoalStep.nextStep || nextGoalStep.title}</strong><span aria-hidden="true">↗</span></a>}</div>
+        <div className={styles.heroAppointment}><PortalGlyph kind="calendar" /><span>{caseProgress?.startReady === false ? "VORGEMERKTER TERMIN" : "NÄCHSTER TERMIN"}</span>{caseProgress?.appointments[0] ? <><strong>{formatDate(caseProgress.appointments[0].date)}</strong><small>{caseProgress.appointments[0].time} Uhr · {caseProgress.appointments[0].format}</small></> : <><strong>Noch offen</strong><small>Hier erscheint dein nächster Termin.</small></>}</div>
       </div>
+      {ownCase && caseProgress && <section id="fortschritt" className={`${styles.card} ${styles.progressOverview}`} aria-labelledby="overview-title">
+        <div className={styles.progressHeading}><div><span className={styles.planLabel}>DEIN WEG</span><h2 id="overview-title">Dein Fortschritt</h2></div><PortalGlyph kind="milestone" /></div>
+        {caseProgress.startReady ? <div className={styles.progressMetrics}>
+          {coaching && <div className={styles.progressMetric}><div className={styles.metricHeader}><strong>Geleistete Coaching-Einheiten</strong><span>{coaching.completedUe} von {coaching.totalUe} UE</span></div><div className={styles.progressTrack} role="progressbar" aria-label="Geleistete Coaching-Einheiten" aria-valuemin={0} aria-valuemax={coaching.totalUe} aria-valuenow={coaching.completedUe}><span style={{ width: `${Math.min(100, 100 * coaching.completedUe / coaching.totalUe)}%` }} /></div><small>{coaching.completedSessions} {coaching.completedSessions === 1 ? "dokumentierter Termin" : "dokumentierte Termine"}</small></div>}
+          {goalSteps.length > 0 && <div className={styles.progressMetric}><div className={styles.metricHeader}><strong>Erreichte Zielschritte</strong><span>{reachedSteps} von {goalSteps.length}</span></div><div className={styles.progressTrack} role="progressbar" aria-label="Erreichte Zielschritte" aria-valuemin={0} aria-valuemax={goalSteps.length} aria-valuenow={reachedSteps}><span style={{ width: `${100 * reachedSteps / goalSteps.length}%` }} /></div><small>Jeder erreichte Schritt zählt.</small></div>}
+          {!coaching && goalSteps.length === 0 && <p>Dein Plan und die dokumentierten Einheiten erscheinen hier, sobald sie in deiner Akte vorliegen.</p>}
+        </div> : <p>Dein Coachingstart ist noch nicht freigegeben. Deine geplanten Schritte und Termine siehst du unten; geleistete Einheiten erscheinen nach dem Start.</p>}
+      </section>}
       {ownCase && <nav className={styles.quickActions} aria-label="Schnell zu"><a href="#aufgaben"><span className={styles.quickIcon}><PortalGlyph kind="signature" /></span><span><strong>Unterlagen</strong><small>Offenes prüfen</small></span><span aria-hidden="true">↗</span></a><a href="#nachrichten"><span className={styles.quickIcon}><PortalGlyph kind="message" /></span><span><strong>Nachrichten</strong><small>KlarVoran schreiben</small></span><span aria-hidden="true">↗</span></a><a href="#dokument-senden"><span className={styles.quickIcon}><PortalGlyph kind="upload" /></span><span><strong>Dokument senden</strong><small>Foto oder PDF hochladen</small></span><span aria-hidden="true">↗</span></a></nav>}
       <div className={styles.workspaceGrid}>
       {ownCase && <div id="aufgaben" className={styles.anchorSection}><DocumentWorkflow key={ownCase.id} participantId={ownCase.id} participant apiRoot={apiRoot} operatingMode={me!.operatingMode} /></div>}
       {ownCase && <section className={`${styles.card} ${styles.planCard}`} aria-labelledby="progress-title">
-        <h2 id="progress-title" className={styles.sectionHeading}><PortalGlyph kind="calendar" />Mein Coachingplan</h2>
+        <h2 id="progress-title" className={styles.sectionHeading}><PortalGlyph kind="milestone" />Mein Coachingplan</h2>
         {progressError && <p className={styles.error} role="alert">Die nächsten Schritte sind gerade nicht verfügbar. Bitte aktualisiere die Seite.</p>}
         {caseProgress?.appointments.length && caseProgress.startReady !== true ? <p className={styles.planNote}>Der nächste Termin ist vorläufig. KlarVoran bestätigt dir den Coachingstart.</p> : null}
         {caseProgress?.goal ? <><span className={styles.planLabel}>GEMEINSAMES ZIEL</span><p className={styles.planGoal}>{caseProgress.goal}</p></> : <p>Deine Ziele legen wir gemeinsam fest.</p>}
-        {(caseProgress?.goal || (caseProgress?.appointments.length ?? 0) > 1) && <details className={styles.progressDetails}><summary>Zielschritte und weitere Termine</summary>
-          {caseProgress?.goal && <>
-            {caseProgress.goalSteps.length > 0 && <ul className={styles.progressList}>{caseProgress.goalSteps.map(step => <li key={step.id}><strong>{step.title}</strong><small>{step.status}{step.nextStep ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></li>)}</ul>}
-            {caseProgress.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}</>}
-          {(caseProgress?.appointments.length ?? 0) > 1 && <><h3>Weitere Termine</h3><ul className={styles.progressList}>{caseProgress!.appointments.slice(1).map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · Terminabstimmung: {item.response}</small></li>)}</ul></>}
-        </details>}
+        {goalSteps.length > 0 && <><span className={styles.planLabel}>{caseProgress?.startReady ? "DEINE ZIELSCHRITTE" : "GEPLANTE SCHRITTE"}</span><ol className={styles.milestoneList}>{goalSteps.map(step => <li key={step.id} className={step.status === "Erreicht" ? styles.milestoneDone : ""}><span className={styles.milestoneIcon} aria-hidden="true">{step.status === "Erreicht" ? "✓" : "○"}</span><div><strong>{step.title}</strong><small>{step.status}{step.nextStep && step.status !== "Erreicht" ? ` · Nächster Schritt: ${step.nextStep}` : ""}</small></div></li>)}</ol></>}
+        {caseProgress?.reviewDate && <small>Zielüberprüfung: {formatDate(caseProgress.reviewDate)}</small>}
+        {(caseProgress?.appointments.length ?? 0) > 1 && <details className={styles.progressDetails}><summary>Weitere Termine ansehen</summary><ul className={styles.progressList}>{caseProgress!.appointments.slice(1).map(item => <li key={item.id}><strong>{formatDate(item.date)} · {item.time} Uhr</strong><small>{item.format} · Terminabstimmung: {item.response}</small></li>)}</ul></details>}
       </section>}
       </div>
       <div className={styles.workspaceGrid}>
@@ -273,13 +282,14 @@ export default function ParticipantPortal({ configured }: { configured: boolean 
 
 function messageOf(caught: unknown) { return caught instanceof Error ? caught.message : "Die Verbindung ist unterbrochen. Bitte versuche es erneut."; }
 
-function PortalGlyph({ kind }: { kind: "calendar" | "signature" | "message" | "upload" | "folder" }) {
+function PortalGlyph({ kind }: { kind: "calendar" | "signature" | "message" | "upload" | "folder" | "milestone" }) {
   const paths = {
     calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4M17 3v4M3 10h18M8 15h3" /></>,
     signature: <><path d="M4 20h16M5 15l9-9 4 4-9 9H5v-4Z" /><path d="m12 8 4 4" /></>,
     message: <><path d="M20 11a8 8 0 0 1-8 8 9 9 0 0 1-4-.9L4 20l1.9-4A8 8 0 1 1 20 11Z" /><path d="M8 11h8M8 14h5" /></>,
     upload: <><path d="M12 16V4m-4 4 4-4 4 4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" /></>,
     folder: <><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3V7Z" /><path d="M3 10h18" /></>,
+    milestone: <><path d="M5 21V4m0 1h12l-3 4 3 4H5" /><path d="m9 17 2 2 4-4" /></>,
   };
   return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[kind]}</svg>;
 }

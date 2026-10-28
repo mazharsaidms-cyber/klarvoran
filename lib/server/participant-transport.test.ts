@@ -180,7 +180,7 @@ test("signed invitation uses existing Resend project key and carries no case inf
 });
 test("signed mail rejects a backend/website mode mismatch before provider delivery", async () => {
   const isolated = { ...config, backendOrigin: "https://klarvoran-produktiv-vorbereitung.mazhar-said-ms.chatgpt.site",
-    productionBackendEnabled: "true", realOperationEnabled: "true" };
+    productionBackendEnabled: "true", realOperationEnabled: "true", privacyApprovedVersion: "2.8" };
   const denied: typeof fetch = async () => { throw Error("must not send"); };
   assert.equal((await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid", operatingMode: "test" }), isolated, denied)).status, 409);
   assert.equal((await deliverParticipantMail(await mailRequest({ kind: "invitation", email: "fictitious@example.invalid" }), isolated, denied)).status, 409);

@@ -11,21 +11,21 @@ import { ParticipantPreview } from "@/components/ParticipantPreview";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: { absolute: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran" },
+  title: { absolute: "AVGS-Bewerbungscoaching Frankfurt & Hofheim | KlarVoran" },
   description:
-    "Jobcoaching für Hofheim und Frankfurt-West: 1:1 in Kriftel, online oder hybrid. AVGS-Bewerbungshilfe und Angebote für Institutionen.",
+    "Du suchst ein Bewerbungscoaching mit AVGS für Frankfurt-West oder Hofheim? Kläre mit KlarVoran Förderpassung, Bewerbung und deinen nächsten Schritt.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
-    title: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran",
-    description: "Persönliches Coaching in Kriftel für Hofheim, Höchst, Zeilsheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+    title: "AVGS-Bewerbungscoaching Frankfurt & Hofheim | KlarVoran",
+    description: "Bewerbungscoaching mit AVGS für Frankfurt-West und Hofheim. Förderpassung klären und Erstgespräch anfragen.",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jobcoaching Hofheim & Frankfurt-West | KlarVoran",
-    description: "Persönliches Coaching in Kriftel für Hofheim, Höchst, Zeilsheim und den Main-Taunus-Kreis – alternativ online oder hybrid.",
+    title: "AVGS-Bewerbungscoaching Frankfurt & Hofheim | KlarVoran",
+    description: "Bewerbungscoaching mit AVGS für Frankfurt-West und Hofheim. Förderpassung klären und Erstgespräch anfragen.",
   },
   alternates: { canonical: "/" },
 };
@@ -47,8 +47,8 @@ export default function HomePage() {
               Du suchst Arbeit oder eine Ausbildung? Wir finden gemeinsam deinen nächsten Schritt.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href="/leistungen#coaching" onDark>
-                Ich suche Coaching
+              <Button href="/avgs" onDark>
+                AVGS-Bewerbungscoaching ansehen
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" onDark>
                 Für Institutionen
@@ -94,7 +94,7 @@ export default function HomePage() {
             <p className="mt-3 leading-relaxed text-navy-600">
               Für Bewerbung, Ausbildung oder berufliche Orientierung – mit AVGS oder als privates Coaching.
             </p>
-            <Button href="/leistungen#coaching" variant="text" className="mt-auto pt-5">Angebote für mich ansehen →</Button>
+            <Button href="/avgs" variant="text" className="mt-auto pt-5">AVGS-Coaching ansehen →</Button>
           </Card>
           <Card className="flex flex-col items-start">
             <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-red/10 text-red-700">

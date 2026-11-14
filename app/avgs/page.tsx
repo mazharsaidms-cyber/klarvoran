@@ -19,21 +19,21 @@ import { VisualSteps, type VisualStep } from "@/components/VisualSteps";
 import { VisualIcon, type IconName } from "@/components/VisualIcon";
 
 export const metadata: Metadata = {
-  title: { absolute: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran" },
+  title: { absolute: "AVGS-Bewerbungscoaching Frankfurt-West & Main-Taunus | KlarVoran" },
   description:
-    "AVGS-Jobcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. 1:1, bis zu 32 UE. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    "Bewerbungscoaching mit AVGS für Frankfurt-West und den Main-Taunus-Kreis. Gutschein prüfen, nächsten Bewerbungsschritt klären und Erstgespräch anfragen.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
-    title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "Bis zu 32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    title: "AVGS-Bewerbungscoaching Frankfurt-West & Main-Taunus | KlarVoran",
+    description: "Bewerbungscoaching mit AVGS für Frankfurt-West und den Main-Taunus-Kreis. Gutschein prüfen und Erstgespräch anfragen.",
     url: "/avgs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AVGS-Bewerbungscoaching in Kriftel | KlarVoran",
-    description: "Bis zu 32 UE Einzelcoaching in Kriftel für Hofheim, Höchst, Zeilsheim und Frankfurt-West. Auch online oder hybrid. Kostenfrei bei passendem AVGS und bewilligter Teilnahme.",
+    title: "AVGS-Bewerbungscoaching Frankfurt-West & Main-Taunus | KlarVoran",
+    description: "Bewerbungscoaching mit AVGS für Frankfurt-West und den Main-Taunus-Kreis. Gutschein prüfen und Erstgespräch anfragen.",
   },
   alternates: { canonical: "/avgs" },
 };

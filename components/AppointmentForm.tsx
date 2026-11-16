@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { submitAppointmentRequest } from "@/app/termin/actions";
 import { useLeadForm } from "./useLeadForm";
 import { TextField, TextareaField, RadioGroupField, PrivacyNotice, HoneypotField } from "./form-fields";
@@ -12,6 +12,14 @@ export function AppointmentForm() {
   const { state, formAction, pending, formRef, field } = useLeadForm(submitAppointmentRequest);
   const [format, setFormat] = useState("unsicher");
   const [hasAvgs, setHasAvgs] = useState("unsicher");
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("avgs") === "ja") {
+      setHasAvgs("ja");
+      if (detailsRef.current) detailsRef.current.open = true;
+    }
+  }, []);
 
   if (state.status === "success" || state.status === "dev-success") return <StatusMessage state={state} />;
 
@@ -32,7 +40,7 @@ export function AppointmentForm() {
         rows={3}
         error={state.fieldErrors?.message}
       />
-      <details className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-4">
+      <details ref={detailsRef} className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-4">
         <summary className="cursor-pointer font-semibold text-navy">Coachingform und AVGS angeben (optional)</summary>
         <div className="mt-5 space-y-5">
           <RadioGroupField legend="Wie möchtest du teilnehmen?" name="format" value={format} onChange={setFormat} error={state.fieldErrors?.format} options={[

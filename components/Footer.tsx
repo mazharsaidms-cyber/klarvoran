@@ -49,6 +49,18 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li className="pt-2 text-xs font-semibold uppercase tracking-wide text-white/50">Für Institutionen</li>
+            {[
+              { href: "/fuer-jobcenter", label: "Jobcenter & Arbeitsagenturen" },
+              { href: "/fuer-soziale-einrichtungen", label: "Soziale Einrichtungen" },
+              { href: "/fuer-bildungstraeger", label: "Bildungsträger" },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="inline-flex min-h-9 items-center rounded-[var(--radius-sm)] text-sm text-white/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
             <li>
               <Link href="/teilnehmer" className="inline-flex min-h-9 items-center rounded-[var(--radius-sm)] text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                 Teilnehmer-Login

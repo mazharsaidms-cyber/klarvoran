@@ -39,7 +39,7 @@ export const siteConfig = {
   legalName: "Mazhar Said – KlarVoran",
   founder: "Mazhar Said",
   description:
-    "Job- und Bewerbungscoaching in Kriftel für Frankfurt und den Main-Taunus-Kreis, online oder hybrid. KlarVoran bietet AVGS-Coaching, Workshops und institutionelle Kooperationen.",
+    "AVGS-Bewerbungscoaching für Frankfurt-West, Hofheim und den Main-Taunus-Kreis. KlarVoran klärt Gutschein, Ort und Teilnahmeformat im Erstgespräch.",
   url: siteUrl,
   locale: "de_DE",
 
@@ -70,7 +70,7 @@ export const siteConfig = {
     street: "Taunusstraße 52",
     zip: "65830",
     city: "Kriftel",
-    note: "Präsenztermine finden ausschließlich nach vorheriger Terminbestätigung statt.",
+    note: "Präsenztermine sind nur nach Prüfung des Ortes und individueller Terminbestätigung möglich.",
     mapsQuery: encodeURIComponent("Taunusstraße 52, 65830 Kriftel"),
   },
 

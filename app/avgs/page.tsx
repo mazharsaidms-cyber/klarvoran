@@ -84,7 +84,7 @@ export default function AvgsPage() {
               <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
-              Für die Anfrage brauchst du noch keinen Gutschein. Mit passendem AVGS und schriftlicher Bewilligung vor Beginn übernimmt der Kostenträger die Maßnahmekosten. In Kriftel, online oder hybrid.
+              Für die Anfrage brauchst du noch keinen Gutschein. Mit passendem AVGS und schriftlicher Bewilligung vor Beginn übernimmt der Kostenträger die Maßnahmekosten. Ort und Format klären wir anhand deines Gutscheins und der zugelassenen Maßnahme.
             </p>
           </div>
           <ContextGraphic
@@ -92,6 +92,29 @@ export default function AvgsPage() {
             title="Bewerbungsunterlagen gemeinsam sichten und den nächsten Schritt planen"
             className="mx-auto w-full max-w-sm lg:max-w-none"
           />
+        </div>
+      </Section>
+
+      <Section tone="white" spacing="compact">
+        <Eyebrow>Dein Einstieg</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AVGS schon erhalten oder noch am Anfang?</h2>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card">
+            <h3 className="text-lg font-bold text-navy">Ich habe bereits einen AVGS</h3>
+            <p className="mt-3 text-sm leading-relaxed text-navy-600">
+              Frag ein kostenloses Erstgespräch an. Wir prüfen Förderziel, Gültigkeit, Region und gewünschtes Format.
+              Den sicheren Weg für die Gutscheinunterlagen besprechen wir danach. Beginne erst nach schriftlicher Bewilligung.
+            </p>
+            <Button href="/termin?avgs=ja" className="mt-5">Gutscheinprüfung anfragen</Button>
+          </div>
+          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card">
+            <h3 className="text-lg font-bold text-navy">Ich habe noch keinen AVGS</h3>
+            <p className="mt-3 text-sm leading-relaxed text-navy-600">
+              Beschreibe, wobei du für Bewerbung oder berufliche Orientierung Unterstützung brauchst.
+              Unser Schnellcheck hilft dir, das Gespräch mit deiner Vermittlungsfachkraft vorzubereiten.
+            </p>
+            <Button href="#schnellcheck" variant="secondary" className="mt-5">AVGS-Schnellcheck starten</Button>
+          </div>
         </div>
       </Section>
 
@@ -172,6 +195,19 @@ export default function AvgsPage() {
         </ol>
       </Section>
 
+      <Section tone="tint" spacing="compact">
+        <Eyebrow>So üben wir</Eyebrow>
+        <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">Eine Stellenanzeige verstehen und selbst nutzen</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
+          Bring eine Stelle mit, die dich interessiert. Wir markieren gemeinsam, welche Erfahrung der Betrieb sucht.
+          Du findest ein passendes Beispiel aus deinem Werdegang und formulierst daraus einen Satz für deine Bewerbung.
+          Bei der nächsten Anzeige probierst du denselben Schritt selbst. So entstehen Unterlagen, die du später eigenständig anpassen kannst.
+        </p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-navy-600">
+          Das ist ein Beispiel für eine Übung im Bewerbungscoaching; die Inhalte richten sich nach deinem vereinbarten Ziel.
+        </p>
+      </Section>
+
       <Section tone="tint" id="ablauf">
         <Eyebrow>Ablauf</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">So läuft dein Coaching ab</h2>
@@ -188,12 +224,12 @@ export default function AvgsPage() {
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
           Du kommst aus Hofheim, Kriftel, Frankfurt-Höchst, Frankfurt-Zeilsheim oder der Umgebung?
           Bei KlarVoran erhältst du persönliche Bewerbungshilfe im Main-Taunus-Kreis.
-          Das Einzelcoaching findet nach Terminbestätigung in den {siteConfig.presenceLocation.name}, {siteConfig.presenceLocation.street},
-          {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} statt. So musst du für einen Präsenztermin nicht in die Frankfurter Innenstadt fahren.
+          Als Veranstaltungsort ist {siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} angegeben.
+          Ob ein Präsenztermin dort möglich ist, bestätigen wir dir vor der Vereinbarung.
         </p>
         <p className="mt-3 max-w-3xl leading-relaxed text-navy-600">
-          Online oder hybrid ist ebenfalls möglich. Im kostenlosen Erstgespräch klären wir, welches Format
-          zu deiner Situation und den Vorgaben deines AVGS passt.
+          Wenn du online oder hybrid teilnehmen möchtest, prüfen wir die zugelassene Durchführung und die Vorgaben deines AVGS
+          vor der Zusage. Das gilt auch, wenn du in einer anderen Region wohnst.
         </p>
       </Section>
 

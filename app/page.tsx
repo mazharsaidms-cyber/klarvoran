@@ -55,8 +55,8 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/80">
-              Persönlich in Kriftel – für Hofheim und den Main-Taunus-Kreis sowie Höchst, Zeilsheim
-              und den Frankfurter Westen. Auch online oder hybrid. Präsenztermine nach Vereinbarung.
+              Für Hofheim, Kriftel, den Main-Taunus-Kreis, Höchst, Zeilsheim und Frankfurt-West.
+              Ob Präsenz, online oder hybrid zu deinem Gutschein passt, klären wir vor der Terminvereinbarung.
             </p>
             <div className="mt-5">
               <TrustBar tone="dark" />

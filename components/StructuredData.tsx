@@ -73,7 +73,7 @@ export function ServiceStructuredData() {
           name: siteConfig.measure.title,
           url: `${siteConfig.url}/avgs`,
           provider: { "@id": `${siteConfig.url}/#organization` },
-          areaServed: "Rhein-Main-Gebiet und online",
+          areaServed: "Frankfurt-West und Main-Taunus-Kreis",
           audience: { "@type": "Audience", audienceType: "Arbeitsuchende mit passendem AVGS" },
           offers: {
             "@type": "Offer",

@@ -146,9 +146,9 @@ export default function FuerJobcenterPage() {
           <Card>
             <h3 className="font-semibold text-navy">Durchführungsform</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-600">
-              Präsenz in der {siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip}{" "}
-              {siteConfig.presenceLocation.city}, alternativ online oder hybrid. Der Standort ist ebenerdig;
-              öffentliche Parkmöglichkeiten befinden sich in der Nähe. Keine Hausbesuche.
+              Als Veranstaltungsort ist {siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip}{" "}
+              {siteConfig.presenceLocation.city} angegeben. Konkrete Präsenztermine und die gewünschte Online- oder
+              Hybridform stimmen wir anhand der gültigen Zulassung und des Gutscheins vorab ab. Keine Hausbesuche.
             </p>
           </Card>
           <Card>

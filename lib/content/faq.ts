@@ -32,7 +32,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "Findet das Coaching online oder in Präsenz statt?",
     answer:
-      "Beides ist möglich – Präsenztermine finden nach Terminbestätigung in der Taunusstraße 52, 65830 Kriftel statt, alternativ vollständig online oder im Wechsel zwischen Online- und Präsenzterminen (hybrid). Hausbesuche bieten wir nicht an.",
+      "Als Veranstaltungsort ist die Taunusstraße 52, 65830 Kriftel angegeben. Einen Präsenztermin bestätigen wir erst nach Prüfung von Ort und Verfügbarkeit. Wenn du online oder hybrid teilnehmen möchtest, prüfen wir vor der Zusage, ob das gewünschte Format von der zugelassenen Maßnahme und deinem AVGS gedeckt ist. Hausbesuche bieten wir nicht an.",
   },
   {
     question: "Was passiert, wenn ich einen Termin nicht wahrnehmen kann?",
@@ -42,6 +42,16 @@ export const generalFaq: FaqItem[] = [
 ];
 
 export const avgsFaq: FaqItem[] = [
+  {
+    question: "Ich habe bereits einen AVGS erhalten. Was mache ich jetzt?",
+    answer:
+      "Frag ein kostenloses Erstgespräch an und gib an, dass du schon einen Gutschein hast. Wir prüfen Förderziel, Gültigkeit, Region und Format. Den geeigneten Weg für die Übermittlung deiner Gutscheinunterlagen klären wir danach. Mit dem Coaching beginnen wir erst nach schriftlicher Bewilligung der Teilnahme.",
+  },
+  {
+    question: "Kann ich aus einer anderen Region online am AVGS-Coaching teilnehmen?",
+    answer:
+      "Das klären wir im Einzelfall. Auf dem Gutschein stehen unter anderem Ziel, Gültigkeit und die Region, in der du teilnehmen darfst. Wir prüfen außerdem, ob die gewünschte Online-Durchführung von der zugelassenen Maßnahme gedeckt ist. Erst danach stimmen wir die Teilnahme mit deiner zuständigen Stelle ab.",
+  },
   {
     question: "Was ist ein AVGS?",
     answer:

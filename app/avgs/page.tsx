@@ -217,20 +217,37 @@ export default function AvgsPage() {
       </Section>
 
       <Section tone="white" spacing="compact" id="ort">
-        <Eyebrow>In deiner Nähe</Eyebrow>
+        <Eyebrow>Frankfurt &amp; Main-Taunus</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">
-          Jobcoaching für Hofheim, Kriftel und Frankfurt-West
+          AVGS-Coaching für Frankfurt und den Main-Taunus-Kreis
         </h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-navy-600">
-          Du kommst aus Hofheim, Kriftel, Frankfurt-Höchst, Frankfurt-Zeilsheim oder der Umgebung?
-          Bei KlarVoran erhältst du persönliche Bewerbungshilfe im Main-Taunus-Kreis.
-          Als Veranstaltungsort ist {siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city} angegeben.
-          Ob ein Präsenztermin dort möglich ist, bestätigen wir dir vor der Vereinbarung.
+          Du suchst aus Frankfurt am Main, Hofheim, Kriftel oder einem anderen Ort im Main-Taunus-Kreis
+          Unterstützung bei Bewerbungen? Entscheidend ist, ob dein AVGS zur zugelassenen Maßnahme passt.
+          Wir prüfen mit dir Förderziel, Gültigkeit, Region und das gewünschte Teilnahmeformat.
         </p>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5">
+            <h3 className="font-bold text-navy">Aus Frankfurt am Main</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Auch wenn du in Höchst, Zeilsheim oder einem anderen Frankfurter Stadtteil wohnst, kannst du
+              dein Anliegen im Erstgespräch schildern. Die Frankfurter Geschäfts- und Postanschrift ist kein Coachingraum.
+            </p>
+          </div>
+          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-navy-50 p-5">
+            <h3 className="font-bold text-navy">Aus dem Main-Taunus-Kreis</h3>
+            <p className="mt-2 text-sm leading-relaxed text-navy-600">
+              Für Interessierte aus Hofheim, Kriftel, Flörsheim und Umgebung ist
+              {" "}{siteConfig.presenceLocation.street}, {siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city}
+              {" "}als Veranstaltungsort angegeben. Ob ein Präsenztermin dort möglich ist, bestätigen wir vor der Vereinbarung.
+            </p>
+          </div>
+        </div>
         <p className="mt-3 max-w-3xl leading-relaxed text-navy-600">
           Wenn du online oder hybrid teilnehmen möchtest, prüfen wir die zugelassene Durchführung und die Vorgaben deines AVGS
           vor der Zusage. Das gilt auch, wenn du in einer anderen Region wohnst.
         </p>
+        <Button href="/termin?avgs=ja" variant="text" className="mt-4">Vorhandenen AVGS prüfen lassen →</Button>
       </Section>
 
       <Section tone="tint" id="leitfaden">

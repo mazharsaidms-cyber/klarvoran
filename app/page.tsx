@@ -123,7 +123,7 @@ export default function HomePage() {
               <li className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-3"><VisualIcon name="document" className="shrink-0" />Unterlagen teilen</li>
               <li className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-3"><VisualIcon name="conversation" className="shrink-0" />Fragen stellen</li>
             </ul>
-            <div className="mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <div className="mt-7 flex flex-col items-start gap-3">
               <Button href="/termin" onDark>Erstgespräch anfragen</Button>
               <Button href="/teilnehmer" variant="text" onDark>Schon dabei? Zum Teilnehmerbereich →</Button>
             </div>

@@ -63,10 +63,10 @@ export default function KontaktPage() {
         <h2 className="mt-3 text-2xl font-bold text-navy">Wo findet das Coaching statt?</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div className="rounded-[var(--radius-md)] border border-navy-100 p-6">
-            <h3 className="font-bold text-navy">Coachingstandort Kriftel</h3>
+            <h3 className="font-bold text-navy">Angegebener Veranstaltungsort in Kriftel</h3>
             <p className="mt-3 text-navy-600">{siteConfig.presenceLocation.name}<br />{siteConfig.presenceLocation.street}<br />{siteConfig.presenceLocation.zip} {siteConfig.presenceLocation.city}</p>
-            <p className="mt-3 text-sm text-navy-600">{siteConfig.presenceLocation.note} Alternativ online oder hybrid.</p>
-            <Button href={`https://www.google.com/maps/search/?api=1&query=${siteConfig.presenceLocation.mapsQuery}`} external variant="text" className="mt-4">Anfahrt zum Coachingstandort →</Button>
+            <p className="mt-3 text-sm text-navy-600">{siteConfig.presenceLocation.note} Auch ein gewünschtes Online- oder Hybridformat klären wir vor der Zusage.</p>
+            <Button href={`https://www.google.com/maps/search/?api=1&query=${siteConfig.presenceLocation.mapsQuery}`} external variant="text" className="mt-4">Anfahrt nach Terminbestätigung →</Button>
           </div>
           <div className="rounded-[var(--radius-md)] border border-navy-100 p-6">
             <h3 className="font-bold text-navy">Geschäfts- und Postanschrift</h3>

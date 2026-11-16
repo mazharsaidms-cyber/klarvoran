@@ -110,25 +110,37 @@ export default function HomePage() {
       </Section>
 
       <Section tone="white" spacing="compact">
-        <div className="flex flex-col gap-5 rounded-[var(--radius-lg)] border border-navy-100 bg-navy-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div className="relative grid items-center gap-8 overflow-hidden rounded-[var(--radius-lg)] bg-navy p-6 text-white shadow-card sm:p-9 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:p-11">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-32 h-72 w-72 rounded-full bg-white/5" />
+          <div className="relative">
+            <Eyebrow tone="white">Digital begleitet</Eyebrow>
+            <h2 className="mt-4 max-w-lg text-2xl font-bold leading-tight sm:text-3xl">Dein Coaching. Alles im Blick.</h2>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/85">
+              Auch zwischen den Gesprächen weißt du, was ansteht. Mit persönlichem Zugang für Teilnehmende und Coaches.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2 text-sm font-semibold" aria-label="Das kannst du im Teilnehmerbereich tun">
+              <li className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-3"><VisualIcon name="calendar" className="shrink-0" />Termine sehen</li>
+              <li className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-3"><VisualIcon name="document" className="shrink-0" />Unterlagen teilen</li>
+              <li className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-3"><VisualIcon name="conversation" className="shrink-0" />Fragen stellen</li>
+            </ul>
+            <div className="mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+              <Button href="/termin" onDark>Erstgespräch anfragen</Button>
+              <Button href="/teilnehmer" variant="text" onDark>Schon dabei? Zum Teilnehmerbereich →</Button>
+            </div>
+            <p className="mt-4 text-xs leading-relaxed text-white/70">Der persönliche Zugang wird im Coaching eingerichtet.</p>
+          </div>
+          <div className="relative mx-auto w-full max-w-md" aria-label="Grafische Vorschau ohne persönliche Daten"><ParticipantPreview /></div>
+        </div>
+      </Section>
+
+      <Section tone="tint" spacing="compact">
+        <div className="flex flex-col gap-5 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div className="max-w-2xl">
             <Eyebrow>So arbeiten wir</Eyebrow>
             <h2 className="mt-3 text-xl font-bold text-navy sm:text-2xl">Verstehen. Üben. Selbst weitergehen.</h2>
             <p className="mt-3 leading-relaxed text-navy-600">Wir ordnen die Ausgangslage, erklären berufliche Anforderungen und üben konkrete Schritte, bis du sie zunehmend selbst übernehmen kannst.</p>
           </div>
           <Button href="/ueber-uns" variant="secondary" className="shrink-0">KlarVoran kennenlernen</Button>
-        </div>
-      </Section>
-
-      <Section tone="tint" spacing="compact">
-        <div className="grid items-center gap-6 rounded-[var(--radius-lg)] border border-navy-100 bg-white p-5 shadow-card sm:p-7 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <Eyebrow>Für bestehende Teilnehmende</Eyebrow>
-            <h2 className="mt-3 text-xl font-bold text-navy sm:text-2xl">Dein Teilnehmerbereich</h2>
-            <p className="mt-3 max-w-lg leading-relaxed text-navy-600">Termine, Unterlagen und Nachrichten an einem Ort – für Teilnehmende mit Einladung.</p>
-            <Button href="/teilnehmer" className="mt-5">Teilnehmerbereich öffnen</Button>
-          </div>
-          <div className="mx-auto w-full max-w-sm" aria-label="Grafische Vorschau ohne persönliche Daten"><ParticipantPreview /></div>
         </div>
       </Section>
 

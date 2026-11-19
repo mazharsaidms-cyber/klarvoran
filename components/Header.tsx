@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -10,16 +10,23 @@ import { Logo } from "./Logo";
 import { VisualIcon } from "./VisualIcon";
 
 const headerNav = siteConfig.nav.filter((item) => item.href !== "/faq" && item.href !== "/kontakt");
+const subscribeToLocation = (notify: () => void) => {
+  window.addEventListener("popstate", notify);
+  return () => window.removeEventListener("popstate", notify);
+};
+const adSourceInUrl = () => new URLSearchParams(window.location.search).get("kv_source") === "google_ads";
 
 export function Header() {
   const [openPathname, setOpenPathname] = useState<string | null>(null);
+  const adLanding = useSyncExternalStore(subscribeToLocation, adSourceInUrl, () => false);
   const pathname = usePathname();
   const publicPage = !pathname.startsWith("/teilnehmer") && pathname !== "/coach" && pathname !== "/zugang" && pathname !== "/impressum" && pathname !== "/datenschutz";
   const open = openPathname === pathname;
   const institutionalPage = pathname === "/fachkraefte-kooperationspartner" || pathname.startsWith("/fuer-");
   const institutionalAudience = institutionalPage || pathname === "/leistungen/workshops";
   const showQuickCheck = pathname === "/" || pathname === "/avgs";
-  const contactHref = institutionalAudience ? `${pathname}#anfrage` : "/termin";
+  const contactHref = institutionalAudience ? `${pathname}#anfrage`
+    : pathname === "/avgs" && adLanding ? "/termin?kv_source=google_ads" : "/termin";
   const contactLabel = pathname === "/fuer-jobcenter" ? "Teilnahme abstimmen"
     : pathname === "/leistungen/workshops" ? "Workshop anfragen"
     : pathname === "/fuer-kommunen" ? "Vorhaben anfragen"

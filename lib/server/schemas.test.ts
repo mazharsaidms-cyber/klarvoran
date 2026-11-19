@@ -98,6 +98,15 @@ test("avgsCheckSchema: gültige Eingabe (happy path) wird akzeptiert", () => {
   assert.equal(result.success, true);
 });
 
+test("Kampagnenquelle akzeptiert nur den allgemeinen Google-Ads-Hinweis", () => {
+  const appointment = {
+    name: "Erika Musterfrau", email: "erika@example.com",
+    format: "online", hasAvgs: "ja", website: "",
+  };
+  assert.equal(appointmentSchema.safeParse({ ...appointment, source: "google_ads" }).success, true);
+  assert.equal(appointmentSchema.safeParse({ ...appointment, source: "gclid-123" }).success, false);
+});
+
 
 test("contactSchema: rejects header control characters but accepts human names", () => {
   const base = { email: "test@example.com", message: "Bitte senden Sie mir Informationen zum Coaching." };

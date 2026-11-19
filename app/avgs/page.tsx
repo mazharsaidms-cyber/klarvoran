@@ -63,7 +63,14 @@ const guideSteps: VisualStep[] = [
 
 const moduleIcons: IconName[] = ["orientation", "document", "laptop", "conversation"];
 
-export default function AvgsPage() {
+export default async function AvgsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ kv_source?: string | string[] }>;
+}) {
+  const source = (await searchParams).kv_source === "google_ads" ? "google_ads" : undefined;
+  const terminHref = source ? "/termin?kv_source=google_ads" : "/termin";
+  const terminAvgsHref = source ? "/termin?avgs=ja&kv_source=google_ads" : "/termin?avgs=ja";
   return (
     <>
       <Breadcrumbs items={[{ href: "/avgs", label: "AVGS" }]} />
@@ -81,7 +88,7 @@ export default function AvgsPage() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
-              <Button href="/termin" onDark variant="secondary">Erstgespräch anfragen</Button>
+              <Button href={terminHref} onDark variant="secondary">Erstgespräch anfragen</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
               Für die Anfrage brauchst du noch keinen Gutschein. Mit passendem AVGS und schriftlicher Bewilligung vor Beginn übernimmt der Kostenträger die Maßnahmekosten. Ort und Format klären wir anhand deines Gutscheins und der zugelassenen Maßnahme.
@@ -105,7 +112,7 @@ export default function AvgsPage() {
               Frag ein kostenloses Erstgespräch an. Wir prüfen Förderziel, Gültigkeit, Region und gewünschtes Format.
               Den sicheren Weg für die Gutscheinunterlagen besprechen wir danach. Beginne erst nach schriftlicher Bewilligung.
             </p>
-            <Button href="/termin?avgs=ja" className="mt-5">Gutscheinprüfung anfragen</Button>
+            <Button href={terminAvgsHref} className="mt-5">Gutscheinprüfung anfragen</Button>
           </div>
           <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card">
             <h3 className="text-lg font-bold text-navy">Ich habe noch keinen AVGS</h3>
@@ -158,7 +165,7 @@ export default function AvgsPage() {
           </p>
         </div>
         <div className="mx-auto mt-6 max-w-2xl rounded-[var(--radius-lg)] bg-white p-2 sm:p-4">
-          <AvgsSchnellcheck />
+          <AvgsSchnellcheck source={source} />
         </div>
       </Section>
 
@@ -247,7 +254,7 @@ export default function AvgsPage() {
           Wenn du online oder hybrid teilnehmen möchtest, prüfen wir die zugelassene Durchführung und die Vorgaben deines AVGS
           vor der Zusage. Das gilt auch, wenn du in einer anderen Region wohnst.
         </p>
-        <Button href="/termin?avgs=ja" variant="text" className="mt-4">Vorhandenen AVGS prüfen lassen →</Button>
+        <Button href={terminAvgsHref} variant="text" className="mt-4">Vorhandenen AVGS prüfen lassen →</Button>
       </Section>
 
       <Section tone="tint" id="leitfaden">
@@ -302,6 +309,7 @@ export default function AvgsPage() {
       <CtaSection
         title="Unsicher, ob das auf dich zutrifft?"
         description="Kein Problem – im kostenlosen Erstgespräch schauen wir gemeinsam auf deine Situation."
+        primaryHref={terminHref}
         secondaryLabel="AVGS-Schnellcheck starten"
         secondaryHref="#schnellcheck"
       />

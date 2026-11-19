@@ -13,7 +13,12 @@ export const metadata: Metadata = pageMetadata(
   "/termin",
 );
 
-export default function TerminPage() {
+export default async function TerminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ kv_source?: string | string[] }>;
+}) {
+  const source = (await searchParams).kv_source === "google_ads" ? "google_ads" : undefined;
   return (
     <>
       <Breadcrumbs items={[{ href: "/termin", label: "Termin" }]} />
@@ -54,7 +59,7 @@ export default function TerminPage() {
             Wir melden uns zur Abstimmung. Verbindlich ist der Termin erst nach unserer Bestätigung.
           </p>
           <div className="mt-6">
-            <AppointmentForm />
+            <AppointmentForm source={source} />
           </div>
         </div>
 

@@ -54,6 +54,7 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
     email: parsed.data.email,
     phone: parsed.data.phone || undefined,
     summaryLines: [
+      ...(parsed.data.source === "google_ads" ? ["Anfragequelle: Google Ads (Kampagnenlink)"] : []),
       `Bevorzugte Form: ${formatLabels[parsed.data.format]}`,
       `AVGS-Status: ${avgsLabels[parsed.data.hasAvgs]}`,
       parsed.data.message ? `Nachricht: ${parsed.data.message}` : "",

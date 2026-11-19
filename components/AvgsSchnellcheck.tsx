@@ -20,7 +20,7 @@ function hasAllAnswers(answers: DraftAnswers): answers is AvgsAnswers {
   return Boolean(answers.status && answers.traeger && answers.anliegen && answers.form);
 }
 
-export function AvgsSchnellcheck() {
+export function AvgsSchnellcheck({ source }: { source?: "google_ads" }) {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<DraftAnswers>({ form: "unsicher" });
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -148,7 +148,9 @@ export function AvgsSchnellcheck() {
           <p className="text-xs italic text-navy-600/80">{result.disclaimer}</p>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Button href={result.primaryCtaHref}>{result.primaryCtaLabel}</Button>
+            <Button href={source && result.primaryCtaHref.startsWith("/termin")
+              ? `${result.primaryCtaHref}${result.primaryCtaHref.includes("?") ? "&" : "?"}kv_source=google_ads`
+              : result.primaryCtaHref}>{result.primaryCtaLabel}</Button>
             {result.secondaryCtaHref && result.secondaryCtaLabel && (
               <Button
                 href={result.secondaryCtaHref === "whatsapp" ? siteConfig.contact.whatsappHref() : result.secondaryCtaHref}
@@ -173,6 +175,7 @@ export function AvgsSchnellcheck() {
             <input type="hidden" name="traeger" value={answers.traeger} />
             <input type="hidden" name="anliegen" value={answers.anliegen} />
             <input type="hidden" name="format" value={answers.form} />
+            {source && <input type="hidden" name="source" value={source} />}
             <HoneypotField />
 
             <div className="grid gap-4 sm:grid-cols-2">

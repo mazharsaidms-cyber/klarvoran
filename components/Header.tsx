@@ -139,7 +139,7 @@ export function Header() {
 
       {showQuickCheck && (
         <div className="border-t border-white/10 px-5 py-2 lg:hidden">
-          <Button href="/avgs#schnellcheck" className="w-full" onDark onClick={() => setOpenPathname(null)}>
+          <Button href={pathname === "/avgs" && adLanding ? "/avgs?kv_source=google_ads#schnellcheck" : "/avgs#schnellcheck"} className="w-full" onDark onClick={() => setOpenPathname(null)}>
             AVGS-Schnellcheck starten
           </Button>
         </div>

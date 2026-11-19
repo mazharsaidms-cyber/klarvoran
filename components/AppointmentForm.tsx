@@ -8,7 +8,7 @@ import { Button } from "./Button";
 import { StatusMessage } from "./StatusMessage";
 import { NoScriptContact } from "./NoScriptContact";
 
-export function AppointmentForm() {
+export function AppointmentForm({ source }: { source?: "google_ads" }) {
   const { state, formAction, pending, formRef, field } = useLeadForm(submitAppointmentRequest);
   const [format, setFormat] = useState("unsicher");
   const [hasAvgs, setHasAvgs] = useState("unsicher");
@@ -27,6 +27,7 @@ export function AppointmentForm() {
     <form ref={formRef} action={formAction} className="space-y-5" aria-busy={pending}>
       <NoScriptContact />
       <HoneypotField />
+      {source && <input type="hidden" name="source" value={source} />}
       <p className="text-xs text-navy-600">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
       <div className="grid gap-4 sm:grid-cols-2">
         <TextField id="name" {...field("name")} label="Name" required autoComplete="name" error={state.fieldErrors?.name} />

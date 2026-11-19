@@ -16,6 +16,8 @@ const phone = z
 // nach der Validierung still abgefangen, damit Bots keinen Erkennungshinweis
 // erhalten.
 const honeypot = z.string().max(500).optional().or(z.literal(""));
+// A coarse campaign label only; no individual click identifier.
+const leadSource = z.enum(["google_ads"]).optional();
 
 export const contactSchema = z.object({
   name,
@@ -48,6 +50,7 @@ export const appointmentSchema = z.object({
   hasAvgs: z.enum(["ja", "nein", "unsicher"]),
   message: z.string().trim().max(formLimits.message, "Bitte höchstens 4.000 Zeichen eingeben.").optional().or(z.literal("")),
   website: honeypot,
+  source: leadSource,
 });
 
 export const avgsCheckSchema = z.object({
@@ -65,6 +68,7 @@ export const avgsCheckSchema = z.object({
   email,
   phone,
   website: honeypot,
+  source: leadSource,
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

@@ -67,6 +67,12 @@ export default function DatenschutzPage() {
               ein Erstgespräch, eine Leistung oder eine Kooperation vorzubereiten.
             </p>
             <p className="mt-3">
+              Wenn du über einen entsprechend gekennzeichneten Kampagnenlink anfragst, wird mit dem Formular
+              gegebenenfalls der allgemeine Hinweis „Google Ads“ als Anfragequelle übermittelt. Damit können wir
+              eingehende Anfragen der Kampagne zuordnen. Eine individuelle Klick-ID, Suchbegriffe oder dein
+              Seitenverlauf werden dabei nicht erfasst; es wird kein Google-Tracking-Code geladen.
+            </p>
+            <p className="mt-3">
               Die Nachrichtenvorlage im AVGS-Schnellcheck wird aus deinen Angaben nur in deinem Browser erstellt.
               Dein dort eingegebener Name, die freie Beschreibung und der bearbeitete Vorlagentext werden durch
               diese Funktion nicht an KlarVoran gesendet. Du entscheidest selbst, ob du die Vorlage kopierst und

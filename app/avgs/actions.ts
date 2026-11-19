@@ -58,6 +58,7 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
     email: parsed.data.email,
     phone: parsed.data.phone || undefined,
     summaryLines: [
+      ...(parsed.data.source === "google_ads" ? ["Anfragequelle: Google Ads (Kampagnenlink)"] : []),
       `AVGS-Status: ${statusLabels[parsed.data.status]}`,
       `Kostenträger: ${traegerLabels[parsed.data.traeger]}`,
       `Anliegen: ${avgsAnliegenLabels[parsed.data.anliegen]}`,

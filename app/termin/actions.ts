@@ -79,6 +79,7 @@ export async function submitAppointmentRequest(_prev: ActionState, formData: For
 
   return {
     status: "success",
+    delivered: true,
     message: "Danke für deine Terminanfrage! Wir melden uns in der Regel innerhalb von 1–2 Werktagen, um einen Termin zu finden.",
   };
 }

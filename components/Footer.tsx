@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdsConsentSettingsButton } from "./AdsConsent";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { Container } from "./Container";
@@ -117,6 +118,7 @@ export function Footer() {
                 Datenschutz
               </Link>
             </li>
+            <li><AdsConsentSettingsButton /></li>
             <li>
               <a
                 href={siteConfig.certificate.pdfHref}

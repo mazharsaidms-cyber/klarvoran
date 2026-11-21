@@ -91,6 +91,7 @@ export async function submitContactForm(_prev: ActionState, formData: FormData):
 
   return {
     status: "success",
+    delivered: true,
     message: formal
       ? "Vielen Dank für Ihre Nachricht. Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei Ihnen."
       : "Danke für deine Nachricht! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir.",

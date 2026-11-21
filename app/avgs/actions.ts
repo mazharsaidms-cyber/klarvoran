@@ -82,5 +82,5 @@ export async function submitAvgsCheck(_prev: ActionState, formData: FormData): P
     };
   }
 
-  return { status: "success", message: "Danke! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir." };
+  return { status: "success", delivered: true, message: "Danke! Wir melden uns in der Regel innerhalb von 1–2 Werktagen bei dir." };
 }

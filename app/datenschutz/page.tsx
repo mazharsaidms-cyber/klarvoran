@@ -69,8 +69,8 @@ export default function DatenschutzPage() {
             <p className="mt-3">
               Wenn du über einen entsprechend gekennzeichneten Kampagnenlink anfragst, wird mit dem Formular
               gegebenenfalls der allgemeine Hinweis „Google Ads“ als Anfragequelle übermittelt. Damit können wir
-              eingehende Anfragen der Kampagne zuordnen. Eine individuelle Klick-ID, Suchbegriffe oder dein
-              Seitenverlauf werden dabei nicht erfasst; es wird kein Google-Tracking-Code geladen.
+              eingehende Anfragen der Kampagne zuordnen. Über das Formular übermitteln wir keine individuelle
+              Klick-ID und keine Suchbegriffe. Für eine gesonderte Erfolgsmessung mit Google Ads gilt Abschnitt 10.
             </p>
             <p className="mt-3">
               Die Nachrichtenvorlage im AVGS-Schnellcheck wird aus deinen Angaben nur in deinem Browser erstellt.
@@ -199,7 +199,7 @@ export default function DatenschutzPage() {
               Zugriff auf personenbezogene Daten erhalten nur Personen und Dienstleister, die sie zur Bearbeitung
               des jeweiligen Vorgangs benötigen. Mögliche Empfängerkategorien sind Hosting-, E-Mail-,
               Telekommunikations- und Nachrichtendienste sowie – bei rechtlicher Verpflichtung – Behörden oder
-              beratende Stellen. Eine Weitergabe zu Werbezwecken findet nicht statt.
+              beratende Stellen. Formulareingaben geben wir nicht zu Werbezwecken an Google weiter.
             </p>
             <p className="mt-3">
               Bei Dienstleistern mit Sitz oder Infrastruktur außerhalb des Europäischen Wirtschaftsraums können
@@ -221,12 +221,34 @@ export default function DatenschutzPage() {
             </p>
           </section>
 
-          <section>
+          <section id="tracking">
             <h2 className="text-xl font-bold text-navy">10. Cookies, Tracking und externe Karten</h2>
             <p className="mt-3">
-              Diese Website setzt aktuell keine Analyse- oder Marketing-Cookies und keine Tracking-Dienste ein.
-              Google Maps ist nicht eingebettet. Karten-Links öffnen sich erst nach einem bewussten Klick in einem
-              neuen Tab; ab diesem Zeitpunkt gelten die Datenschutzbedingungen des jeweiligen Anbieters.
+              Nur nach deiner ausdrücklichen Zustimmung laden wir auf den öffentlichen Seiten den Google-Ads-Tag
+              (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Damit messen wir, ob nach
+              einem Anzeigenklick eine Kontakt-, AVGS- oder Terminanfrage erfolgreich übermittelt wurde. Google
+              kann dazu Cookies bzw. ähnliche Kennungen auf deinem Gerät speichern oder auslesen und etwa
+              Anzeigenklickdaten, aufgerufene Seiten, IP-Adresse, Geräteinformationen und das Conversion-Ereignis
+              verarbeiten. Es werden keine Namen, E-Mail-Adressen, Telefonnummern, Nachrichten oder sonstige
+              Formulareingaben an den Tag übergeben. Eine personalisierte Werbung wird über unsere
+              Tag-Einstellungen nicht freigegeben.
+            </p>
+            <p className="mt-3">
+              Rechtsgrundlage für den Zugriff auf dein Gerät ist deine Einwilligung nach § 25 Abs. 1 TDDDG;
+              für die Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO. Ohne Zustimmung wird
+              der Google-Tag nicht geladen. Du kannst die Einwilligung jederzeit über „Tracking-Einstellungen“
+              im Fußbereich widerrufen; danach unterbleibt die weitere Erfolgsmessung. Deine Wahl speichern
+              wir lokal in deinem Browser, bis du sie änderst oder die Browserdaten löschst. Der Widerruf lässt
+              die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung unberührt. Es können Daten außerhalb des
+              EWR verarbeitet werden; Einzelheiten zu Google, möglichen Übermittlungen und der Speicherdauer
+              von Kennungen stehen in der{" "}
+              <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className={linkClasses}>
+                Datenschutzerklärung von Google
+              </a>.
+            </p>
+            <p className="mt-3">
+              Google Maps ist nicht eingebettet. Karten-Links öffnen sich erst nach einem bewussten Klick in
+              einem neuen Tab; ab diesem Zeitpunkt gelten die Datenschutzbedingungen des jeweiligen Anbieters.
             </p>
           </section>
 

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { OrganizationStructuredData } from "@/components/StructuredData";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { AdsConsent } from "@/components/AdsConsent";
 import { siteConfig } from "@/lib/site-config";
 
 const manrope = Manrope({
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <WhatsAppButton />
         <ScrollReveal />
         <OrganizationStructuredData />
+        <AdsConsent />
       </body>
     </html>
   );

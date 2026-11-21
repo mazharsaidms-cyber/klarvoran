@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState, type ChangeEvent } from "react";
 import { initialActionState, type ActionState } from "@/lib/server/action-state";
+import { trackDeliveredLead } from "@/lib/ads-conversion";
 
 type LeadAction = (previous: ActionState, data: FormData) => Promise<ActionState>;
 
@@ -25,6 +26,14 @@ export function useLeadForm(action: LeadAction, formal = false, defaults: Record
   useEffect(() => {
     if (state.fieldErrors) {
       formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+    }
+  }, [state]);
+
+  const trackedState = useRef<ActionState | null>(null);
+  useEffect(() => {
+    if (state.status === "success" && state.delivered && trackedState.current !== state) {
+      trackedState.current = state;
+      trackDeliveredLead();
     }
   }, [state]);
 

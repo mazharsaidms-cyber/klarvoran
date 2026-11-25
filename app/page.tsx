@@ -47,13 +47,16 @@ export default function HomePage() {
               Du suchst Arbeit oder eine Ausbildung? Wir finden gemeinsam deinen nächsten Schritt.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href="/avgs" onDark>
-                AVGS-Bewerbungscoaching ansehen
+              <Button href="/avgs#gutschein-vorhanden" onDark>
+                AVGS schon erhalten? Hier starten
               </Button>
               <Button href="/fachkraefte-kooperationspartner" variant="secondary" onDark>
                 Für Institutionen
               </Button>
             </div>
+            <p className="mt-3 text-sm text-white/85">
+              Noch keinen Gutschein? <a href="/avgs#schnellcheck" className="font-semibold underline underline-offset-4 hover:text-white">AVGS-Schnellcheck starten</a>
+            </p>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/80">
               Für Hofheim, Kriftel, den Main-Taunus-Kreis, Höchst, Zeilsheim und Frankfurt-West.
               Ob Präsenz, online oder hybrid zu deinem Gutschein passt, klären wir vor der Terminvereinbarung.

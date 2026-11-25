@@ -21,7 +21,7 @@ import { VisualIcon, type IconName } from "@/components/VisualIcon";
 export const metadata: Metadata = {
   title: { absolute: "AVGS-Bewerbungscoaching Frankfurt-West & Main-Taunus | KlarVoran" },
   description:
-    "Bewerbungscoaching mit AVGS für Frankfurt-West und den Main-Taunus-Kreis. Gutschein prüfen, nächsten Bewerbungsschritt klären und Erstgespräch anfragen.",
+    "AVGS bereits erhalten? Lass deinen Gutschein für Bewerbungscoaching in Frankfurt-West und im Main-Taunus-Kreis prüfen und frag ein Erstgespräch bei KlarVoran an.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -87,11 +87,12 @@ export default async function AvgsPage({
               Persönliche Unterstützung bei Orientierung, Bewerbungen und Vorstellungsgesprächen.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="#schnellcheck" onDark>AVGS-Schnellcheck starten</Button>
-              <Button href={terminHref} onDark variant="secondary">Erstgespräch anfragen</Button>
+              <Button href={terminAvgsHref} onDark>AVGS vorhanden? Prüfung anfragen</Button>
+              <Button href="#schnellcheck" onDark variant="secondary">Noch keinen AVGS? Schnellcheck</Button>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80">
-              Für die Anfrage brauchst du noch keinen Gutschein. Mit passendem AVGS und schriftlicher Bewilligung vor Beginn übernimmt der Kostenträger die Maßnahmekosten. Ort und Format klären wir anhand deines Gutscheins und der zugelassenen Maßnahme.
+              Du hast schon einen Gutschein? Im kostenlosen Erstgespräch klären wir dein Anliegen und prüfen anschließend,
+              ob der AVGS zu unserer Maßnahme passt. Das Coaching beginnt erst nach schriftlicher Bewilligung.
             </p>
           </div>
           <ContextGraphic
@@ -106,7 +107,7 @@ export default async function AvgsPage({
         <Eyebrow>Dein Einstieg</Eyebrow>
         <h2 className="mt-3 text-2xl font-bold text-navy sm:text-3xl">AVGS schon erhalten oder noch am Anfang?</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <div className="rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card">
+          <div id="gutschein-vorhanden" className="scroll-mt-24 rounded-[var(--radius-md)] border border-navy-100 bg-white p-6 shadow-card">
             <h3 className="text-lg font-bold text-navy">Ich habe bereits einen AVGS</h3>
             <p className="mt-3 text-sm leading-relaxed text-navy-600">
               Frag ein kostenloses Erstgespräch an. Wir prüfen Förderziel, Gültigkeit, Region und gewünschtes Format.
